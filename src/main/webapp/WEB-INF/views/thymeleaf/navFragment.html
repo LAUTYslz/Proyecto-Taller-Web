@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Proyecto Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" href="contacto.html">Contactos</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" href="#">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+    <a class="navbar-brand" href="home.html">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
+        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
