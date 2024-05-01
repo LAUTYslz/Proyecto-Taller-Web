@@ -1,10 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Metodos de Enseñanza</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Proyecto Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
+
+
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" href="#">Temas</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" href="#">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+
+    <a class="navbar-brand" href="home.html">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
+        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+
+
+<h1>Metodos de Enseñañanza</h1>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px auto;
+        max-width: 1000px;
+        padding: 0 20px;
+    }
+    .column {
+        flex: 1;
+        margin-right: 20px;
+    }
+    .column:last-child {
+        margin-right: 0;
+    }
+    h2 {
+        color: #333;
+    }
+    p {
+        color: #666;
+    }
+    button {
+        display: block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: darkslateblue;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+</style>
+
+
+
+<div class="container">
+    <div class="column">
+        <h2>Metodo Montessori</h2>
+        <p>El método Montessori se caracteriza por proveer un ambiente preparado: ordenado, estético, simple, real, donde cada elemento tiene su razón de ser en el desarrollo de los niños. El aula Montessori integra edades agrupadas en períodos de 3 años, lo que promueve naturalmente la socialización, el respeto y la solidaridad.
+
+            El ambiente preparado ofrece al niño oportunidades para comprometerse en un trabajo interesante, elegido libremente, que propicia prolongados períodos de concentración que no deben ser interrumpidos. La libertad se desarrolla dentro de límites claros que permite a los niños convivir en la pequeña sociedad del aula.
+
+            Los niños trabajan con materiales concretos científicamente diseñados, que brindan las llaves para explorar el mundo y para desarrollar habilidades cognitivas básicas. Los materiales están diseñados para que el niño pueda reconocer el error por sí mismo y hacerse responsable del propio aprendizaje.
+
+            El adulto es un observador y un guía; ayuda y estimula al niño en todos sus esfuerzos. Le permite actuar, querer y pensar por sí mismo, ayudándolo a desarrollar confianza y disciplina interior.
+
+            La educación Montessori cubre todos los períodos educativos desde el nacimiento hasta los 18 años brindando un currículo integrado.</p>
+        <button id="montessori" Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Montessori</a></button>
+    </div>
+    <div class="column">
+        <h2>Metodo Doman </h2>
+        <p>Este método está diseñado para que los padres puedan aplicarlo con su hijo, adaptándolo a las características y necesidades del pequeño. Este método se basa en inputs y outputs. Es decir, al niño se le van presentando estímulos adecuados tanto en intensidad como en frecuencia y claridad para favorecer su desarrollo y que el niño disfrute del proceso.
+
+            Estos estímulos reciben el nombre de Bits de inteligencia y se pueden procesar por cualquiera de las vías sensoriales: oído, tacto, visión y gusto. Los Bits se agrupan en categorías para favorecer la formación de conexiones neuronales y han de ser novedosos, simples y concreto.
+
+            Por lo tanto, este método se trata básicamente en mostrar al niño series de cinto tarjetas con palabras, escritas con letras grandes y que correspondan a una misma categoría para que el niño vaya estableciendo relaciones. Después, poco a poco se van añadiendo categorías.
+
+            Así, las categorías pueden ser: colores, animales, juguetes, vocabulario del cuerpo, familia, etc. Además, el aprendizaje en este método se da en diferentes fases</p>
+        <button id="doman"  Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Doman</a></button>
+    </div>
+    <div class="column">
+        <h2>Metodo Waldorf </h2>
+        <p>La metodología Waldorf es una técnica de enseñanza que nace en las premisas establecidas por Rudolf Steiner. Esta pedagogía está basada en la libre instrucción por parte de los alumnos, es decir, que sean autónomos a la hora de ir realizando y adquiriendo los conocimientos a lo largo del propio proceso educativo. Esta metodología fomenta sobre todo el grupo cooperativo entre los estudiantes, centrando en cada etapa educativa diferentes hipótesis de trabajo y enseñanza, que los alumnos irán adquiriendo de forma paulatina cuando estén preparados para asimilar dichos conceptos. En este caso, el docente es el encargado de ir observando a los niños y niñas en todo momento para ir introduciendo los conocimientos que precisen en cada una de las diferentes etapas educativas, fomentando en cada una de ellas las materias de arte, música y trabajos más artesanales y manipulativos..</p>
+        <button id="waldorf"  Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Waldorf</a></button>
+    </div>
+</div>
+
+
+
 </body>
+
+
+
 </html>

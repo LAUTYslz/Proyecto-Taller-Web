@@ -1,3 +1,4 @@
+com\tallerwebi\presentacion\ControladorInfo.class
 com\tallerwebi\config\DatabaseInitializationConfig.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class

@@ -18,7 +18,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
-
+<style>
+  .btn-secondary{
+    background-color: darkslateblue;
+  }
+</style>
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
@@ -54,23 +58,28 @@
           <label th:name="email" >Email</label>
           <input th:field="*{email}" id="email" class="form-control" required/>
           <label th:name="password">Password</label>
-          <input th:field="*{password}" type="password" id="password" class="form-control" required/>
+          <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
         </div>
         <div class="container">
           <h3>Informacion del Bebe</h3>
           <label>Nombre: </label>
           <input type="text" id="nombre" class="form-control" required/>
           <label>Fecha de Nacimiento</label>
-          <input type="date" id="fechaNac" class="form-control" />
+          <input type="date" id="fechaNac" class="form-control" /><br>
         </div>
         <div class="container">
-          <h3>Metodos de Crianza</h3>
-          <label for="montesori">Metodo Montesori</label>
-          <input type="radio" name="metodo" id="montesori" class="form-control"/>
-          <label for="fulano">Metodo fulano</label>
-          <input type="radio" name="metodo" id="fulano" class="form-control/">
+          <h3>Metodos de Crianza</h3><br>
+
+          <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" href="info.html"> + INFO METODOS </a></button>
+
+          <label for="fulano">Metodo Doman</label>
+          <input type="radio" name="metodo" id="fulano" class="form-control/"><br>
+          <label for="montessori">Metodo Montessori</label>
+          <input type="radio" name="metodo" id="montessori" class="form-control/"/><br>
+          <label for="fulano">Metodo Waldorf</label>
+          <input type="radio" name="metodo" id="waldorf" class="form-control/"><br>
           <div class="container">
-            <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" href="info.html">Metodos de Crianza</a></button>
+
           </div>
         </div>
 
