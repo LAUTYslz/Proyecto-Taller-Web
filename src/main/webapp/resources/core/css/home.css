@@ -1,4 +1,4 @@
-/* Estilos para pantallas grandes */
+
 .navbar {
     height: 100px; /* Ajusta el grosor del navbar */
     display: flex; /* Usa flexbox para alinear los elementos */
@@ -16,8 +16,8 @@
 
 .navbar-brand img {
     margin-top: 10px;
-    max-height: 200px; /* Ajusta el tamaño máximo del logo */
-    width: auto; /* Permita que el ancho se ajuste automáticamente */
+    max-height: 200px; /* tamaño mximo del logo */
+    width: auto; /*  ancho */
 }
 
 .navbar-nav.ml-auto {
@@ -105,6 +105,7 @@
 #carouselExampleSlidesOnly {
     width: auto; /* Ancho del slider */
     margin: 0 auto; /* Centrar el slider */
+
 }
 /* Estilo personalizado para las imágenes del slider */
 .carousel-item img {
@@ -159,26 +160,28 @@
 
 .carousel-caption .btn-suscribirme {
     position: absolute; /* Posición absoluta para colocar el botón en la esquina inferior derecha */
-    bottom: 20px; /* Ajustar la distancia desde la parte inferior */
-    right: 20px; /* Ajustar la distancia desde la parte derecha */
-}
-
-
-.carousel-item:last-child .btn-suscribirme {
-    position: absolute;
     bottom: 250px; /* Ajusta la distancia desde la parte inferior */
     right: 20%; /* Ajusta la distancia desde la parte derecha al 50% */
     transform: translateX(50%); /* Centra horizontalmente */
     width: auto; /* Ancho automático según el contenido del texto */
     max-width: 200px; /* Ancho máximo del botón */
     font-family: 'Schoolbell', cursive;
-    font-weight: bold;
-    background-color: rgba(59, 46, 105, 0.87);
-    border-color: rgba(25, 21, 45, 0.75);
+    background-color: rgb(234, 134, 32);
+    border-color: rgba(208, 80, 3, 0.75);
     color: rgba(255, 255, 255, 0.87);
 }
+
+
 h1{
     text-align: center;
     margin-top: 50px;
 }
 
+.footer {
+    background-color: rgba(72, 55, 128, 0.29);
+    padding-top: 10px;
+}
+.info-col {
+    margin-right: 15px;
+    margin-left: 15px;
+}
