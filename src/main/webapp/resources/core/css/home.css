@@ -1,23 +1,26 @@
+body {
+    background-color: #dacdea;
+}
 
 .navbar {
-    height: 100px; /* Ajusta el grosor del navbar */
-    display: flex; /* Usa flexbox para alinear los elementos */
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Alinea los elementos verticalmente */
-    position: relative; /* Establece una posición relativa para el navbar */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .navbar-brand {
-    position: absolute; /* Establece una posición absoluta para el logo */
-    top: 50%; /* Posición vertical centrada */
-    left: 50%; /* Posición horizontal centrada */
-    transform: translate(-50%, -50%); /* Corrige la posición del logo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .navbar-brand img {
     margin-top: 10px;
-    max-height: 200px; /* tamaño mximo del logo */
-    width: auto; /*  ancho */
+    max-height: 200px;
+    width: auto;
 }
 
 .navbar-nav.ml-auto {
@@ -28,28 +31,62 @@
 }
 
 .custom-color-navbar {
-    background-color: rgba(43, 34, 77, 0.87); /* Reemplaza "your-color" con el código de color personalizado */
+    background-color: rgba(43, 34, 77, 0.87);
 }
 
 .search-container {
-    display: flex; /* Mostrar elementos en línea */
-    align-items: center; /* Alinea los elementos verticalmente */
+    display: flex;
+    align-items: center;
 }
 .search-container input {
-    margin-right: 10px; /* Espacio entre el campo de búsqueda y el botón */
+    margin-right: 10px;
 }
 .search-container button {
-    margin-left: 10px; /* Espacio entre el campo de búsqueda y el botón */
+    margin-left: 10px;
 }
 
-/* Estilos para la imagen en el cuerpo */
-.container img {
-    display: block; /* Hacer que la imagen sea un bloque para poder centrarla */
-    margin: 0 auto; /* Centrar la imagen horizontalmente */
-    max-width: 90%; /* Ajustar el ancho máximo de la imagen */
-    height: auto; /* Permitir que la altura se ajuste automáticamente */
-    margin-top: 20px; /* Espacio superior para separar la imagen del texto */
-    margin-bottom: 20px; /* Espacio inferior para separar la imagen del texto */
+
+
+.containerProyecto h1 {
+font-family: Schoolbell, cursive;
+    margin-bottom: 25px;
+}
+
+
+
+.contentImageHome {
+    position: relative; /* Establece una posición relativa para poder posicionar el pseudo-elemento */
+    padding: 120px; /* Ajusta el relleno según sea necesario */
+    margin: 20px 0; /* Ajusta los márgenes superior e inferior */
+    border: 4px solid rgba(54, 48, 79, 0.87); /* Color lila y más grueso */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el contenido que sobresale del contenedor */
+}
+
+.contentImageHome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/logo.jpeg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.contentImageHome:hover {
+    border-color: rgba(49, 36, 96, 0.87); /* Cambio de color al pasar el mouse */
+}
+
+.ver-mas{
+    position: absolute; /* Establece una posición absoluta para el botón */
+    bottom: 20px; /* Posición 20 píxeles desde la parte inferior */
+    right: 20px; /* Posición 20 píxeles desde el borde derecho */
 }
 
 /* Estilos para dispositivos móviles */
@@ -178,10 +215,17 @@ h1{
 }
 
 .footer {
-    background-color: rgba(72, 55, 128, 0.29);
+    color: #dacdea;
+    background-color: rgba(43, 34, 77, 0.87);
     padding-top: 10px;
 }
 .info-col {
     margin-right: 15px;
     margin-left: 15px;
+}
+a {
+    color: rgba(99, 255, 220, 0.5);
+}
+a:hover {
+    color: #58e3ca; /
 }
