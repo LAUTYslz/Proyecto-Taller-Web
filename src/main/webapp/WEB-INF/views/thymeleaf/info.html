@@ -25,21 +25,21 @@
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
     <div class="navbar-nav">
-        <a class="nav-link" href="contacto.html">Contactos</a>
+        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
         <a class="nav-link" href="#">Eventos/Cursos</a>
         <a class="nav-link" href="#">Tests</a>
         <a class="nav-link" href="#">Foro Comunidad</a>
     </div>
 
 
-    <a class="navbar-brand" href="home.html">
+    <a class="navbar-brand" th:href="@{/home}">
         <img th:src="@{/img/educareLogo.png}" alt="Logo">
     </a>
 
 
     <div class="navbar-nav ml-auto">
-        <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
-        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
         <div class="search-container">
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -104,7 +104,7 @@
             El adulto es un observador y un guía; ayuda y estimula al niño en todos sus esfuerzos. Le permite actuar, querer y pensar por sí mismo, ayudándolo a desarrollar confianza y disciplina interior.
 
             La educación Montessori cubre todos los períodos educativos desde el nacimiento hasta los 18 años brindando un currículo integrado.</p>
-        <button id="montessori" Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Montessori</a></button>
+        <button id="montessori" Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Montessori</a></button>
     </div>
     <div class="column">
         <h2>Metodo Doman </h2>
@@ -115,12 +115,12 @@
             Por lo tanto, este método se trata básicamente en mostrar al niño series de cinto tarjetas con palabras, escritas con letras grandes y que correspondan a una misma categoría para que el niño vaya estableciendo relaciones. Después, poco a poco se van añadiendo categorías.
 
             Así, las categorías pueden ser: colores, animales, juguetes, vocabulario del cuerpo, familia, etc. Además, el aprendizaje en este método se da en diferentes fases</p>
-        <button id="doman"  Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Doman</a></button>
+        <button id="doman"  Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Doman</a></button>
     </div>
     <div class="column">
         <h2>Metodo Waldorf </h2>
         <p>La metodología Waldorf es una técnica de enseñanza que nace en las premisas establecidas por Rudolf Steiner. Esta pedagogía está basada en la libre instrucción por parte de los alumnos, es decir, que sean autónomos a la hora de ir realizando y adquiriendo los conocimientos a lo largo del propio proceso educativo. Esta metodología fomenta sobre todo el grupo cooperativo entre los estudiantes, centrando en cada etapa educativa diferentes hipótesis de trabajo y enseñanza, que los alumnos irán adquiriendo de forma paulatina cuando estén preparados para asimilar dichos conceptos. En este caso, el docente es el encargado de ir observando a los niños y niñas en todo momento para ir introduciendo los conocimientos que precisen en cada una de las diferentes etapas educativas, fomentando en cada una de ellas las materias de arte, música y trabajos más artesanales y manipulativos..</p>
-        <button id="waldorf"  Type="Submit"><a role="button" href="nuevo-usuario.html">Seleccionar Waldorf</a></button>
+        <button id="waldorf"  Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Waldorf</a></button>
     </div>
 </div>
 

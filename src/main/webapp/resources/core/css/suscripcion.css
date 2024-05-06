@@ -5,6 +5,10 @@ main {
     background-color: #f8f9fa;
 }
 
+.bodys{
+    background-color: #c8b2e1;
+}
+
 h2{
     font-family: Schoolbell, cursive;
 }
@@ -23,7 +27,6 @@ h2{
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .membership {
@@ -55,11 +58,11 @@ h2{
 }
 
 .membership.paid:hover {
-    background-color: #6fb2f5; /* Color de fondo al pasar el mouse */
+    background-color: rgba(111, 178, 245, 0.38); /* Color de fondo al pasar el mouse */
 }
 
 .membership.free:hover {
-    background-color: #94e891; /* Color de fondo al pasar el mouse */
+    background-color: rgba(148, 232, 145, 0.34); /* Color de fondo al pasar el mouse */
 }
 
 .membership h2 {
@@ -75,10 +78,12 @@ h2{
     margin-bottom: 10px;
 }
 .membership.paid {
-    border: 2px solid #007bff; /* Color del borde para la membresía paga */
+    border: 2px solid #007bff;
+    background-color: #dacdea;
 }
 .membership.free {
-    border: 2px solid #28a745; /* Color del borde para la membresía gratuita */
+    border: 2px solid #28a745;/* Color del borde para la membresía gratuita */
+    background-color: #dacdea;
 }
 
 h1{

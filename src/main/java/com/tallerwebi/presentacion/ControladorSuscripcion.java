@@ -9,7 +9,6 @@ public class ControladorSuscripcion {
 
     @RequestMapping("/suscripcion")
     public ModelAndView irASuscripcion() {
-        ModelAndView modelo = new ModelAndView("suscripcion");
-        return modelo;
+        return new ModelAndView("suscripcion");
     }
 }

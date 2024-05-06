@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAutista</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/test.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<main class="background-overlay">
+
+
+    <div class="test-form">
+    <h1>Test de deteccion temprana de autismo </h1>
+    <form th:action="@{/test/submit}" method="post">
+        <!-- Preguntas -->
+        <div class="question">
+        <label for="pregunta1">1. ¿Tu niño tiene dificultades para socializar?</label>
+        <select name="pregunta1" id="pregunta1">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+            </div>
+
+        <div class="question">
+        <label for="pregunta2">2. ¿Tu niño evita el contacto visual?</label>
+        <select name="pregunta2" id="pregunta2">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+
+            <div class="question">
+        <label for="pregunta3">3. ¿Tu niño repite frases o acciones una y otra vez?</label>
+        <select name="pregunta3" id="pregunta3">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+            </div>
+
+                <div class="question">
+        <label for="pregunta4">4. ¿Tu niño muestra sensibilidad extrema a ciertos sonidos, olores o texturas?</label>
+        <select name="pregunta4" id="pregunta4">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                </div>
+
+                    <div class="question">
+        <label for="pregunta5">5. ¿Tu niño tiene dificultades para comprender las emociones de los demás?</label>
+        <select name="pregunta5" id="pregunta5">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                    </div>
+
+                        <div class="question">
+        <label for="pregunta6">6.¿Tu niño prefiere jugar solo en lugar de interactuar con otros niños?</label>
+        <select name="pregunta6" id="pregunta6">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                        </div>
+
+                            <div class="question">
+        <label for="pregunta7">7.¿Tu niño tiene dificultades para seguir instrucciones verbales?</label>
+        <select name="pregunta" id="pregunta7">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                            </div>
+
+                                <div class="question">
+        <label for="pregunta8">8.¿Tu niño tiene obsesiones o intereses intensos en temas específicos?</label>
+        <select name="pregunta8" id="pregunta8">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                                </div>
+
+                                    <div class="question">
+        <label for="pregunta9">9.¿Tu niño muestra comportamientos repetitivos, como balancearse o dar vueltas?</label>
+        <select name="pregunta9" id="pregunta9">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                                    </div>
+
+                                        <div class="question">
+        <label for="pregunta10">10. ¿Tu niño tiene dificultades para adaptarse a cambios en la rutina o en el entorno?</label>
+        <select name="pregunta10" id="pregunta10">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+                                        </div>
+
+        <!-- Repite este bloque para cada pregunta -->
+        <button class="buttonTest" type="submit">Enviar</button>
+    </form>
+
+    <!-- Aquí mostrarías el resultado -->
+    <div id="resultado" th:text="${resultado}">
+        <!-- Aquí se mostraría el resultado después de enviar el formulario -->
+    </div>
+    </div>
+
+
+</main>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+</body>
+</html>
