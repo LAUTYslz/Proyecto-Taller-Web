@@ -15,9 +15,7 @@ public class ServicioTestImpl implements ServicioTest {
 
     @Override
     public String calcularResultado(RespuestasTest respuestasTest) {
-        // Aquí realizas la lógica para calcular el resultado del test
-        // Por ejemplo, contar cuántas respuestas afirmativas hay y dar un resultado según eso
-        return "Tu niño no tiene síntomas de autismo o TDA.";
+        return "algo";
     }
-}
 
+}
