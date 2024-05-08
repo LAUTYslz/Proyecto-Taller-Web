@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/suscripcion.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+
+<body >
+<div th:replace="home :: nav"></div>
+
+
+<main class="bodys">
+    <div class="divSuscripcionGif">
+    <img class="gifSuscripcion" th:src="@{/img/gifSusc.gif}" alt="suscripcion">
+    </div>
+
+
+    <div class="containerSuscripcion">
+        <div class="membership paid">
+            <h2>Membresía Paga</h2>
+            <ul>
+                <li>Acceso ilimitado a contenido exclusivo</li>
+                <li>Descuentos en productos y servicios</li>
+                <li>Servicio de atención al cliente prioritario</li>
+                <li>Actualizaciones periódicas de contenido</li>
+            </ul>
+            <button class="joinButton">Unirme</button>
+        </div>
+        <div class="membership free">
+            <h2>Membresía Gratuita</h2>
+            <ul>
+                <li>Retos semanales para ganar premios</li>
+                <li>Participación en sorteos y concursos</li>
+                <li>Acceso limitado a contenido gratuito</li>
+                <li>Comunidad activa y apoyo mutuo</li>
+            </ul>
+            <button class="joinButton">Unirme</button>
+        </div>
+    </div>
+
+
+
+</main>
+
+<div th:replace="home :: footer"></div>
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

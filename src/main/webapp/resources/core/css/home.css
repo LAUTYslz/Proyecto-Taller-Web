@@ -1,0 +1,231 @@
+body {
+    background-color: #dacdea;
+}
+
+.navbar {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar-brand img {
+    margin-top: 10px;
+    max-height: 200px;
+    width: auto;
+}
+
+.navbar-nav.ml-auto {
+    margin-left: auto !important; /* Alinear elementos a la derecha */
+}
+.navbar-nav.ml-auto .nav-link {
+    margin-left: 10px; /* Espacio entre botones */
+}
+
+.custom-color-navbar {
+    background-color: rgba(43, 34, 77, 0.87);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+.search-container input {
+    margin-right: 10px;
+}
+.search-container button {
+    margin-left: 10px;
+}
+
+
+
+.containerProyecto h1 {
+font-family: Schoolbell, cursive;
+    margin-bottom: 25px;
+}
+
+
+
+.contentImageHome {
+    position: relative; /* Establece una posición relativa para poder posicionar el pseudo-elemento */
+    padding: 120px; /* Ajusta el relleno según sea necesario */
+    margin: 20px 0; /* Ajusta los márgenes superior e inferior */
+    border: 4px solid rgba(54, 48, 79, 0.87); /* Color lila y más grueso */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el contenido que sobresale del contenedor */
+}
+
+.contentImageHome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/logo.jpeg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.contentImageHome:hover {
+    border-color: rgba(49, 36, 96, 0.87); /* Cambio de color al pasar el mouse */
+}
+
+.ver-mas{
+    position: absolute; /* Establece una posición absoluta para el botón */
+    bottom: 20px; /* Posición 20 píxeles desde la parte inferior */
+    right: 20px; /* Posición 20 píxeles desde el borde derecho */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+    .navbar {
+        height: auto; /* Ajusta automáticamente la altura del navbar */
+    }
+
+    .navbar-brand {
+        position: relative; /* Establece una posición relativa para el logo */
+        transform: none; /* Elimina la transformación del logo */
+        top: auto; /* Reinicia la posición vertical del logo */
+        left: auto; /* Reinicia la posición horizontal del logo */
+        margin: 10px auto; /* Centra el logo horizontalmente */
+    }
+
+    .navbar-brand img {
+        max-height: 50px; /* Reduce el tamaño máximo del logo para dispositivos móviles */
+        margin-top: 0; /* Elimina el margen superior del logo */
+    }
+
+    .navbar-nav {
+        position: static; /* Restaura la posición estática de los enlaces */
+        display: block; /* Cambia a un diseño de bloque para los enlaces */
+        text-align: center; /* Centra los enlaces horizontalmente */
+    }
+
+    .navbar-nav .nav-link {
+        margin: 10px 0; /* Espacio entre enlaces */
+    }
+
+    .navbar-nav.ml-auto {
+        margin-left: 0; /* Reinicia el margen izquierdo de los enlaces */
+        text-align: center; /* Centra los enlaces horizontalemente en dispositivos móviles */
+    }
+
+    .search-container {
+        flex-direction: column; /* Cambia la dirección del contenedor a columna */
+        align-items: center; /* Centra los elementos verticalmente */
+    }
+
+    .search-container input,
+    .search-container button {
+        margin: 10px 0; /* Espacio entre el campo de búsqueda y el botón */
+    }
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(43, 34, 77, 0.87);
+    width: 5%;
+}
+
+#carouselExampleSlidesOnly {
+    width: auto; /* Ancho del slider */
+    margin: 0 auto; /* Centrar el slider */
+
+}
+/* Estilo personalizado para las imágenes del slider */
+.carousel-item img {
+    max-height: 500px; /* Altura máxima de las imágenes */
+    width: auto; /* Ancho automático para mantener la proporción */
+    margin: 0 auto; /* Centrar las imágenes */
+
+    opacity: 0.7;
+}
+
+.carousel-inner {
+    overflow: hidden;
+}
+.carousel-item {
+    width: 100%; /* Establece el ancho del contenedor del carrusel */
+    transition: transform 0.5s ease; /* Agrega una transición suave al deslizar */
+}
+
+.carousel-item.active {
+    transform: translateX(0); /* Muestra la imagen activa */
+}
+
+.carousel-item-next, .carousel-item-prev {
+    transform: translateX(100%); /* Esconde las imágenes previas y siguientes */
+}
+
+.carousel-caption {
+    position: absolute; /* Posición absoluta para colocar el texto sobre la imagen */
+    bottom: 0; /* Alinear el texto en la parte inferior del slide */
+    right: 0; /* Alinear el texto a la derecha del slide */
+    left: 0; /* Alinear el texto a la izquierda del slide */
+    text-align: center; /* Alinear el texto al centro horizontalmente */
+    padding: 20px; /* Agregar espacio alrededor del texto */
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.carousel-caption h3 {
+    margin-top: 0; /* Eliminar el margen superior del título */
+    color: rgba(43, 34, 77, 0.94);
+    font-family: 'Schoolbell', cursive;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    margin-top: 10px; /* Agregar un pequeño margen superior al párrafo */
+    text-align: center; /* Alinear el párrafo a la derecha del área de la leyenda */
+    color: rgba(43, 34, 77, 0.89);
+    font-family: 'SansSerif', cursive;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.carousel-caption .btn-suscribirme {
+    position: absolute; /* Posición absoluta para colocar el botón en la esquina inferior derecha */
+    bottom: 250px; /* Ajusta la distancia desde la parte inferior */
+    right: 20%; /* Ajusta la distancia desde la parte derecha al 50% */
+    transform: translateX(50%); /* Centra horizontalmente */
+    width: auto; /* Ancho automático según el contenido del texto */
+    max-width: 200px; /* Ancho máximo del botón */
+    font-family: 'Schoolbell', cursive;
+    background-color: rgb(234, 134, 32);
+    border-color: rgba(208, 80, 3, 0.75);
+    color: rgba(255, 255, 255, 0.87);
+}
+
+
+h1{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer {
+    color: #dacdea;
+    background-color: rgba(43, 34, 77, 0.87);
+    padding-top: 10px;
+}
+.info-col {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+a {
+    color: rgba(99, 255, 220, 0.5);
+}
+a:hover {
+    color: #58e3ca; /
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contactos</title>
+
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" th:href="@{/test}">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+
+    <a class="navbar-brand" th:href="@{/home}">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <h1>Nuestros contactos de confianza</h1>
+        <p>Bienvenido a nuestra sección de contactos. Aquí encontrarás una lista de profesionales activos y tiendas para niños, cuidadosamente seleccionados para ofrecerte los mejores servicios y productos relacionados con la crianza y el cuidado infantil.  Explora nuestra lista de contactos a continuación y no dudes en ponerte en contacto con ellos para obtener más información o asistencia.</p>
+        <section id="contenedor-contactos">
+            <form action="/contacto/filtrarContactos" method="get" class="filtrar-contactos">
+                <label for="categoria">Selecciona una categoría: </label>
+                <select name="categoria" id="categoria">
+                    <option value="todos">Todos</option>
+                    <option value="tiendas">Tiendas</option>
+                    <option value="pediatras">Pediatras</option>
+                    <!--//mas categorias -->
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+
+            <div id="mostrar-contactos">
+                <div class="contactos">
+                    <h3>Pediatras: </h3>
+                    <ul>
+                        <li>Nombre: Dr. Juan Pérez</li>
+                        <li>Teléfono: +123456789</li>
+                        <li>Correo electrónico: juan.perez@ejemplo.com</li>
+                        <li>Dirección: Av. Corrientes 123, Moron</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dra. Ana Pereira</li>
+                        <li>Teléfono: +555777888</li>
+                        <li>Correo electrónico: ana.pereira@ejemplo.com</li>
+                        <li>Dirección: Av. Rivadavia 123, Moron</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dr. Roberto García</li>
+                        <li>Teléfono: +777888900</li>
+                        <li>Correo electrónico: roberto.garcia@ejemplo.com</li>
+                        <li>Dirección:  Polledo 2343, Isidro Casanova</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
+                    <h3>Obstetras: </h3>
+                    <ul>
+                        <li>Nombre: Dra. Jimena Rodríguez</li>
+                        <li>Teléfono: +777888999</li>
+                        <li>Correo electrónico: laura.rodriguez@ejemplo.com</li>
+                        <li>Dirección:  Cristiania 2343, Isidro Casanova</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dra. María Gómez</li>
+                        <li>Teléfono: +987654321</li>
+                        <li>Correo electrónico: maria.gomez@ejemplo.com</li>
+                        <li>Dirección:  Carabobo 2343, San Justo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dr. Pedro Martínez</li>
+                        <li>Teléfono: +123459876</li>
+                        <li>Correo electrónico: pedro.martinez@ejemplo.com</li>
+                        <li>Dirección:  Portugal 343, Isidro Casanova</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
+                    <h3>Puericultoras: </h3>
+                    <ul>
+                        <li>Nombre:  Laura Martínez</li>
+                        <li>Teléfono: +555123456</li>
+                        <li>Correo electrónico:  laura.martinez@ejemplo.com</li>
+                        <li>Dirección:  San matias 2343, Rafael Castillo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre:  Ana González</li>
+                        <li>Teléfono: +555123452</li>
+                        <li>Correo electrónico:  ana.gonzalez@ejemplo.com</li>
+                        <li>Dirección:  alvear 1342, Rafael Castillo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Carla Sánchez</li>
+                        <li>Teléfono: +555123453</li>
+                        <li>Correo electrónico: carla.sanchez@ejemplo.com</li>
+                        <li>Dirección:  santa maria 1521, Moron</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
+                    <h3>Profesionales de estimulación temprana: </h3>
+                    <ul>
+                        <li>Nombre: Sofía Rodríguez</li>
+                        <li>Teléfono: +333444551</li>
+                        <li>Correo electrónico:  sofia.rodriguez@ejemplo.com</li>
+                        <li>Dirección:  San matias 2343, Rafael Castillo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Marta Pérez</li>
+                        <li>Teléfono: +333444552</li>
+                        <li>Correo electrónico:  marta.perez@ejemplo.com</li>
+                        <li>Dirección:  ramella 1748, Moron</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Pablo Rodríguez</li>
+                        <li>Teléfono: +333444553</li>
+                        <li>Correo electrónico: pablo.rodriguez@ejemplo.com</li>
+                        <li>Dirección:  Figueroa alcorta 2063, San Justo</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
+                    <h3>Psicopedagogos: </h3>
+                    <ul>
+                        <li>Nombre: Carlos López</li>
+                        <li>Teléfono: +111222334</li>
+                        <li>Correo electrónico:  carlos.lopez@ejemplo.com</li>
+                        <li>Dirección:  esquiro 2343, Rafael Castillo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre:  Andrea Fernández</li>
+                        <li>Teléfono: +111222335</li>
+                        <li>Correo electrónico:  andrea.fernandez@ejemplo.com</li>
+                        <li>Dirección:  ozanam 1253, Moron</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Javier Sánchez</li>
+                        <li>Teléfono: +111222336</li>
+                        <li>Correo electrónico:  javier.sanchez@ejemplo.com</li>
+                        <li>Dirección:  arenales 1749, Moron</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
+                    <h3>Tiendas para niños: </h3>
+                    <ul>
+                        <li>Nombre:  Bebé Feliz</li>
+                        <li>Teléfono: +444555666</li>
+                        <li>Correo electrónico: info@bebefeliz.com</li>
+                        <li>Dirección:  arieta 4340, San Justo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre:  La Cigüeña Feliz</li>
+                        <li>Teléfono: +444555667</li>
+                        <li>Correo electrónico: info@cigueñafeliz.com</li>
+                        <li>Dirección:  Maradona 4340, San Justo</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre:  Ropa de Bebé</li>
+                        <li>Teléfono: +444555668</li>
+                        <li>Correo electrónico: info@ropadebebe.com</li>
+                        <li>Dirección:  Carlos Casares 3240, Rafael Castillo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Boostrap core js -->
+    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
