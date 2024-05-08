@@ -26,21 +26,21 @@
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
   <div class="navbar-nav">
-    <a class="nav-link" href="contacto.html">Contactos</a>
+    <a class="nav-link" th:href="@{/contacto}">Contactos</a>
     <a class="nav-link" href="#">Eventos/Cursos</a>
-    <a class="nav-link" href="#">Tests</a>
+    <a class="nav-link" th:href="@{/test}">Tests</a>
     <a class="nav-link" href="#">Foro Comunidad</a>
   </div>
 
 
-  <a class="navbar-brand" href="home.html">
+  <a class="navbar-brand" th:href="@{/home}">
     <img th:src="@{/img/educareLogo.png}" alt="Logo">
   </a>
 
 
   <div class="navbar-nav ml-auto">
-    <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
-    <a class="nav-link" href="login.html">Iniciar Sesión</a>
+    <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+    <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
     <div class="search-container">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -52,6 +52,9 @@
 
 <main role="main" class="container">
 
+  <div class = "containerProyecto">
+    <h1>Bienvenidos a nuestro proyecto</h1>
+  </div>
 
 
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -82,7 +85,7 @@
             ¡Descubre la emoción de recibir productos especiales y útiles
             para acompañar el crecimiento y desarrollo de tu pequeño, sin tener que salir de casa!
             Únete ahora y comienza a disfrutar de esta fantástica experiencia para ti y tu bebé.</p>
-          <a href="suscripcion.html" id="botonSuscribirse" class="btn btn-lg btn-block btn-suscribirme">SUSCRIBIRME</a>
+          <a th:href="@{/suscripcion}" id="botonSuscribirse" class="btn btn-lg btn-block btn-suscribirme">SUSCRIBIRME</a>
         </div>
       </div>
     </div>
@@ -98,13 +101,14 @@
   </div>
 
 
+    <div class="contentImageHome">
+      <p>aca va algo ...</p>
+      <button class="ver-mas">Ver más</button>
+    </div>
 
 
-  <div class = "container">
 
-    <h1>Bienvenidos a nuestro proyecto</h1>
-    <img th:src="@{img/logo.jpeg}" alt="Logo">
-  </div>
+
 </main>
 
 

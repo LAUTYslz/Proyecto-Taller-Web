@@ -10,20 +10,19 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
 
     <!-- custom style -->
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">EDU|CARE</a>
-</nav>
+
+<div th:replace="home :: nav"></div>
 
 <main role="main" class="container">
 
     <div class = "container">
-        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div id="loginbox" style="margin-top:50px; margin-bottom: 50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <form action="#" th:action="@{/validar-login}" method="POST" th:object="${datosLogin}">
                 <h3 class="form-signin-heading">Taller Web I</h3>
                 <hr class="colorgraph"><br>
@@ -39,9 +38,12 @@
             <a id="ir-a-registrarme" href="nuevo-usuario">Registrarme</a>
         </div>
     </div>
+
+
+
 </main>
 <!-- /.container -->
-
+<div th:replace="home :: footer"></div>
 <!-- Boostrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

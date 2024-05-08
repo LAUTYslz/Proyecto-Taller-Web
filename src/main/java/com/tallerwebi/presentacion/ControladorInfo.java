@@ -9,8 +9,7 @@ public class ControladorInfo    {
 
     @RequestMapping(path="/info")
     public ModelAndView irAInfo(){
-        ModelAndView modelo = new ModelAndView("info");
-        return modelo;
+        return new ModelAndView("info");
     }
 
 }

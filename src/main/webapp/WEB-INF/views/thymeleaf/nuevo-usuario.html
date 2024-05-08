@@ -27,17 +27,21 @@
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
   <div class="navbar-nav">
-    <a class="nav-link" href="contacto.html">Contactos</a>
+    <a class="nav-link" th:href="@{/contacto}">Contactos</a>
     <a class="nav-link" href="#">Eventos/Cursos</a>
     <a class="nav-link" href="#">Tests</a>
     <a class="nav-link" href="#">Foro Comunidad</a>
   </div>
 
-  <a class="navbar-brand" href="home.html">
+
+  <a class="navbar-brand" th:href="@{/home}">
     <img th:src="@{/img/educareLogo.png}" alt="Logo">
   </a>
 
+
   <div class="navbar-nav ml-auto">
+    <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+    <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
     <div class="search-container">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -70,7 +74,7 @@
         <div class="container">
           <h3>Metodos de Crianza</h3><br>
 
-          <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" href="info.html"> + INFO METODOS </a></button>
+          <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" th:href="@{/info}"> + INFO METODOS </a></button>
 
           <label for="fulano">Metodo Doman</label>
           <input type="radio" name="metodo" id="fulano" class="form-control/"><br>
