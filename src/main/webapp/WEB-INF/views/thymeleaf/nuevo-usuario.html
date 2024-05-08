@@ -18,22 +18,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
-
+<style>
+  .btn-secondary{
+    background-color: darkslateblue;
+  }
+</style>
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
   <div class="navbar-nav">
-    <a class="nav-link" href="#">Temas</a>
+    <a class="nav-link" th:href="@{/contacto}">Contactos</a>
     <a class="nav-link" href="#">Eventos/Cursos</a>
     <a class="nav-link" href="#">Tests</a>
     <a class="nav-link" href="#">Foro Comunidad</a>
   </div>
 
-  <a class="navbar-brand" href="home.html">
+
+  <a class="navbar-brand" th:href="@{/home}">
     <img th:src="@{/img/educareLogo.png}" alt="Logo">
   </a>
 
+
   <div class="navbar-nav ml-auto">
+    <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+    <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
     <div class="search-container">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -44,7 +52,7 @@
 <main role="main" class="container">
 
   <div class = "container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div id="loginbox" style="margin-top:50px; margin-bottom: 30px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
       <form action="#" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
         <h2 class="form-signin-heading">Nuevo Usuario</h2>
         <hr class="colorgraph"><br>
@@ -54,23 +62,28 @@
           <label th:name="email" >Email</label>
           <input th:field="*{email}" id="email" class="form-control" required/>
           <label th:name="password">Password</label>
-          <input th:field="*{password}" type="password" id="password" class="form-control" required/>
+          <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
         </div>
         <div class="container">
           <h3>Informacion del Bebe</h3>
           <label>Nombre: </label>
           <input type="text" id="nombre" class="form-control" required/>
           <label>Fecha de Nacimiento</label>
-          <input type="date" id="fechaNac" class="form-control" />
+          <input type="date" id="fechaNac" class="form-control" /><br>
         </div>
         <div class="container">
-          <h3>Metodos de Crianza</h3>
-          <label for="montesori">Metodo Montesori</label>
-          <input type="radio" name="metodo" id="montesori" class="form-control"/>
-          <label for="fulano">Metodo fulano</label>
-          <input type="radio" name="metodo" id="fulano" class="form-control/">
+          <h3>Metodos de Crianza</h3><br>
+
+          <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" th:href="@{/info}"> + INFO METODOS </a></button>
+
+          <label for="fulano">Metodo Doman</label>
+          <input type="radio" name="metodo" id="fulano" class="form-control/"><br>
+          <label for="montessori">Metodo Montessori</label>
+          <input type="radio" name="metodo" id="montessori" class="form-control/"/><br>
+          <label for="fulano">Metodo Waldorf</label>
+          <input type="radio" name="metodo" id="waldorf" class="form-control/"><br>
           <div class="container">
-            <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" href="info.html">Metodos de Crianza</a></button>
+
           </div>
         </div>
 
@@ -86,6 +99,7 @@
 
 </main>
 <!-- /.container -->
+<div th:replace="home :: footer"></div>
 
 <!-- Boostrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
