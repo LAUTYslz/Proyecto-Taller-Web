@@ -1,0 +1,103 @@
+
+.titulo-contactos{
+    font-size: 8vh;
+    text-align: center;
+    text-transform: uppercase;
+    color: mediumpurple;
+}
+.texto-bienvenida{
+    font-size: 3vh;
+    text-align: justify;
+}
+.subtitulos-contacto{
+    margin-bottom: 3vh;
+}
+.main-contacto{
+    width: 80%;
+    margin: auto;
+    box-sizing: border-box;
+}
+.filtrar-contactos{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    right: 0;
+    width: 40%;
+}
+.filtrar-contactos select, .filtrar-contactos button{
+    border-radius: 10px;
+    width: 15vh;
+    border: 2px solid #ff7300;
+    transition: all .3s;
+}
+.filtrar-contactos button:hover{
+    scale: 1.1;
+}
+.contactos{
+    margin-bottom: 5vh;
+    background-color: #fafab0;
+    padding: 2vh;
+    width: 40%;
+    border-radius: 10px;
+}
+#mostrar-contactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+}
+.contactos ul{
+    background-color: #b9a0ea;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1vh;
+    list-style-position: inside;
+}
+
+/* !--------------- RESPONSIVE: TABLET ------------*/
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .main-contacto{
+        width: 90%;
+    }
+    .contactos{
+        width: 100%;
+    }
+    .filtrar-contactos{
+        display: flex;
+        justify-content: space-around;
+        margin: 4vh auto 3vh;
+        right: 0;
+        width: 100%;
+    }
+    .filtrar-contactos select, .filtrar-contactos button{
+        border-radius: 10px;
+        width: 15vh;
+        border: 2px solid #ff7300;
+        transition: all .3s;
+    }
+}
+
+/* !--------------RESPONSIVE CELULAR -----------*/
+@media only screen and (max-width: 768px) {
+    .main-contacto{
+        width: 90%;
+    }
+    .contactos{
+        width: 100%;
+    }
+    .filtrar-contactos{
+        display: flex;
+        justify-content: space-around;
+        margin: 4vh auto 3vh;
+        right: 0;
+        width: 100%;
+    }
+    .filtrar-contactos select, .filtrar-contactos button{
+        border-radius: 10px;
+        width: 15vh;
+        border: 2px solid #ff7300;
+        transition: all .3s;
+    }
+}

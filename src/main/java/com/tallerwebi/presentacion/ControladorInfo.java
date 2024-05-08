@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ControladorSuscripcion {
+public class ControladorInfo    {
 
-    @RequestMapping("/suscripcion")
-    public ModelAndView irASuscripcion() {
-        return new ModelAndView("suscripcion");
+    @RequestMapping(path="/info")
+    public ModelAndView irAInfo(){
+        return new ModelAndView("info");
     }
+
 }
