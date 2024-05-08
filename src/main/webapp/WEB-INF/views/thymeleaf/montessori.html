@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="container">
+
+    <h1> Método Montessori </h1>
+    <p class="info-metodo"> El método Montessori es un enfoque educativo desarrollado por la médica y pedagoga italiana
+        María Montessori a principios del siglo XX. Enfatiza la necesidad de favorecer el desarrollo natural de las
+        aptitudes de los alumnos a través de la autodirección, la exploración, el descubrimiento, la práctica,
+        la colaboración, el juego, la concentración profunda, la imaginación o la comunicación. <br>
+        Esta filosofía pedagógica se aleja nítidamente de los métodos educativos tradicionales ya que se fundamenta
+        en la espontaneidad y en la elección de los alumnos en lugar de en sistemas rígidos y basados en el cumplimiento
+        de determinados criterios de evaluación académica. Para Montessori, el respeto y la promoción de la independencia del
+        niño es clave.</p>
+
+    <h2> Principios educativos </h2>
+    <h3 class="caracteristica"> Aprendizaje por descubrimiento </h3>
+    <p class="desarrollo-caracteristica"> Se entiende que las personas en general aprendemos mejor mediante el
+        contacto directo, la práctica y el descubrimiento que a través de la instrucción directa.</p>
+
+    <h3 class="caracteristica"> Preparación del entorno educativo </h3>
+    <p class="desarrollo-caracteristica"> Se procura que el entorno esté adaptado a las necesidades de los alumnos en función
+    de su edad. Además debe propiciar el movimiento y la realización de actividades, estar limpio y ordenado, ser estéticamente
+    atractivo y contar con elementos naturales dentro y fuera del aula. </p>
+
+    <h3 class="caracteristica"> Uso de materiales específicos </h3>
+    <p class="desarrollo-caracteristica"> Uno de los componentes más importantes del entorno preparado montessoriano es la inclusión
+    de determinados materiales naturales, como la madera, que otros más artificiales. </p>
+
+    <h3 class="caracteristica"> Elección personal del alumno </h3>
+    <p class="desarrollo-caracteristica"> A pesar de que el entorno preparado conlleva limitaciones en el rango de actividades a las
+    que pueden acceder los alumnos, éste sigue siendo mayor que el de la educación tradicional y durante la mayor parte del tiempo de
+    clase se da libertad para escoger cualquier material, juego o contenido educativo de entre los que hay disponibles en el aula. <br>
+    Montessori habla de educación para hacer referencia a la participación activa de los estudiantes en su propio aprendizaje. En este
+    sentido, el rol de los profesores se relaciona más bien con la preparación, la supervisión y la ayuda. </p>
+
+    <h3 class="caracteristica"> Aulas para grupos de edad </h3>
+    <p class="desarrollo-caracteristica"> Se recomienda que las aulas contengan un número elevado de alumnos y que estos tengan edades
+    diferentes, si bien se dividen por grupos de edad a causa de las especificidades del desarrollo en cada periodo. Generalmente la
+    separación se realiza en grupos de 3 años (por ejemplo de 6 a 9). Esto se debe a que Montessori defendía que existen periodos sensibles
+    en los cuales los niños tienen mayor facilidad para adquirir unos u otros tipos de destrezas y conocimientos. </p>
+
+    <h3 class="caracteristica"> Aprendizaje y juegos colaborativos </h3>
+    <p class="desarrollo-caracteristica"> Puesto que los alumnos tienen libertad para escoger de qué forma se educan, con gran frecuencia
+    decidirán colaborar con sus compañeros. Esto permite la tutorización entre pares, es especialmente relevante en relación al juego (que
+    cumple funciones importantes en el desarrollo sociocultural) y debe ser promovido por el profesorado. </p>
+
+    <h3 class="caracteristica"> Clases sin interrupciones </h3>
+    <p class="desarrollo-caracteristica"> Otro de los rasgosnmás característicos del método Montessori es la presencia de clases de 3 horas
+    ininterrumpidas. Dado que se basan principalmente en la autodirección por parte de los alumnos, estos deberían aburrirse mucho menos
+    que en la enseñanza tradicional; lo que se busca es favorecer el logro de un estado de concentración que potencie el aprendizaje. </p>
+
+    <h3 class="caracteristica"> Profesor como gúia y supervisor </h3>
+    <p class="desarrollo-caracteristica"> El profesor guía a los alumnos evitando obstaculizar su proceso de autoeducación. Así, sus roles
+    se relacionan con la preparación del entorno académico, la observación de los niños para promover el aprendizaje individualizado, la
+    introducción de nuevos materiales educativos y el aporte de información. </p>
+
+</div>
+
+
+<div th:replace="home :: footer"></div>
+</body>
+</html>
