@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contactos</title>
-
-    <link rel="stylesheet" th:href="@{/css/contacto.css}">
     <!-- Boostrap core css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
-
-
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
@@ -42,9 +42,9 @@
     </div>
 </nav>
 
-    <main>
-        <h1>Nuestros contactos de confianza</h1>
-        <p>Bienvenido a nuestra sección de contactos. Aquí encontrarás una lista de profesionales activos y tiendas para niños, cuidadosamente seleccionados para ofrecerte los mejores servicios y productos relacionados con la crianza y el cuidado infantil.  Explora nuestra lista de contactos a continuación y no dudes en ponerte en contacto con ellos para obtener más información o asistencia.</p>
+    <main class="main-contacto">
+        <h1 class="titulo-contactos">Nuestros contactos de confianza</h1>
+        <p class="texto-bienvenida">Bienvenido a nuestra sección de contactos. Aquí encontrarás una lista de profesionales activos y tiendas para niños, cuidadosamente seleccionados para ofrecerte los mejores servicios y productos relacionados con la crianza y el cuidado infantil.  Explora nuestra lista de contactos a continuación y no dudes en ponerte en contacto con ellos para obtener más información o asistencia.</p>
         <section id="contenedor-contactos">
             <form action="/contacto/filtrarContactos" method="get" class="filtrar-contactos">
                 <label for="categoria">Selecciona una categoría: </label>
@@ -59,7 +59,7 @@
 
             <div id="mostrar-contactos">
                 <div class="contactos">
-                    <h3>Pediatras: </h3>
+                    <h3 class="subtitulos-contacto">Pediatras: </h3>
                     <ul>
                         <li>Nombre: Dr. Juan Pérez</li>
                         <li>Teléfono: +123456789</li>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="contactos">
-                    <h3>Obstetras: </h3>
+                    <h3 class="subtitulos-contacto">Obstetras: </h3>
                     <ul>
                         <li>Nombre: Dra. Jimena Rodríguez</li>
                         <li>Teléfono: +777888999</li>
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="contactos">
-                    <h3>Puericultoras: </h3>
+                    <h3 class="subtitulos-contacto">Puericultoras: </h3>
                     <ul>
                         <li>Nombre:  Laura Martínez</li>
                         <li>Teléfono: +555123456</li>
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="contactos">
-                    <h3>Profesionales de estimulación temprana: </h3>
+                    <h3 class="subtitulos-contacto">Profesionales de estimulación temprana: </h3>
                     <ul>
                         <li>Nombre: Sofía Rodríguez</li>
                         <li>Teléfono: +333444551</li>
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="contactos">
-                    <h3>Psicopedagogos: </h3>
+                    <h3 class="subtitulos-contacto">Psicopedagogos: </h3>
                     <ul>
                         <li>Nombre: Carlos López</li>
                         <li>Teléfono: +111222334</li>
@@ -169,7 +169,7 @@
                 </div>
 
                 <div class="contactos">
-                    <h3>Tiendas para niños: </h3>
+                    <h3 class="subtitulos-contacto">Tiendas para niños: </h3>
                     <ul>
                         <li>Nombre:  Bebé Feliz</li>
                         <li>Teléfono: +444555666</li>
@@ -192,9 +192,12 @@
             </div>
         </section>
     </main>
+    <!-- /.container -->
+    <div th:replace="home :: footer"></div>
 
     <!-- Boostrap core js -->
     <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
