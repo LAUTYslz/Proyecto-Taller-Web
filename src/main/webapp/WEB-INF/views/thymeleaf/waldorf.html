@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="container">
+
+    <h1> Método Waldorf </h1>
+    <p class="info-metodo"> El método Waldorf consiste en un enfoque educativo que busca el desarrollo de los niños a
+    través del arte, la atención al ritmo de aprendizaje que ellos detentan durante determinada etapa de su desarrollo y
+    la exposición continua a la naturaleza. Esta escuela basa sus principales dinámicas y orientaciones en el desarrollo
+    físico, emocional e intelectual a través del trabajo cooperativo y la autonomía. Se aleja de los enfoques tradicionales
+    relacionados con la memorización y la presencia de exámenes y deberes. </p>
+
+    <h2> Principios educativos </h2>
+    <h3 class="caracteristica"> Espiritualidad y conexión con los ritmos de la naturaleza </h3>
+    <p class="desarrollo-caracteristica"> Se busca transmitir un sentido profundo de la vida a partir de actividades que
+    les permitan conectar con la naturaleza y sus ritmos, y que puedan tener un sentido en la vida del niño en sus
+    diferentes etapas de desarrollo. <br>
+        Esta conexión con la naturaleza puede ofrecerse sea a través del tiempo de juego en el exterior con los
+        elementos, excursiones, decoraciones estacionales en el aula, ejercicios artísticos con elementos naturales,
+        cuentos tradicionales, etc. </p>
+
+    <h3 class="caracteristica"> Enseñanza inter-disciplinar </h3>
+    <p class="desarrollo-caracteristica"> Otra característica de la educación Waldorf es su carácter holístico.
+        Se intentan ofrecer experiencias que puedan ser vividas a través de todos los sentidos y lenguajes, de tal modo
+        que los alumnos puedan experimentar los mismos conocimientos a partir de distintas disciplinas.</p>
+
+    <h3 class="caracteristica"> El uso de materiales naturales </h3>
+    <p class="desarrollo-caracteristica"> El impulso curativo de la pedagogía y su preocupación por la ecología hace
+        que se de prioridad en sus aulas a la utilización de materiales naturales como la lana, la madera o la cera.
+        Pero no sólo se utilizan por esos motivos. Los materiales naturales permiten a los alumnos una conexión más
+        directa con la naturaleza, y también disfrutar de sus cualidades sensoriales y terapéuticas.</p>
+
+    <h3 class="caracteristica"> La belleza y la estética </h3>
+    <p class="desarrollo-caracteristica"> Se busca que el entorno no sea hiperestimulante, y que a la vez pueda ser
+        un alimento para su imaginación, utilizando todo tipo de materiales y propuestas como dibujos, telas, muñecos,
+        o elementos de la naturaleza. En la elección de la estética se valoran todos los elementos que forman parte
+        del aula, desde las mesas, sillas, o el color de las paredes</p>
+
+    <h3 class="caracteristica"> Ecología y contacto con la naturaleza </h3>
+    <p class="desarrollo-caracteristica"> Se fomentan las salidas al exterior y las excursiones, desde el mismo
+        jardín de infancia, y siempre adaptadas a la edad de los niños.</p>
+
+    <h3 class="caracteristica"> Introducción tardía de la tecnología </h3>
+    <p class="desarrollo-caracteristica"> En la educación Waldorf el inicio del uso de la tecnología como herramienta
+        de uso pedagógico se retrasa mucho más que en otras pedagogías. Su posicionamiento es simplemente el de
+        intentar cubrir las necesidades educativas de los niños con otras herramientas y con niveles distintos de
+        estimulación sensorial que los que ofrece la tecnología. </p>
+
+
+</div>
+
+
+<div th:replace="home :: footer"></div>
+</body>
+</html>
