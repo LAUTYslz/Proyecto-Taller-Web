@@ -5,17 +5,14 @@ import com.tallerwebi.dominio.excepcion.MembresiaExistente;
 import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
 import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
 import com.tallerwebi.presentacion.DatosMembresia;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Map;
 
 @Service("servicioMembresia")
 @Transactional
 public class ServicioMembresiaImpl implements ServicioMembresia {
 
-    private ServicioMembresia servicioMembresia;
     private Map<String, DatosMembresia> membresias;
 
     @Override
@@ -43,14 +40,11 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
 
     @Override
     public DatosMembresia buscarMembresia(String email) {
-        DatosMembresia membresiaBuscada = membresias.get(email);
-        if (membresiaBuscada == null){
-            return null;
-        } return membresiaBuscada;
+        return membresias.get(email);
     }
 
     private Boolean validarNumeroDeTarjeta(Long numeroDeTarjeta) throws TarjetaInvalida {
-        Integer longitud = numeroDeTarjeta.toString().length();
+        int longitud = numeroDeTarjeta.toString().length();
         if (longitud == 15 || longitud == 16){
             return true;
         } throw new TarjetaInvalida();
