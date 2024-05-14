@@ -53,17 +53,22 @@
 
   <div class = "container">
     <div id="loginbox" style="margin-top:50px; margin-bottom: 30px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-      <form action="#" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
+      <form action="#" th:action="@{/registrar}" method="POST" th:object="${usuario}">
         <h2 class="form-signin-heading">Nuevo Usuario</h2>
         <hr class="colorgraph"><br>
 
         <div class="container">
           <h3>Datos de Registro</h3>
+          <label th:name="nombre">Nombre</label>
+          <input th:field="*{nombre}" id="nombre" class="form-control" required>
           <label th:name="email" >Email</label>
           <input th:field="*{email}" id="email" class="form-control" required/>
           <label th:name="password">Password</label>
           <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
+          <label th:field="direccion">Dirección</label>
+          <input th:field="*{direccion}" id="direccion" class="form-control" required>
         </div>
+        <!--
         <div class="container">
           <h3>Informacion del Bebe</h3>
           <label>Nombre: </label>
@@ -86,6 +91,7 @@
 
           </div>
         </div>
+        -->
 
         <div class="container">
           <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">Registrarme</button>
