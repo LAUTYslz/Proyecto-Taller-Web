@@ -1,5 +1,6 @@
 com\tallerwebi\presentacion\ControladorInfo.class
 com\tallerwebi\config\DatabaseInitializationConfig.class
+com\tallerwebi\dominio\Hijo.class
 com\tallerwebi\presentacion\RespuestasTest.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\dominio\ServicioTest.class
@@ -13,7 +14,9 @@ com\tallerwebi\presentacion\ControladorSuscripcion.class
 com\tallerwebi\infraestructura\ServicioTestImpl.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\config\HibernateConfig.class
+com\tallerwebi\dominio\Metodo.class
 com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\RepositorioUsuario.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\dominio\Usuario.class
+com\tallerwebi\presentacion\ControladorBienvenido.class

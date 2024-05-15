@@ -15,6 +15,8 @@ public class Usuario {
     private String password;
     private String rol;
     private Boolean activo = false;
+    private String nombre;
+
 
     public Long getId() {
         return id;
@@ -54,4 +56,17 @@ public class Usuario {
     public void activar() {
         activo = true;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
 }
