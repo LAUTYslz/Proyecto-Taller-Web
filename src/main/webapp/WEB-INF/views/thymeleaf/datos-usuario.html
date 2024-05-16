@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del usuario</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/datos.css}"/>
+</head>
+<body>
+    <div th:replace="home :: nav"></div>
+
+    <main class="main-datos">
+        <h1 class="form-signin-heading">Datos del Usuario</h1>
+        <div class="contenedor-datos">
+            <h2 class="subtitulos-datos">Datos del titular</h2>
+            <div class="contenedor-datos-texto">
+                <p>Nombre: Lautaro Salazar</p>
+                <p>Mail: lau@prueba.com</p>
+                <p>Dirección: San Matías 1278</p>
+            </div>
+        </div>
+        <a th:href="@{/modificar-datos-usuario}" class="btn btn-lg btn-block btn-datos-modificar btn-modificar-titular">Modificar datos del titular</a>
+        <div class="contenedor-datos">
+            <h2 class="subtitulos-datos">Datos del hijo</h2>
+            <div class="contenedor-datos-texto">
+                <ul>
+                    <li><span>Hijo 1: Ramiro Salazar</span> <a th:href="@{/datos-hijo}" class="btn btn-lg btn-block btn-datos-modificar">Ver Datos</a></li>
+                </ul>
+            </div>
+        </div>
+        <a th:href="@{/agregar-nuevo-hijo}" class="btn btn-lg btn-block btn-datos-modificar btn-modificar-titular">Agregar nuevo hijo</a>
+
+    </main>
+    <!-- /.container -->
+    <div th:replace="home :: footer"></div>
+
+    <!-- Boostrap core js -->
+    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
