@@ -1,8 +1,11 @@
-package com.tallerwebi.dominio;
-
+/*ackage com.tallerwebi.dominio;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Entity;
+
+@Entity
+
 
 public class Hijo {
     @Id
@@ -12,7 +15,7 @@ public class Hijo {
     private Integer edad;
     private Integer dni;
 
-    private Metodo metodo;
+
 
     public Long getId() {
         return id;
@@ -48,11 +51,4 @@ public class Hijo {
 
 
 
-    public Metodo getMetodo() {
-        return metodo;
-    }
-
-    public void setMetodo(Metodo metodo) {
-        this.metodo = metodo;
-    }
-}
+}*/

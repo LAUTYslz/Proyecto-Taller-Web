@@ -18,7 +18,7 @@ public class HibernateTestConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/tu_basedatos");
+        dataSource.setUrl("jdbc:mysql://localhost:3306");
         dataSource.setUsername("root");
         dataSource.setPassword("Farma100.");
         return dataSource;
@@ -40,10 +40,11 @@ public class HibernateTestConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+        // Cambiar el dialecto de Hibernate a MySQL
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create"); // O "create-drop" si quieres que se elimine al cerrar la sesión de Hibernate
         return properties;
     }
 }

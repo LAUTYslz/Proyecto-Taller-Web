@@ -13,8 +13,10 @@ public class Usuario {
     private String rol;
     private Boolean activo = false;
     private String nombre;
-    @ManyToOne
-    private Hijo hijo;
+   /* @ManyToOne
+    private Hijo hijo;*/
+
+
 
     public Long getId() {
         return id;
@@ -57,5 +59,9 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

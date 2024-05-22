@@ -1,5 +1,6 @@
 package com.tallerwebi.presentacion;
 
+
 import com.tallerwebi.dominio.ServicioLogin;
 import com.tallerwebi.dominio.Usuario;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
@@ -47,7 +48,7 @@ public class ControladorLogin {
         return new ModelAndView("login", model);
     }
 
-    @RequestMapping(path = "/registrarme", method = RequestMethod.POST)
+    @RequestMapping(path = "/registrarse", method = RequestMethod.POST)
     public ModelAndView registrarme(@ModelAttribute("usuario") Usuario usuario) {
 
         ModelMap model = new ModelMap();
@@ -60,10 +61,10 @@ public class ControladorLogin {
             model.put("error", "Error al registrar el nuevo usuario");
             return new ModelAndView("nuevo-usuario", model);
         }
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:/home");
     }
 
-    @RequestMapping(path = "/nuevo-usuario", method = RequestMethod.GET)
+    @RequestMapping(path = "/nuevo-usuario")
     public ModelAndView nuevoUsuario() {
         ModelMap model = new ModelMap();
         model.put("usuario", new Usuario());
@@ -84,13 +85,64 @@ public class ControladorLogin {
 
     @RequestMapping(path="/info")
     public ModelAndView irAInfo(){
-    return new ModelAndView("info");
-}
+        return new ModelAndView("info");
+    }
+
+
+    @RequestMapping(path = "/info/doman")
+    public ModelAndView irAInfoDoman(){ return new ModelAndView("doman");}
+
+    @RequestMapping(path = "/info/montessori", method = RequestMethod.GET)
+    public ModelAndView irAInfoMontessori() {
+        return new ModelAndView("montessori");
+    }
+
+    @RequestMapping(path = "/info/waldorf", method = RequestMethod.GET)
+    public ModelAndView irAInfoWaldorf() { return new ModelAndView("waldorf");}
 
 
     @RequestMapping("/suscripcion")
     public ModelAndView irASuscripcion() {
         return new ModelAndView("suscripcion");
     }
+
+    @RequestMapping(path = "/bienvenido")
+    public ModelAndView irABienvenido() {
+        return new ModelAndView("bienvenido");
+    }
+
+
+    //creo un hijo
+   /* @RequestMapping(path = "/nuevos")
+    public ModelAndView irAaLTA() {
+        ModelMap modelo = new ModelMap();
+        modelo.put("hijo", new Hijo());
+        return new ModelAndView("nuevos", modelo);
+
+    }
+
+    /*@RequestMapping(path = "/guardar-hijo", method = RequestMethod.POST)
+    public ModelAndView guardarHijo(@ModelAttribute("hijo") Hijo hijo ,HttpServletRequest request) {
+        ModelMap modelo = new ModelMap();
+        try{
+            servicioLogin.registrar(hijo);
+        } catch (UsuarioExistente e){
+            model.put("error", "El usuario ya existe");
+            return new ModelAndView("nuevo-usuario", model);
+        } catch (Exception e){
+            model.put("error", "Error al registrar el nuevo usuario");
+            return new ModelAndView("nuevo-usuario", model);
+        }
+        return new ModelAndView("redirect:/home");
+    }
+    //aca tiene que ir la logica de buscar si hijo existe en la registro-
+        modelo.put("hijo", new Hijo());
+        return new ModelAndView("nuevos", modelo);*/
+
 }
+
+
+
+
+
 

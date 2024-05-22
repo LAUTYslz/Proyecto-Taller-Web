@@ -8,10 +8,14 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Repository("repositorioUsuario")
 public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
     private SessionFactory sessionFactory;
+
 
     @Autowired
     public RepositorioUsuarioImpl(SessionFactory sessionFactory){
@@ -31,7 +35,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     @Override
     public void guardar(Usuario usuario) {
         sessionFactory.getCurrentSession().save(usuario);
-    }
+
+   }
 
     @Override
     public Usuario buscar(String email) {

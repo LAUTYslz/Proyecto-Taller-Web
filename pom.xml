@@ -112,6 +112,12 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.25.Final</version>
         </dependency>
+
+        <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.28</version> <!-- Utiliza la versión más reciente -->
+        </dependency>
         <!-- compile only, deployed container will provide this -->
         <!--
         <dependency>
