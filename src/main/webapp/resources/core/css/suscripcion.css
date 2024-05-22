@@ -39,6 +39,10 @@ h2{
     transition: background-color 0.3s ease;
 }
 
+a {
+text-decoration: none;
+color: #fff;
+}
 
 .joinButton {
     display: block;

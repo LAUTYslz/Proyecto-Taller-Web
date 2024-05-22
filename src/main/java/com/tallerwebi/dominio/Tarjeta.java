@@ -7,6 +7,10 @@ public class Tarjeta {
     private Date fechaDeVencimiento;
     private Integer codigoDeSeguridad;
 
+    public Tarjeta(){
+
+    }
+
     public Tarjeta (Long numeroDeTarjeta, Date fechaDeVencimiento, Integer codigoDeSeguridad){
         this.numeroDeTarjeta = numeroDeTarjeta;
         this.fechaDeVencimiento = fechaDeVencimiento;

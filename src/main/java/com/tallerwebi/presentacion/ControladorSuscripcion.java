@@ -31,7 +31,7 @@ public class ControladorSuscripcion {
     @RequestMapping("/membresiaPaga")
     public ModelAndView irAMembresiaPaga() {
         ModelMap model = new ModelMap();
-        model.put("nuevaMembresiaPaga", new DatosMembresia());
+        model.put("datosMembresia", new DatosMembresia());
         return new ModelAndView("membresiaPaga", model);
     }
 

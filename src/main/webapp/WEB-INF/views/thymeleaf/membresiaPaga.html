@@ -11,7 +11,7 @@
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/membresiaPaga.css"/>
+    <link rel="stylesheet" th:href="@{/css/membresiaPaga.css}"/>
 
 
 </head>
@@ -20,34 +20,49 @@
 
 <div th:replace=" home :: nav"></div>
 
+<div class="container-form">
 <form action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${datosMembresia}">
 
     <div th:if="${error != null}" class="alert alert-danger" role="alert">
         <p th:text="${error}"></p>
     </div>
 
-    <label th:for="nombreCompleto"> Nombre completo: </label>
-    <input th:field="*{nombreCompleto}" type="text" name="nombreCompleto">
+    <div class="mb3">
+        <label th:for="nombreCompleto" class="etiqueta"> Nombre completo: </label>
+        <input th:field="*{nombreCompleto}" type="text" name="nombreCompleto" class="form-control">
+    </div>
 
-    <label th:for="email"> Email: </label>
-    <input th:field="*{email}" type="email" name="email">
+    <div class="mb3">
+    <label th:for="email" class="etiqueta"> Email: </label>
+    <input th:field="*{email}" type="email" name="email" class="form-control">
+    </div>
 
-    <label th:for="numeroTelefonico"> Email: </label>
-    <input th:field="*{numeroTelefonico}" type="email" name="numeroTelefonico">
+    <div class="mb3">
+    <label th:for="numeroTelefonico" class="etiqueta"> Email: </label>
+    <input th:field="*{numeroTelefonico}" type="email" name="numeroTelefonico" class="form-control">
+    </div>
 
-    <label th:for="numeroDeTarjeta"> Número de tarjeta: </label>
-    <input th:field="*{tarjeta.numeroDeTarjeta}" type="email" name="email">
+    <div class="mb3">
+    <label th:for="numeroDeTarjeta" class="etiqueta"> Número de tarjeta: </label>
+    <input th:field="*{tarjeta.numeroDeTarjeta}" type="email" name="email" class="form-control">
+    </div>
 
-    <label th:for="fechaDeVencimiento"> Fecha de Vencimiento: </label>
-    <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" name="fechaDeVencimiento">
+    <div class="mb3">
+    <label th:for="fechaDeVencimiento" class="etiqueta"> Fecha de Vencimiento: </label>
+    <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" name="fechaDeVencimiento" class="form-control">
+    </div>
 
-    <label th:for="codigoDeSeguridad"> Código de seguridad: </label>
-    <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad">
+    <div class="mb3">
+    <label th:for="codigoDeSeguridad" class="etiqueta"> Código de seguridad: </label>
+    <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad" class="form-control">
+    </div>
 
-    <button type="submit"> Activar Membresía </button>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary"> Activar Membresía </button>
+    </div>
 
 </form>
-
+</div>
 
 <div th:replace=" home :: footer"></div>
 
