@@ -14,7 +14,7 @@ public class DatosMembresia {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.numeroTelefonico = numeroTelefonico;
-        this.tarjeta = tarjeta;
+        this.tarjeta = new Tarjeta(tarjeta.getNumeroDeTarjeta(), tarjeta.getFechaDeVencimiento(), tarjeta.getCodigoDeSeguridad());
     }
 
     public Long getNumeroTelefonico(){
@@ -48,4 +48,13 @@ public class DatosMembresia {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "DatosMembresia{" +
+                "nombreCompleto='" + nombreCompleto + '\'' +
+                ", email='" + email + '\'' +
+                ", numeroTelefonico=" + numeroTelefonico +
+                ", tarjeta=" + tarjeta +
+                '}';
+    }
 }

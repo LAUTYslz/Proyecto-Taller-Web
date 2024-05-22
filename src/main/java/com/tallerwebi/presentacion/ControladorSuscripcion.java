@@ -3,6 +3,7 @@ package com.tallerwebi.presentacion;
 import com.tallerwebi.dominio.DatosMembresia;
 import com.tallerwebi.dominio.ServicioLogin;
 import com.tallerwebi.dominio.ServicioMembresia;
+import com.tallerwebi.dominio.excepcion.CodigoInvalido;
 import com.tallerwebi.dominio.excepcion.MembresiaExistente;
 import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class ControladorSuscripcion {
             model.put("error", "Tu usuario ya cuenta con una membresía paga");
         } catch (TarjetaInvalida ex){
             model.put("error", "El número de tarjeta es inválido");
+        } catch (CodigoInvalido e){
+            model.put("error", "El código de seguridad es inválido");
         }
 
         return new ModelAndView("membresiaPaga", model);
