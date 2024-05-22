@@ -1,6 +1,4 @@
-package com.tallerwebi.presentacion;
-
-import com.tallerwebi.dominio.Tarjeta;
+package com.tallerwebi.dominio;
 
 public class DatosMembresia {
     private String nombreCompleto;

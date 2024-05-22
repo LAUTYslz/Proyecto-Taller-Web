@@ -3,7 +3,6 @@ package com.tallerwebi.dominio;
 import com.tallerwebi.dominio.excepcion.MembresiaExistente;
 import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
 import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import com.tallerwebi.presentacion.DatosMembresia;
 
 public interface ServicioMembresia {
 

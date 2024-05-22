@@ -4,7 +4,7 @@ import com.tallerwebi.dominio.ServicioMembresia;
 import com.tallerwebi.dominio.excepcion.MembresiaExistente;
 import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
 import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import com.tallerwebi.presentacion.DatosMembresia;
+import com.tallerwebi.dominio.DatosMembresia;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Map;

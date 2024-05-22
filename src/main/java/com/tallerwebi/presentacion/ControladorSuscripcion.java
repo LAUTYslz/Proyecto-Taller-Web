@@ -1,6 +1,11 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.DatosMembresia;
+import com.tallerwebi.dominio.ServicioLogin;
+import com.tallerwebi.dominio.ServicioMembresia;
+import com.tallerwebi.dominio.excepcion.MembresiaExistente;
+import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControladorSuscripcion {
 
+    private ServicioMembresia servicioMembresia;
+
+    @Autowired
+    public ControladorSuscripcion(ServicioMembresia servicioMembresia){
+        this.servicioMembresia = servicioMembresia;
+    }
+
     @RequestMapping("/suscripcion")
     public ModelAndView irASuscripcion() {
         return new ModelAndView("suscripcion");
@@ -18,9 +30,28 @@ public class ControladorSuscripcion {
 
     @RequestMapping("/membresiaPaga")
     public ModelAndView irAMembresiaPaga() {
-        return new ModelAndView("membresiaPaga");
+        ModelMap model = new ModelMap();
+        model.put("nuevaMembresiaPaga", new DatosMembresia());
+        return new ModelAndView("membresiaPaga", model);
     }
 
+    @RequestMapping("/procesarMembresiaPaga")
+    public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
+        ModelMap model = new ModelMap();
+        try {
+            servicioMembresia.darDeAltaMembresia(datosMembresia);
+            model.put("datosMembresia", datosMembresia);
+            return new ModelAndView("confirmacionMembresia", model);
+        } catch (MembresiaExistente ex){
+            model.put("error", "Tu usuario ya cuenta con una membresía paga");
+        } catch (TarjetaInvalida ex){
+            model.put("error", "El número de tarjeta es inválido");
+        }
+
+        return new ModelAndView("membresiaPaga", model);
+    }
+
+  /*
     @RequestMapping(path = "/membresiaPaga")
     public ModelAndView nuevaMembresia() {
         ModelMap model = new ModelMap();
@@ -28,12 +59,12 @@ public class ControladorSuscripcion {
         return new ModelAndView("nuevo-usuario", model);
     }
 
-    @GetMapping("/membresiaPaga")
+    @RequestMapping("/membresiaPaga")
     public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
         ModelMap model = new ModelMap();
         model.put("datosMembresia", datosMembresia);
         return new ModelAndView("confirmacionMembresia", model);
     }
-
+*/
 
 }
