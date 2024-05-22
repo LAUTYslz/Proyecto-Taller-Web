@@ -1,4 +1,5 @@
 com\tallerwebi\integracion\config\SpringWebTestConfig.class
+Dominio\ControladorRegistroTest.class
 com\tallerwebi\integracion\config\HibernateTestConfig.class
 com\tallerwebi\presentacion\ControladorLoginTest.class
 com\tallerwebi\integracion\ControladorLoginTest.class

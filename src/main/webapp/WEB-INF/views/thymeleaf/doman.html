@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/metodos.css}"/>
+
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="container">
+
+    <h1 class="titulo-metodos"> Método Doman </h1>
+    <p class="info-metodo"> El método Doman es una técnica de enseñanza orientada a niños desde el nacimiento hasta los
+    7 años, con un enfoque particular en la estimulación temprana de la lectura. <br>
+    Glenn Doman, su creador, fundamentó su metodología en la idea de que los niños son capaces de aprender a leer desde
+    una edad muy temprana. Inicialmente diseñado para ayudar a niños con discapacidades mentales y físicas, como la
+    parálisis crebral, el síndrome de Down y el autismo, el método también ha demostrado ser efectivo en el desarrollo
+    cognitivo de niños sin estas condiciones.</p>
+
+    <h2 class="subtitulo-metodos"> Principios educativos </h2>
+    <div class="principios-educativos">
+        <h3 class="caracteristica sub-subtitulo-metodos"> Estímulos visuales, auditivos y táctiles </h3>
+        <p class="desarrollo-caracteristica"> El método emplea "bits de inteligencia", que son estímulos visuales, auditivos
+        y de textura. Estos están diseñados para ser procesados e interpretados por los sentidos del niño, facilitando el
+        aprendizaje y la retención de información. </p>
+    </div>
+
+    <div class="principios-educativos">
+        <h3 class="caracteristica sub-subtitulo-metodos"> Uso de tarjetas de categorías específicas </h3>
+        <p class="desarrollo-caracteristica"> Una parte central del método son las tarjetas que se utilizan para enseñar
+        palabras. Estas tarjetas deben tener características específicas: formato rectangular, fondo blanco, dimensiones de
+        15cm de alto x 40cm de largo, letras en color rojo, con la primera letra en mayúscula y el resto en minúscula;
+        utilizando diferentes categorías de palabras, como colores, partes del cuerpo, animales, frutas y juguetes. </p>
+    </div>
+
+    <div class="principios-educativos">
+        <h3 class="caracteristica sub-subtitulo-metodos"> Metodología gradual y adaptativa </h3>
+        <p class="desarrollo-caracteristica"> El método Doman se aplica en etapas, cada una construyendo sobre la anterior:
+        <ul>
+        <li> Introducción de palabras individuales: Se comienza mostrando al niño tarjetas de una sola categoría, leyéndolas
+        de manera clara y concisa. Esto ayuda al niño a relacionar lo que ve con lo que oye. </li>
+        <li> Combinación de palabras: Luego se introducen combinaciones de palabras de diferentes categorías que tienen
+        sentido juntas, como 'tiburón blanco' o 'manzana roja'. </li>
+        <li> Formación de oraciones cortas: Finalmente, se añaden verbos y conectores para formar oraciones cortas,
+        aumentando la complejidad del lenguaje y estimulando la comprensión. </li>
+        </ul> </p>
+    </div>
+
+    <h3 class="caracteristica"> </h3>
+    <p class="desarrollo-caracteristica"> </p>
+
+    <h3 class="caracteristica"> </h3>
+    <p class="desarrollo-caracteristica"> </p>
+
+    <h3 class="caracteristica"> </h3>
+    <p class="desarrollo-caracteristica"> </p>
+
+</div>
+
+
+<div th:replace="home :: footer"></div>
+</body>
+</html>
