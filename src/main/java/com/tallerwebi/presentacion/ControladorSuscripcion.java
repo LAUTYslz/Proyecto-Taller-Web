@@ -55,20 +55,4 @@ public class ControladorSuscripcion {
         return new ModelAndView("membresiaPaga", model);
     }
 
-  /*
-    @RequestMapping(path = "/membresiaPaga")
-    public ModelAndView nuevaMembresia() {
-        ModelMap model = new ModelMap();
-        model.put("nuevaMembresiaPaga", new DatosMembresia());
-        return new ModelAndView("nuevo-usuario", model);
-    }
-
-    @RequestMapping("/membresiaPaga")
-    public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
-        ModelMap model = new ModelMap();
-        model.put("datosMembresia", datosMembresia);
-        return new ModelAndView("confirmacionMembresia", model);
-    }
-*/
-
 }
