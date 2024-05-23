@@ -102,15 +102,16 @@
 <main>
     <!-- Sección de Datos de Usuario -->
     <section id="datos-usuario">
-        <h2>Bienvenido</h2>
-        <!-- División en dos columnas: datos del titular y datos de los hijos -->
 
         <div class="container">
             <!-- Datos del titular -->
-            <div class="titular">
-                <h3>Datos del Titular</h3>
-                <p>Nombre: Juan</p>
-                <p>Apellido: Pérez</p>
+            <div class="titular" >
+                <h1>Información del Titular</h1>
+                <h1>Bienvenido</h1>
+                <p>¡Hola, <span th:text="${usuario.nombre}"></span>!</p>
+                <p>Tu correo electrónico es: <span th:text="${usuario.email}"></span></p>
+                <p>Tu Estado es: <span th:text="${usuario.estado}"></span></p>
+
             </div>
             <!-- Datos de los hijos -->
             <div class="hijos">
@@ -127,7 +128,7 @@
     <!-- Sección de botones circulares -->
     <div class="button-container">
 
-        <div class="circle-button"><a th:href="@{/modificar_datos}">MODIFICAR DATOS</a></div>
+        <div class="circle-button"><a th:href="@{/modificarUsuario}">MODIFICAR DATOS</a></div>
         <div class="circle-button"><a th:href="@{/nuevos}">NUEVO HIJO</a></div>
         <div class="circle-button"><a th:href="@{/membresia}">MEMBRESIA</a></div>
         <div class="circle-button"><a th:href="@{/profesionales}">PROFESIONALES</a></div>

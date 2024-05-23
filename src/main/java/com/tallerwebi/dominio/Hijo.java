@@ -1,8 +1,5 @@
-/*ackage com.tallerwebi.dominio;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Entity;
+package com.tallerwebi.dominio;
+import javax.persistence.*;
 
 @Entity
 
@@ -14,6 +11,8 @@ public class Hijo {
     private String nombre;
     private Integer edad;
     private Integer dni;
+    @ManyToOne
+    private Usuario usuario;
 
 
 
@@ -49,6 +48,11 @@ public class Hijo {
         this.dni = dni;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-
-}*/
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+}

@@ -18,7 +18,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
 
     @Autowired
-    public RepositorioUsuarioImpl(SessionFactory sessionFactory){
+    public RepositorioUsuarioImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -36,7 +36,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     public void guardar(Usuario usuario) {
         sessionFactory.getCurrentSession().save(usuario);
 
-   }
+    }
 
     @Override
     public Usuario buscar(String email) {
@@ -50,4 +50,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
         sessionFactory.getCurrentSession().update(usuario);
     }
 
+
+    @Override
+    public Usuario buscarPorId(Long id) {
+        return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+    }
+
+
 }
+

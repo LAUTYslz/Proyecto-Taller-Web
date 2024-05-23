@@ -1,4 +1,6 @@
 com\tallerwebi\config\DatabaseInitializationConfig.class
+com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
+com\tallerwebi\dominio\Hijo.class
 com\tallerwebi\presentacion\RespuestasTest.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\dominio\ServicioTest.class
@@ -7,6 +9,7 @@ com\tallerwebi\MyServletInitializer.class
 com\tallerwebi\presentacion\ControladorContacto.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
+com\tallerwebi\presentacion\UsuarioFormulario.class
 com\tallerwebi\infraestructura\ServicioTestImpl.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\config\HibernateConfig.class

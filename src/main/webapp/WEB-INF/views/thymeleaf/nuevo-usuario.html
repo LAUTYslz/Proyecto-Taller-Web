@@ -56,18 +56,21 @@
       <form action="#" th:action="@{/registrarse}" method="POST" th:object="${usuario}">
         <h2 class="form-signin-heading">Nuevo Usuario</h2>
         <hr class="colorgraph"><br>
+<div>
+        <label th:name="email" >Email Titular</label>
+        <input th:field="*{email}" id="email" class="form-control" required/>
+        <label th:name="password">Password Titular</label>
+        <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
+        <label th:name="nombre">Nombre Titular</label>
+        <input th:field="*{nombre}" type="nombre" id="nombre" class="form-control" required/>
 
-        <div class="container">
-          <h3>Datos de Registro</h3>
-          <label th:name="email" >Email</label>
-          <input th:field="*{email}" id="email" class="form-control" required/>
-          <label th:name="password">Password</label>
-          <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
-          <label th:name="nombre">Nombre</label>
-          <input th:field="*{nombre}" type="nombre" id="nombre" class="form-control" required/>
-        </div>
-
-        <div class="container">
+        <h2>Datos del cónyuge</h2>
+        <label th:name="email" >Email Cónyuge</label>
+        <input th:field="*{emailConyuge}" id="emailConyuge" class="form-control" />
+        <label th:name="password">Password Cónyuge</label>
+        <input th:field="*{passwordConyuge}"  id="passwordConyuge" class="form-control" /><br>
+        <label th:name="nombre">Nombre Cónyuge</label>
+        <input th:field="*{nombreConyuge}"  id="nombreConyuge" class="form-control" />
           <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">Registrarme</button>
         </div>
         <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}">

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+</head>
+<body>
+<h1>Editar Usuario</h1>
+<form action="/guardar-usuario" method="post" th:object="${usuario}">
+    <p>Tu correo electrónico es: <span th:text="${usuario.email}"></span></p>
+    <p>Tu Estado es: <span th:text="${usuario.estado}"></span></p>
+    <label>Password:</label>
+
+    <!-- Agregar más campos del usuario según sea necesario -->
+    <button type="submit">Guardar Cambios</button>
+</form>
+</body>
+</html>
