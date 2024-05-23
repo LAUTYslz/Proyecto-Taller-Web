@@ -18,7 +18,7 @@
 <div th:replace="home :: nav"></div>
 
 <main class="main-datos">
-    <a th:href="@{/datos-hijo}" class="btn btn-lg btn-block btn-datos-volver">Volver a ver datos</a>
+    <a th:href="@{/datos-usuario/datos-hijo}" class="btn btn-lg btn-block btn-datos-volver">Volver a ver datos</a>
     <h1 class="form-signin-heading">Modificar datos del hijo</h1>
     <div class="contenedor-modificar-datos">
         <form action="#" th:action="@{/modificar-hijo}" method="post" th:object="${hijo}" class="form-mostrar-datos">

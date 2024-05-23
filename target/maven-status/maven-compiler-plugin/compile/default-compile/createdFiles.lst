@@ -1,5 +1,4 @@
 com\tallerwebi\config\DatabaseInitializationConfig.class
-com\tallerwebi\presentacion\ControladorModificarDatosUsuario.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
@@ -8,7 +7,6 @@ com\tallerwebi\config\HibernateConfig.class
 com\tallerwebi\dominio\RepositorioUsuario.class
 com\tallerwebi\infraestructura\ServicioNuevoUsuarioImpl.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
-com\tallerwebi\presentacion\ControladorModificarDatosHijo.class
 com\tallerwebi\presentacion\ControladorInfo.class
 com\tallerwebi\presentacion\RespuestasTest.class
 com\tallerwebi\dominio\ServicioTest.class
@@ -20,6 +18,4 @@ com\tallerwebi\infraestructura\ServicioTestImpl.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\presentacion\ControladorDatosUsuario.class
 com\tallerwebi\presentacion\ControladorLogin.class
-com\tallerwebi\presentacion\ControladorAgregarNuevoHijo.class
 com\tallerwebi\dominio\Usuario.class
-com\tallerwebi\presentacion\ControladorDatosHijo.class
