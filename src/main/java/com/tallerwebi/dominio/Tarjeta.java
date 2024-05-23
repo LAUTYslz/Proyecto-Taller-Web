@@ -37,8 +37,8 @@ public class Tarjeta {
         return this.codigoDeSeguridad;
     }
 
-    public void setCodigoDeSeguridad(Integer codigoDeSeguridad){
+    public void setCodigoDeSeguridad(Integer codigoDeSeguridad) {
         this.codigoDeSeguridad = codigoDeSeguridad;
-
+    }
 
 }

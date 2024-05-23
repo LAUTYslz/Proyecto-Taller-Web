@@ -1,4 +1,5 @@
 com\tallerwebi\config\DatabaseInitializationConfig.class
+com\tallerwebi\dominio\excepcion\CodigoInvalido.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\dominio\excepcion\MembresiaInexistente.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
