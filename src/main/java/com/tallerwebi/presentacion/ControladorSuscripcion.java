@@ -9,10 +9,7 @@ import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -37,10 +34,11 @@ public class ControladorSuscripcion {
         return new ModelAndView("membresiaPaga", model);
     }
 
-    @PostMapping("/procesarMembresiaPaga")
+    @RequestMapping(path = "/procesarMembresiaPaga", method = RequestMethod.POST)
     public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
         ModelMap model = new ModelMap();
-        try {
+
+         try {
             servicioMembresia.darDeAltaMembresia(datosMembresia);
             model.put("datosMembresia", datosMembresia);
             return new ModelAndView("confirmacionMembresia", model);
@@ -52,7 +50,7 @@ public class ControladorSuscripcion {
             model.put("error", "El código de seguridad es inválido");
         }
 
-        return new ModelAndView("membresiaPaga", model);
+        return new ModelAndView("login", model);
     }
 
 }
