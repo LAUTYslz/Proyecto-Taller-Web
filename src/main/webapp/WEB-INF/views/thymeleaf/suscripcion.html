@@ -8,39 +8,50 @@
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/suscripcion.css}"/>
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
 
-<body>
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-    <div class="navbar-nav">
-        <a class="nav-link" href="contacto.html">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" href="#">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
+<body >
+<div th:replace="home :: nav"></div>
+
+
+<main class="bodys">
+    <div class="divSuscripcionGif">
+    <img class="gifSuscripcion" th:src="@{/img/gifSusc.gif}" alt="suscripcion">
     </div>
 
 
-    <a class="navbar-brand" href="home.html">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-
-    <div class="navbar-nav ml-auto">
-        <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
-        <a class="nav-link" href="login.html">Iniciar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+    <div class="containerSuscripcion">
+        <div class="membership paid">
+            <h2>Membresía Paga</h2>
+            <ul>
+                <li>Acceso ilimitado a contenido exclusivo</li>
+                <li>Descuentos en productos y servicios</li>
+                <li>Servicio de atención al cliente prioritario</li>
+                <li>Actualizaciones periódicas de contenido</li>
+            </ul>
+            <button class="joinButton">Unirme</button>
+        </div>
+        <div class="membership free">
+            <h2>Membresía Gratuita</h2>
+            <ul>
+                <li>Retos semanales para ganar premios</li>
+                <li>Participación en sorteos y concursos</li>
+                <li>Acceso limitado a contenido gratuito</li>
+                <li>Comunidad activa y apoyo mutuo</li>
+            </ul>
+            <button class="joinButton">Unirme</button>
         </div>
     </div>
-</nav>
-<main>
-<h2>Suscripcion</h2>
+
+
+
 </main>
 
-
+<div th:replace="home :: footer"></div>
 <!-- Boostrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

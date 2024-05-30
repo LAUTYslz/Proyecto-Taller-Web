@@ -1,23 +1,29 @@
-/* Estilos para pantallas grandes */
+body {
+    background-color: #dacdea;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .navbar {
-    height: 100px; /* Ajusta el grosor del navbar */
-    display: flex; /* Usa flexbox para alinear los elementos */
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Alinea los elementos verticalmente */
-    position: relative; /* Establece una posición relativa para el navbar */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .navbar-brand {
-    position: absolute; /* Establece una posición absoluta para el logo */
-    top: 50%; /* Posición vertical centrada */
-    left: 50%; /* Posición horizontal centrada */
-    transform: translate(-50%, -50%); /* Corrige la posición del logo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .navbar-brand img {
     margin-top: 10px;
-    max-height: 200px; /* Ajusta el tamaño máximo del logo */
-    width: auto; /* Permita que el ancho se ajuste automáticamente */
+    max-height: 200px;
+    width: auto;
 }
 
 .navbar-nav.ml-auto {
@@ -28,28 +34,62 @@
 }
 
 .custom-color-navbar {
-    background-color: rgba(43, 34, 77, 0.87); /* Reemplaza "your-color" con el código de color personalizado */
+    background-color: rgba(43, 34, 77, 0.87);
 }
 
 .search-container {
-    display: flex; /* Mostrar elementos en línea */
-    align-items: center; /* Alinea los elementos verticalmente */
+    display: flex;
+    align-items: center;
 }
 .search-container input {
-    margin-right: 10px; /* Espacio entre el campo de búsqueda y el botón */
+    margin-right: 10px;
 }
 .search-container button {
-    margin-left: 10px; /* Espacio entre el campo de búsqueda y el botón */
+    margin-left: 10px;
 }
 
-/* Estilos para la imagen en el cuerpo */
-.container img {
-    display: block; /* Hacer que la imagen sea un bloque para poder centrarla */
-    margin: 0 auto; /* Centrar la imagen horizontalmente */
-    max-width: 90%; /* Ajustar el ancho máximo de la imagen */
-    height: auto; /* Permitir que la altura se ajuste automáticamente */
-    margin-top: 20px; /* Espacio superior para separar la imagen del texto */
-    margin-bottom: 20px; /* Espacio inferior para separar la imagen del texto */
+
+
+.containerProyecto h1 {
+font-family: Schoolbell, cursive;
+    margin-bottom: 25px;
+}
+
+
+
+.contentImageHome {
+    position: relative;
+    padding: 120px;
+    margin: 20px 0;
+    border: 4px solid rgba(54, 48, 79, 0.87);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.contentImageHome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/logo.jpeg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.contentImageHome:hover {
+    border-color: rgba(49, 36, 96, 0.87);
+}
+
+.ver-mas{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
 /* Estilos para dispositivos móviles */
@@ -59,22 +99,22 @@
     }
 
     .navbar-brand {
-        position: relative; /* Establece una posición relativa para el logo */
-        transform: none; /* Elimina la transformación del logo */
-        top: auto; /* Reinicia la posición vertical del logo */
-        left: auto; /* Reinicia la posición horizontal del logo */
-        margin: 10px auto; /* Centra el logo horizontalmente */
+        position: relative;
+        transform: none;
+        top: auto;
+        left: auto;
+        margin: 10px auto;
     }
 
     .navbar-brand img {
-        max-height: 50px; /* Reduce el tamaño máximo del logo para dispositivos móviles */
-        margin-top: 0; /* Elimina el margen superior del logo */
+        max-height: 50px;
+        margin-top: 0;
     }
 
     .navbar-nav {
-        position: static; /* Restaura la posición estática de los enlaces */
-        display: block; /* Cambia a un diseño de bloque para los enlaces */
-        text-align: center; /* Centra los enlaces horizontalmente */
+        position: static;
+        display: block;
+        text-align: center;
     }
 
     .navbar-nav .nav-link {
@@ -93,7 +133,7 @@
 
     .search-container input,
     .search-container button {
-        margin: 10px 0; /* Espacio entre el campo de búsqueda y el botón */
+        margin: 10px 0;
     }
 }
 
@@ -105,6 +145,7 @@
 #carouselExampleSlidesOnly {
     width: auto; /* Ancho del slider */
     margin: 0 auto; /* Centrar el slider */
+
 }
 /* Estilo personalizado para las imágenes del slider */
 .carousel-item img {
@@ -132,25 +173,25 @@
 }
 
 .carousel-caption {
-    position: absolute; /* Posición absoluta para colocar el texto sobre la imagen */
-    bottom: 0; /* Alinear el texto en la parte inferior del slide */
-    right: 0; /* Alinear el texto a la derecha del slide */
-    left: 0; /* Alinear el texto a la izquierda del slide */
-    text-align: center; /* Alinear el texto al centro horizontalmente */
-    padding: 20px; /* Agregar espacio alrededor del texto */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.55);
 }
 
 .carousel-caption h3 {
-    margin-top: 0; /* Eliminar el margen superior del título */
+    margin-top: 0;
     color: rgba(43, 34, 77, 0.94);
     font-family: 'Schoolbell', cursive;
     font-weight: bold;
 }
 
 .carousel-caption p {
-    margin-top: 10px; /* Agregar un pequeño margen superior al párrafo */
-    text-align: center; /* Alinear el párrafo a la derecha del área de la leyenda */
+    margin-top: 10px;
+    text-align: center;
     color: rgba(43, 34, 77, 0.89);
     font-family: 'SansSerif', cursive;
     margin-left: 50px;
@@ -158,27 +199,37 @@
 }
 
 .carousel-caption .btn-suscribirme {
-    position: absolute; /* Posición absoluta para colocar el botón en la esquina inferior derecha */
-    bottom: 20px; /* Ajustar la distancia desde la parte inferior */
-    right: 20px; /* Ajustar la distancia desde la parte derecha */
-}
-
-
-.carousel-item:last-child .btn-suscribirme {
     position: absolute;
-    bottom: 250px; /* Ajusta la distancia desde la parte inferior */
-    right: 20%; /* Ajusta la distancia desde la parte derecha al 50% */
-    transform: translateX(50%); /* Centra horizontalmente */
-    width: auto; /* Ancho automático según el contenido del texto */
-    max-width: 200px; /* Ancho máximo del botón */
+    bottom: 250px;
+    right: 20%;
+    transform: translateX(50%);
+    width: auto;
+    max-width: 200px;
     font-family: 'Schoolbell', cursive;
-    font-weight: bold;
-    background-color: rgba(59, 46, 105, 0.87);
-    border-color: rgba(25, 21, 45, 0.75);
+    background-color: rgb(234, 134, 32);
+    border-color: rgba(208, 80, 3, 0.75);
     color: rgba(255, 255, 255, 0.87);
 }
+
+
 h1{
     text-align: center;
     margin-top: 50px;
 }
 
+.footer {
+    color: #dacdea;
+    background-color: rgba(43, 34, 77, 0.87);
+    padding-top: 10px;
+    margin-top: auto;
+}
+.info-col {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+a {
+    color: rgba(99, 255, 220, 0.5);
+}
+a:hover {
+    color: #58e3ca; /
+}

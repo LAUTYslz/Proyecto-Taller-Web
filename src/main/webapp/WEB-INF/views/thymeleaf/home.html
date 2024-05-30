@@ -13,10 +13,11 @@
   <link rel="stylesheet" th:href="@{/css/home.css}"/>
   <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -25,21 +26,21 @@
 
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
   <div class="navbar-nav">
-    <a class="nav-link" href="contacto.html">Contactos</a>
+    <a class="nav-link" th:href="@{/contacto}">Contactos</a>
     <a class="nav-link" href="#">Eventos/Cursos</a>
-    <a class="nav-link" href="#">Tests</a>
+    <a class="nav-link" th:href="@{/seleccionTests}">Tests</a>
     <a class="nav-link" href="#">Foro Comunidad</a>
   </div>
 
 
-  <a class="navbar-brand" href="home.html">
+  <a class="navbar-brand" th:href="@{/home}">
     <img th:src="@{/img/educareLogo.png}" alt="Logo">
   </a>
 
 
   <div class="navbar-nav ml-auto">
-    <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
-    <a class="nav-link" href="login.html">Iniciar Sesión</a>
+    <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+    <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
     <div class="search-container">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -51,15 +52,18 @@
 
 <main role="main" class="container">
 
+  <div class = "containerProyecto">
+    <h1>Bienvenidos a nuestro proyecto</h1>
+  </div>
 
 
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <!-- Primer slide -->
       <div class="carousel-item active">
-        <img class="d-block w-100" th:src="@{/img/logo.jpeg}" alt="First slide">
+        <img class="d-block w-100" th:src="@{/img/bebeJugando.png}" alt="First slide">
         <div class="carousel-caption">
-          <h3>¡Bienvenido al Carrusel!</h3>
+          <h3>¡Realiza tu test !</h3>
           <p>Aquí encontrarás contenido emocionante.</p>
         </div>
       </div>
@@ -81,7 +85,7 @@
             ¡Descubre la emoción de recibir productos especiales y útiles
             para acompañar el crecimiento y desarrollo de tu pequeño, sin tener que salir de casa!
             Únete ahora y comienza a disfrutar de esta fantástica experiencia para ti y tu bebé.</p>
-          <a href="suscripcion.html" id="botonSuscribirse" class="btn btn-lg btn-block btn-suscribirme">SUSCRIBIRME</a>
+          <a th:href="@{/suscripcion}" id="botonSuscribirse" class="btn btn-lg btn-block btn-suscribirme">SUSCRIBIRME</a>
         </div>
       </div>
     </div>
@@ -97,18 +101,67 @@
   </div>
 
 
+    <div class="contentImageHome">
+      <p>aca va algo ...</p>
+      <button class="ver-mas">Ver más</button>
+    </div>
 
 
-  <div class = "container">
 
-    <h1>Bienvenidos a nuestro proyecto</h1>
-    <img th:src="@{img/logo.jpeg}" alt="Logo">
-  </div>
+
 </main>
 
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 info-col">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li>Correo: contacto@example.com</li>
+          <li>Teléfono: +1234567890</li>
+          <li>Dirección: Calle Ejemplo, Ciudad, País</li>
+        </ul>
+      </div>
+      <div class="col-md-3 info-col">
+        <h5>Enlaces útiles</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">Nuestro equipo</a></li>
+          <li><a href="#">¿Quieres colaborar con nosotros?</a></li>
+          <li><a href="#">Términos de servicio</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 info-col">
+        <h5>Síguenos</h5>
+        <ul class="list-unstyled">
+          <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+          <img class="logoFooter" th:src="@{/img/gifEducare.gif}" alt="Logo" width="130px">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>&copy; 2024 Proyecto Taller Web I - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
 <!-- Boostrap core js -->
-
-
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

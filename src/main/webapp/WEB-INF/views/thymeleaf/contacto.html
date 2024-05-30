@@ -18,29 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-            <div class="navbar-nav">
-                <a class="nav-link" href="contacto.html">Contactos</a>
-                <a class="nav-link" href="#">Eventos/Cursos</a>
-                <a class="nav-link" href="#">Tests</a>
-                <a class="nav-link" href="#">Foro Comunidad</a>
-            </div>
 
-            <a class="navbar-brand" href="home.html">
-                <img th:src="@{/img/educareLogo.png}" alt="Logo">
-            </a>
-
-            <div class="navbar-nav ml-auto">
-                <a class="nav-link" href="nuevo-usuario.html">Registrarse</a>
-                <a class="nav-link" href="login.html">Iniciar Sesión</a>
-                <div class="search-container">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-                </div>
-            </div>
-        </nav>
-    </header>
+<div th:replace="home :: nav"></div>
 
     <main>
         <h1>Nuestros contactos de confianza</h1>
