@@ -1,7 +1,6 @@
-package com.tallerwebi.infraestructura;
+package com.tallerwebi.Infraestructura;
 
 import com.tallerwebi.dominio.ServicioTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tallerwebi.presentacion.RespuestasTest;
 import javax.transaction.Transactional;

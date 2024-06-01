@@ -1,15 +1,25 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.dominio.Contacto;
+import com.tallerwebi.dominio.ServicioContacto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class ControladorContacto {
+
+    private final ServicioContacto servicioContacto;
+
+    @Autowired
+    public ControladorContacto(ServicioContacto servicioContacto){
+        this.servicioContacto = servicioContacto;
+    }
 
     @RequestMapping(path = "/contacto", method = RequestMethod.GET)
     public ModelAndView irAContacto() {
@@ -47,4 +57,19 @@ public class ControladorContacto {
         // modelo.addObject("contactos", pediatras);
         return new ModelAndView ("contactos", modelo);
     }
+
+    @GetMapping("/contacto/todos")
+    public String listarContactos(Model model) {
+        List<Contacto> contactos = servicioContacto.traerContactos();
+        model.addAttribute("contactos", contactos);
+        return "contacto";
+    }
+
+    @PostMapping("/contactos")
+    public String agregarContacto(Contacto contacto) {
+        servicioContacto.guardar(contacto);
+        return "redirect:/contacto";
+    }
+
+
 }
