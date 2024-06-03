@@ -95,7 +95,11 @@
             <scope>test</scope>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
@@ -107,12 +111,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.25.Final</version>
-        </dependency>
-
-        <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.28</version> <!-- Utiliza la versión más reciente -->
         </dependency>
         <!-- compile only, deployed container will provide this -->
         <!--

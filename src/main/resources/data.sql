@@ -17,12 +17,10 @@ CREATE TABLE Hijo (
                       FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
 CREATE TABLE Tarjeta (
-                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                         numeroDeTarjeta BIGINT,
+                         numeroDeTarjeta BIGINT PRIMARY KEY AUTO_INCREMENT,
                          fechaDeVencimiento DATE,
-                         codigoDeSeguridad INTEGER
+                         codigoDeSeguridad INT
 );
-
 CREATE TABLE Membresia (
                            id BIGINT PRIMARY KEY AUTO_INCREMENT,
                            nombreCompleto VARCHAR(255),
