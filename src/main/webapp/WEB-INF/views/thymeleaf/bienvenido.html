@@ -108,20 +108,14 @@
             <div class="titular" >
                 <h1>Información del Titular</h1>
                 <h1>Bienvenido</h1>
-                <p>¡Hola, <span th:text="${usuario.nombre}"></span>!</p>
-                <p>Tu correo electrónico es: <span th:text="${usuario.email}"></span></p>
-                <p>Tu Estado es: <span th:text="${usuario.estado}"></span></p>
+                <span th:text="${usuario != null ? usuario.nombre : 'Nombre no disponible'}"></span>
+                <span th:text="${usuario != null ? usuario.email : 'Email no disponible'}"></span>
+                <span th:text="${usuario != null ? usuario.conyuge : 'Conyuge no disponible'}"></span>
+                <span th:text="${usuario != null ? usuario.estado : 'Estado no disponible'}"></span>
+
 
             </div>
-            <!-- Datos de los hijos -->
-            <div class="hijos">
-                <h3>Datos de los Hijos</h3>
-                <ul>
-                    <li>Hijo 1: Juanito</li>
-                    <li>Hijo 2: María</li>
-                    <!-- Agregar más hijos si es necesario -->
-                </ul>
-            </div>
+
         </div>
     </section>
 
@@ -129,10 +123,10 @@
     <div class="button-container">
 
         <div class="circle-button"><a th:href="@{/modificarUsuario}">MODIFICAR DATOS</a></div>
-        <div class="circle-button"><a th:href="@{/nuevos}">NUEVO HIJO</a></div>
-        <div class="circle-button"><a th:href="@{/membresia}">MEMBRESIA</a></div>
+        <div class="circle-button"><a th:href="@{/nuevoHijo}">NUEVO HIJO</a></div>
+        <div class="circle-button"><a th:href="@{/membresiaPaga}">MEMBRESIA</a></div>
         <div class="circle-button"><a th:href="@{/profesionales}">PROFESIONALES</a></div>
-        <div class="circle-button"><a th:href="@{/videos}">VIDEOS</a></div>
+        <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
         <div class="circle-button"><a th:href="@{/actividades}">ACTIVIDADES</a></div>
     </div>
 

@@ -9,6 +9,14 @@ public interface RepositorioUsuario {
 
     Usuario buscarPorId(Long id);
 
+    void guardarHijo(Hijo hijo);
+
+    void actualizar(Usuario usuario);
+
+    Usuario findByEmail(String userEmail);
+
+
+
     /*void guardarHijo(Usuario hijo);*/
 }
 

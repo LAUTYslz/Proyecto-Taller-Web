@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agrego un cónyuge</title>
+</head>
+<body>
+<h2>Detalles del Cónyuge</h2>
+<p>Debug Info:</p>
+<pre th:text="${usuario.conyuge}">Cónyuge Object: </pre>
+<h2>Detalles del Cónyuge</h2>
+<p>Cónyuge</p>
+<p th:if="${usuario.conyuge != null}">
+    <strong>Nombre:</strong> <span th:text="${usuario.conyuge.nombre}"></span><br>
+    <strong>Email:</strong> <span th:text="${usuario.conyuge.email}"></span>
+    <strong>Rol:</strong> <span th:text="${usuario.conyuge.rol}"></span>
+</p>
+<p th:unless="${usuario.conyuge != null}">Sin cónyuge</p>
+</body>
+</html>

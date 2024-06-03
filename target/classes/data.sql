@@ -16,6 +16,22 @@ CREATE TABLE Hijo (
                       usuario_id BIGINT,
                       FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
+CREATE TABLE Tarjeta (
+                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                         numeroDeTarjeta BIGINT,
+                         fechaDeVencimiento DATE,
+                         codigoDeSeguridad INTEGER
+);
 
-INSERT INTO usuario(id, email, password, rol, estado,nombre, conyuge_id ) VALUES(null, 'test@unlam.edu.ar','test','ADMIN', "inactivo","aye",null);
+CREATE TABLE Membresia (
+                           id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                           nombreCompleto VARCHAR(255),
+                           email VARCHAR(255),
+                           numeroTelefonico BIGINT,
+                           tarjeta_id BIGINT,
+                           usuario_id BIGINT,
+                           FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta(id),
+                           FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+);
+INSERT INTO usuario(id, email, password, rol, estado,nombre, conyuge_id ) VALUES(null, 'test@unlam.edu.ar','test','ADMIN', "inactivo","aye",1);
 

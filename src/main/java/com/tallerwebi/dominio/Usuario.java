@@ -14,38 +14,15 @@ public class Usuario {
     private String estado = "inactivo";
     private String nombre;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "conyuge_id", referencedColumnName = "id")
+    @OneToOne
     private Usuario conyuge;
-    private String emailConyuge;
-    private String passwordConyuge;
-    private String nombreConyuge;
+
 
     // Getters y Setters
 
-    public String getEmailConyuge() {
-        if (conyuge != null) {
-            return conyuge.getEmail();
-        } else {
-            return null;
-        }
-    }
 
-    public String getPasswordConyuge() {
-        if (conyuge != null) {
-            return conyuge.getPassword();
-        } else {
-            return null;
-        }
-    }
 
-    public String getNombreConyuge() {
-        if (conyuge != null) {
-            return conyuge.getNombre();
-        } else {
-            return null;
-        }
-    }
+
 
     public Long getId() {
         return id;
@@ -103,15 +80,5 @@ public class Usuario {
         this.conyuge = conyuge;
     }
 
-    public void setEmailConyuge(String emailConyuge) {
-        this.emailConyuge = emailConyuge;
-    }
 
-    public void setPasswordConyuge(String passwordConyuge) {
-        this.passwordConyuge = passwordConyuge;
-    }
-
-    public void setNombreConyuge(String nombreConyuge) {
-        this.nombreConyuge = nombreConyuge;
-    }
 }

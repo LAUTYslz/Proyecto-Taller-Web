@@ -9,5 +9,11 @@ public interface ServicioLogin {
     void registrar(Usuario usuario) throws UsuarioExistente;
     Usuario buscarUsuarioPorId(Long id)throws UsuarioInexistente;
 
-   /* void registrarHijo(Usuario hijo, Usuario usuario)throws UsuarioInexistente ;*/
+    void registrarHijo( Hijo hijo1);
+
+    void asociarConyuge(String userEmail, Usuario conyuge);
+
+    /* void registrarConyuge(Long id, Usuario conyuge) throws UsuarioExistente, UsuarioInexistente;*/
+
+    /* void registrarHijo(Usuario hijo, Usuario usuario)throws UsuarioInexistente ;*/
 }

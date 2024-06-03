@@ -21,7 +21,7 @@
 <div th:replace=" home :: nav"></div>
 
 <div class="container-form">
-<form action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${datosMembresia}">
+<form  action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${membresia}">
 
     <div th:if="${error != null}" class="alert alert-danger" role="alert">
         <p th:text="${error}"></p>

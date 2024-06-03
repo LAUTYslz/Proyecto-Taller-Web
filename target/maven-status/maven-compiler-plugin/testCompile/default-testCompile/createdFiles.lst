@@ -5,3 +5,4 @@ com\tallerwebi\integracion\ControladorLoginTest.class
 com\tallerwebi\punta_a_punta\VistaLoginE2E.class
 com\tallerwebi\punta_a_punta\vistas\VistaWeb.class
 com\tallerwebi\punta_a_punta\vistas\VistaLogin.class
+com\tallerwebi\infraestructura\RepositoriaUsuarioTest.class

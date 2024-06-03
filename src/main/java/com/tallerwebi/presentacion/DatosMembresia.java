@@ -1,4 +1,6 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.presentacion;
+
+import com.tallerwebi.dominio.Tarjeta;
 
 public class DatosMembresia {
     private String nombreCompleto;
@@ -6,16 +8,6 @@ public class DatosMembresia {
     private Long numeroTelefonico;
     private Tarjeta tarjeta;
 
-    public DatosMembresia(){
-
-    }
-
-    public DatosMembresia (String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
-        this.nombreCompleto = nombreCompleto;
-        this.email = email;
-        this.numeroTelefonico = numeroTelefonico;
-        this.tarjeta = new Tarjeta(tarjeta.getNumeroDeTarjeta(), tarjeta.getFechaDeVencimiento(), tarjeta.getCodigoDeSeguridad());
-    }
 
     public Long getNumeroTelefonico(){
         return this.numeroTelefonico;

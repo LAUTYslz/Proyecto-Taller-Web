@@ -23,19 +23,15 @@
 
     <div class="container">
         <div id="loginbox" style="margin-top: 50px; margin-bottom: 50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <form action="#" th:action="@{/validar-login}" method="POST" th:object="${usuarioFormulario}">
+            <form action="#" th:action="@{/validar-login}" method="POST" th:object="${datosLogin}">
                 <h3 class="form-signin-heading">Iniciar Sesión</h3>
                 <hr class="colorgraph"><br>
 
                 <!-- Titular -->
-                <h2>TITULAR</h2>
+                <h2>LOGIN</h2>
                 <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Email" />
                 <input th:field="*{password}" id="password" type="password" class="form-control" placeholder="Contraseña" />
 
-                <!-- Login del cónyuge -->
-                <h2>LOGIN CONYUGE</h2>
-                <input th:field="*{emailConyuge}" id="emailConyuge" type="email" class="form-control" placeholder="Email del cónyuge"/>
-                <input th:field="*{passwordConyuge}" id="passwordConyuge" type="password" class="form-control" placeholder="Contraseña del cónyuge"/>
 
                 <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
 
