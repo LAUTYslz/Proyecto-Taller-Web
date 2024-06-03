@@ -9,5 +9,8 @@
         <module name="tallerwebi-base" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tallerwebi-base" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

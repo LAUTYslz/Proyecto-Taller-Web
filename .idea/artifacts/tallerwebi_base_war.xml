@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" external-system-id="Maven" name="tallerwebi-base:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>tallerwebi-base</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="tallerwebi-base-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="tallerwebi-base:war exploded" />
+    </root>
+  </artifact>
+</component>
