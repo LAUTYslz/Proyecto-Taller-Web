@@ -1,12 +1,12 @@
-CREATE DATABASE educacion;
+
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),
                          password VARCHAR(255),
                          rol VARCHAR(255),
                          estado VARCHAR(255) DEFAULT 'inactivo',
-                         nombre VARCHAR(255),
                          conyuge_id BIGINT,
+                         nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
 CREATE TABLE Hijo (
@@ -20,7 +20,7 @@ CREATE TABLE Hijo (
 
 INSERT INTO Usuario(id, email, password, rol, estado) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', 'true');
 
-CREATE TABLE IF NOT EXISTS Metodo (
+CREATE TABLE  Metodo (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL
     );
@@ -40,7 +40,7 @@ INSERT INTO TipoContacto (nombre) VALUES ('Estimulacion temprana');
 INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
-CREATE TABLE IF NOT EXISTS Contacto (
+CREATE TABLE  Contacto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),

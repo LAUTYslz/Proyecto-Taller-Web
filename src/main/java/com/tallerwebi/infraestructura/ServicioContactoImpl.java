@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
@@ -19,7 +19,7 @@ public class ServicioContactoImpl implements ServicioContacto {
 
 
     @Autowired
-    ServicioContactoImpl(RepositorioContacto repositorioContacto, RepositorioMetodo repositorioMetodo, RepositorioTipoContacto repositorioTipoContacto) {
+    public ServicioContactoImpl(RepositorioContacto repositorioContacto, RepositorioMetodo repositorioMetodo, RepositorioTipoContacto repositorioTipoContacto) {
         this.repositorioContacto = repositorioContacto;
         this.repositorioMetodo = repositorioMetodo;
         this.repositorioTipoContacto = repositorioTipoContacto;

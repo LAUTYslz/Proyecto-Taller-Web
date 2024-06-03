@@ -90,26 +90,7 @@ public class ControladorLogin {
     }
 
 
-    @RequestMapping(path = "/info")
-    public ModelAndView irAInfo() {
-        return new ModelAndView("info");
-    }
 
-
-    @RequestMapping(path = "/info/doman")
-    public ModelAndView irAInfoDoman() {
-        return new ModelAndView("doman");
-    }
-
-    @RequestMapping(path = "/info/montessori", method = RequestMethod.GET)
-    public ModelAndView irAInfoMontessori() {
-        return new ModelAndView("montessori");
-    }
-
-    @RequestMapping(path = "/info/waldorf", method = RequestMethod.GET)
-    public ModelAndView irAInfoWaldorf() {
-        return new ModelAndView("waldorf");
-    }
 
 
 
@@ -226,12 +207,12 @@ public class ControladorLogin {
         ModelAndView modelAndView = new ModelAndView();
         ModelMap modelo = new ModelMap();
 
-            Usuario usuarioActual = obtenerUsuarioActual(request);
-            servicioLogin.asociarConyuge(usuarioActual.getEmail(), conyuge);
-            conyuge.setRol("ROL_CONYUGE");
-            modelo.put("usuario",conyuge);
-            modelAndView.addObject("usuario", conyuge);
-            return new ModelAndView("detalles-conyuge",modelo); // Redirigir a la página de perfil
+        Usuario usuarioActual = obtenerUsuarioActual(request);
+        servicioLogin.asociarConyuge(usuarioActual.getEmail(), conyuge);
+        conyuge.setRol("ROL_CONYUGE");
+        modelo.put("usuario",conyuge);
+        modelAndView.addObject("usuario", conyuge);
+        return new ModelAndView("detalles-conyuge",modelo); // Redirigir a la página de perfil
        /* } catch (UsuarioInexistente e) {
             // Manejar el caso de que el cónyuge ya exista
             modelAndView.setViewName("error");*/ // Puedes redirigir a una página de error o mostrar un mensaje de error al usuario
@@ -260,4 +241,3 @@ public class ControladorLogin {
     }
 
 }
-
