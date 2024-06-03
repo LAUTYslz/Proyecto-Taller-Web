@@ -34,11 +34,11 @@ public class ControladorSuscripcion {
         return new ModelAndView("membresiaPaga", model);
     }
 
-    @RequestMapping("/procesarMembresiaPaga/submit")
+    @RequestMapping(path = "/procesarMembresiaPaga", method = RequestMethod.POST)
     public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
         ModelMap model = new ModelMap();
 
-         try {
+        try {
             servicioMembresia.darDeAltaMembresia(datosMembresia);
             model.put("datosMembresia", datosMembresia);
             return new ModelAndView("confirmacionMembresia", model);
@@ -50,7 +50,7 @@ public class ControladorSuscripcion {
             model.put("error", "El código de seguridad es inválido");
         }
 
-        return new ModelAndView("confirmacionMembresia", model);
+        return new ModelAndView("login", model);
     }
 
 }

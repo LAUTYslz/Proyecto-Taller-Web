@@ -1,11 +1,10 @@
 body {
     background-color: #dacdea;
-<<<<<<< HEAD
-=======
+
     display: flex;
     flex-direction: column;
     min-height: 100vh;
->>>>>>> ana
+
 }
 
 .navbar {
@@ -61,21 +60,14 @@ font-family: Schoolbell, cursive;
 
 
 .contentImageHome {
-<<<<<<< HEAD
-    position: relative; /* Establece una posición relativa para poder posicionar el pseudo-elemento */
-    padding: 120px; /* Ajusta el relleno según sea necesario */
-    margin: 20px 0; /* Ajusta los márgenes superior e inferior */
-    border: 4px solid rgba(54, 48, 79, 0.87); /* Color lila y más grueso */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Oculta el contenido que sobresale del contenedor */
-=======
+
     position: relative;
     padding: 120px;
     margin: 20px 0;
     border: 4px solid rgba(54, 48, 79, 0.87);
     border-radius: 10px;
     overflow: hidden;
->>>>>>> ana
+
 }
 
 .contentImageHome::before {
@@ -95,15 +87,7 @@ font-family: Schoolbell, cursive;
 }
 
 .contentImageHome:hover {
-<<<<<<< HEAD
-    border-color: rgba(49, 36, 96, 0.87); /* Cambio de color al pasar el mouse */
-}
 
-.ver-mas{
-    position: absolute; /* Establece una posición absoluta para el botón */
-    bottom: 20px; /* Posición 20 píxeles desde la parte inferior */
-    right: 20px; /* Posición 20 píxeles desde el borde derecho */
-=======
     border-color: rgba(49, 36, 96, 0.87);
 }
 
@@ -111,7 +95,7 @@ font-family: Schoolbell, cursive;
     position: absolute;
     bottom: 20px;
     right: 20px;
->>>>>>> ana
+
 }
 
 /* Estilos para dispositivos móviles */
@@ -221,21 +205,14 @@ font-family: Schoolbell, cursive;
 }
 
 .carousel-caption .btn-suscribirme {
-<<<<<<< HEAD
-    position: absolute; /* Posición absoluta para colocar el botón en la esquina inferior derecha */
-    bottom: 250px; /* Ajusta la distancia desde la parte inferior */
-    right: 20%; /* Ajusta la distancia desde la parte derecha al 50% */
-    transform: translateX(50%); /* Centra horizontalmente */
-    width: auto; /* Ancho automático según el contenido del texto */
-    max-width: 200px; /* Ancho máximo del botón */
-=======
+
     position: absolute;
     bottom: 250px;
     right: 20%;
     transform: translateX(50%);
     width: auto;
     max-width: 200px;
->>>>>>> ana
+
     font-family: 'Schoolbell', cursive;
     background-color: rgb(234, 134, 32);
     border-color: rgba(208, 80, 3, 0.75);
@@ -249,21 +226,18 @@ h1{
 }
 
 .footer {
-    color: #dacdea;
-    background-color: rgba(43, 34, 77, 0.87);
-    padding-top: 10px;
-<<<<<<< HEAD
-=======
-    margin-top: auto;
->>>>>>> ana
-}
-.info-col {
-    margin-right: 15px;
-    margin-left: 15px;
-}
-a {
-    color: rgba(99, 255, 220, 0.5);
-}
-a:hover {
-    color: #58e3ca; /
+
+    .info-col {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    a {
+        color: rgba(99, 255, 220, 0.5);
+    }
+
+    a:hover {
+        color: #58e3ca;
+    /
+    }
 }

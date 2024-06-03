@@ -49,16 +49,13 @@
     </div>
   </div>
 </nav>
-=======
-<div th:replace="home :: nav"></div>
 
->>>>>>> ana
 
 <main role="main" class="container">
 
   <div class = "container">
     <div id="loginbox" style="margin-top:50px; margin-bottom: 30px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-<<<<<<< HEAD
+
       <form action="#" th:action="@{/registrarse}" method="POST" th:object="${usuario}">
         <h2 class="form-signin-heading">Nuevo Usuario</h2>
         <hr class="colorgraph"><br>
@@ -69,38 +66,8 @@
             <input th:field="*{nombre}" id="nombre" class="form-control" required/>
               <label for="password">Password Titular</label>
               <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
-=======
-      <form action="#" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
-        <h2 class="form-signin-heading">Nuevo Usuario</h2>
-        <hr class="colorgraph"><br>
 
-        <div class="container">
-          <h3>Datos de Registro</h3>
-          <label th:name="email" >Email</label>
-          <input th:field="*{email}" id="email" class="form-control" required/>
-          <label th:name="password">Password</label>
-          <input th:field="*{password}" type="password" id="password" class="form-control" required/><br>
-        </div>
-        <div class="container">
-          <h3>Informacion del Bebe</h3>
-          <label>Nombre: </label>
-          <input type="text" id="nombre" class="form-control" required/>
-          <label>Fecha de Nacimiento</label>
-          <input type="date" id="fechaNac" class="form-control" /><br>
-        </div>
-        <div class="container">
-          <h3>Metodos de Crianza</h3><br>
 
-          <button id="btn-info" class="btn btn-lg btn-secondary btn-block" Type="Submit"><a role="button" th:href="@{/info}"> + INFO METODOS </a></button>
-
-          <label for="fulano">Metodo Doman</label>
-          <input type="radio" name="metodo" id="fulano" class="form-control/"><br>
-          <label for="montessori">Metodo Montessori</label>
-          <input type="radio" name="metodo" id="montessori" class="form-control/"/><br>
-          <label for="fulano">Metodo Waldorf</label>
-          <input type="radio" name="metodo" id="waldorf" class="form-control/"><br>
-          <div class="container">
->>>>>>> ana
 
           </div>
           <button id="btn-registrarse" class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>

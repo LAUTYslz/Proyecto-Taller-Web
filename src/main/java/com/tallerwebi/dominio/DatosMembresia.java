@@ -5,17 +5,11 @@ public class DatosMembresia {
     private String email;
     private Long numeroTelefonico;
     private Tarjeta tarjeta;
-
     public DatosMembresia(){
 
     }
 
-    public DatosMembresia (String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
-        this.nombreCompleto = nombreCompleto;
-        this.email = email;
-        this.numeroTelefonico = numeroTelefonico;
-        this.tarjeta = new Tarjeta(tarjeta.getNumeroDeTarjeta(), tarjeta.getFechaDeVencimiento(), tarjeta.getCodigoDeSeguridad());
-    }
+
 
     public Long getNumeroTelefonico(){
         return this.numeroTelefonico;

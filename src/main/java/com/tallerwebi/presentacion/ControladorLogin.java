@@ -1,29 +1,34 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.*;
+import com.tallerwebi.dominio.Hijo;
+
+import com.tallerwebi.dominio.ServicioLogin;
+
+import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.excepcion.UsuarioExistente;
+
+
+import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+
 public class ControladorLogin {
 
     private ServicioLogin servicioLogin;
-    private ServicioMembresia servicioMembresia;
+
 
     @Autowired
-    public ControladorLogin(ServicioLogin servicioLogin, ServicioMembresia servicioMembresia) {
+    public ControladorLogin(ServicioLogin servicioLogin ) {
         this.servicioLogin = servicioLogin;
-        this.servicioMembresia = servicioMembresia;
+
     }
 
 
@@ -107,10 +112,6 @@ public class ControladorLogin {
     }
 
 
-    @RequestMapping("/suscripcion")
-    public ModelAndView irASuscripcion() {
-        return new ModelAndView("suscripcion");
-    }
 
 
     @RequestMapping(path = "/bienvenido")
@@ -137,11 +138,6 @@ public class ControladorLogin {
     }
 
 
-    @GetMapping("/membresiaPaga")
-    public String mostrarMembresia() {
-
-        return "membresiaPaga";
-    }
 
 
     @RequestMapping(path = "/modificarUsuario")
@@ -171,44 +167,11 @@ public class ControladorLogin {
         return new ModelAndView("modificarUsuario", model);
     }
 
-    @RequestMapping("/membresiaPaga")
-    public ModelAndView mostrarFormularioMembresia() {
-        ModelAndView modelAndView = new ModelAndView("membresiaPaga");
-        modelAndView.addObject("membresia", new Membresia()); // Agregar el objeto "membresia" al modelo
-        return modelAndView;
-    }
-
-    @GetMapping("/confirmacionMembresia")
-    public ModelAndView irAConfirmacionMembresia(Model model) {
-        Membresia membresia = new Membresia(); // Crear una instancia de la clase Membresia
-        model.addAttribute("membresia", membresia); // Agregar membresia al modelo
-
-        return new ModelAndView("confirmacionMembresia");
-    }
-
-    @RequestMapping(path = "/procesarMembresiaPaga", method = RequestMethod.POST)
-    public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("membresia") Membresia membresia) {
-        ModelMap model = new ModelMap();
-
-        try {
-
-            servicioMembresia.darDeAltaMembresia(membresia);
-            ModelAndView modelAndView = new ModelAndView("confirmacionMembresia");
-            modelAndView.addObject("membresia", membresia); //
-
-            return new ModelAndView("confirmacionMembresia");
-
-        } catch (MembresiaExistente ex) {
-            model.put("error", "Tu usuario ya cuenta con una membresía paga");
-        } catch (TarjetaInvalida ex) {
-            model.put("error", "El número de tarjeta es inválido");
-        } catch (CodigoInvalido e) {
-            model.put("error", "El código de seguridad es inválido");
-        }
 
 
-        return new ModelAndView("confirmacionMembresia");
-    }
+
+
+
 
 
     //creo un hijo

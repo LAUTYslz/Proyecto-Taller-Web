@@ -4,19 +4,16 @@ import net.bytebuddy.implementation.bind.annotation.Empty;
 
 import javax.persistence.*;
 
-@Entity
+
 
 public class Membresia {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
     private Long id;
     private String nombreCompleto;
     private String email;
     private Long numeroTelefonico;
-    @ManyToOne
-    private Tarjeta tarjeta;
-    @ManyToOne
-    private Usuario usuario;
+
 
 
     public String getNombreCompleto() {
@@ -43,11 +40,5 @@ public class Membresia {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public Tarjeta getTarjeta() {
-        return tarjeta;
-    }
 
-    public void setTarjeta(Tarjeta tarjeta) {
-        this.tarjeta = tarjeta;
-    }
 }

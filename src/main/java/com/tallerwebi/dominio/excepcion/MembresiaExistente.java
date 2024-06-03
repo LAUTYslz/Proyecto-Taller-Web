@@ -1,4 +1,4 @@
 package com.tallerwebi.dominio.excepcion;
 
-public class MembresiaExistente extends Exception {
+public class MembresiaExistente extends Exception{
 }
