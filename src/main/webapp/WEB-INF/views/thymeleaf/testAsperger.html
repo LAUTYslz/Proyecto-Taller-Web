@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAsperger</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/test.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<main class="background-overlay2">
+
+
+    <div class="test-form">
+        <h1>Test de deteccion temprana del espectro Asperger </h1>
+        <form th:action="@{/testAsperger/submit}" method="POST" th:object="${modeloTest}">
+            <!-- Preguntas -->
+            <div class="question">
+                <label for="pregunta1">1.¿Tu hijo/a muestra interés en interactuar y jugar con otros niños de su edad?</label>
+                <select name="respuestas[0].texto" id="pregunta1">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta2">2. ¿Tu hijo/a tiene dificultades para mantener una conversación bidireccional (ida y vuelta) con otras personas?</label>
+                <select name="respuestas[1].texto" id="pregunta2">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta3">3. ¿Tu hijo/a se enfoca intensamente en un tema específico y puede hablar sobre él durante un largo período de tiempo?</label>
+                <select name="respuestas[2].texto" id="pregunta3">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta4">4. ¿Tu hijo/a muestra dificultades para comprender las señales sociales no verbales, como el lenguaje corporal o las expresiones faciales?</label>
+                <select name="respuestas[3].texto" id="pregunta4">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta5">5. ¿Tu hijo/a tiene dificultades para entender los chistes o el sarcasmo?</label>
+                <select name="respuestas[4].texto" id="pregunta5">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta6">6.¿Tu hijo/a muestra un apego inusual a las rutinas o rituales y se angustia cuando se interrumpen?</label>
+                <select name="respuestas[5].texto" id="pregunta6">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta7">7.¿Tu hijo/a tiene intereses o actividades intensas y específicas que le absorben completamente?</label>
+                <select name="respuestas[6].texto" id="pregunta7">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta8">8.¿Tu hijo/a prefiere jugar solo en lugar de interactuar con otros niños?</label>
+                <select name="respuestas[7].texto" id="pregunta8">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta9">9.¿Tu hijo/a tiene dificultades para comprender las emociones de los demás o expresar las suyas propias?</label>
+                <select name="respuestas[8].texto" id="pregunta9">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta10">10. ¿Tu hijo/a muestra sensibilidades inusuales a ciertos estímulos sensoriales, como la luz, el sonido o la textura?</label>
+                <select name="respuestas[9].texto" id="pregunta10">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta10">11. ¿Tu niño tiene dificultades para adaptarse a cambios en la rutina o en el entorno?</label>
+                <select name="respuestas[10].texto" id="pregunta11">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="pregunta10">12. ¿Tu hijo/a tiende a tomar las palabras de manera literal y tiene dificultades para entender las metáforas o las figuras retóricas?</label>
+                <select name="respuestas[11].texto" id="pregunta12">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <!-- Repite este bloque para cada pregunta -->
+            <button class="buttonTest" type="submit">Enviar</button>
+        </form>
+
+        <!-- Aquí mostrarías el resultado -->
+    </div>
+
+
+</main>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+</body>
+</html>

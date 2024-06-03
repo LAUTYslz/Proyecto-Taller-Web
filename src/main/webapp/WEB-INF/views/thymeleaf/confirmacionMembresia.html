@@ -23,6 +23,7 @@
     <p>Gracias por suscribirte. Aquí están los detalles de tu membresía:</p>
 
     <div>
+<<<<<<< HEAD
         <strong>Nombre completo:</strong> <span th:text="${membresia.nombreCompleto}"></span>
     </div>
     <div>
@@ -39,6 +40,24 @@
     </div>
     <div>
         <strong>Código de Seguridad:</strong> <span th:text="${membresia.tarjeta.codigoDeSeguridad}"></span>
+=======
+        <strong>Nombre completo:</strong> <span th:text="${datosMembresia.nombreCompleto}"></span>
+    </div>
+    <div>
+        <strong>Email:</strong> <span th:text="${datosMembresia.email}"></span>
+    </div>
+    <div>
+        <strong>Número telefónico:</strong> <span th:text="${datosMembresia.numeroTelefonico}"></span>
+    </div>
+    <div>
+        <strong>Número de tarjeta:</strong> <span th:text="${datosMembresia.tarjeta.numeroDeTarjeta}"></span>
+    </div>
+    <div>
+        <strong>Fecha de Vencimiento:</strong> <span th:text="${datosMembresia.tarjeta.fechaDeVencimiento}"></span>
+    </div>
+    <div>
+        <strong>Código de Seguridad:</strong> <span th:text="${datosMembresia.tarjeta.codigoDeSeguridad}"></span>
+>>>>>>> ana
     </div>
 </div>
 

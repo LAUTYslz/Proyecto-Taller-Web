@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 
+<<<<<<< HEAD
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +11,28 @@ public class Tarjeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+=======
+import java.util.Date;
+
+public class Tarjeta {
+>>>>>>> ana
     private Long numeroDeTarjeta;
     private Date fechaDeVencimiento;
     private Integer codigoDeSeguridad;
 
+<<<<<<< HEAD
 
+=======
+    public Tarjeta(){
+
+    }
+
+    public Tarjeta (Long numeroDeTarjeta, Date fechaDeVencimiento, Integer codigoDeSeguridad){
+        this.numeroDeTarjeta = numeroDeTarjeta;
+        this.fechaDeVencimiento = fechaDeVencimiento;
+        this.codigoDeSeguridad = codigoDeSeguridad;
+    }
+>>>>>>> ana
 
     public Long getNumeroDeTarjeta() {
         return this.numeroDeTarjeta;
@@ -40,5 +58,8 @@ public class Tarjeta {
         this.codigoDeSeguridad = codigoDeSeguridad;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ana
 }

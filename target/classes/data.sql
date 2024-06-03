@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),
@@ -35,3 +36,6 @@ CREATE TABLE Membresia (
 );
 INSERT INTO usuario(id, email, password, rol, estado,nombre, conyuge_id ) VALUES(null, 'test@unlam.edu.ar','test','ADMIN', "inactivo","aye",1);
 
+=======
+INSERT INTO Usuario(id, email, password, rol, activo) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', true);
+>>>>>>> ana

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+=======
+<html lang="en">
+>>>>>>> ana
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +25,11 @@
 <div th:replace=" home :: nav"></div>
 
 <div class="container-form">
+<<<<<<< HEAD
 <form  action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${membresia}">
+=======
+<form th:action="@{/procesarMembresiaPaga/submit}" method="post" th:object="${datosMembresia}">
+>>>>>>> ana
 
     <div th:if="${error != null}" class="alert alert-danger" role="alert">
         <p th:text="${error}"></p>

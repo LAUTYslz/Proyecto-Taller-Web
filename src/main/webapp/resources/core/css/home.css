@@ -1,5 +1,11 @@
 body {
     background-color: #dacdea;
+<<<<<<< HEAD
+=======
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+>>>>>>> ana
 }
 
 .navbar {
@@ -55,12 +61,21 @@ font-family: Schoolbell, cursive;
 
 
 .contentImageHome {
+<<<<<<< HEAD
     position: relative; /* Establece una posición relativa para poder posicionar el pseudo-elemento */
     padding: 120px; /* Ajusta el relleno según sea necesario */
     margin: 20px 0; /* Ajusta los márgenes superior e inferior */
     border: 4px solid rgba(54, 48, 79, 0.87); /* Color lila y más grueso */
     border-radius: 10px; /* Bordes redondeados */
     overflow: hidden; /* Oculta el contenido que sobresale del contenedor */
+=======
+    position: relative;
+    padding: 120px;
+    margin: 20px 0;
+    border: 4px solid rgba(54, 48, 79, 0.87);
+    border-radius: 10px;
+    overflow: hidden;
+>>>>>>> ana
 }
 
 .contentImageHome::before {
@@ -80,6 +95,7 @@ font-family: Schoolbell, cursive;
 }
 
 .contentImageHome:hover {
+<<<<<<< HEAD
     border-color: rgba(49, 36, 96, 0.87); /* Cambio de color al pasar el mouse */
 }
 
@@ -87,6 +103,15 @@ font-family: Schoolbell, cursive;
     position: absolute; /* Establece una posición absoluta para el botón */
     bottom: 20px; /* Posición 20 píxeles desde la parte inferior */
     right: 20px; /* Posición 20 píxeles desde el borde derecho */
+=======
+    border-color: rgba(49, 36, 96, 0.87);
+}
+
+.ver-mas{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+>>>>>>> ana
 }
 
 /* Estilos para dispositivos móviles */
@@ -96,22 +121,22 @@ font-family: Schoolbell, cursive;
     }
 
     .navbar-brand {
-        position: relative; /* Establece una posición relativa para el logo */
-        transform: none; /* Elimina la transformación del logo */
-        top: auto; /* Reinicia la posición vertical del logo */
-        left: auto; /* Reinicia la posición horizontal del logo */
-        margin: 10px auto; /* Centra el logo horizontalmente */
+        position: relative;
+        transform: none;
+        top: auto;
+        left: auto;
+        margin: 10px auto;
     }
 
     .navbar-brand img {
-        max-height: 50px; /* Reduce el tamaño máximo del logo para dispositivos móviles */
-        margin-top: 0; /* Elimina el margen superior del logo */
+        max-height: 50px;
+        margin-top: 0;
     }
 
     .navbar-nav {
-        position: static; /* Restaura la posición estática de los enlaces */
-        display: block; /* Cambia a un diseño de bloque para los enlaces */
-        text-align: center; /* Centra los enlaces horizontalmente */
+        position: static;
+        display: block;
+        text-align: center;
     }
 
     .navbar-nav .nav-link {
@@ -130,7 +155,7 @@ font-family: Schoolbell, cursive;
 
     .search-container input,
     .search-container button {
-        margin: 10px 0; /* Espacio entre el campo de búsqueda y el botón */
+        margin: 10px 0;
     }
 }
 
@@ -170,25 +195,25 @@ font-family: Schoolbell, cursive;
 }
 
 .carousel-caption {
-    position: absolute; /* Posición absoluta para colocar el texto sobre la imagen */
-    bottom: 0; /* Alinear el texto en la parte inferior del slide */
-    right: 0; /* Alinear el texto a la derecha del slide */
-    left: 0; /* Alinear el texto a la izquierda del slide */
-    text-align: center; /* Alinear el texto al centro horizontalmente */
-    padding: 20px; /* Agregar espacio alrededor del texto */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.55);
 }
 
 .carousel-caption h3 {
-    margin-top: 0; /* Eliminar el margen superior del título */
+    margin-top: 0;
     color: rgba(43, 34, 77, 0.94);
     font-family: 'Schoolbell', cursive;
     font-weight: bold;
 }
 
 .carousel-caption p {
-    margin-top: 10px; /* Agregar un pequeño margen superior al párrafo */
-    text-align: center; /* Alinear el párrafo a la derecha del área de la leyenda */
+    margin-top: 10px;
+    text-align: center;
     color: rgba(43, 34, 77, 0.89);
     font-family: 'SansSerif', cursive;
     margin-left: 50px;
@@ -196,12 +221,21 @@ font-family: Schoolbell, cursive;
 }
 
 .carousel-caption .btn-suscribirme {
+<<<<<<< HEAD
     position: absolute; /* Posición absoluta para colocar el botón en la esquina inferior derecha */
     bottom: 250px; /* Ajusta la distancia desde la parte inferior */
     right: 20%; /* Ajusta la distancia desde la parte derecha al 50% */
     transform: translateX(50%); /* Centra horizontalmente */
     width: auto; /* Ancho automático según el contenido del texto */
     max-width: 200px; /* Ancho máximo del botón */
+=======
+    position: absolute;
+    bottom: 250px;
+    right: 20%;
+    transform: translateX(50%);
+    width: auto;
+    max-width: 200px;
+>>>>>>> ana
     font-family: 'Schoolbell', cursive;
     background-color: rgb(234, 134, 32);
     border-color: rgba(208, 80, 3, 0.75);
@@ -218,6 +252,10 @@ h1{
     color: #dacdea;
     background-color: rgba(43, 34, 77, 0.87);
     padding-top: 10px;
+<<<<<<< HEAD
+=======
+    margin-top: auto;
+>>>>>>> ana
 }
 .info-col {
     margin-right: 15px;
