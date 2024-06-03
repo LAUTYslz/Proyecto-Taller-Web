@@ -1,3 +1,4 @@
+CREATE DATABASE educacion;
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),

@@ -1,3 +1,4 @@
+CREATE DATABASE educacion;
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),
@@ -17,7 +18,7 @@ CREATE TABLE Hijo (
                       FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
 
-INSERT INTO Usuario(id, email, password, rol, activo) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', true);
+INSERT INTO Usuario(id, email, password, rol, estado) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', 'true');
 
 CREATE TABLE IF NOT EXISTS Metodo (
         id INT AUTO_INCREMENT PRIMARY KEY,
