@@ -1,5 +1,11 @@
 package com.tallerwebi.dominio;
 
+import java.util.List;
+
 public interface RepositorioTipoContacto {
-    void guardar(TipoContacto tipo);
+    TipoContacto guardar(TipoContacto tipo);
+
+    TipoContacto buscarPorNombre(String nombreTipo);
+
+    List<TipoContacto> buscarTipos();
 }

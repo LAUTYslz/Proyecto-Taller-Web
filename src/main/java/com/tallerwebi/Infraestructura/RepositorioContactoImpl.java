@@ -48,6 +48,11 @@ public class RepositorioContactoImpl implements RepositorioContacto {
     }
 
     @Override
+    public void eliminar(Contacto contacto) {
+        sessionFactory.getCurrentSession().delete(contacto);
+    }
+
+    @Override
     @Transactional
     public List<Contacto> traerContactos() {
         return sessionFactory.getCurrentSession()

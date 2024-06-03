@@ -33,7 +33,7 @@ public class RepositorioContactoTest {
     @Autowired
     private RepositorioMetodo repositorioMetodo;
     @Autowired
-    private RepositorioTipoContactoImpl repositorioTipoContacto;
+    private RepositorioTipoContacto repositorioTipoContacto;
 
     @Test
     @Transactional
