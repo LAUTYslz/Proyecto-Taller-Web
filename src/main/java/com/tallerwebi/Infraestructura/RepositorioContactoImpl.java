@@ -78,5 +78,16 @@ public class RepositorioContactoImpl implements RepositorioContacto {
                 .list();
     }
 
+    @Override
+    public List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Contacto.class)
+                .createAlias("metodo", "metodoBuscado")
+                .createAlias("tipo", "tipoBuscado")
+                .add(Restrictions.eq("metodoBuscado.nombre",nombreMetodo))
+                .add(Restrictions.eq("tipoBuscado.nombre",nombreTipo))
+                .list();
+    }
+
 
 }

@@ -12,5 +12,11 @@ public interface ServicioContacto {
 
     void eliminarContacto(Contacto contactoExistente);
 
+    List<Contacto> traerContactosPorMetodo(String nombreMetodo);
+
+    List<Contacto> traerContactosPorTipo(String nombreTipo);
+
+    List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo);
+
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }

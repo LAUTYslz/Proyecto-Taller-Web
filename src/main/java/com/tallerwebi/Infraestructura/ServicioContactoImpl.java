@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -59,6 +60,36 @@ public class ServicioContactoImpl implements ServicioContacto {
     @Override
     public void eliminarContacto(Contacto contactoExistente) {
         repositorioContacto.eliminar(contactoExistente);
+    }
+
+    @Override
+    public List<Contacto> traerContactosPorMetodo(String nombreMetodo) {
+        if (repositorioMetodo.buscarPorNombre(nombreMetodo) == null) {
+            throw new MetodoNoEncontrado(nombreMetodo);
+        }
+        List<Contacto> contactos = repositorioContacto.traerContactosPorMetodo(nombreMetodo);
+        return contactos != null ? contactos : new ArrayList<>();
+    }
+
+    @Override
+    public List<Contacto> traerContactosPorTipo(String nombreTipo) {
+        if (repositorioTipoContacto.buscarPorNombre(nombreTipo) == null) {
+            throw new TipoContactoNoEncontrado(nombreTipo);
+        }
+        List<Contacto> contactos = repositorioContacto.traerContactosPorTipo(nombreTipo);
+        return contactos != null ? contactos : new ArrayList<Contacto>();
+    }
+
+    @Override
+    public List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo) {
+        if (repositorioTipoContacto.buscarPorNombre(nombreTipo) == null) {
+            throw new TipoContactoNoEncontrado(nombreTipo);
+        }
+        if (repositorioMetodo.buscarPorNombre(nombreMetodo) == null) {
+            throw new MetodoNoEncontrado(nombreMetodo);
+        }
+        List<Contacto> contactos = repositorioContacto.traerContactosPorTipoYMetodo(nombreTipo, nombreMetodo);
+        return contactos != null ? contactos : new ArrayList<>();
     }
 
     @Override

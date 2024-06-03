@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +40,8 @@ public class ServicioContactoTest {
         TipoContacto tipoPediatra = new TipoContacto();
         tipoPediatra.setNombre("Pediatra");
 
-        when(repositorioMetodo.buscarPorNombre("WALDORF")).thenReturn(metodoWaldorf);
         when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipoPediatra);
+        when(repositorioMetodo.buscarPorNombre("WALDORF")).thenReturn(metodoWaldorf);
 
         // Act
         Metodo metodo = repositorioMetodo.buscarPorNombre("WALDORF");
@@ -67,8 +68,8 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipoContacto);
 
-        when(repositorioMetodo.buscarPorNombre(nombreMetodo)).thenReturn(metodo);
         when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombre(nombreMetodo)).thenReturn(metodo);
 
         whenGuardoContacto(contacto,nombreMetodo,nombreTipoContacto);
 
@@ -86,6 +87,31 @@ public class ServicioContactoTest {
     }
 
     private void givenNoexisteContacto() {
+    }
+
+    @Test
+    public void quePuedaGuardarContactoTiendaSinMetodo() {
+        givenNoexisteContacto();
+        String nombreMetodo = null;
+        String nombreTipoContacto = "Tienda";
+        Contacto contacto = new Contacto();
+        contacto.setNombre("Mundo Feliz");
+        contacto.setTelefono("+11223344");
+        contacto.setEmail("lau@prueba.com");
+        contacto.setDireccion("calle falsa 123");
+        contacto.setInstitucion("Hospital General");
+        Metodo metodo = new Metodo();
+        metodo.setNombre(nombreMetodo);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre(nombreTipoContacto);
+
+        when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(tipo);
+
+        whenGuardoContacto(contacto,nombreMetodo,nombreTipoContacto);
+
+        verify(repositorioMetodo,never()).buscarPorNombre(nombreMetodo);
+        verify(repositorioTipoContacto,times(1)).buscarPorNombre(nombreTipoContacto);
+        verify(repositorioContacto,times(1)).guardar(contacto);
     }
 
     private Contacto givenExisteContacto(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo) {
@@ -199,35 +225,213 @@ public class ServicioContactoTest {
 
     @Test
     public void quePuedaObtenerUnaListaDeTodosLosContacto() {
+        List<Contacto> contactos = new ArrayList<>();
         Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
         Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
         Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Pediatra");
+        contactos.add(contactoExistente1);
+        contactos.add(contactoExistente2);
+        contactos.add(contactoExistente3);
 
-        //when(repositorioContacto.buscar(email)).thenReturn(contactoExistente);
+        when(repositorioContacto.traerContactos()).thenReturn(contactos);
 
-        //whenEliminoContacto(contactoExistente);
+        List<Contacto> listaContactos = whenBuscoListaDeContactos();
 
-        //thenEliminacionExitosa(contactoExistente);
-        }
-/*
+        thenObtengoListaDeContactos(listaContactos);
+    }
+
+    private void thenObtengoListaDeContactos(List<Contacto> listaContactos) {
+        assertThat(listaContactos.size(),equalTo(3));
+        verify(repositorioContacto,times(1)).traerContactos();
+    }
+
+    private List<Contacto> whenBuscoListaDeContactos() {
+        return servicioContacto.traerContactos();
+    }
+
     @Test
-    public void quePuedaObtenerContactosPorTipoYMetodo() {
-        TipoContacto tipoPediatra = new TipoContacto();
-        tipoPediatra.setNombre("Pediatra");
-        Metodo metodoWaldorf = new Metodo();
-        metodoWaldorf.setNombre("Waldorf");
+    public void quePuedaObtenerUnaListaDeContactosPorMetodo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        contactos.add(contactoExistente2);
+        Metodo metodo = new Metodo();
+        metodo.setNombre("MONTESSORI");
 
-        Contacto contacto1 = new Contacto();
-        contacto1.setNombre("Dr. Pérez");
-        contacto1.setTipo(tipoPediatra);
-        contacto1.setMetodo(metodoWaldorf);
+        when(repositorioMetodo.buscarPorNombre("MONTESSORI")).thenReturn(metodo);
+        when(repositorioContacto.traerContactosPorMetodo("MONTESSORI")).thenReturn(contactos);
 
-        when(repositorioContacto.traerContactosPorTipoYMetodo(tipoPediatra, metodoWaldorf))
-                .thenReturn(Arrays.asList(contacto1));
+        List<Contacto> listaContactos = whenBuscoListaDeContactosPorMetodo("MONTESSORI");
 
-        List<Contacto> contactos = servicioContacto.obtenerContactosPorTipoYMetodo(tipoPediatra, metodoWaldorf);
+        thenObtengoListaDeContactosPorMetodo(listaContactos);
+    }
 
-        assertThat(contactos.size(), equalTo(1));
-        assertThat(contactos.get(0).getNombre(), equalTo("Dr. Pérez"));
-    }*/
+    private void thenObtengoListaDeContactosPorMetodo(List<Contacto> listaContactos) {
+        assertThat(listaContactos.size(),equalTo(2));
+        verify(repositorioContacto,times(1)).traerContactosPorMetodo("MONTESSORI");
+    }
+
+    private List<Contacto> whenBuscoListaDeContactosPorMetodo(String nombreMetodo) {
+        return servicioContacto.traerContactosPorMetodo(nombreMetodo);
+    }
+
+    @Test
+    public void queNoPuedaObtenerUnaListaDeContactosPorMetodoSiElMetodoNoExiste() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        contactos.add(contactoExistente2);
+        Metodo metodo = new Metodo();
+        metodo.setNombre("monte");
+
+        when(repositorioMetodo.buscarPorNombre("monte")).thenReturn(null);
+
+        assertThrows(MetodoNoEncontrado.class,
+                ()->whenBuscoListaDeContactosPorMetodo("monte"));
+        verify(repositorioContacto,never()).traerContactosPorMetodo("monte");
+    }
+
+    @Test
+    public void quePuedaObtenerUnaListaDeContactosPorTipo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre("Pediatra");
+
+        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
+        when(repositorioContacto.traerContactosPorTipo("Pediatra")).thenReturn(contactos);
+
+        List<Contacto> listaContactos = whenBuscoListaDeContactosPorTipo("Pediatra");
+
+        thenObtengoListaDeContactosPorTipo(listaContactos);
+    }
+
+    private void thenObtengoListaDeContactosPorTipo(List<Contacto> listaContactos) {
+        assertThat(listaContactos.size(),equalTo(1));
+        verify(repositorioContacto,times(1)).traerContactosPorTipo("Pediatra");
+    }
+
+    private List<Contacto> whenBuscoListaDeContactosPorTipo(String nombreTipo) {
+        return servicioContacto.traerContactosPorTipo(nombreTipo);
+    }
+
+
+    @Test
+    public void queNoPuedaObtenerUnaListaDeContactosPorTipoSiNoExisteElTipo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre("Doctor");
+
+        when(repositorioTipoContacto.buscarPorNombre("Doctor")).thenReturn(null);
+
+        assertThrows(TipoContactoNoEncontrado.class,
+                ()->whenBuscoListaDeContactosPorTipo("Doctor"));
+        verify(repositorioContacto,never()).traerContactosPorTipo("Doctor");
+    }
+
+    @Test
+    public void quePuedaTraerUnaListaVaciaSiNoHayContactosConElMetodo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        Metodo metodo = new Metodo();
+        metodo.setNombre("DOMAN");
+
+        when(repositorioMetodo.buscarPorNombre("DOMAN")).thenReturn(metodo);
+        when(repositorioContacto.traerContactosPorMetodo("DOMAN")).thenReturn(new ArrayList<>());
+
+        List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorMetodo("DOMAN");
+
+        assertThat(contactosObtenidos.size(),equalTo(0));
+        verify(repositorioMetodo,times(1)).buscarPorNombre("DOMAN");
+        verify(repositorioContacto,times(1)).traerContactosPorMetodo("DOMAN");
+    }
+
+    @Test
+    public void quePuedaTraerUnaListaVaciaSiNoHayContactosConTipo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre("Psicopedagogo");
+
+        when(repositorioTipoContacto.buscarPorNombre("Psicopedagogo")).thenReturn(tipo);
+        when(repositorioContacto.traerContactosPorTipo("Psicopedagogo")).thenReturn(new ArrayList<>());
+
+        List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorTipo("Psicopedagogo");
+
+        assertThat(contactosObtenidos.size(),equalTo(0));
+        verify(repositorioTipoContacto,times(1)).buscarPorNombre("Psicopedagogo");
+        verify(repositorioContacto,times(1)).traerContactosPorTipo("Psicopedagogo");
+    }
+
+    @Test
+    public void quePuedaBuscarUnaListaBuscandoPorMetodoYTipo() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre("Pediatra");
+        Metodo metodo = new Metodo();
+        metodo.setNombre("MONTESSORI");
+
+        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombre("MONTESSORI")).thenReturn(metodo);
+        when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra","MONTESSORI")).thenReturn(contactos);
+
+        List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorTipoYMetodo("Pediatra", "MONTESSORI");
+
+        assertThat(contactosObtenidos.size(),equalTo(1));
+        verify(repositorioMetodo,times(1)).buscarPorNombre("MONTESSORI");
+        verify(repositorioTipoContacto,times(1)).buscarPorNombre("Pediatra");
+        verify(repositorioContacto,times(1)).traerContactosPorTipoYMetodo("Pediatra","MONTESSORI");
+    }
+
+    private List<Contacto> whenBuscoListaDeContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo) {
+        return servicioContacto.traerContactosPorTipoYMetodo(nombreTipo,nombreMetodo);
+    }
+
+    @Test
+    public void testBuscarContactosPorTipoYMetodoSinContactos() {
+        List<Contacto> contactos = new ArrayList<>();
+        Contacto contactoExistente1 = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
+        Contacto contactoExistente2 = givenExisteContacto("Dr Pereira", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Obstetra");
+        Contacto contactoExistente3 = givenExisteContacto("Tienda Feliz", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "Nulo", "Tienda");
+        contactos.add(contactoExistente1);
+        TipoContacto tipo = new TipoContacto();
+        tipo.setNombre("Pediatra");
+        Metodo metodo = new Metodo();
+        metodo.setNombre("DOMAN");
+
+        when(repositorioMetodo.buscarPorNombre("DOMAN")).thenReturn(metodo);
+        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
+        when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN")).thenReturn(new ArrayList<>());
+
+        // Act
+        List<Contacto> contactosObtenidos = servicioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN");
+
+        // Assert
+        assertThat(contactosObtenidos.size(), equalTo(0));
+        verify(repositorioMetodo, times(1)).buscarPorNombre("DOMAN");
+        verify(repositorioTipoContacto, times(1)).buscarPorNombre("Pediatra");
+        verify(repositorioContacto, times(1)).traerContactosPorTipoYMetodo("Pediatra", "DOMAN");
+    }
+
 }

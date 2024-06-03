@@ -15,4 +15,5 @@ public interface RepositorioContacto {
 
     List<Contacto> traerContactosPorTipo(String nombreTipo);
 
+    List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo);
 }
