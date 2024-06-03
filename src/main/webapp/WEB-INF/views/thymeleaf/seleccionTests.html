@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Test</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/seleccionTests.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<main>
+    <div class="container mt-5">
+        <h1 class="text-centerT">Tests</h1>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card" id="test1-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Test deteccion temprana autismo</h5>
+                        <p class="card-text">Este test esta orientado a niños de 2 a 5 años</p>
+                        <a th:href="@{testAutismo}" class="btn btn-primary">Iniciar Test</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" id="test2-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Test detección temprana Asperger</h5>
+                        <p class="card-text">Test orientado a niños de 3 a 10 años</p>
+                        <a th:href="@{testAsperger}" class="btn btn-primary">Iniciar Test</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" id="test3-card">
+                    <div class="card-body" >
+                        <h5 class="card-title">Test detección TDAH</h5>
+                        <p class="card-text">Test para detectar Trastorno de deficit de atencion e hiperactividad</p>
+                        <a href="#" class="btn btn-primary">Iniciar Test</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" id="test4-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Test deteccion de Dislexia</h5>
+                        <p class="card-text">Test de deteccion temprana de dislexia</p>
+                        <a href="#" class="btn btn-primary">Iniciar Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div  th:replace="home :: footer"></div>
+</body>
+</html>

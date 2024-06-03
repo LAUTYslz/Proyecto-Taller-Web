@@ -1,0 +1,184 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.presentacion.ControladorLoginTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.431 s <<< FAILURE! - in com.tallerwebi.presentacion.ControladorLoginTest
+com.tallerwebi.presentacion.ControladorLoginTest.errorEnRegistrarmeDeberiaVolverAFormularioYMostrarError  Time elapsed: 0.053 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class com.tallerwebi.dominio.Usuario.
+
+If you're not sure why you're getting this error, please open an issue on GitHub.
+
+
+Java               : 22
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 22.0.1+8-16
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 22.0.1+8-16
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalArgumentException: Java 22 (66) is not supported by the current version of Byte Buddy which officially supports Java 21 (65) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+
+com.tallerwebi.presentacion.ControladorLoginTest.loginConUsuarioYPasswordCorrectosDeberiaLLevarAHome  Time elapsed: 0.063 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class com.tallerwebi.dominio.Usuario.
+
+If you're not sure why you're getting this error, please open an issue on GitHub.
+
+
+Java               : 22
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 22.0.1+8-16
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 22.0.1+8-16
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalArgumentException: Java 22 (66) is not supported by the current version of Byte Buddy which officially supports Java 21 (65) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+
+com.tallerwebi.presentacion.ControladorLoginTest.registrarmeSiUsuarioExisteDeberiaVolverAFormularioYMostrarError  Time elapsed: 0.1 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class com.tallerwebi.dominio.Usuario.
+
+If you're not sure why you're getting this error, please open an issue on GitHub.
+
+
+Java               : 22
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 22.0.1+8-16
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 22.0.1+8-16
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalArgumentException: Java 22 (66) is not supported by the current version of Byte Buddy which officially supports Java 21 (65) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+
+com.tallerwebi.presentacion.ControladorLoginTest.loginConUsuarioYPasswordInorrectosDeberiaLlevarALoginNuevamente  Time elapsed: 0.08 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class com.tallerwebi.dominio.Usuario.
+
+If you're not sure why you're getting this error, please open an issue on GitHub.
+
+
+Java               : 22
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 22.0.1+8-16
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 22.0.1+8-16
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalArgumentException: Java 22 (66) is not supported by the current version of Byte Buddy which officially supports Java 21 (65) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+
+com.tallerwebi.presentacion.ControladorLoginTest.registrameSiUsuarioNoExisteDeberiaCrearUsuarioYVolverAlLogin  Time elapsed: 0.092 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class com.tallerwebi.dominio.Usuario.
+
+If you're not sure why you're getting this error, please open an issue on GitHub.
+
+
+Java               : 22
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 22.0.1+8-16
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 22.0.1+8-16
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.tallerwebi.dominio.Usuario, class java.lang.Object]
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+Caused by: java.lang.IllegalArgumentException: Java 22 (66) is not supported by the current version of Byte Buddy which officially supports Java 21 (65) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+	at com.tallerwebi.presentacion.ControladorLoginTest.init(ControladorLoginTest.java:30)
+

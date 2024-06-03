@@ -39,10 +39,13 @@ h2{
     transition: background-color 0.3s ease;
 }
 
+<<<<<<< HEAD
 a {
 text-decoration: none;
 color: #fff;
 }
+=======
+>>>>>>> ana
 
 .joinButton {
     display: block;
