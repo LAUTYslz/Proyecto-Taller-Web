@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modificar datos del titular</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/datos.css}"/>
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+
+<main class="main-datos">
+    <a th:href="@{/datos-usuario}" class="btn btn-lg btn-block btn-datos-volver">Volver a ver datos</a>
+    <h1 class="form-signin-heading">Modificar datos del titular</h1>
+    <div class="contenedor-modificar-datos">
+        <form action="#" th:action="@{/modificar-usuario}" method="post" th:object="${usuario}" class="form-mostrar-datos">
+
+            <!-- Campo para el nombre del usuario -->
+            <label th:name="nombre">Nombre del usuario:</label>
+            <input  id="nombre" class="form-control" required>
+
+            <!-- Campo para el email del usuario -->
+            <label th:name="email" >Email del usuario:</label>
+            <input  id="email" class="form-control" required/>
+
+            <!-- Campo para la dirección del usuario -->
+            <label th:name="direccion">Dirección:</label>
+            <input  id="direccion" class="form-control" required>
+
+            <div class="container">
+                <button id="btn-guardar-cambios" class="btn btn-lg btn-primary btn-block" Type="Submit">Guardar cambios</button>
+            </div>
+            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}">
+            </p>
+        </form>
+    </div>
+</main>
+<!-- /.container -->
+<div th:replace="home :: footer"></div>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

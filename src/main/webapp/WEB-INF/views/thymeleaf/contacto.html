@@ -64,6 +64,28 @@
 
             <div id="mostrar-contactos">
                 <div class="contactos">
+                    <h3 class="subtitulos-contacto">Subtitulo: </h3>
+                    <ul th:each="contacto: ${contactos}">
+                        <li th:text="${contacto.nombre}">Nombre</li>
+                        <li th:text="${contacto.telefono}">Teléfono</li>
+                        <li th:text="${contacto.email}">Correo electrónico</li>
+                        <li th:text="${contacto.direccion}">Dirección</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dra. Ana Pereira</li>
+                        <li>Teléfono: +555777888</li>
+                        <li>Correo electrónico: ana.pereira@ejemplo.com</li>
+                        <li>Dirección: Av. Rivadavia 123, Moron</li>
+                    </ul>
+                    <ul>
+                        <li>Nombre: Dr. Roberto García</li>
+                        <li>Teléfono: +777888900</li>
+                        <li>Correo electrónico: roberto.garcia@ejemplo.com</li>
+                        <li>Dirección:  Polledo 2343, Isidro Casanova</li>
+                    </ul>
+                </div>
+
+                <div class="contactos">
                     <h3 class="subtitulos-contacto">Pediatras: </h3>
                     <ul>
                         <li>Nombre: Dr. Juan Pérez</li>

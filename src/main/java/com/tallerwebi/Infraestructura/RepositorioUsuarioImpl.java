@@ -1,4 +1,4 @@
-package com.tallerwebi.infraestructura;
+package com.tallerwebi.Infraestructura;
 
 import com.tallerwebi.dominio.Hijo;
 import com.tallerwebi.dominio.RepositorioUsuario;
