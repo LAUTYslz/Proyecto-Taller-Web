@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.Metodo;
 import com.tallerwebi.dominio.RepositorioMetodo;
@@ -25,7 +25,7 @@ public class RepositorioMetodoImpl implements RepositorioMetodo {
     }
 
     @Override
-    public Metodo buscarPorNombre(String nombreMetodo) {
+    public Metodo buscarPorNombreDeMetodo(String nombreMetodo) {
         nombreMetodo = nombreMetodo.toUpperCase();
         return (Metodo) sessionFactory.getCurrentSession()
                 .createCriteria(Metodo.class)

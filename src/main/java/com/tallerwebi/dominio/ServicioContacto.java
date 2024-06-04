@@ -18,5 +18,9 @@ public interface ServicioContacto {
 
     List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo);
 
+    List<Metodo> traerTodosLosMetodos();
+
+    List<TipoContacto> traerTodosLosTipo();
+
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }

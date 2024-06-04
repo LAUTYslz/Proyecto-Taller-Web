@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
@@ -8,9 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -40,12 +38,12 @@ public class ServicioContactoTest {
         TipoContacto tipoPediatra = new TipoContacto();
         tipoPediatra.setNombre("Pediatra");
 
-        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipoPediatra);
-        when(repositorioMetodo.buscarPorNombre("WALDORF")).thenReturn(metodoWaldorf);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra")).thenReturn(tipoPediatra);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("WALDORF")).thenReturn(metodoWaldorf);
 
         // Act
-        Metodo metodo = repositorioMetodo.buscarPorNombre("WALDORF");
-        TipoContacto tipo = repositorioTipoContacto.buscarPorNombre("Pediatra");
+        Metodo metodo = repositorioMetodo.buscarPorNombreDeMetodo("WALDORF");
+        TipoContacto tipo = repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra");
 
         // Assert
         Assertions.assertNotNull(metodo, "El método de especialización 'WALDORF' debería estar cargado en la base de datos");
@@ -68,8 +66,8 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipoContacto);
 
-        when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(tipo);
-        when(repositorioMetodo.buscarPorNombre(nombreMetodo)).thenReturn(metodo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipoContacto)).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo)).thenReturn(metodo);
 
         whenGuardoContacto(contacto,nombreMetodo,nombreTipoContacto);
 
@@ -77,8 +75,8 @@ public class ServicioContactoTest {
     }
 
     private void thenGuardadoContactoExitoso(Contacto contacto, String nombreMetodo, String nombreTipoContacto) {
-        verify(repositorioMetodo, times(1)).buscarPorNombre(nombreMetodo);
-        verify(repositorioTipoContacto,times(1)).buscarPorNombre(nombreTipoContacto);
+        verify(repositorioMetodo, times(1)).buscarPorNombreDeMetodo(nombreMetodo);
+        verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo(nombreTipoContacto);
         verify(repositorioContacto,times(1)).guardar(contacto);
     }
 
@@ -105,12 +103,12 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipoContacto);
 
-        when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(tipo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipoContacto)).thenReturn(tipo);
 
         whenGuardoContacto(contacto,nombreMetodo,nombreTipoContacto);
 
-        verify(repositorioMetodo,never()).buscarPorNombre(nombreMetodo);
-        verify(repositorioTipoContacto,times(1)).buscarPorNombre(nombreTipoContacto);
+        verify(repositorioMetodo,never()).buscarPorNombreDeMetodo(nombreMetodo);
+        verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo(nombreTipoContacto);
         verify(repositorioContacto,times(1)).guardar(contacto);
     }
 
@@ -125,6 +123,8 @@ public class ServicioContactoTest {
         metodo.setNombre(nombreMetodo);
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipo);
+        contacto.setTipo(tipo);
+        contacto.setMetodo(metodo);
 
         return servicioContacto.guardar(contacto);
     }
@@ -147,13 +147,13 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipoContacto);
 
-        when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(tipo);
-        when(repositorioMetodo.buscarPorNombre(nombreMetodo)).thenReturn(null);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipoContacto)).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo)).thenReturn(null);
 
         assertThrows(MetodoNoEncontrado.class,
                 ()->servicioContacto.guardarContacto(contacto, nombreMetodo, nombreTipoContacto));
 
-        verify(repositorioMetodo,times(1)).buscarPorNombre(nombreMetodo);
+        verify(repositorioMetodo,times(1)).buscarPorNombreDeMetodo(nombreMetodo);
         verify(repositorioContacto, never()).guardar(contacto);
     }
 
@@ -175,13 +175,13 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre(nombreTipoContacto);
 
-        when(repositorioTipoContacto.buscarPorNombre(nombreTipoContacto)).thenReturn(null);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipoContacto)).thenReturn(null);
 
 
         assertThrows(TipoContactoNoEncontrado.class,
                 ()->whenGuardoContacto(contacto,nombreMetodo,nombreTipoContacto));
 
-        verify(repositorioTipoContacto,times(1)).buscarPorNombre(nombreTipoContacto);
+        verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo(nombreTipoContacto);
         verify(repositorioContacto, never()).guardar(contacto);
     }
 
@@ -260,7 +260,7 @@ public class ServicioContactoTest {
         Metodo metodo = new Metodo();
         metodo.setNombre("MONTESSORI");
 
-        when(repositorioMetodo.buscarPorNombre("MONTESSORI")).thenReturn(metodo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("MONTESSORI")).thenReturn(metodo);
         when(repositorioContacto.traerContactosPorMetodo("MONTESSORI")).thenReturn(contactos);
 
         List<Contacto> listaContactos = whenBuscoListaDeContactosPorMetodo("MONTESSORI");
@@ -288,7 +288,7 @@ public class ServicioContactoTest {
         Metodo metodo = new Metodo();
         metodo.setNombre("monte");
 
-        when(repositorioMetodo.buscarPorNombre("monte")).thenReturn(null);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("monte")).thenReturn(null);
 
         assertThrows(MetodoNoEncontrado.class,
                 ()->whenBuscoListaDeContactosPorMetodo("monte"));
@@ -305,7 +305,7 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre("Pediatra");
 
-        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra")).thenReturn(tipo);
         when(repositorioContacto.traerContactosPorTipo("Pediatra")).thenReturn(contactos);
 
         List<Contacto> listaContactos = whenBuscoListaDeContactosPorTipo("Pediatra");
@@ -333,7 +333,7 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre("Doctor");
 
-        when(repositorioTipoContacto.buscarPorNombre("Doctor")).thenReturn(null);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Doctor")).thenReturn(null);
 
         assertThrows(TipoContactoNoEncontrado.class,
                 ()->whenBuscoListaDeContactosPorTipo("Doctor"));
@@ -350,13 +350,13 @@ public class ServicioContactoTest {
         Metodo metodo = new Metodo();
         metodo.setNombre("DOMAN");
 
-        when(repositorioMetodo.buscarPorNombre("DOMAN")).thenReturn(metodo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("DOMAN")).thenReturn(metodo);
         when(repositorioContacto.traerContactosPorMetodo("DOMAN")).thenReturn(new ArrayList<>());
 
         List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorMetodo("DOMAN");
 
         assertThat(contactosObtenidos.size(),equalTo(0));
-        verify(repositorioMetodo,times(1)).buscarPorNombre("DOMAN");
+        verify(repositorioMetodo,times(1)).buscarPorNombreDeMetodo("DOMAN");
         verify(repositorioContacto,times(1)).traerContactosPorMetodo("DOMAN");
     }
 
@@ -370,13 +370,13 @@ public class ServicioContactoTest {
         TipoContacto tipo = new TipoContacto();
         tipo.setNombre("Psicopedagogo");
 
-        when(repositorioTipoContacto.buscarPorNombre("Psicopedagogo")).thenReturn(tipo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Psicopedagogo")).thenReturn(tipo);
         when(repositorioContacto.traerContactosPorTipo("Psicopedagogo")).thenReturn(new ArrayList<>());
 
         List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorTipo("Psicopedagogo");
 
         assertThat(contactosObtenidos.size(),equalTo(0));
-        verify(repositorioTipoContacto,times(1)).buscarPorNombre("Psicopedagogo");
+        verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo("Psicopedagogo");
         verify(repositorioContacto,times(1)).traerContactosPorTipo("Psicopedagogo");
     }
 
@@ -392,15 +392,15 @@ public class ServicioContactoTest {
         Metodo metodo = new Metodo();
         metodo.setNombre("MONTESSORI");
 
-        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
-        when(repositorioMetodo.buscarPorNombre("MONTESSORI")).thenReturn(metodo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra")).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("MONTESSORI")).thenReturn(metodo);
         when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra","MONTESSORI")).thenReturn(contactos);
 
         List<Contacto> contactosObtenidos = whenBuscoListaDeContactosPorTipoYMetodo("Pediatra", "MONTESSORI");
 
         assertThat(contactosObtenidos.size(),equalTo(1));
-        verify(repositorioMetodo,times(1)).buscarPorNombre("MONTESSORI");
-        verify(repositorioTipoContacto,times(1)).buscarPorNombre("Pediatra");
+        verify(repositorioMetodo,times(1)).buscarPorNombreDeMetodo("MONTESSORI");
+        verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo("Pediatra");
         verify(repositorioContacto,times(1)).traerContactosPorTipoYMetodo("Pediatra","MONTESSORI");
     }
 
@@ -420,8 +420,8 @@ public class ServicioContactoTest {
         Metodo metodo = new Metodo();
         metodo.setNombre("DOMAN");
 
-        when(repositorioMetodo.buscarPorNombre("DOMAN")).thenReturn(metodo);
-        when(repositorioTipoContacto.buscarPorNombre("Pediatra")).thenReturn(tipo);
+        when(repositorioMetodo.buscarPorNombreDeMetodo("DOMAN")).thenReturn(metodo);
+        when(repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra")).thenReturn(tipo);
         when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN")).thenReturn(new ArrayList<>());
 
         // Act
@@ -429,8 +429,8 @@ public class ServicioContactoTest {
 
         // Assert
         assertThat(contactosObtenidos.size(), equalTo(0));
-        verify(repositorioMetodo, times(1)).buscarPorNombre("DOMAN");
-        verify(repositorioTipoContacto, times(1)).buscarPorNombre("Pediatra");
+        verify(repositorioMetodo, times(1)).buscarPorNombreDeMetodo("DOMAN");
+        verify(repositorioTipoContacto, times(1)).buscarPorNombreDeTipo("Pediatra");
         verify(repositorioContacto, times(1)).traerContactosPorTipoYMetodo("Pediatra", "DOMAN");
     }
 

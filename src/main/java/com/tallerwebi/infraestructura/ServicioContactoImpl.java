@@ -1,7 +1,8 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
+import com.tallerwebi.dominio.excepcion.NoSeEcncontraronContactosEnLaBusqueda;
 import com.tallerwebi.dominio.excepcion.TipoContactoNoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ServicioContactoImpl implements ServicioContacto {
 
     @Override
     public void guardarContacto(Contacto contacto, String nombreMetodo, String nombreTipoContacto) {
-        TipoContacto tipo = repositorioTipoContacto.buscarPorNombre(nombreTipoContacto);
+        TipoContacto tipo = repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipoContacto);
         if (tipo == null) {
             throw new TipoContactoNoEncontrado(nombreTipoContacto);
         }
@@ -43,7 +44,7 @@ public class ServicioContactoImpl implements ServicioContacto {
             return;
         }
 
-        Metodo metodo = repositorioMetodo.buscarPorNombre(nombreMetodo);
+        Metodo metodo = repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
         if (metodo == null) {
             throw new MetodoNoEncontrado(nombreMetodo);
         }
@@ -64,7 +65,7 @@ public class ServicioContactoImpl implements ServicioContacto {
 
     @Override
     public List<Contacto> traerContactosPorMetodo(String nombreMetodo) {
-        if (repositorioMetodo.buscarPorNombre(nombreMetodo) == null) {
+        if (repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo) == null) {
             throw new MetodoNoEncontrado(nombreMetodo);
         }
         List<Contacto> contactos = repositorioContacto.traerContactosPorMetodo(nombreMetodo);
@@ -73,7 +74,7 @@ public class ServicioContactoImpl implements ServicioContacto {
 
     @Override
     public List<Contacto> traerContactosPorTipo(String nombreTipo) {
-        if (repositorioTipoContacto.buscarPorNombre(nombreTipo) == null) {
+        if (repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipo) == null) {
             throw new TipoContactoNoEncontrado(nombreTipo);
         }
         List<Contacto> contactos = repositorioContacto.traerContactosPorTipo(nombreTipo);
@@ -82,14 +83,59 @@ public class ServicioContactoImpl implements ServicioContacto {
 
     @Override
     public List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo) {
-        if (repositorioTipoContacto.buscarPorNombre(nombreTipo) == null) {
-            throw new TipoContactoNoEncontrado(nombreTipo);
+        if(nombreTipo != null){
+            if (repositorioTipoContacto.buscarPorNombreDeTipo(nombreTipo) == null) {
+                throw new TipoContactoNoEncontrado(nombreTipo);
+            }
         }
-        if (repositorioMetodo.buscarPorNombre(nombreMetodo) == null) {
-            throw new MetodoNoEncontrado(nombreMetodo);
+        if(nombreMetodo != null){
+            if (repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo) == null) {
+                throw new MetodoNoEncontrado(nombreMetodo);
+            }
         }
-        List<Contacto> contactos = repositorioContacto.traerContactosPorTipoYMetodo(nombreTipo, nombreMetodo);
-        return contactos != null ? contactos : new ArrayList<>();
+
+
+        List<Contacto> contactos;
+
+        if(nombreMetodo == null && nombreTipo==null){
+            contactos = repositorioContacto.traerContactos();
+            if(contactos.isEmpty()){
+                throw new NoSeEcncontraronContactosEnLaBusqueda();
+            }
+            return contactos != null ? contactos : new ArrayList<>();
+        }
+
+        if (nombreMetodo == null && nombreTipo!=null){
+            contactos = repositorioContacto.traerContactosPorTipo(nombreTipo);
+            if (contactos.isEmpty()){
+                throw new NoSeEcncontraronContactosEnLaBusqueda();
+            }
+            return contactos != null ? contactos : new ArrayList<>();
+        }
+
+        if(nombreMetodo != null && nombreTipo==null){
+            contactos = repositorioContacto.traerContactosPorMetodo(nombreMetodo);
+            if(contactos.isEmpty()){
+                throw new NoSeEcncontraronContactosEnLaBusqueda();
+            }
+            return contactos != null ? contactos : new ArrayList<>();
+        }
+
+        contactos = repositorioContacto.traerContactosPorTipoYMetodo(nombreTipo, nombreMetodo);
+        if (contactos.isEmpty()){
+            throw new NoSeEcncontraronContactosEnLaBusqueda();
+        }
+        return contactos;
+    }
+
+    @Override
+    public List<Metodo> traerTodosLosMetodos() {
+        return repositorioMetodo.buscarMetodos();
+    }
+
+    @Override
+    public List<TipoContacto> traerTodosLosTipo() {
+        return repositorioTipoContacto.buscarTipos();
     }
 
     @Override

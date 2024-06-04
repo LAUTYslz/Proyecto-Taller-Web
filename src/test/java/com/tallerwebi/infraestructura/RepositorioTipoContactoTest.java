@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.integracion.config.HibernateTestConfig;
@@ -67,7 +67,7 @@ public class RepositorioTipoContactoTest {
     }
 
     private TipoContacto whenBuscoTipoContactoPorNombre(String nombrePediatra) {
-        return repositorioTipoContacto.buscarPorNombre(nombrePediatra);
+        return repositorioTipoContacto.buscarPorNombreDeTipo(nombrePediatra);
     }
 
     private TipoContacto givenExisteTipo(String pediatra) {

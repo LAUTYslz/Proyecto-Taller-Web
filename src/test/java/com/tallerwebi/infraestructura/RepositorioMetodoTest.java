@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.integracion.config.HibernateTestConfig;
@@ -71,7 +71,7 @@ public class RepositorioMetodoTest {
     }
 
     private Metodo whenBuscoMetodoPorNombre(String nombreMetodo) {
-        return repositorioMetodo.buscarPorNombre(nombreMetodo);
+        return repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
     }
 
     private Metodo givenExisteMetodo(String nombreMetodo) {

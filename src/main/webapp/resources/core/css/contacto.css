@@ -26,13 +26,16 @@ nav{
 .filtrar-contactos{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin: auto;
+    margin-bottom: 4vh;
     right: 0;
-    width: 40%;
+    width: 70%;
 }
 .filtrar-contactos select, .filtrar-contactos button{
     border-radius: 10px;
-    width: 15vh;
+    width: 30vh;
+    height: 6vh;
     border: 2px solid #ff7300;
     transition: all .3s;
 }

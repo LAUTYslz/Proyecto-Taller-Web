@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.RepositorioTipoContacto;
 import com.tallerwebi.dominio.TipoContacto;
@@ -25,7 +25,7 @@ public class RepositorioTipoContactoImpl implements RepositorioTipoContacto {
     }
 
     @Override
-    public TipoContacto buscarPorNombre(String nombreTipo) {
+    public TipoContacto buscarPorNombreDeTipo(String nombreTipo) {
         nombreTipo = nombreTipo.toUpperCase();
         return (TipoContacto) sessionFactory.getCurrentSession()
                 .createCriteria(TipoContacto.class)

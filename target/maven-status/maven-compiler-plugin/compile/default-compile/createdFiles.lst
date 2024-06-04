@@ -3,6 +3,7 @@ com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
 com\tallerwebi\presentacion\ControladorContacto.class
+com\tallerwebi\dominio\excepcion\NoSeEcncontraronContactosEnLaBusqueda.class
 com\tallerwebi\config\HibernateConfig.class
 com\tallerwebi\dominio\RepositorioUsuario.class
 com\tallerwebi\infraestructura\ServicioNuevoUsuarioImpl.class

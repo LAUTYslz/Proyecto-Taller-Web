@@ -1,12 +1,10 @@
-package com.tallerwebi.Dominio;
+package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.ServicioNuevoUsuario;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.tallerwebi.Infraestructura.ServicioNuevoUsuarioImpl;
-import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.infraestructura.ServicioNuevoUsuarioImpl;
 import com.tallerwebi.dominio.excepcion.PasswordLongitudIncorrecta;
 import org.junit.jupiter.api.Test;
 
