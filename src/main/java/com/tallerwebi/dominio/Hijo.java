@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 
@@ -11,9 +12,11 @@ public class Hijo {
     private String nombre;
     private Integer edad;
     private Integer dni;
+    private Date fecha_nacimiento;
     @ManyToOne
     private Usuario usuario;
-
+    @ManyToOne
+    private Metodo metodo;
 
 
     public Long getId() {
@@ -54,5 +57,21 @@ public class Hijo {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Metodo getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(Metodo metodo) {
+        this.metodo = metodo;
+    }
+
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 }

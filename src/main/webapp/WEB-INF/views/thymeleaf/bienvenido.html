@@ -108,10 +108,15 @@
             <div class="titular" >
                 <h1>Información del Titular</h1>
                 <h1>Bienvenido</h1>
-                <span th:text="${usuario != null ? usuario.nombre : 'Nombre no disponible'}"></span>
-                <span th:text="${usuario != null ? usuario.email : 'Email no disponible'}"></span>
-                <span th:text="${usuario != null ? usuario.conyuge : 'Conyuge no disponible'}"></span>
-                <span th:text="${usuario != null ? usuario.estado : 'Estado no disponible'}"></span>
+
+                <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
+                <p>Email : <span th:text="${usuario.email}"></span></p>
+                <p>Estado: <span th:text="${usuario.estado}"></span></p>
+
+                <p th:if="${hijo != null}">Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
+                <p th:if="${hijo != null}">Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
+                <p th:if="${hijo != null}">DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
+                <p th:if="${hijo == null}">No hay Hijos Agregados</p>
 
 
             </div>
@@ -128,6 +133,9 @@
         <div class="circle-button"><a th:href="@{/contacto}">CONTACTO</a></div>
         <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
         <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
+    </div >
+    </div>
+    <a th:href="@{/vacunacion}">VACUNACION</a>
     </div>
 
 </main>

@@ -113,11 +113,13 @@ public class ControladorLogin {
 
 
     @GetMapping("/bienvenido")
-    public String mostrarBienvenido() {
-
+    public String mostrarBienvenido(Model model,HttpServletRequest request) {
+        Usuario usuario = obtenerUsuarioActual( request);
+        Hijo hijo = obtenerUltimoHijoAgregado(request);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("hijo", hijo);
         return "bienvenido";
     }
-
 
 
 
@@ -182,6 +184,7 @@ public class ControladorLogin {
             // Asociar el hijo con el usuario
             hijo.setUsuario(usuario);
             servicioLogin.registrarHijo(hijo);
+            servicioLogin.setUltimoHijoAgregado(request, hijo);
             modelo.put("hijo", hijo);
             modelo.put("usuario", usuario);
 
@@ -235,9 +238,14 @@ public class ControladorLogin {
         return new ModelAndView("detalles-conyuge",modelo);
     }
 
-
+//metodos de sesion
     private Usuario obtenerUsuarioActual(HttpServletRequest request) {
         return (Usuario) request.getSession().getAttribute("usuario");
     }
+
+    private Hijo obtenerUltimoHijoAgregado(HttpServletRequest request) {
+        return (Hijo) request.getSession().getAttribute("hijo");
+    }
+
 
 }

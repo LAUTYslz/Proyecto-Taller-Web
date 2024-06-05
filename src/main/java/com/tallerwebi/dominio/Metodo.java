@@ -7,9 +7,8 @@ import javax.persistence.*;
 public class Metodo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(nullable = false, unique = true)
     private String nombre;
 
 
@@ -17,11 +16,11 @@ public class Metodo {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {

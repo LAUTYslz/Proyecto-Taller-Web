@@ -9,21 +9,25 @@ CREATE TABLE Usuario (
                          nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
+
+CREATE TABLE Metodo (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        nombre VARCHAR(50) NOT NULL
+);
 CREATE TABLE Hijo (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                       nombre VARCHAR(255),
                       edad INT,
                       dni INT,
+                      fecha_nacimiento DATE,
                       usuario_id BIGINT,
-                      FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+                      metodo_id BIGINT,
+                      FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+                      FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
 );
-
 INSERT INTO Usuario(id, email, password, rol, estado) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', 'true');
 
-CREATE TABLE  Metodo (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50) NOT NULL
-    );
+
 
 INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
 
@@ -41,7 +45,7 @@ INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
 CREATE TABLE  Contacto (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),
     email VARCHAR(100),
@@ -49,6 +53,6 @@ CREATE TABLE  Contacto (
     institucion VARCHAR(100),
     tipo_id BIGINT,
     FOREIGN KEY (tipo_id) REFERENCES TipoContacto(id),
-    metodo_id INT,
+    metodo_id BIGINT,
     FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
     );

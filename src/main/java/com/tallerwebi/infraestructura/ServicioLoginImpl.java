@@ -9,6 +9,7 @@ import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 @Service("servicioLogin")
@@ -89,7 +90,14 @@ public void asociarConyuge(String userEmail, Usuario conyuge) {
         repositorioUsuario.guardar(usuario);
         repositorioUsuario.guardar(conyuge);
     }
-}
+
+    @Override
+    public void setUltimoHijoAgregado(HttpServletRequest request, Hijo hijo) {
+
+            request.getSession().setAttribute("hijo", hijo);
+        }
+    }
+
 
 
 
