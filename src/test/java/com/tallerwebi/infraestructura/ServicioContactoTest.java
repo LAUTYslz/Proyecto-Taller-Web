@@ -2,6 +2,7 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
+import com.tallerwebi.dominio.excepcion.NoSeEcncontraronContactosEnLaBusqueda;
 import com.tallerwebi.dominio.excepcion.TipoContactoNoEncontrado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -422,13 +423,14 @@ public class ServicioContactoTest {
 
         when(repositorioMetodo.buscarPorNombreDeMetodo("DOMAN")).thenReturn(metodo);
         when(repositorioTipoContacto.buscarPorNombreDeTipo("Pediatra")).thenReturn(tipo);
-        when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN")).thenReturn(new ArrayList<>());
+        //when(repositorioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN")).thenReturn(new ArrayList<>());
 
         // Act
-        List<Contacto> contactosObtenidos = servicioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN");
+        //List<Contacto> contactosObtenidos = servicioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN");
 
         // Assert
-        assertThat(contactosObtenidos.size(), equalTo(0));
+        assertThrows(NoSeEcncontraronContactosEnLaBusqueda.class,
+                ()->servicioContacto.traerContactosPorTipoYMetodo("Pediatra", "DOMAN"));
         verify(repositorioMetodo, times(1)).buscarPorNombreDeMetodo("DOMAN");
         verify(repositorioTipoContacto, times(1)).buscarPorNombreDeTipo("Pediatra");
         verify(repositorioContacto, times(1)).traerContactosPorTipoYMetodo("Pediatra", "DOMAN");

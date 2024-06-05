@@ -62,6 +62,7 @@ public class RepositorioContactoImpl implements RepositorioContacto {
 
     @Override
     public List<Contacto> traerContactosPorMetodo(String nombreMetodo) {
+        nombreMetodo = nombreMetodo.toUpperCase();
         return sessionFactory.getCurrentSession()
                 .createCriteria(Contacto.class)
                 .createAlias("metodo", "metodoBuscado")
@@ -80,6 +81,7 @@ public class RepositorioContactoImpl implements RepositorioContacto {
 
     @Override
     public List<Contacto> traerContactosPorTipoYMetodo(String nombreTipo, String nombreMetodo) {
+        nombreMetodo = nombreMetodo.toUpperCase();
         return sessionFactory.getCurrentSession()
                 .createCriteria(Contacto.class)
                 .createAlias("metodo", "metodoBuscado")

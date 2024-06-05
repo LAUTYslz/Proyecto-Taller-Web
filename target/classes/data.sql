@@ -22,7 +22,7 @@ INSERT INTO Usuario(id, email, password, rol, estado) VALUES(null, 'test@unlam.e
 */
 USE educacion;
 CREATE TABLE Metodo (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50)
     );
 
@@ -42,7 +42,7 @@ INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
 CREATE TABLE Contacto (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),
     email VARCHAR(100),
@@ -50,7 +50,7 @@ CREATE TABLE Contacto (
     institucion VARCHAR(100),
     tipo_id BIGINT,
     FOREIGN KEY (tipo_id) REFERENCES TipoContacto(id),
-    metodo_id INT,
+    metodo_id BIGINT,
     FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
     );
 INSERT INTO Contacto (nombre, telefono, email, direccion, institucion, tipo_id, metodo_id) VALUES
@@ -65,4 +65,3 @@ INSERT INTO Contacto (nombre, telefono, email, direccion, institucion, tipo_id, 
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
 
-SHOW TABLES LIKE 'Contacto';

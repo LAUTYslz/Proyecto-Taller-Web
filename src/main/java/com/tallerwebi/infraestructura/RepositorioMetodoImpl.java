@@ -20,6 +20,9 @@ public class RepositorioMetodoImpl implements RepositorioMetodo {
 
     @Override
     public Metodo guardar(Metodo metodo) {
+        String nombre = metodo.getNombre();
+        nombre = nombre.toUpperCase();
+        metodo.setNombre(nombre);
         sessionFactory.getCurrentSession().save(metodo);
         return metodo;
     }

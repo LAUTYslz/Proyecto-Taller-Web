@@ -26,7 +26,7 @@ public class RepositorioTipoContactoImpl implements RepositorioTipoContacto {
 
     @Override
     public TipoContacto buscarPorNombreDeTipo(String nombreTipo) {
-        nombreTipo = nombreTipo.toUpperCase();
+        //nombreTipo = nombreTipo.toUpperCase();
         return (TipoContacto) sessionFactory.getCurrentSession()
                 .createCriteria(TipoContacto.class)
                 .add(Restrictions.eq("nombre", nombreTipo))

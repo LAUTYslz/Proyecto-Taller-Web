@@ -38,14 +38,14 @@ public class RepositorioMetodoTest {
     public void quePuedaGuardarUnMetodo(){
         givenNoExisteMetodo();
         Metodo metodo = new Metodo();
-        metodo.setNombre("Doman");
+        metodo.setNombre("DOMAN");
         Metodo guardado = whenGuardoMetodo(metodo);
         thenMetodoGuardado(guardado);
     }
 
     private void thenMetodoGuardado(Metodo guardado) {
         assertNotNull(guardado);
-        assertThat(guardado.getNombre(), equalTo("nuevo Metodo"));
+        assertThat(guardado.getNombre(), equalTo("DOMAN"));
         assertNotNull(guardado.getId());
     }
 
@@ -67,7 +67,7 @@ public class RepositorioMetodoTest {
 
     private void thenEncuentroMetodo(Metodo metodoBuscado) {
         assertNotNull(metodoBuscado);
-        assertThat(metodoBuscado.getNombre(), equalTo("Doman"));
+        assertThat(metodoBuscado.getNombre(), equalTo("DOMAN"));
     }
 
     private Metodo whenBuscoMetodoPorNombre(String nombreMetodo) {
