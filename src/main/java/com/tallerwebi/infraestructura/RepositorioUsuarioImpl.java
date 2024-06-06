@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Hijo;
 import com.tallerwebi.dominio.RepositorioUsuario;
 import com.tallerwebi.dominio.Usuario;
 import org.hibernate.Session;
@@ -8,13 +9,18 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Repository("repositorioUsuario")
 public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
     private SessionFactory sessionFactory;
 
+
+
     @Autowired
-    public RepositorioUsuarioImpl(SessionFactory sessionFactory){
+    public RepositorioUsuarioImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -30,7 +36,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
     @Override
     public void guardar(Usuario usuario) {
+
         sessionFactory.getCurrentSession().save(usuario);
+
     }
 
     @Override
@@ -42,7 +50,35 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
     @Override
     public void modificar(Usuario usuario) {
+
         sessionFactory.getCurrentSession().update(usuario);
     }
 
+
+    @Override
+    public Usuario buscarPorId(Long id) {
+        return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+    }
+
+    @Override
+    public void guardarHijo(Hijo hijo) {
+        sessionFactory.getCurrentSession().save(hijo);
+    }
+
+    @Override
+    public void actualizar(Usuario usuario) {
+
+    }
+
+    @Override
+    public Usuario findByEmail(String userEmail) {
+        return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", userEmail))
+                .uniqueResult();
+    }
+
+
 }
+

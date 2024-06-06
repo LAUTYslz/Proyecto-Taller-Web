@@ -1,12 +1,12 @@
-/*
+
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),
                          password VARCHAR(255),
                          rol VARCHAR(255),
                          estado VARCHAR(255) DEFAULT 'inactivo',
-                         nombre VARCHAR(255),
                          conyuge_id BIGINT,
+                         nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
 CREATE TABLE Hijo (
@@ -19,8 +19,7 @@ CREATE TABLE Hijo (
 );
 
 INSERT INTO Usuario(id, email, password, rol, estado) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', 'true');
-*/
-USE educacion;
+
 CREATE TABLE Metodo (
         id BIGINT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50)

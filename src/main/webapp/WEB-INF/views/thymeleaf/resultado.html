@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Proyecto Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    .btn-secondary{
+        background-color: darkslateblue;
+    }
+</style>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" href="#">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+
+    <a class="navbar-brand" th:href="@{/home}">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
+        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+
+<main role="main" class="container">
+
+    <div class = "container">
+        <div id="loginbox" style="margin-top:50px; margin-bottom: 30px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <form action="#" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
+
+                <hr class="colorgraph"><br>
+
+
+                <h1>Resultado del test </h1>
+<body>
+<p>Resultado del test: <span th:text="${resultado}"></span></p>
+
+</body>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

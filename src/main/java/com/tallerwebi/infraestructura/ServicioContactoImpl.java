@@ -20,7 +20,7 @@ public class ServicioContactoImpl implements ServicioContacto {
 
 
     @Autowired
-    ServicioContactoImpl(RepositorioContacto repositorioContacto, RepositorioMetodo repositorioMetodo, RepositorioTipoContacto repositorioTipoContacto) {
+    public ServicioContactoImpl(RepositorioContacto repositorioContacto, RepositorioMetodo repositorioMetodo, RepositorioTipoContacto repositorioTipoContacto) {
         this.repositorioContacto = repositorioContacto;
         this.repositorioMetodo = repositorioMetodo;
         this.repositorioTipoContacto = repositorioTipoContacto;

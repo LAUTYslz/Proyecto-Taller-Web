@@ -20,7 +20,7 @@ public class HibernateConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/educacion");
         dataSource.setUsername("root");
-        dataSource.setPassword("Herculesmio1");
+        dataSource.setPassword("Farma100.");
         return dataSource;
     }
 
@@ -40,10 +40,11 @@ public class HibernateConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
+        // Cambiar el dialecto de Hibernate a MySQL
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create"); // O "create-drop" si quieres que se elimine al cerrar la sesión de Hibernate
         return properties;
     }
 }

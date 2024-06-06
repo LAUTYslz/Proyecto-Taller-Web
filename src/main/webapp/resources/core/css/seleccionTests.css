@@ -1,0 +1,38 @@
+#test1-card {
+    background-image: url('../img/autismo.gif');
+}
+
+#test2-card {
+    background-image: url('../img/asperger.gif');
+}
+
+#test3-card {
+    background-image: url('../img/tdha.gif');
+}
+
+#test4-card {
+    background-image: url('../img/dislexia.gif');
+}
+
+
+
+.card {
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.8s ease;
+
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.76);
+}
+
+.text-centerT{
+    font-family: 'Schoolbell', cursive;
+    font-weight: 600;
+    font-size: xxx-large;
+    text-align: center;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/membresiaPaga.css}"/>
+
+
+</head>
+
+<body>
+
+<div th:replace=" home :: nav"></div>
+
+<div class="container-form">
+    <form action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${datosMembresia}">
+
+        <div th:if="${error != null}" class="alert alert-danger" role="alert">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div class="mb3">
+            <label th:for="nombreCompleto" class="etiqueta"> Nombre completo: </label>
+            <input th:field="*{nombreCompleto}" type="text" name="nombreCompleto" class="form-control">
+        </div>
+
+        <div class="mb3">
+            <label th:for="email" class="etiqueta"> Email: </label>
+            <input th:field="*{email}" type="email" name="email" class="form-control">
+        </div>
+
+        <div class="mb3">
+            <label th:for="numeroTelefonico" class="etiqueta"> Número Telefónico : </label>
+            <input th:field="*{numeroTelefonico}" type="number" name="numeroTelefonico" class="form-control">
+        </div>
+
+        <div class="mb3">
+            <label th:for="numeroDeTarjeta" class="etiqueta"> Número de tarjeta: </label>
+            <input th:field="*{tarjeta.numeroDeTarjeta}" type="number" name="numeroDeTarjeta" class="form-control">
+        </div>
+
+        <div class="mb3">
+            <label th:for="fechaDeVencimiento" class="etiqueta"> Fecha de Vencimiento: </label>
+            <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" name="fechaDeVencimiento" class="form-control">
+        </div>
+
+        <div class="mb3">
+            <label th:for="codigoDeSeguridad" class="etiqueta"> Código de seguridad: </label>
+            <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad" class="form-control">
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary"> Activar Membresía </button>
+        </div>
+
+    </form>
+</div>
+
+<div th:replace=" home :: footer"></div>
+
+</body>
+</html>

@@ -20,7 +20,7 @@
 
 <main class="bodys">
     <div class="divSuscripcionGif">
-    <img class="gifSuscripcion" th:src="@{/img/gifSusc.gif}" alt="suscripcion">
+        <img class="gifSuscripcion" th:src="@{/img/gifSusc.gif}" alt="suscripcion">
     </div>
 
 
@@ -33,7 +33,7 @@
                 <li>Servicio de atención al cliente prioritario</li>
                 <li>Actualizaciones periódicas de contenido</li>
             </ul>
-            <button class="joinButton">Unirme</button>
+            <button class="joinButton"> <a th:href="@{/membresiaPaga}"> Unirme  </a> </button>
         </div>
         <div class="membership free">
             <h2>Membresía Gratuita</h2>

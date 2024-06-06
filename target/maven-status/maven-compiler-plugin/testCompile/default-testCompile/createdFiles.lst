@@ -5,3 +5,4 @@ com\tallerwebi\punta_a_punta\vistas\VistaWeb.class
 com\tallerwebi\integracion\config\HibernateTestConfig.class
 com\tallerwebi\presentacion\ControladorLoginTest.class
 com\tallerwebi\punta_a_punta\vistas\VistaLogin.class
+com\tallerwebi\infraestructura\RepositoriaUsuarioTest.class
