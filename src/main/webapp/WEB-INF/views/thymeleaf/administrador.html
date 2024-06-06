@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Proyecto Taller Web I</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+
+
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" th:href="@{/test}">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+    <a class="navbar-brand" th:href="@{/home}">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+    <div class="navbar-nav ml-auto">
+
+        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+    <title>Bienvenido Administrador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .container a{
+            background-color: #0056b3;
+
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bienvenido Administrador</h1>
+    <p>Nombre Admi : <span th:text="${usuario.nombre}"></span></p>
+    <p>Email Admi : <span th:text="${usuario.email}"></span></p>
+    <div>
+        <a  th:href="@{/crearEtapa}" type="button">Crear Etapa</a>
+        <a  th:href="@{/crearJuego}" type="button">Crear Juego</a>
+        <a  th:href="@{/crearContacto}" type="button">Crear Contacto</a>
+        <a  th:href="@{/crearTest}" type="button">Crear Test</a>
+        <a  th:href="@{/crearMetodo}" type="button">Crear Metodo</a>
+
+    </div>
+</div>
+
+<div>
+    <h2>Listado de Etapas Creadas </h2>
+    <ul>
+        <li th:each="etapa : ${etapas}">
+            <span th:text="${etapa.nombre}"></span>
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Listado de Juegos Creadas </h2>
+    <ul>
+        <li th:each="juego : ${juegos}">
+            <span th:text="${juego.nombre}"></span>
+        </li>
+    </ul>
+</div>
+</div>
+</body>
+</html>
+</body>
+</html>

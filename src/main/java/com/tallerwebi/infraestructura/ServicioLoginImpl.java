@@ -1,9 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.Hijo;
-import com.tallerwebi.dominio.RepositorioUsuario;
-import com.tallerwebi.dominio.ServicioLogin;
-import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +8,30 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("servicioLogin")
 @Transactional
 public class ServicioLoginImpl implements ServicioLogin {
 
     private RepositorioUsuario repositorioUsuario;
+    private RepositorioAdmi repositorioAdmi;
 
     @Autowired
-    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario){
-
+    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario, RepositorioAdmi repositorioAdmi) {
         this.repositorioUsuario = repositorioUsuario;
+        this.repositorioAdmi = repositorioAdmi;
     }
 
     @Override
-    public Usuario consultarUsuario (String email, String password) {
+    public Usuario consultarUsuario(String email, String password) {
         return repositorioUsuario.buscarUsuario(email, password);
     }
 
     @Override
     public void registrar(Usuario usuario) throws UsuarioExistente {
         Usuario usuarioEncontrado = repositorioUsuario.buscarUsuario(usuario.getEmail(), usuario.getPassword());
-        if(usuarioEncontrado != null){
+        if (usuarioEncontrado != null) {
             throw new UsuarioExistente();
         }
         repositorioUsuario.guardar(usuario);
@@ -40,9 +39,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 
 
     @Override
-    public Usuario buscarUsuarioPorId(Long id ) throws UsuarioInexistente {
+    public Usuario buscarUsuarioPorId(Long id) throws UsuarioInexistente {
         Usuario usuarioEncontrado = repositorioUsuario.buscarPorId(id);
-        if(usuarioEncontrado == null){
+        if (usuarioEncontrado == null) {
             throw new UsuarioInexistente();
         }
         return repositorioUsuario.buscarPorId(id);
@@ -50,6 +49,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 
     @Override
     public void registrarHijo(Hijo hijo) {
+
         repositorioUsuario.guardarHijo(hijo);
     }
 
@@ -81,12 +81,12 @@ public class ServicioLoginImpl implements ServicioLogin {
         repositorioUsuario.guardar(conyuge);
     }*/
 
-@Override
-public void asociarConyuge(String userEmail, Usuario conyuge) {
+    @Override
+    public void asociarConyuge(String userEmail, Usuario conyuge) {
         Usuario usuario = repositorioUsuario.findByEmail(userEmail);
         usuario.setConyuge(conyuge);
         conyuge.setConyuge(usuario);
-       conyuge.setRol("ROL_CONYUGE");
+        conyuge.setRol("ROL_CONYUGE");
         repositorioUsuario.guardar(usuario);
         repositorioUsuario.guardar(conyuge);
     }
@@ -94,10 +94,55 @@ public void asociarConyuge(String userEmail, Usuario conyuge) {
     @Override
     public void setUltimoHijoAgregado(HttpServletRequest request, Hijo hijo) {
 
-            request.getSession().setAttribute("hijo", hijo);
-        }
+        request.getSession().setAttribute("hijo", hijo);
     }
 
+
+    @Override
+    public Hijo obtenerUltimoHijoAgregado(HttpServletRequest request) {
+        return (Hijo) request.getSession().getAttribute("hijo");
+    }
+
+    @Override
+    public Usuario obtenerUsuarioActual(HttpServletRequest request) {
+        return (Usuario) request.getSession().getAttribute("usuario");
+
+    }
+
+    @Override
+    public List<Hijo> buscarHijosPorId(Long usuarioid) {
+        return repositorioUsuario.buscarHijosPorId(usuarioid);
+    }
+
+    @Override
+    public void eliminarHijo(Long hijoId) {
+        repositorioUsuario.borrarHijo(hijoId);
+    }
+
+    @Override
+    public Etapa asignarEtapa(Hijo hijo) {
+        List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
+        Integer edad = hijo.getEdad();
+        Etapa etapaEnopntrada = null;
+
+        for (Etapa etapa : listaEtapa) {
+            if (edad >= etapa.getDesde() && edad <= etapa.getHasta()) {
+                etapaEnopntrada = etapa;
+                hijo.setEtapa(etapaEnopntrada);
+                break;
+            }
+
+            if (etapaEnopntrada == null) {
+                // Manejar el caso en el que ninguna etapa sea encontrada
+                throw new RuntimeException("No se encontró una etapa para la edad proporcionada");
+            }
+
+
+
+        }
+        return etapaEnopntrada;
+    }
+}
 
 
 

@@ -1,4 +1,6 @@
 package com.tallerwebi.dominio;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,12 +14,14 @@ public class Hijo {
     private String nombre;
     private Integer edad;
     private Integer dni;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_nacimiento;
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
     private Metodo metodo;
-
+    @ManyToOne
+    private Etapa etapa;
 
     public Long getId() {
         return id;
@@ -73,5 +77,13 @@ public class Hijo {
 
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public Etapa getEtapa() {
+        return etapa;
+    }
+
+    public void setEtapa(Etapa etapa) {
+        this.etapa = etapa;
     }
 }

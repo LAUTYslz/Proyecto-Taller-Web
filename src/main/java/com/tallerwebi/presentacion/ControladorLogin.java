@@ -1,5 +1,6 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.dominio.Etapa;
 import com.tallerwebi.dominio.Hijo;
 
 import com.tallerwebi.dominio.ServicioLogin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 
@@ -48,6 +50,9 @@ public class ControladorLogin {
         if (usuarioBuscado != null) {
             request.getSession().setAttribute("usuario", usuarioBuscado); // Guardar el objeto Usuario completo en la sesión
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+            if(usuarioBuscado.getRol().equals("ADMIN")) {
+                return new ModelAndView("redirect:/administrador");
+            }
             return new ModelAndView("redirect:/bienvenido");
         } else {
             model.put("error", "Usuario o clave incorrecta");
@@ -98,7 +103,7 @@ public class ControladorLogin {
     @RequestMapping(path = "/bienvenido")
     public ModelAndView irABienvenido(HttpServletRequest request) {
         ModelAndView modelo = new ModelAndView();
-        Usuario usuario = obtenerUsuarioActual( request);
+        Usuario usuario = servicioLogin.obtenerUsuarioActual( request);
         modelo.addObject("usuario", usuario);
         if (usuario == null) {
             // Manejar el caso en el que el usuario es nulo, por ejemplo, redirigir a la página de inicio de sesión
@@ -113,14 +118,24 @@ public class ControladorLogin {
 
 
     @GetMapping("/bienvenido")
-    public String mostrarBienvenido(Model model,HttpServletRequest request) {
-        Usuario usuario = obtenerUsuarioActual( request);
-        Hijo hijo = obtenerUltimoHijoAgregado(request);
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("hijo", hijo);
-        return "bienvenido";
-    }
+    public ModelAndView mostrarBienvenido(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
 
+        // Obtener el usuario actual
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        // Obtener la lista de hijos del usuario
+        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
+
+        // Agregar el usuario y la lista de hijos al modelo
+        modelAndView.addObject("usuario", usuario);
+        modelAndView.addObject("hijos", hijos);
+
+        // Establecer la vista
+        modelAndView.setViewName("bienvenido");
+
+        return modelAndView;
+    }
 
 
     @RequestMapping(path = "/modificarUsuario")
@@ -173,31 +188,36 @@ public class ControladorLogin {
         return new ModelAndView("guardar-hijo");
 
     }
-
     @RequestMapping(path = "/guardar-hijo", method = RequestMethod.POST)
-    public ModelAndView guardarHijo(@ModelAttribute("hijo") Hijo hijo ,HttpServletRequest request) {
+    public ModelAndView guardarHijo(@ModelAttribute("hijo") Hijo hijo, HttpServletRequest request) {
         ModelMap modelo = new ModelMap();
         try {
-
-            Usuario usuario = obtenerUsuarioActual(request); // Implementa esto según tu lógica de autenticación
+            Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
 
             // Asociar el hijo con el usuario
             hijo.setUsuario(usuario);
             servicioLogin.registrarHijo(hijo);
-            servicioLogin.setUltimoHijoAgregado(request, hijo);
-            modelo.put("hijo", hijo);
-            modelo.put("usuario", usuario);
+            Etapa etapaEncontrada = servicioLogin.asignarEtapa(hijo);
 
+            if (etapaEncontrada == null) {
+                modelo.put("error", "No se encontró una etapa para la edad proporcionada");
+                return new ModelAndView("error", modelo); // Manejar el caso de error
+            }
+
+            hijo.setEtapa(etapaEncontrada);
+            modelo.addAttribute("hijo", hijo);
+            modelo.put("usuario", usuario);
         } catch (Exception e) {
             modelo.put("error", "Error al registrar el nuevo usuario");
-            return new ModelAndView("bienvenido", modelo);
+            return new ModelAndView("error", modelo); // Manejar cualquier otro error
         }
         return new ModelAndView("guardar-hijo", modelo);
     }
+
     // Mostrar formulario para agregar cónyuge
     @GetMapping("/nuevoConyuge")
     public String mostrarFormularioAgregarConyuge(HttpServletRequest request, Model model) {
-        Usuario usuario = obtenerUsuarioActual(request);
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
         model.addAttribute("usuario", usuario);
         model.addAttribute("conyuge", new Usuario());
         return "nuevoConyuge";
@@ -210,7 +230,7 @@ public class ControladorLogin {
         ModelAndView modelAndView = new ModelAndView();
         ModelMap modelo = new ModelMap();
 
-        Usuario usuarioActual = obtenerUsuarioActual(request);
+        Usuario usuarioActual = servicioLogin.obtenerUsuarioActual(request);
         servicioLogin.asociarConyuge(usuarioActual.getEmail(), conyuge);
         conyuge.setRol("ROL_CONYUGE");
         modelo.put("usuario",conyuge);
@@ -226,26 +246,25 @@ public class ControladorLogin {
 
     }
 
-    // Mostrar detalles del usuario (incluido el cónyuge)
     @GetMapping("/detalles-conyuge")
     public ModelAndView mostrarDetallesUsuario(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        Usuario usuario = obtenerUsuarioActual(request);
-        ModelMap modelo = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        // Obtener el cónyuge del usuario
+        Usuario conyuge = usuario.getConyuge();
+
+        // Agregar el usuario y el cónyuge al modelo
         modelAndView.addObject("usuario", usuario);
-        modelo.put( "usuario", usuario);
+        modelAndView.addObject("conyuge", conyuge);
+
         modelAndView.setViewName("detalles-conyuge");
-        return new ModelAndView("detalles-conyuge",modelo);
+        return modelAndView;
     }
 
-//metodos de sesion
-    private Usuario obtenerUsuarioActual(HttpServletRequest request) {
-        return (Usuario) request.getSession().getAttribute("usuario");
+    @PostMapping("/eliminar-hijo/{hijoId}")
+    public String eliminarHijo(@PathVariable("hijoId") Long hijoId) {
+        servicioLogin.eliminarHijo(hijoId);
+        return "redirect:/bienvenido";
     }
-
-    private Hijo obtenerUltimoHijoAgregado(HttpServletRequest request) {
-        return (Hijo) request.getSession().getAttribute("hijo");
-    }
-
-
 }
