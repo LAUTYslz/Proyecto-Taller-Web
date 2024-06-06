@@ -20,7 +20,7 @@ public class HibernateTestConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306");
         dataSource.setUsername("root");
-        dataSource.setPassword("Farma100.");
+        dataSource.setPassword("Herculesmio1");
         return dataSource;
     }
 
