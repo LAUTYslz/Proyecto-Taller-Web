@@ -72,7 +72,7 @@ CREATE TABLE Hijo (
                       FOREIGN KEY (metodo_id) REFERENCES Metodo(id),
                       FOREIGN KEY (etapa_id) REFERENCES etapa(id)
 );
-INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
+INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
 
 
 
@@ -93,6 +93,8 @@ INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 -- Crear la tabla de contactos
 CREATE TABLE  Contacto (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),
     email VARCHAR(100),

@@ -93,6 +93,8 @@ INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 -- Crear la tabla de contactos
 CREATE TABLE  Contacto (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),
     email VARCHAR(100),
