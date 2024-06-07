@@ -1,6 +1,7 @@
 com\tallerwebi\dominio\excepcion\CodigoInvalido.class
 com\tallerwebi\dominio\Etapa.class
 com\tallerwebi\dominio\ServicioLogin.class
+com\tallerwebi\infraestructura\RepositorioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\MembresiaInexistente.class
 com\tallerwebi\dominio\ServicioAdmi.class
 com\tallerwebi\config\HibernateConfig.class
@@ -24,7 +25,7 @@ com\tallerwebi\dominio\Tarjeta.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
 com\tallerwebi\dominio\Juego.class
-com\tallerwebi\dominio\Membresia.class
+com\tallerwebi\dominio\RepositorioMembresia.class
 com\tallerwebi\presentacion\ControladorAdministrador.class
 com\tallerwebi\infraestructura\ServicioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class

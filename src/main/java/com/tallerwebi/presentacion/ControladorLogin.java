@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ControladorLogin {
 
-    private ServicioLogin servicioLogin;
+    private final ServicioLogin servicioLogin;
 
 
     @Autowired

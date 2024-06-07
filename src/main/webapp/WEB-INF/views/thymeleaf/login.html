@@ -32,8 +32,12 @@
 
                 <!-- Titular -->
                 <h2>LOGIN</h2>
-                <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Email" />
-                <input th:field="*{password}" id="password" type="password" class="form-control" placeholder="Contraseña" />
+                <label for="email">
+                    <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Email" />
+                </label>
+                <label for="password">
+                    <input th:field="*{password}" id="password" type="password" class="form-control" placeholder="Contraseña" />
+                </label>
 
 
                 <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
@@ -41,7 +45,7 @@
                 <!-- Mostrar mensaje de error -->
                 <p th:if="${error != null}" class="alert alert-danger" th:text="'Error: ' + ${error}"></p>
             </form>
-            <a id="ir-a-registrarme" th:href="@{/registrarse}">Registrarme</a>
+            <a id="ir-a-registrarme" th:href="@{/nuevo-usuario}">Registrarme</a>
         </div>
     </div>
 

@@ -79,8 +79,8 @@ INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'test
 INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
 
 CREATE TABLE TipoContacto (
-                      id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                      nombre VARCHAR(255)
+                              id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                              nombre VARCHAR(255)
 );
 
 INSERT INTO TipoContacto (nombre) VALUES ('Pediatra');
@@ -92,14 +92,14 @@ INSERT INTO TipoContacto (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
 CREATE TABLE  Contacto (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    telefono VARCHAR(15),
-    email VARCHAR(100),
-    direccion VARCHAR(255),
-    institucion VARCHAR(100),
-    tipo_id BIGINT,
-    FOREIGN KEY (tipo_id) REFERENCES TipoContacto(id),
-    metodo_id BIGINT,
-    FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
-    );
+                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                           nombre VARCHAR(100) NOT NULL,
+                           telefono VARCHAR(15),
+                           email VARCHAR(100),
+                           direccion VARCHAR(255),
+                           institucion VARCHAR(100),
+                           tipo_id BIGINT,
+                           FOREIGN KEY (tipo_id) REFERENCES TipoContacto(id),
+                           metodo_id BIGINT,
+                           FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
+);
