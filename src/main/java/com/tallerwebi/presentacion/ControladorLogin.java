@@ -42,7 +42,7 @@ public class ControladorLogin {
         return new ModelAndView("login", modelo);
     }
 
-    @PostMapping("/validar-login")
+    @RequestMapping(path = "/validar-login", method = RequestMethod.POST)
     public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
         ModelMap model = new ModelMap();
 
@@ -56,7 +56,6 @@ public class ControladorLogin {
             return new ModelAndView("redirect:/bienvenido");
         } else {
             model.put("error", "Usuario o clave incorrecta");
-            model.put("datosLogin", new DatosLogin()); // Re-agregar el objeto al modelo
         }
         return new ModelAndView("login", model);
     }

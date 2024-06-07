@@ -103,3 +103,21 @@ CREATE TABLE  Contacto (
                            metodo_id BIGINT,
                            FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
 );
+
+CREATE TABLE Tarjeta (
+            id BIGINT AUTO_INCREMENT PRIMARY KEY,
+               numeroDeTarjeta VARCHAR(16) NOT NULL,
+               fechaDeVencimiento DATE NOT NULL,
+               codigoDeSeguridad VARCHAR(3) NOT NULL
+);
+
+CREATE TABLE DatosMembresia
+(
+    id               BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombreCompleto   VARCHAR(100) NOT NULL,
+    email            VARCHAR(100) NOT NULL,
+    numeroTelefonico VARCHAR(15),
+    tarjeta_id       BIGINT,
+    FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta (id)
+);
+
