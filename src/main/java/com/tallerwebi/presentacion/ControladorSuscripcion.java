@@ -37,7 +37,6 @@ public class ControladorSuscripcion {
     @RequestMapping(path = "/procesarMembresiaPaga", method = RequestMethod.POST)
     public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia){
         ModelMap model = new ModelMap();
-
         try {
             servicioMembresia.darDeAltaMembresia(datosMembresia);
             model.put("datosMembresia", datosMembresia);

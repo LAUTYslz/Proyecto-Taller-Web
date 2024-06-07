@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ControladorLogin {
 
-    private ServicioLogin servicioLogin;
+    private final ServicioLogin servicioLogin;
 
 
     @Autowired
@@ -48,16 +48,16 @@ public class ControladorLogin {
 
         Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
         if (usuarioBuscado != null) {
-            request.getSession().setAttribute("usuario", usuarioBuscado); // Guardar el objeto Usuario completo en la sesión
+            request.getSession().setAttribute("usuario", usuarioBuscado);
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-            if(usuarioBuscado.getRol().equals("ADMIN")) {
+            if (usuarioBuscado.getRol().equals("ADMIN")) {
                 return new ModelAndView("redirect:/administrador");
             }
             return new ModelAndView("redirect:/bienvenido");
         } else {
             model.put("error", "Usuario o clave incorrecta");
         }
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("login", model);
     }
 
 
