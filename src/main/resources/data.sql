@@ -11,7 +11,7 @@ CREATE TABLE Usuario (
 );
 
 
-CREATE TABLE etapa (
+CREATE TABLE IF NOT EXISTS etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
                        desde INT,
@@ -71,7 +71,7 @@ CREATE TABLE Hijo (
 INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
 
 
-CREATE TABLE Metodo (
+CREATE TABLE IF NOT EXISTS Metodo (
         id BIGINT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50)
     );
