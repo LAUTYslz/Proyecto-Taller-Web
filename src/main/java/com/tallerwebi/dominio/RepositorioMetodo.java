@@ -5,7 +5,7 @@ import java.util.List;
 public interface RepositorioMetodo {
     Metodo guardar(Metodo metodo);
 
-    Metodo buscarPorNombre(String nombreMetodo);
+    Metodo buscarPorNombreDeMetodo(String nombreMetodo);
 
     List<Metodo> buscarMetodos();
 }
