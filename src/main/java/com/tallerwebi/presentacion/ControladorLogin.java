@@ -42,22 +42,23 @@ public class ControladorLogin {
         return new ModelAndView("login", modelo);
     }
 
-    @RequestMapping(path = "/validar-login", method = RequestMethod.POST)
+    @PostMapping("/validar-login")
     public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
         ModelMap model = new ModelMap();
 
         Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
         if (usuarioBuscado != null) {
-            request.getSession().setAttribute("usuario", usuarioBuscado); // Guardar el objeto Usuario completo en la sesión
+            request.getSession().setAttribute("usuario", usuarioBuscado);
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-            if(usuarioBuscado.getRol().equals("ADMIN")) {
+            if (usuarioBuscado.getRol().equals("ADMIN")) {
                 return new ModelAndView("redirect:/administrador");
             }
             return new ModelAndView("redirect:/bienvenido");
         } else {
             model.put("error", "Usuario o clave incorrecta");
+            model.put("datosLogin", new DatosLogin()); // Re-agregar el objeto al modelo
         }
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("login", model);
     }
 
 
