@@ -11,7 +11,7 @@ CREATE TABLE Usuario (
 );
 
 
-CREATE TABLE Metodo (
+CREATE TABLE  IF NOT EXISTS Metodo (
                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
                         nombre VARCHAR(50) NOT NULL
 );
