@@ -3,6 +3,9 @@ package com.tallerwebi.dominio;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 public interface ServicioLogin {
 
     Usuario consultarUsuario(String email, String password);
@@ -12,6 +15,21 @@ public interface ServicioLogin {
     void registrarHijo( Hijo hijo1);
 
     void asociarConyuge(String userEmail, Usuario conyuge);
+
+    void setUltimoHijoAgregado(HttpServletRequest request, Hijo hijo);
+
+
+    Hijo obtenerUltimoHijoAgregado(HttpServletRequest request);
+
+    Usuario obtenerUsuarioActual(HttpServletRequest request);
+
+
+
+    List<Hijo> buscarHijosPorId(Long usuarioid);
+
+    void eliminarHijo(Long hijoId);
+
+    Etapa asignarEtapa(Hijo hijo);
 
     /* void registrarConyuge(Long id, Usuario conyuge) throws UsuarioExistente, UsuarioInexistente;*/
 

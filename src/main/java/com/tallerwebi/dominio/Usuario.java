@@ -1,6 +1,8 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -10,9 +12,10 @@ public class Usuario {
     private Long id;
     private String email;
     private String password;
-    private String rol;
-    private String estado = "inactivo";
+    private String rol="USUARIO";
+    private String estado = "inactivo";// enum o boolean
     private String nombre;
+
 
     @OneToOne
     private Usuario conyuge;

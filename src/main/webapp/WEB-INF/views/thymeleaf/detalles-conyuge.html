@@ -5,16 +5,15 @@
     <title>Agrego un cónyuge</title>
 </head>
 <body>
-<h2>Detalles del Cónyuge</h2>
-<p>Debug Info:</p>
-<pre th:text="${usuario.conyuge}">Cónyuge Object: </pre>
-<h2>Detalles del Cónyuge</h2>
-<p>Cónyuge</p>
-<p th:if="${usuario.conyuge != null}">
-    <strong>Nombre:</strong> <span th:text="${usuario.conyuge.nombre}"></span><br>
-    <strong>Email:</strong> <span th:text="${usuario.conyuge.email}"></span>
-    <strong>Rol:</strong> <span th:text="${usuario.conyuge.rol}"></span>
-</p>
-<p th:unless="${usuario.conyuge != null}">Sin cónyuge</p>
+
+<h1>Detalles del Usuario</h1>
+<p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
+<p>Email del Usuario: <span th:text="${usuario.email}"></span></p>
+
+<h1>Detalles del Cónyuge Asociado</h1>
+<p>Nombre del Cónyuge: <span th:text="${conyuge.nombre}"></span></p>
+<p>Email del Cónyuge: <span th:text="${conyuge.email}"></span></p>
+
 </body>
+<a th:href="@{/bienvenido}" class="btn btn-primary">Volver a la página de bienvenida</a>
 </html>

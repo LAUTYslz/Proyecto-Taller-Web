@@ -1,5 +1,7 @@
 package com.tallerwebi.dominio;
 
+import java.util.List;
+
 public interface RepositorioUsuario {
 
     Usuario buscarUsuario(String email, String password);
@@ -14,6 +16,16 @@ public interface RepositorioUsuario {
     void actualizar(Usuario usuario);
 
     Usuario findByEmail(String userEmail);
+
+
+
+    List<Hijo> buscarHijosPorId(Long usuarioid);
+
+
+
+
+
+    void borrarHijo(Long hijoId);
 
 
 

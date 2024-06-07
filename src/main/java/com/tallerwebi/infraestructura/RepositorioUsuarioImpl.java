@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository("repositorioUsuario")
@@ -79,6 +80,22 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
                 .uniqueResult();
     }
 
+    @Override
+    public List<Hijo> buscarHijosPorId(Long usuarioid){
+        return (List<Hijo>) sessionFactory.getCurrentSession()
+                .createCriteria(Hijo.class)
+                .createAlias("usuario","usuarioBuscado")
+                .add(Restrictions.eq("usuarioBuscado.id",usuarioid)).list();
 
+    }
+
+    @Override
+    public void borrarHijo(Long hijoId) {
+        Hijo hijo = sessionFactory.getCurrentSession().load(Hijo.class, hijoId);
+        sessionFactory.getCurrentSession().delete(hijo);
+    }
 }
+
+
+
 
