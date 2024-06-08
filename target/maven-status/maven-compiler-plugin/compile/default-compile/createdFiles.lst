@@ -32,7 +32,6 @@ com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\infraestructura\ServicioProfesionalImpl.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
 com\tallerwebi\dominio\Juego.class
-com\tallerwebi\dominio\Membresia.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
 com\tallerwebi\presentacion\ControladorAdministrador.class

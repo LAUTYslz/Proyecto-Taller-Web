@@ -20,10 +20,11 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infrae
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioLogin.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTest.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Membresia.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioExistente.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioLoginImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaExistente.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\HibernateConfig.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
