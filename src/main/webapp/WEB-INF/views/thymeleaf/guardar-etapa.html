@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Etapa</title>
+    <!-- Agregar FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos para el formulario */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4f3c6e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #b9a0ea;
+        }
+    </style>
+</head>
+<body>
+<h2>Modificar Etapa</h2>
+<h2><i class="fas fa-edit"></i> Empecemos </h2>
+<!-- Formulario para modificar etapa -->
+<form th:action="@{/actualizar-etapa}" method="post" th:object="${etapa}">
+    <!-- Campo oculto para el ID de la etapa -->
+    <input type="hidden" th:field="*{id}">
+
+    <!-- Mostrar datos actuales de la etapa -->
+    <label for="nombre"><i class="fas fa-file-signature"></i> Nombre:</label><br>
+    <input type="text" id="nombre" th:value="${etapa.nombre}" readonly><br>
+
+    <label for="desde"><i class="fas fa-calendar-alt"></i> Desde:</label><br>
+    <input type="number" id="desde" th:value="${etapa.desde}" readonly><br>
+
+    <label for="hasta"><i class="fas fa-calendar-alt"></i> Hasta:</label><br>
+    <input type="number" id="hasta" th:value="${etapa.hasta}" readonly><br><br>
+
+    <!-- Campos de entrada para la modificación -->
+    <label for="nuevoNombre"><i class="fas fa-edit"></i> Nuevo Nombre:</label><br>
+    <input type="text" id="nuevoNombre" th:field="*{nombre}"><br>
+
+    <label for="nuevoDesde"><i class="fas fa-edit"></i> Nuevo Desde:</label><br>
+    <input type="number" id="nuevoDesde" th:field="*{desde}"><br>
+
+    <label for="nuevoHasta"><i class="fas fa-edit"></i> Nuevo Hasta:</label><br>
+    <input type="number" id="nuevoHasta" th:field="*{hasta}"><br><br>
+
+    <!-- Botón para enviar el formulario -->
+    <button type="submit"><i class="fas fa-save"></i> Modificar Etapa</button>
+</form>
+</body>
+</html>

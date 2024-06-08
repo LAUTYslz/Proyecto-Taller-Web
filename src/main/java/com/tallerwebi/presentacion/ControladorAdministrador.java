@@ -1,10 +1,13 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,19 +115,20 @@ public class ControladorAdministrador {
 
     }
 
-  /*  @GetMapping("/mostar-etapa-juego")
-    public String mostrarConfirmacion(Model model, HttpServletRequest request) {
-        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+    @PostMapping("/modificar-etapa/{id}")
+    public String mostrarFormularioModificarEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
 
-        Juego juegoAgregado= servicioAdmi.obtenerJuegoSesion(request);
-       Etapa etapaAgregada =servicioAdmi.obtenerEtapaSesion(request);
+        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
+       model.addAttribute(etapaBuscada);
+        return "guardar-etapa";
+    }
 
-       model.addAttribute("etapaAgregada", etapaAgregada);
-       model.addAttribute("juegoAgregado", juegoAgregado);
+    @PostMapping("/actualizar-etapa")
+    public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
+   servicioAdmi.actualizarEtapa(etapa);
 
-        return "juego-etapa-agregada";
-    }*/
-
+        return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
+    }
 
 
 }

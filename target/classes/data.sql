@@ -9,7 +9,10 @@ CREATE TABLE Usuario (
                          nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
-
+CREATE TABLE IF NOT EXISTS Metodo (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         nombre VARCHAR(50)
+);
 
 CREATE TABLE IF NOT EXISTS etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -18,14 +21,11 @@ CREATE TABLE IF NOT EXISTS etapa (
                        hasta INT
 );
 
-/*INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 0 a 3 meses', 0, 3);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 3 a 6 meses', 3, 6);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 6 a 9 meses', 6, 9);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 9 a 12 meses', 9, 12);*/
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 0 a 3 años', 0, 3);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 3 a 6 años', 3, 6);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 6 a 9 años', 6, 9);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 9 a 12 años', 9, 12);
+
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 0 a 3 años', 0, 3);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 4 a 6 años', 3, 6);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 7 a 9 años', 6, 9);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 10 a 12 años', 9, 12);
 CREATE TABLE Juego (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
@@ -71,10 +71,7 @@ CREATE TABLE Hijo (
 INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
 
 
-CREATE TABLE IF NOT EXISTS Metodo (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50)
-    );
+
 
 INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
 
