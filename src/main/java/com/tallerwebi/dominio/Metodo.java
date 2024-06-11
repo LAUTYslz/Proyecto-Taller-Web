@@ -28,7 +28,9 @@ public class Metodo {
     }
 
     public void setNombre(String nombre) {
-        nombre = nombre.toUpperCase();
+        if(nombre != null){
+            nombre = nombre.toUpperCase();
+        }
         this.nombre = nombre;
     }
 }

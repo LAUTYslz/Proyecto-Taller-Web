@@ -1,59 +1,59 @@
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTipoProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaInexistente.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioUsuario.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Metodo.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TarjetaInvalida.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTest.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\RespuestaTest.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\DatabaseInitializationConfig.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\SpringWebConfig.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorAdministrador.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\DatosMembresia.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioMetodo.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\MyServletInitializer.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Usuario.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioProfesionalImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTestImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioLogin.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTest.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioExistente.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioLoginImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaExistente.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\HibernateConfig.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioMembresia.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Etapa.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\PasswordLongitudIncorrecta.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMetodoImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTipoProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\DatosLogin.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioInexistente.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioAdmi.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorSuscripcion.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioAdmi.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTipoContactoImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMetodoImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioAdmiImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioUsuarioImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Tarjeta.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorLogin.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Juego.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Profesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Hijo.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\CodigoInvalido.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MetodoNoEncontrado.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\Dto\DatosRegistro.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioProfesional.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioAdmiImpl.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\PreguntaTest.java
-C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ModeloTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\TarjetaInvalida.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioExistente.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Metodo.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorSuscripcion.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Hijo.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ModeloTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioAdmiImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\RespuestaTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\config\HibernateConfig.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorAdministrador.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\config\SpringWebConfig.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioProfesionalImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioTestImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Profesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioTipoContactoImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MetodoNoEncontrado.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioAdmi.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioTipoProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\Dto\DatosRegistro.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\PasswordLongitudIncorrecta.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaExistente.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioMembresia.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioLoginImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\CodigoInvalido.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioAdmi.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioInexistente.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Usuario.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\config\DatabaseInitializationConfig.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioTipoProfesional.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioMetodo.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\DatosMembresia.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorLogin.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioMetodoImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\MyServletInitializer.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Etapa.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioAdmiImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaInexistente.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioUsuario.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioUsuarioImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Juego.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Tarjeta.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioMetodoImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioLogin.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\DatosLogin.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\PreguntaTest.java

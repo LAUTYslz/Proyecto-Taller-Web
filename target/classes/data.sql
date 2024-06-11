@@ -26,6 +26,8 @@ INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 0 a 3 años', 0, 3)
 INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 3 a 6 años', 3, 6);
 INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 6 a 9 años', 6, 9);
 INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 9 a 12 años', 9, 12);
+
+
 CREATE TABLE Juego (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
@@ -55,6 +57,25 @@ INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Tirarle una 
 
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Esconder un objeto', 'Los padres pueden entretener al niño escondiendo uno de sus juguetes favoritos mientras lo utiliza.', 4);
 
+
+DROP TABLE IF EXISTS Metodo;
+
+CREATE TABLE IF NOT EXISTS Metodo (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+INSERT INTO Metodo (nombre)
+SELECT 'WALDORF'
+WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'WALDORF');
+INSERT INTO Metodo (nombre)
+SELECT 'MONTESSORI'
+WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'MONTESSORI');
+INSERT INTO Metodo (nombre)
+SELECT 'DOMAN'
+WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'DOMAN');
+
+
 CREATE TABLE Hijo (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                       nombre VARCHAR(255),
@@ -68,15 +89,9 @@ CREATE TABLE Hijo (
                       FOREIGN KEY (metodo_id) REFERENCES Metodo(id),
                       FOREIGN KEY (etapa_id) REFERENCES etapa(id)
 );
+
+
 INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
-
-
-CREATE TABLE IF NOT EXISTS Metodo (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50)
-    );
-
-INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
 
 CREATE TABLE TipoProfesional (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,

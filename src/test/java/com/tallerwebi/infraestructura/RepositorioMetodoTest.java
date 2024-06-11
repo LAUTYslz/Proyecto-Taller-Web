@@ -24,8 +24,6 @@ import static org.hamcrest.Matchers.equalTo;
 @WebAppConfiguration
 @ContextConfiguration(classes = {SpringWebTestConfig.class, HibernateTestConfig.class})
 
-
-
 public class RepositorioMetodoTest {
     @Autowired
     private SessionFactory sessionFactory;
@@ -60,7 +58,10 @@ public class RepositorioMetodoTest {
     @Transactional
     @Rollback
     public void quePuedaBuscarUnMetodo(){
-        Metodo metodo = givenExisteMetodo("Doman");
+        //Metodo metodo = givenExisteMetodo("Doman");
+        Metodo metodo = new Metodo();
+        metodo.setNombre("DOMAN");
+        repositorioMetodo.guardar(metodo);
         Metodo metodoBuscado = whenBuscoMetodoPorNombre("Doman");
         thenEncuentroMetodo(metodoBuscado);
     }
