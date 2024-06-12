@@ -127,6 +127,12 @@ public class ControladorLogin {
         modelAndView.addObject("usuario", usuario);
         modelAndView.addObject("hijos", hijos);
 
+        // Obtener la membresia del usuario actual
+        DatosMembresia membresiaDelUsuarioActual = servicioLogin.obtenerMembresiaPorEmail(usuario.getEmail());
+
+        // Agregar la membresia al modelo
+        modelAndView.addObject("membresia", membresiaDelUsuarioActual);
+
         // Establecer la vista
         modelAndView.setViewName("bienvenido");
 

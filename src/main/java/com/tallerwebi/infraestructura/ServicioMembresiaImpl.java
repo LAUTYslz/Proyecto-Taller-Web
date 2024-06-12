@@ -14,15 +14,21 @@ import java.util.Map;
 @Transactional
 public class ServicioMembresiaImpl implements ServicioMembresia {
 
+    private final RepositorioUsuario repositorioUsuario;
     private final RepositorioMembresia repositorioMembresia;
 
     @Autowired
-    public ServicioMembresiaImpl(RepositorioMembresia repositorioMembresia) {
+    public ServicioMembresiaImpl(RepositorioUsuario repositorioUsuario, RepositorioMembresia repositorioMembresia) {
+        this.repositorioUsuario = repositorioUsuario;
         this.repositorioMembresia = repositorioMembresia;
     }
 
     @Override
-    public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, TarjetaVencida {
+    public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, TarjetaVencida, UsuarioInexistente {
+       if (repositorioUsuario.findByEmail(datosMembresia.getEmail()) == null){
+           throw new UsuarioInexistente();
+       }
+
         if (!validarNumeroDeTarjeta(datosMembresia.getTarjeta().getNumeroDeTarjeta())){
             throw new TarjetaInvalida();
         }
@@ -57,7 +63,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
 
     private Boolean validarFechaDeVencimiento(Date fechaDeVencimiento) throws TarjetaVencida {
         Date hoy = new Date();
-        if (fechaDeVencimiento.after(hoy)){
+        if (fechaDeVencimiento.before(hoy)){
             throw new TarjetaVencida();
         } return true;
     }
@@ -91,7 +97,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
 
         int longitud = numeroDeTarjeta.toString().length();
 
-        if (longitud < 15 || longitud > 16){
+        if (longitud != 15 && longitud != 16){
             throw new TarjetaInvalida();
         }
 

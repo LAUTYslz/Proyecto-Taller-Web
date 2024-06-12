@@ -31,6 +31,9 @@ public interface ServicioLogin {
 
     void actualizarUsuario(Usuario buscado) throws UsuarioExistente, UsuarioInexistente;
 
+    DatosMembresia obtenerMembresiaPorEmail(String email);
+
+
     /* Etapa asignarEtapa(Hijo hijo);*/
 
     /* void registrarConyuge(Long id, Usuario conyuge) throws UsuarioExistente, UsuarioInexistente;*/

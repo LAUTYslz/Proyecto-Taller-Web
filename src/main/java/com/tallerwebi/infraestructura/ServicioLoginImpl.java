@@ -16,11 +16,13 @@ public class ServicioLoginImpl implements ServicioLogin {
 
     private RepositorioUsuario repositorioUsuario;
     private RepositorioAdmi repositorioAdmi;
+    private RepositorioMembresia repositorioMembresia;
 
     @Autowired
-    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario, RepositorioAdmi repositorioAdmi) {
+    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario, RepositorioAdmi repositorioAdmi, RepositorioMembresia repositorioMembresia) {
         this.repositorioUsuario = repositorioUsuario;
         this.repositorioAdmi = repositorioAdmi;
+        this.repositorioMembresia = repositorioMembresia;
     }
 
     @Override
@@ -132,6 +134,11 @@ public class ServicioLoginImpl implements ServicioLogin {
         repositorioUsuario.actualizar(buscar);
     }
 
+    @Override
+    public DatosMembresia obtenerMembresiaPorEmail(String email) {
+        return this.repositorioMembresia.buscarMembresia(email);
+    }
+
     public void asignarEtapa(Hijo hijo) {
         List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
         Integer edad = hijo.getEdad();
@@ -152,6 +159,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         // Asignar la etapa encontrada al hijo
         hijo.setEtapa(etapaEncontrada);
     }
+
 }
 
 

@@ -3,10 +3,7 @@ package com.tallerwebi.presentacion;
 import com.tallerwebi.dominio.DatosMembresia;
 import com.tallerwebi.dominio.ServicioLogin;
 import com.tallerwebi.dominio.ServicioMembresia;
-import com.tallerwebi.dominio.excepcion.CodigoInvalido;
-import com.tallerwebi.dominio.excepcion.MembresiaExistente;
-import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import com.tallerwebi.dominio.excepcion.TarjetaVencida;
+import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -50,6 +47,8 @@ public class ControladorSuscripcion {
             model.put("error", "El código de seguridad es inválido");
         } catch (TarjetaVencida e){
             model.put("error", "La fecha de vencimiento de la tarjeta es inválida");
+        } catch (UsuarioInexistente e){
+            model.put("error", "El email que estás ingresando no pertenece a ningún usuario");
         }
 
         return new ModelAndView("membresiaPaga", model);

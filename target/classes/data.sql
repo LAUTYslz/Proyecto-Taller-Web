@@ -119,3 +119,20 @@ VALUES
     ('etapa de 4 a 6 años', 4, 6),
     ('etapa de 7 a 9 años', 7, 9),
     ('etapa de 10 a 12 años', 10, 12);
+
+CREATE TABLE Tarjeta (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         numeroDeTarjeta VARCHAR(16) NOT NULL,
+                         fechaDeVencimiento DATE NOT NULL,
+                         codigoDeSeguridad VARCHAR(3) NOT NULL
+);
+
+CREATE TABLE DatosMembresia
+(
+    id               BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombreCompleto   VARCHAR(100) NOT NULL,
+    email            VARCHAR(100) NOT NULL,
+    numeroTelefonico VARCHAR(15),
+    tarjeta_id       BIGINT,
+    FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta (id)
+);
