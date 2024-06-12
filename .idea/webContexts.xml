@@ -7,6 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf/crearEtapa.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf/guardar-hijo.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf/login.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf/verJuegoPorEtapaUsuario.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/thymeleaf" />
       </map>
     </option>
   </component>

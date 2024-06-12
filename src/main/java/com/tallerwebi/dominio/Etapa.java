@@ -9,6 +9,13 @@ public class Etapa {
     private Integer desde;
     private Integer hasta;
 
+    public Etapa(){
+
+    }
+
+    public Etapa(String s, int i, int i1) {
+    }
+
     public Long getId() {
         return id;
     }

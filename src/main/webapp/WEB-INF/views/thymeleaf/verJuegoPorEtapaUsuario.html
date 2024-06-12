@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
 
@@ -49,12 +50,12 @@
 <style>
     /* Estilos para el formulario */
     form {
-        max-width: 400px;
-        margin: 0 auto;
+
+
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: #f9f9f9;
+        background-color: darkgrey;
     }
     label {
         font-weight: bold;
@@ -70,7 +71,7 @@
         box-sizing: border-box;
     }
     button[type="submit"] {
-        background-color: #4f3c6e;
+        background-color: #b9a0ea;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -80,11 +81,38 @@
     button[type="submit"]:hover {
         background-color: #b9a0ea;
     }
+
+    table {
+        width: 100%; /* Hacer que la tabla ocupe el 100% del ancho disponible */
+        border-collapse: collapse; /* Colapsar bordes de celda */
+        margin-bottom: 20px; /* Espacio entre la tabla y el contenido siguiente */
+    }
+
+    th, td {
+        padding: 10px; /* Espaciado interno para celdas */
+        text-align: left; /* Alinear texto a la izquierda */
+        border: 1px solid #ddd; /* Borde de celda */
+    }
+
+    th {
+        background-color: #b9a0ea; /* Color de fondo para encabezados */
+    }
+
+    td.actions {
+        text-align: center; /* Alinear contenido de la columna de acciones al centro */
+    }
+
+    td.actions a {
+        margin-right: 5px; /* Espaciado entre los iconos de acciones */
+        color: dimgray; /* Color de enlace para iconos de acciones */
+    }
+
 </style>
 </head>
 <body>
-<h2>listado de Juegos Asociados Por Etapa </h2>
-<h2><i class="fas fa-edit"></i> Empecemos </h2>
+
+<h2>Juegos  Por Etapa </h2>
+
 <!-- Formulario para modificar etapa -->
 <form th:action="@{/actualizar-etapa}" method="post" th:object="${etapa}">
     <!-- Campo oculto para el ID de la etapa -->
@@ -100,18 +128,34 @@
     <label for="hasta"><i class="fas fa-calendar-alt"></i> Hasta:</label><br>
     <input type="number" id="hasta" th:value="${etapa.hasta}" readonly><br><br>
 
-    <!-- Campos de entrada para la modificación -->
-    <label for="nuevoNombre"><i class="fas fa-edit"></i> Nuevo Nombre:</label><br>
-    <input type="text" id="nuevoNombre" th:field="*{nombre}"><br>
+    <h2>Listado de Juegos Por Etapa</h2>
+    <input type="text" id="nombreEtapa" th:value="${etapa.nombre}" readonly><br>
 
-    <label for="nuevoDesde"><i class="fas fa-edit"></i> Nuevo Desde:</label><br>
-    <input type="number" id="nuevoDesde" th:field="*{desde}"><br>
 
-    <label for="nuevoHasta"><i class="fas fa-edit"></i> Nuevo Hasta:</label><br>
-    <input type="number" id="nuevoHasta" th:field="*{hasta}"><br><br>
 
-    <!-- Botón para enviar el formulario -->
-    <button type="submit"><i class="fas fa-save"></i> Modificar Etapa</button>
+    <!-- Tabla para mostrar los juegos -->
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="juego : ${juegos}">
+            <td><a th:href="@{/juego/{id}(id=${juego.id})}" th:text="${juego.nombre}">Nombre del Juego</a></td>
+            <td th:text="${juego.descripcion}">Descripción del Juego</td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+
 </form>
 </body>
 </html>

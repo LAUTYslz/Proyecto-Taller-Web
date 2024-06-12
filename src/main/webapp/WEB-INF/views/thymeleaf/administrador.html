@@ -156,7 +156,7 @@
         <tbody>
         <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
             <td th:text="${etapa.id}"></td>
-            <td><a th:href="@{'/detalleEtapa/' + ${etapa.id}}" th:text="${etapa.nombre}"></a></td>
+            <td th:text="${etapa.nombre}"></td>
             <td th:text="${etapa.desde}"></td>
             <td th:text="${etapa.hasta}"></td>
             <td>

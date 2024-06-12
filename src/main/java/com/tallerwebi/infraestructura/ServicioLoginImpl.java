@@ -49,9 +49,11 @@ public class ServicioLoginImpl implements ServicioLogin {
 
     @Override
     public void registrarHijo(Hijo hijo) {
-
+        asignarEtapa(hijo);
         repositorioUsuario.guardarHijo(hijo);
     }
+
+
 
    /* @Override
    public void registrarConyuge(Long idUsuario, Usuario conyuge) throws UsuarioInexistente, UsuarioExistente {
@@ -120,27 +122,35 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
-    public Etapa asignarEtapa(Hijo hijo) {
+    public void actualizarUsuario(Usuario usuario) throws UsuarioInexistente {
+        Usuario buscar= repositorioUsuario.buscarPorId(usuario.getId());
+        if (buscar == null) {
+            throw new UsuarioInexistente();
+        }
+        buscar.setEmail(usuario.getEmail());
+        buscar.setPassword(usuario.getPassword());
+        repositorioUsuario.actualizar(buscar);
+    }
+
+    public void asignarEtapa(Hijo hijo) {
         List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
         Integer edad = hijo.getEdad();
-        Etapa etapaEnopntrada = null;
+        Etapa etapaEncontrada = null;
 
         for (Etapa etapa : listaEtapa) {
             if (edad >= etapa.getDesde() && edad <= etapa.getHasta()) {
-                etapaEnopntrada = etapa;
-                hijo.setEtapa(etapaEnopntrada);
-                break;
+                etapaEncontrada = etapa;
+                break; // Se encontró la etapa, no es necesario continuar iterando
             }
-
-            if (etapaEnopntrada == null) {
-                // Manejar el caso en el que ninguna etapa sea encontrada
-                throw new RuntimeException("No se encontró una etapa para la edad proporcionada");
-            }
-
-
-
         }
-        return etapaEnopntrada;
+
+        if (etapaEncontrada == null) {
+            // Manejar el caso en el que ninguna etapa sea encontrada
+            throw new RuntimeException("No se encontró una etapa para la edad proporcionada");
+        }
+
+        // Asignar la etapa encontrada al hijo
+        hijo.setEtapa(etapaEncontrada);
     }
 }
 
