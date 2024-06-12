@@ -9,10 +9,6 @@ CREATE TABLE Usuario (
                          nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
-CREATE TABLE IF NOT EXISTS Metodo (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         nombre VARCHAR(50)
-);
 
 CREATE  TABLE IF NOT EXISTS Etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -53,6 +49,11 @@ INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Derribar los
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Tirarle una pelota', 'La pelota rueda con cierta velocidad por una superficie plana e ir a buscarla puede ser una pequeña gran aventura.', 4);
 
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Esconder un objeto', 'Los padres pueden entretener al niño escondiendo uno de sus juguetes favoritos mientras lo utiliza.', 4);
+
+CREATE TABLE IF NOT EXISTS Metodo (
+                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                      nombre VARCHAR(50)
+);
 
 CREATE TABLE Hijo (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -134,5 +135,7 @@ CREATE TABLE DatosMembresia
     email            VARCHAR(100) NOT NULL,
     numeroTelefonico VARCHAR(15),
     tarjeta_id       BIGINT,
+    fechaDeInicio DATETIME NOT NULL,
+    fechaDeFin DATETIME NOT NULL,
     FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta (id)
 );
