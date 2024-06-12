@@ -1,13 +1,13 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.CodigoInvalido;
-import com.tallerwebi.dominio.excepcion.MembresiaExistente;
-import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
-import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
+import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Map;
 
 @Service("servicioMembresia")
@@ -22,13 +22,17 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
     }
 
     @Override
-    public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido{
+    public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, TarjetaVencida {
         if (!validarNumeroDeTarjeta(datosMembresia.getTarjeta().getNumeroDeTarjeta())){
             throw new TarjetaInvalida();
         }
 
         if (!validarCVV(datosMembresia.getTarjeta().getCodigoDeSeguridad())){
             throw new CodigoInvalido();
+        }
+
+        if (!validarFechaDeVencimiento(datosMembresia.getTarjeta().getFechaDeVencimiento())){
+            throw new TarjetaVencida();
         }
 
         if (repositorioMembresia.buscarMembresia(datosMembresia.getEmail()) != null){
@@ -49,6 +53,13 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
     @Override
     public DatosMembresia buscarMembresia(String email) throws MembresiaInexistente {
         return this.repositorioMembresia.buscarMembresia(email);
+    }
+
+    private Boolean validarFechaDeVencimiento(Date fechaDeVencimiento) throws TarjetaVencida {
+        Date hoy = new Date();
+        if (fechaDeVencimiento.after(hoy)){
+            throw new TarjetaVencida();
+        } return true;
     }
 
     private Boolean validarCVV(Integer cvv) throws CodigoInvalido {
