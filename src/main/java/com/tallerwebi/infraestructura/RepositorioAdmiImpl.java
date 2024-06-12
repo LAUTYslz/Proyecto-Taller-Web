@@ -33,7 +33,7 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
 
     @Override
     public void guardarJuego(Juego juego) {
-    sessionFactory.getCurrentSession().save(juego);
+        sessionFactory.getCurrentSession().save(juego);
     }
 
     @Override
@@ -49,8 +49,11 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
 
     }
 
+
+
     @Override
-    public void actulizarEtapas(Etapa etapa) {
-    sessionFactory.getCurrentSession().update(etapa);
-    }
+    public void actualizarEtapas(Etapa etapa) {
+        sessionFactory.getCurrentSession().update(etapa);
+        }
+
 }

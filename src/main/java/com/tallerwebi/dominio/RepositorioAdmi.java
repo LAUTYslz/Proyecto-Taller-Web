@@ -16,5 +16,7 @@ public interface RepositorioAdmi {
 
     Etapa buscarEtapaPorId(Long id);
 
-    void actulizarEtapas(Etapa etapa);
+
+
+    void actualizarEtapas(Etapa etapa);
 }

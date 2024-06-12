@@ -49,7 +49,7 @@
 
              /* Estilos básicos para el botón */
          .boton-modificar {
-             background-color: #007bff;
+             background-color: darkslateblue;
              border: none;
              color: white;
              padding: 10px 20px;
@@ -59,7 +59,7 @@
              font-size: 16px;
              margin: 4px 2px;
              cursor: pointer;
-             border-radius: 5px;
+             border-radius: 50px;
          }
 
         body {
@@ -72,27 +72,36 @@
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
+            background-color: #4f3c6e;
+            border-radius: 50px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
         }
         .container a{
-            background-color: #0056b3;
+            background-color: #b9a0ea;
+            border-radius: 50px;
+            color: white;
+            padding: 20px;
+            margin-top:10px;
+            margin-left:10px;
 
         }
+        .container p{
+            color: white;
+        }
         h1 {
-            color: #4f3c6e;
+            color: white;
+
 
         }
         button {
             display: inline-block;
             margin: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: darkslateblue;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
 
@@ -125,7 +134,7 @@
     <div>
         <a  th:href="@{/crearEtapa}" type="button"><i class="fas fa-plus-circle"></i>Crear Etapa</a>
         <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
-        <a  th:href="@{/crearContacto}" type="button"><i class="fas fa-address-book"></i>Crear Contacto</a>
+        <a  th:href="@{/crearContacto}" type="button"><i class="fas fa-address-book"></i>Agregar Profesional</a>
         <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
         <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
 
@@ -147,7 +156,7 @@
         <tbody>
         <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
             <td th:text="${etapa.id}"></td>
-            <td th:text="${etapa.nombre}"></td>
+            <td><a th:href="@{'/detalleEtapa/' + ${etapa.id}}" th:text="${etapa.nombre}"></a></td>
             <td th:text="${etapa.desde}"></td>
             <td th:text="${etapa.hasta}"></td>
             <td>
@@ -156,22 +165,18 @@
                     <button class="boton-modificar"><i class="fas fa-pencil-alt"></i> Modificar</button>
                 </form>
 
-
+                <form th:action="@{/eliminar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
                 <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
-
+                </form>
+                <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                    <button class="boton-verJuegos" ><i class="fas fa-gamepad"></i> Ver juegos</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
 
 
-
-    <h2>Listado de Juegos Creadas </h2>
-    <ul>
-        <li th:each="juego : ${juegos}">
-            <span th:text="${juego.nombre}"></span>
-        </li>
-    </ul>
 </div>
 </div>
 

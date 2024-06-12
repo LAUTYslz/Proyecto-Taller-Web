@@ -123,11 +123,27 @@ public class ControladorAdministrador {
         return "guardar-etapa";
     }
 
+
+
     @PostMapping("/actualizar-etapa")
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
    servicioAdmi.actualizarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
+    }
+    @PostMapping("/verjuego-etapa/{id}")
+    public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
+
+        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
+        model.addAttribute(etapaBuscada);
+        return "verJuegoPorEtapa";
+    }
+
+    @GetMapping("/verjuego")
+    public String verJuegoPorEtapa() {
+        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
+        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+        return "verJuegoPorEtapa";
     }
 
 

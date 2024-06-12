@@ -66,8 +66,9 @@ public class ServicioAdmiImpl implements ServicioAdmi {
         if(buscarEtapa == null){
             throw new EtapaInexistente();
         }
-        repositorioAdmi.actulizarEtapas(buscarEtapa);
-
-    }
-
+        buscarEtapa.setNombre(etapa.getNombre());
+        buscarEtapa.setDesde(etapa.getDesde());
+        buscarEtapa.setHasta(etapa.getHasta());
+        repositorioAdmi.actualizarEtapas(buscarEtapa);
+}
 }

@@ -23,9 +23,10 @@ CREATE TABLE IF NOT EXISTS etapa (
 
 
 INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 0 a 3 años', 0, 3);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 4 a 6 años', 3, 6);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 7 a 9 años', 6, 9);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 10 a 12 años', 9, 12);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 4 a 6 años', 4, 6);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 7 a 9 años', 7, 9);
+INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Etapa  de 10 a 12 años', 10, 12);
+
 CREATE TABLE Juego (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),

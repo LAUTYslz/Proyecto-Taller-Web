@@ -47,43 +47,43 @@
     </div>
 </nav>
 <style>
-/* Estilos para el formulario */
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button[type="submit"] {
-            background-color: #4f3c6e;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button[type="submit"]:hover {
-            background-color: #b9a0ea;
-        }
-    </style>
+    /* Estilos para el formulario */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button[type="submit"] {
+        background-color: #4f3c6e;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button[type="submit"]:hover {
+        background-color: #b9a0ea;
+    }
+</style>
 </head>
 <body>
-<h2>Modificar Etapa</h2>
+<h2>listado de Juegos Asociados Por Etapa </h2>
 <h2><i class="fas fa-edit"></i> Empecemos </h2>
 <!-- Formulario para modificar etapa -->
 <form th:action="@{/actualizar-etapa}" method="post" th:object="${etapa}">
