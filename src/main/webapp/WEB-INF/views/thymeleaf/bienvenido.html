@@ -129,8 +129,12 @@
                             <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
                             <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
                             <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
+                            <p>ETAPA de SU Hijo: <span th:text="${hijo.etapa.getNombre()}"></span></p>
                             <p>Fecha de Nacimiento: <span th:text="${#dates.format(hijo.fecha_nacimiento, 'yyyy-MM-dd')}"></span></p>
 
+                            <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}" method="post">
+                                <button type="submit" class="btn btn-primary">Ver Juegos Caseros en la Etapa de su hijo </button>
+                            </form>
                             <form th:action="@{/eliminar-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                                 <form th:action="@{/verTest-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
@@ -155,7 +159,7 @@
     <!-- Sección de botones circulares -->
     <div class="button-container">
 
-        <div class="circle-button"><a th:href="@{/modificarUsuario}">MODIFICAR DATOS</a></div>
+        <div class="circle-button"><a th:href="@{/modificarUsuario/{id}(id=${usuario.id})}">MODIFICAR DATOS TITULAR</a></div>
         <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
         <div class="circle-button"><a th:href="@{/membresiaPaga}">MEMBRESIA</a></div>
         <div class="circle-button"><a th:href="@{/profesional}">PROFESIONALES</a></div>

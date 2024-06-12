@@ -21,4 +21,12 @@ public interface RepositorioAdmi {
     void actualizarEtapas(Etapa etapa);
 
     List<Juego> listarjuegosEtapas(Long id);
+
+    void eliminarEtapas(Etapa etapa);
+
+    Juego buscarJuegoPorId(Long id);
+
+    void actualizarJuegos(Juego buscarJuego);
+
+    void eliminarJuegos(Juego juego);
 }

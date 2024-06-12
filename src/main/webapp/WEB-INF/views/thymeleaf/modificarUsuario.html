@@ -6,13 +6,22 @@
 </head>
 <body>
 <h1>Editar Usuario</h1>
-<form action="/guardar-usuario" method="post" th:object="${usuario}">
-    <p>Tu correo electrónico es: <span th:text="${usuario.email}"></span></p>
-    <p>Tu Estado es: <span th:text="${usuario.estado}"></span></p>
-    <label>Password:</label>
+<form th:action="@{/guardar-usuario}" method="post" th:object="${usuario}">
+    <!-- Campo para el correo electrónico -->
+    <label>Correo electrónico:</label>
+    <input type="text" th:field="*{email}" />
+
+    <!-- Campo para la nueva contraseña -->
+    <label>Nueva contraseña:</label>
+    <input type="password" th:field="*{password}" />
+
+    <!-- Campo para confirmar la nueva contraseña -->
+    <label>Confirmar nueva contraseña:</label>
+    <input type="password" th:field="*{password}" />
 
     <!-- Agregar más campos del usuario según sea necesario -->
-    <button type="submit">Guardar Cambios</button>
+
+    <button type="submit">Guardar Cambios Titular </button>
 </form>
 </body>
 </html>

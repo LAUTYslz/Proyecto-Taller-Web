@@ -82,11 +82,11 @@
         background-color: #b9a0ea;
     }
 
-     table {
-         width: 100%; /* Hacer que la tabla ocupe el 100% del ancho disponible */
-         border-collapse: collapse; /* Colapsar bordes de celda */
-         margin-bottom: 20px; /* Espacio entre la tabla y el contenido siguiente */
-     }
+    table {
+        width: 100%; /* Hacer que la tabla ocupe el 100% del ancho disponible */
+        border-collapse: collapse; /* Colapsar bordes de celda */
+        margin-bottom: 20px; /* Espacio entre la tabla y el contenido siguiente */
+    }
 
     th, td {
         padding: 10px; /* Espaciado interno para celdas */
@@ -110,8 +110,9 @@
 </style>
 </head>
 <body>
+
 <h2>Juegos  Por Etapa </h2>
-<h2><i class="fas fa-edit"></i> Empecemos </h2>
+
 <!-- Formulario para modificar etapa -->
 <form th:action="@{/actualizar-etapa}" method="post" th:object="${etapa}">
     <!-- Campo oculto para el ID de la etapa -->
@@ -146,14 +147,9 @@
         <tr th:each="juego : ${juegos}">
             <td><a th:href="@{/juego/{id}(id=${juego.id})}" th:text="${juego.nombre}">Nombre del Juego</a></td>
             <td th:text="${juego.descripcion}">Descripción del Juego</td>
-            <!-- Columna para acciones -->
-            <td>
-                <!-- Icono para modificar -->
-                <a th:href="@{/modificar-juego/{id}(id=${juego.id})}"><i class="fas fa-edit"></i></a>
-                <!-- Icono para eliminar (debes agregar confirmación antes de eliminar) -->
-                <a th:href="@{/eliminar-juego/{id}(id=${juego.id})}" onclick="return confirm('¿Estás seguro de que deseas eliminar este juego?');"><i class="fas fa-trash-alt"></i></a>
-            </td>
+
         </tr>
+
         </tbody>
     </table>
 

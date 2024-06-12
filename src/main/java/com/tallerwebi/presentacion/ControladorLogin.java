@@ -1,11 +1,7 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Etapa;
-import com.tallerwebi.dominio.Hijo;
+import com.tallerwebi.dominio.*;
 
-import com.tallerwebi.dominio.ServicioLogin;
-
-import com.tallerwebi.dominio.Usuario;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 
 
@@ -140,38 +136,25 @@ public class ControladorLogin {
     }
 
 
-    @RequestMapping(path = "/modificarUsuario")
-    public ModelAndView irAModificarDatos() {
+    @GetMapping(path = "/modificarUsuario/{id}")
+    public ModelAndView irAModificarDatos(Usuario usuario , Model model) throws UsuarioInexistente {
+        servicioLogin.buscarUsuarioPorId(usuario.getId());
+        model.addAttribute("usuario", usuario);
         return new ModelAndView("modificarUsuario");
     }
 
-    @RequestMapping(path = "/guardar-usuario", method = RequestMethod.POST)
-    public ModelAndView irAModificarUsuario(HttpServletRequest request) {
-        ModelMap model = new ModelMap();
+    @PostMapping(path = "/guardar-usuario")
+    public ModelAndView actualizarUusario(@ModelAttribute Usuario usuario) throws UsuarioInexistente {
+        Usuario buscado= servicioLogin.buscarUsuarioPorId(usuario.getId());
         try {
-            // me tare el atributo de la id???
-
-            Long id = (Long) request.getSession().getAttribute("id");
-            // Utiliza el ID para buscar el usuario
-
-            Usuario usuario = servicioLogin.buscarUsuarioPorId(id);
-            model.put("usuario", usuario);
-        } catch (UsuarioInexistente e) {
-            model.put("error", "El usuario es inexistente");
-            return new ModelAndView("bienvenido", model);
-        } catch (Exception e) {
-            model.put("error", "Error al buscar el  usuario");
-            return new ModelAndView("bienvenido", model);
+            servicioLogin.actualizarUsuario(buscado);
+        } catch (UsuarioExistente e) {
+            throw new RuntimeException(e);
         }
 
-        return new ModelAndView("modificarUsuario", model);
+
+        return new ModelAndView("redirect:/login");
     }
-
-
-
-
-
-
 
 
     //creo un hijo
@@ -199,14 +182,6 @@ public class ControladorLogin {
             // Asociar el hijo con el usuario
             hijo.setUsuario(usuario);
             servicioLogin.registrarHijo(hijo);
-            Etapa etapaEncontrada = servicioLogin.asignarEtapa(hijo);
-
-            if (etapaEncontrada == null) {
-                modelo.put("error", "No se encontró una etapa para la edad proporcionada");
-                return new ModelAndView("error", modelo); // Manejar el caso de error
-            }
-
-            hijo.setEtapa(etapaEncontrada);
             modelo.addAttribute("hijo", hijo);
             modelo.put("usuario", usuario);
         } catch (Exception e) {

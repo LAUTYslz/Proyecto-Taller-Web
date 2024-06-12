@@ -20,14 +20,9 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
     }
 
 
-    @Override
-    public List<Etapa> listaDeEtapas() {
-        return sessionFactory.getCurrentSession()
-                .createCriteria(Etapa.class)
-                .list();
-    }
 
-    public void guardarEtapa(Etapa etapa) {
+
+   public void guardarEtapa(Etapa etapa) {
         sessionFactory.getCurrentSession().save(etapa);
     }
 
@@ -61,6 +56,33 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
        return  sessionFactory.getCurrentSession().createCriteria(Juego.class)
                .createAlias("etapa","etapaBuscada")
                .add(Restrictions.eq("etapaBuscada.id",id)).list();
+    }
+    @Override
+    public List<Etapa> listaDeEtapas() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Etapa.class)
+                .list();
+    }
+
+    @Override
+    public void eliminarEtapas(Etapa etapa) {
+ sessionFactory.getCurrentSession().delete(etapa);
+    }
+
+    @Override
+    public Juego buscarJuegoPorId(Long id) {
+        return (Juego) sessionFactory.getCurrentSession().createCriteria(Juego.class).
+                add(Restrictions.eq("id", id)).uniqueResult();
+    }
+
+    @Override
+    public void actualizarJuegos(Juego buscarJuego) {
+        sessionFactory.getCurrentSession().update(buscarJuego);
+    }
+
+    @Override
+    public void eliminarJuegos(Juego juego) {
+        sessionFactory.getCurrentSession().delete(juego);
     }
 
 }

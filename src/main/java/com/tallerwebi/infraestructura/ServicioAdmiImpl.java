@@ -2,7 +2,7 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
-import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.dominio.excepcion.juegoInexistente;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,5 +76,36 @@ public class ServicioAdmiImpl implements ServicioAdmi {
     public List<Juego> listasDeJuegosPorEtapa(Long id) {
        return  repositorioAdmi.listarjuegosEtapas(id);
 
+    }
+
+    @Override
+    public void eliminarEtapa(Etapa etapa) {
+        repositorioAdmi.eliminarEtapas(etapa);
+    }
+
+    @Override
+    public Juego buscarJuegoPorId(Long id) throws juegoInexistente {
+        Juego juegoBuscado =repositorioAdmi.buscarJuegoPorId(id);
+        if(juegoBuscado == null){
+            throw new juegoInexistente();
+        }
+        return juegoBuscado;
+    }
+
+
+    @Override
+    public void actualizarJuego(Juego juego) throws juegoInexistente {
+        Juego buscarJuego= repositorioAdmi.buscarJuegoPorId(juego.getId());
+        if(buscarJuego == null){
+            throw new juegoInexistente();
+        }
+        buscarJuego.setNombre(juego.getNombre());
+        buscarJuego.setDescripcion(juego.getDescripcion());
+        repositorioAdmi.actualizarJuegos(buscarJuego);
+    }
+
+    @Override
+    public void eliminarJuego(Juego juego) {
+        repositorioAdmi.eliminarJuegos(juego);
     }
 }
