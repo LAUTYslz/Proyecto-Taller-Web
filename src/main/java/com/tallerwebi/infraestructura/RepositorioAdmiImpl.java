@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.Etapa;
 import com.tallerwebi.dominio.Juego;
 import com.tallerwebi.dominio.RepositorioAdmi;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -32,11 +33,27 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
 
     @Override
     public void guardarJuego(Juego juego) {
-    sessionFactory.getCurrentSession().save(juego);
+        sessionFactory.getCurrentSession().save(juego);
     }
 
     @Override
     public List<Juego> listaDeJuegos() {
         return sessionFactory.getCurrentSession().createCriteria(Juego.class).list();
     }
+
+    @Override
+    public Etapa buscarEtapaPorId(Long id) {
+        return (Etapa) sessionFactory.getCurrentSession().createCriteria(Etapa.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+
+    }
+
+
+
+    @Override
+    public void actualizarEtapas(Etapa etapa) {
+        sessionFactory.getCurrentSession().update(etapa);
+        }
+
 }

@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 
 
@@ -45,6 +46,22 @@
 </nav>
     <title>Bienvenido Administrador</title>
     <style>
+
+             /* Estilos básicos para el botón */
+         .boton-modificar {
+             background-color: darkslateblue;
+             border: none;
+             color: white;
+             padding: 10px 20px;
+             text-align: center;
+             text-decoration: none;
+             display: inline-block;
+             font-size: 16px;
+             margin: 4px 2px;
+             cursor: pointer;
+             border-radius: 50px;
+         }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -55,30 +72,57 @@
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
+            background-color: #4f3c6e;
+            border-radius: 50px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
         }
         .container a{
-            background-color: #0056b3;
+            background-color: #b9a0ea;
+            border-radius: 50px;
+            color: white;
+            padding: 20px;
+            margin-top:10px;
+            margin-left:10px;
 
         }
+        .container p{
+            color: white;
+        }
         h1 {
-            color: #333;
+            color: white;
+
+
         }
         button {
             display: inline-block;
             margin: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: darkslateblue;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
+
             transition: background-color 0.3s;
         }
+             /* Estilos para la tabla */
+             table {
+                 border-collapse: collapse;
+                 width: 100%;
+             }
+
+             th, td {
+                 border: 1px solid #dddddd;
+                 text-align: left;
+                 padding: 8px;
+             }
+
+             th {
+                 background-color: #666666;
+                 color: white;
+             }
 
     </style>
 </head>
@@ -88,33 +132,55 @@
     <p>Nombre Admi : <span th:text="${usuario.nombre}"></span></p>
     <p>Email Admi : <span th:text="${usuario.email}"></span></p>
     <div>
-        <a  th:href="@{/crearEtapa}" type="button">Crear Etapa</a>
-        <a  th:href="@{/crearJuego}" type="button">Crear Juego</a>
-        <a  th:href="@{/crearContacto}" type="button">Crear Contacto</a>
-        <a  th:href="@{/crearTest}" type="button">Crear Test</a>
-        <a  th:href="@{/crearMetodo}" type="button">Crear Metodo</a>
+        <a  th:href="@{/crearEtapa}" type="button"><i class="fas fa-plus-circle"></i>Crear Etapa</a>
+        <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
+        <a  th:href="@{/crearContacto}" type="button"><i class="fas fa-address-book"></i>Agregar Profesional</a>
+        <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
+        <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
 
     </div>
 </div>
 
 <div>
     <h2>Listado de Etapas Creadas </h2>
-    <ul>
-        <li th:each="etapa : ${etapas}">
-            <span th:text="${etapa.nombre}"></span>
-        </li>
-    </ul>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
+            <td th:text="${etapa.id}"></td>
+            <td><a th:href="@{'/detalleEtapa/' + ${etapa.id}}" th:text="${etapa.nombre}"></a></td>
+            <td th:text="${etapa.desde}"></td>
+            <td th:text="${etapa.hasta}"></td>
+            <td>
+                <form th:action="@{/modificar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+
+                    <button class="boton-modificar"><i class="fas fa-pencil-alt"></i> Modificar</button>
+                </form>
+
+                <form th:action="@{/eliminar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
+                </form>
+                <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                    <button class="boton-verJuegos" ><i class="fas fa-gamepad"></i> Ver juegos</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
 </div>
-<div>
-    <h2>Listado de Juegos Creadas </h2>
-    <ul>
-        <li th:each="juego : ${juegos}">
-            <span th:text="${juego.nombre}"></span>
-        </li>
-    </ul>
 </div>
-</div>
-</body>
-</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>

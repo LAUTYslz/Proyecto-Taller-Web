@@ -44,7 +44,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         if (usuarioEncontrado == null) {
             throw new UsuarioInexistente();
         }
-        return repositorioUsuario.buscarPorId(id);
+        return usuarioEncontrado;
     }
 
     @Override

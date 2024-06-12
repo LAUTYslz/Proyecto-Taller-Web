@@ -13,4 +13,10 @@ public interface RepositorioAdmi {
     void guardarJuego(Juego juego);
 
     List<Juego> listaDeJuegos();
+
+    Etapa buscarEtapaPorId(Long id);
+
+
+
+    void actualizarEtapas(Etapa etapa);
 }
