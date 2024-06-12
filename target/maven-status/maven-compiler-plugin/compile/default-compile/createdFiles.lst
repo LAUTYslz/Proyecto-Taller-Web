@@ -15,6 +15,7 @@ com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
 com\tallerwebi\config\SpringWebConfig.class
+com\tallerwebi\dominio\excepcion\EtapaInexistente.class
 com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\DatosMembresia.class
 com\tallerwebi\dominio\TipoProfesional.class
@@ -32,6 +33,8 @@ com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\infraestructura\ServicioProfesionalImpl.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
 com\tallerwebi\dominio\Juego.class
+com\tallerwebi\dominio\Membresia.class
+com\tallerwebi\dominio\excepcion\juegoInexistente.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
 com\tallerwebi\presentacion\ControladorAdministrador.class

@@ -9,30 +9,29 @@ CREATE TABLE Usuario (
                          nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
 );
+CREATE TABLE IF NOT EXISTS Metodo (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         nombre VARCHAR(50)
+);
 
-
-CREATE TABLE IF NOT EXISTS etapa (
+CREATE  TABLE IF NOT EXISTS Etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
                        desde INT,
                        hasta INT
 );
 
-/*INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 0 a 3 meses', 0, 3);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 3 a 6 meses', 3, 6);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 6 a 9 meses', 6, 9);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos para bebés de 9 a 12 meses', 9, 12);*/
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 0 a 3 años', 0, 3);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 3 a 6 años', 3, 6);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 6 a 9 años', 6, 9);
-INSERT INTO Etapa (nombre, desde, hasta) VALUES ('Juegos  de 9 a 12 años', 9, 12);
+
 CREATE TABLE Juego (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
                        descripcion VARCHAR(1000),
                        etapa_id BIGINT,
-                       FOREIGN KEY (etapa_id) REFERENCES etapa(id)
+                       FOREIGN KEY (etapa_id) REFERENCES Etapa(id)
 );
+
+
+
 -- Juegos para bebés de 0 a 3 meses
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Mover un objeto pequeño', 'Mover un objeto pequeño delante de sus ojos. Durante las primeras semanas de vida el recién nacido mejorará su visión y pronto será posible entretenerle con objetos.', 1);
 
@@ -55,13 +54,6 @@ INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Tirarle una 
 
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Esconder un objeto', 'Los padres pueden entretener al niño escondiendo uno de sus juguetes favoritos mientras lo utiliza.', 4);
 
-CREATE TABLE IF NOT EXISTS Metodo (
-                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                      nombre VARCHAR(50)
-);
-
-INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
-
 CREATE TABLE Hijo (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                       nombre VARCHAR(255),
@@ -73,9 +65,14 @@ CREATE TABLE Hijo (
                       etapa_id BIGINT,
                       FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
                       FOREIGN KEY (metodo_id) REFERENCES Metodo(id),
-                      FOREIGN KEY (etapa_id) REFERENCES etapa(id)
+                      FOREIGN KEY (etapa_id) REFERENCES Etapa(id)
 );
 INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
+
+
+
+
+INSERT INTO Metodo (nombre) VALUES ('WALDORF'), ('MONTESSORI'), ('DOMAN');
 
 CREATE TABLE TipoProfesional (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -116,19 +113,9 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
 
-CREATE TABLE Tarjeta (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         numeroDeTarjeta VARCHAR(16) NOT NULL,
-                         fechaDeVencimiento DATE NOT NULL,
-                         codigoDeSeguridad VARCHAR(3) NOT NULL
-);
-
-CREATE TABLE DatosMembresia
-(
-    id               BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombreCompleto   VARCHAR(100) NOT NULL,
-    email            VARCHAR(100) NOT NULL,
-    numeroTelefonico VARCHAR(15),
-    tarjeta_id       BIGINT,
-    FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta (id)
-);
+INSERT INTO Etapa (nombre, desde, hasta)
+VALUES
+    ('etapa de 0 a 3 años', 0, 3),
+    ('etapa de 4 a 6 años', 4, 6),
+    ('etapa de 7 a 9 años', 7, 9),
+    ('etapa de 10 a 12 años', 10, 12);
