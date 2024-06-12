@@ -19,4 +19,6 @@ public interface RepositorioAdmi {
 
 
     void actualizarEtapas(Etapa etapa);
+
+    List<Juego> listarjuegosEtapas(Long id);
 }

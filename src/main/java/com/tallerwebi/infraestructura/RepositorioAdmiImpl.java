@@ -56,4 +56,11 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
         sessionFactory.getCurrentSession().update(etapa);
         }
 
+    @Override
+    public List<Juego> listarjuegosEtapas(Long id) {
+       return  sessionFactory.getCurrentSession().createCriteria(Juego.class)
+               .createAlias("etapa","etapaBuscada")
+               .add(Restrictions.eq("etapaBuscada.id",id)).list();
+    }
+
 }

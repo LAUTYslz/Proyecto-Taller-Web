@@ -71,4 +71,10 @@ public class ServicioAdmiImpl implements ServicioAdmi {
         buscarEtapa.setHasta(etapa.getHasta());
         repositorioAdmi.actualizarEtapas(buscarEtapa);
 }
+
+    @Override
+    public List<Juego> listasDeJuegosPorEtapa(Long id) {
+       return  repositorioAdmi.listarjuegosEtapas(id);
+
+    }
 }

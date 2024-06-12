@@ -133,7 +133,8 @@ public class ControladorAdministrador {
     }
     @PostMapping("/verjuego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
-
+        List<Juego> juegos = servicioAdmi.listasDeJuegosPorEtapa(id);
+        model.addAttribute("juegos", juegos);
         Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
         model.addAttribute(etapaBuscada);
         return "verJuegoPorEtapa";

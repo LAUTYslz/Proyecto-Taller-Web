@@ -24,4 +24,6 @@ public interface ServicioAdmi {
     Etapa buscarEtapa(Long id) throws EtapaInexistente;
 
     void actualizarEtapa(Etapa etapa) throws EtapaInexistente;
+
+    List<Juego> listasDeJuegosPorEtapa(Long id);
 }
