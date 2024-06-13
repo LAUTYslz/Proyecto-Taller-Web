@@ -15,6 +15,7 @@ com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
 com\tallerwebi\config\SpringWebConfig.class
+com\tallerwebi\dominio\Estado.class
 com\tallerwebi\dominio\excepcion\EtapaInexistente.class
 com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\DatosMembresia.class

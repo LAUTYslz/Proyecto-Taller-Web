@@ -1,28 +1,24 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.CodigoInvalido;
-import com.tallerwebi.dominio.excepcion.MembresiaExistente;
-import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
-import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.Map;
 
 @Service("servicioMembresia")
 @Transactional
 public class ServicioMembresiaImpl implements ServicioMembresia {
 
     private final RepositorioMembresia repositorioMembresia;
+    private final RepositorioUsuario repositorioUsuario;
 
-    @Autowired
-    public ServicioMembresiaImpl(RepositorioMembresia repositorioMembresia) {
+    public ServicioMembresiaImpl(RepositorioMembresia repositorioMembresia, RepositorioUsuario repositorioUsuario) {
         this.repositorioMembresia = repositorioMembresia;
+        this.repositorioUsuario = repositorioUsuario;
     }
 
     @Override
-    public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido{
+    public void darDeAltaMembresia(DatosMembresia datosMembresia, Usuario usuario) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, UsuarioInexistente {
         if (!validarNumeroDeTarjeta(datosMembresia.getTarjeta().getNumeroDeTarjeta())){
             throw new TarjetaInvalida();
         }
@@ -31,24 +27,37 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
             throw new CodigoInvalido();
         }
 
-        if (repositorioMembresia.buscarMembresia(datosMembresia.getEmail()) != null){
-            throw new MembresiaExistente();
+
+        Usuario usuarioMembresia=repositorioUsuario.buscarPorId(usuario.getId());
+        if(usuarioMembresia ==null){
+            throw new UsuarioInexistente();
         }
+        // Guardar la tarjeta en la base de datos
+        repositorioMembresia.guardarTarjeta(datosMembresia.getTarjeta());
+
+        // Asociar la tarjeta guardada con la membresía
+        datosMembresia.setTarjeta(datosMembresia.getTarjeta());
+
+        // Asociar la membresía con el usuario
+        usuarioMembresia.setMembresia(datosMembresia);
+
+        // Guardar la membresía
+        repositorioMembresia.registrarMembresia(datosMembresia);
     }
 
     @Override
-    public void darDeBajaMembresia(String email) throws MembresiaInexistente {
-        DatosMembresia membresiaAEliminar = this.repositorioMembresia.buscarMembresia(email);
+    public void darDeBajaMembresia(Long id) throws MembresiaInexistente {
+        DatosMembresia membresiaAEliminar = this.repositorioMembresia.buscarMembresia(id);
         if (membresiaAEliminar != null) {
-            this.repositorioMembresia.eliminarMembresia(email);
+            repositorioMembresia.eliminarMembresia(membresiaAEliminar.getId());
         } else {
             throw new MembresiaInexistente();
         }
     }
 
     @Override
-    public DatosMembresia buscarMembresia(String email) throws MembresiaInexistente {
-        return this.repositorioMembresia.buscarMembresia(email);
+    public DatosMembresia buscarMembresia(Long id) throws MembresiaInexistente {
+        return this.repositorioMembresia.buscarMembresia(id);
     }
 
     private Boolean validarCVV(Integer cvv) throws CodigoInvalido {
@@ -77,6 +86,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
         if (numeroDeTarjeta == null){
             throw new TarjetaInvalida();
         }
+
 
         int longitud = numeroDeTarjeta.toString().length();
 

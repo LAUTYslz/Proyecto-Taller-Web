@@ -2,6 +2,8 @@ package com.tallerwebi.dominio;
 
 import javax.persistence.*;
 
+import static com.tallerwebi.dominio.Estado.INACTIVA;
+
 @Entity
 public class DatosMembresia {
 
@@ -10,6 +12,7 @@ public class DatosMembresia {
     private Long id;
     private String nombreCompleto;
     private String email;
+    private Estado estado=INACTIVA;
     private Long numeroTelefonico;
     @ManyToOne
     private Tarjeta tarjeta;
@@ -66,6 +69,14 @@ public class DatosMembresia {
                 '}';
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,3 +85,4 @@ public class DatosMembresia {
         return id;
     }
 }
+

@@ -15,7 +15,8 @@ public class Usuario {
     private String rol;
     private Boolean estado ;// enum o boolean
     private String nombre;
-
+    @OneToOne
+    private DatosMembresia membresia;
 
     @OneToOne
     private Usuario conyuge;
@@ -83,5 +84,11 @@ public class Usuario {
         this.conyuge = conyuge;
     }
 
+    public DatosMembresia getMembresia() {
+        return membresia;
+    }
 
+    public void setMembresia(DatosMembresia membresia) {
+        this.membresia = membresia;
+    }
 }

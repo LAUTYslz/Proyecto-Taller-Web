@@ -2,6 +2,7 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.DatosMembresia;
 import com.tallerwebi.dominio.RepositorioMembresia;
+import com.tallerwebi.dominio.Tarjeta;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -14,6 +15,7 @@ import java.util.List;
 @Transactional
 @Repository("repositorioMembresia")
 public class RepositorioMembresiaImpl implements RepositorioMembresia {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -22,10 +24,10 @@ public class RepositorioMembresiaImpl implements RepositorioMembresia {
     }
 
     @Override
-    public DatosMembresia buscarMembresia(String email) {
+    public DatosMembresia buscarMembresia(Long id) {
         final Session session = sessionFactory.getCurrentSession();
         return (DatosMembresia) session.createCriteria(DatosMembresia.class)
-                .add(Restrictions.eq("email", email))
+                .add(Restrictions.eq("id", id))
                 .uniqueResult();
     }
 
@@ -35,9 +37,9 @@ public class RepositorioMembresiaImpl implements RepositorioMembresia {
     }
 
     @Override
-    public void eliminarMembresia(String email) {
-        DatosMembresia membresiaAEliminar = buscarMembresia(email);
-        sessionFactory.getCurrentSession().delete(membresiaAEliminar);
+    public void eliminarMembresia(Long id) {
+
+        sessionFactory.getCurrentSession().delete(id);
     }
 
     @Override
@@ -45,5 +47,10 @@ public class RepositorioMembresiaImpl implements RepositorioMembresia {
         return (List<DatosMembresia>) sessionFactory.getCurrentSession()
                 .createCriteria(DatosMembresia.class)
                 .list();
+    }
+
+    @Override
+    public void guardarTarjeta(Tarjeta tarjeta) {
+        sessionFactory.getCurrentSession().save(tarjeta);
     }
 }

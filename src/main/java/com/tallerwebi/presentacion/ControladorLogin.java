@@ -2,10 +2,12 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 
+import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 
 
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.infraestructura.ServicioMembresiaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,17 @@ import java.util.List;
 public class ControladorLogin {
 
     private final ServicioLogin servicioLogin;
-
+    private final ServicioMembresia servicioMembresia;
 
     @Autowired
-    public ControladorLogin(ServicioLogin servicioLogin ) {
-        this.servicioLogin = servicioLogin;
 
+    public ControladorLogin(ServicioLogin servicioLogin, ServicioMembresia servicioMembresia) {
+        this.servicioLogin = servicioLogin;
+        this.servicioMembresia = servicioMembresia;
     }
+
+
+
 
 
     @RequestMapping("/login")
@@ -112,25 +118,26 @@ public class ControladorLogin {
         return new ModelAndView("bienvenido", model);
     }
 
-
     @GetMapping("/bienvenido")
     public ModelAndView mostrarBienvenido(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
 
         // Obtener el usuario actual
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-
-        // Obtener la lista de hijos del usuario
-        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
-
-        // Agregar el usuario y la lista de hijos al modelo
-        modelAndView.addObject("usuario", usuario);
-        modelAndView.addObject("hijos", hijos);
-
-        // Establecer la vista
-        modelAndView.setViewName("bienvenido");
+        DatosMembresia datosMembresia = new DatosMembresia();
+        // Verificar si el usuario tiene membresía
 
 
+            // Si el usuario tiene membresía, obtener la lista de hijos
+            List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
+
+            // Agregar el usuario, la membresía y la lista de hijos al modelo
+            modelAndView.addObject("usuario", usuario);
+            modelAndView.addObject("membresia", datosMembresia);
+            modelAndView.addObject("hijos", hijos);
+
+            // Establecer la vista como "bienvenido"
+            modelAndView.setViewName("bienvenido");
 
         return modelAndView;
     }

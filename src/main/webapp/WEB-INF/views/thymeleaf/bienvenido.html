@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -149,7 +149,9 @@
 
                 <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
                 <p>Email : <span th:text="${usuario.email}"></span></p>
-                <p>Estado: <span th:text="${usuario.estado}"></span></p>
+                <!-- Verificar si el usuario tiene una membresía antes de mostrar los detalles -->
+                <p th:if="${membresia.getId()== null}">No hay Membresia Asociado</p>
+                <p th:if="${membresia.getId()!= null}"><span th:text="${membresia.estado}"></span></p>
 
                 <!-- Verifica si el usuario tiene cónyuge -->
                 <p th:if="${usuario.getConyuge() != null}">Nombre del Cónyuge: <span th:text="${usuario.conyuge.nombre}"></span></p>

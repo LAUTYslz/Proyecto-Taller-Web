@@ -4,9 +4,16 @@ import java.util.List;
 
 public interface RepositorioMembresia {
 
-    DatosMembresia buscarMembresia(String email);
+
+
+    DatosMembresia buscarMembresia(Long id);
+
     void registrarMembresia(DatosMembresia membresia);
-    void eliminarMembresia(String email);
+
+
+    void eliminarMembresia(Long id);
+
     List<DatosMembresia> listarMembresias();
 
+    void guardarTarjeta(Tarjeta tarjeta);
 }
