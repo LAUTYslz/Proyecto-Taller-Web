@@ -18,14 +18,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
+
     <style>
         /* Estilos para los botones circulares */
         .circle-button {
+            font-family: Schoolbell, cursive;
             display: inline-block;
             width: 150px; /* Ancho del círculo */
             height: 150px; /* Altura del círculo */
             border-radius: 50%;
-            background-color: blueviolet;
+            background-color: #cc99ff;
             color: #fff;
             text-align: center;
             line-height: 150px; /* Centrado vertical del texto */
@@ -37,11 +39,41 @@
 
         /* Estilos para el contenedor de los botones */
         .button-container {
-            margin-top:20px;
+            margin-top: 20px;
             margin-bottom: 20px;
             text-align: center; /* Centrar los botones */
+            font-family: Schoolbell, cursive;
         }
 
+        /* Estilos para los botones */
+        .button-container .button {
+            background-color: #e6e6ff; /* Lila claro */
+            color: white; /* Tono complementario */
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0; /* Espacio entre los botones */
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px; /* Ancho de los botones */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+
+        /* Agregar efecto al pasar el cursor sobre los botones */
+        .button-container .button:hover {
+            background-color: #cc99ff; /* Cambia a un lila más oscuro al pasar el cursor */
+        }
+
+        /* Estilos para el segundo botón */
+        .button-container .button:nth-child(2) {
+            background-color: #cc99ff; /* Lila medio */
+            color: #330066; /* Tono complementario */
+        }
+
+        /* Estilos para el tercer botón */
+        .button-container .button:nth-child(3) {
+            background-color: #9966ff; /* Lila oscuro */
+            color: #ffccff; /* Tono complementario */
+        }
         /* Estilos para el hover */
         .circle-button:hover {
             background-color: #666666; /* Color más oscuro al pasar el ratón */
@@ -50,11 +82,14 @@
 
         /* Estilos para los datos del titular */
         .titular {
-            background-color: #f9f9f9; /* Color de fondo */
             padding: 20px; /* Espaciado interior */
             margin-bottom: 20px; /* Espaciado inferior */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+            border-radius: 100px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(10, 0, 0, 0.1); /* Sombra */
+            font-family: Schoolbell, cursive;
+
+            /* Fondo degradado */
+            background: linear-gradient(to right, #b9a0ea, #9370db); /* De lila claro a lila oscuro */
         }
 
         /* Estilos para los datos de los hijos */
@@ -137,8 +172,7 @@
                             </form>
                             <form th:action="@{/eliminar-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
-                                <form th:action="@{/verTest-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
-                                    <button type="submit" class="btn btn-danger">Ver Test</button>
+
                                     <form th:action="@{/verPeofesional-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
                                         <button type="submit" class="btn btn-danger">Ver Profesional</button>
 
@@ -153,27 +187,20 @@
 
 
         </div>
-        </div>
-    </section>
+</div>
+</section>
 
-    <!-- Sección de botones circulares -->
-    <div class="button-container">
+<!-- Sección de botones circulares -->
+<div class="button-container">
 
-        <div class="circle-button"><a th:href="@{/modificarUsuario/{id}(id=${usuario.id})}">MODIFICAR DATOS TITULAR</a></div>
-        <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
-<<<<<<< HEAD
-        <div class="circle-button"><a th:href="@{/suscripcion}">MEMBRESIA</a></div>
-        <div class="circle-button"><a th:href="@{/contacto}">CONTACTO</a></div>
-=======
-        <div class="circle-button"><a th:href="@{/membresiaPaga}">MEMBRESIA</a></div>
-        <div class="circle-button"><a th:href="@{/profesional}">PROFESIONALES</a></div>
->>>>>>> aye
-        <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
-        <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
-    </div >
-    </div>
-    <a th:href="@{/vacunacion}">VACUNACION</a>
-    </div>
+    <div class="circle-button"><a th:href="@{/modificarUsuario/{id}(id=${usuario.id})}">MODIFICAR</a></div>
+    <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
+    <div class="circle-button"><a th:href="@{/membresiaPaga}">MEMBRESIA</a></div>
+    <div class="circle-button"><a th:href="@{/profesional}">PROFESIONALES</a></div>
+    <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
+    <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
+</div >
+
 
 </main>
 </body>

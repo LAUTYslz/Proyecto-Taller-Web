@@ -29,6 +29,7 @@ public class ControladorAdministrador {
         this.servicioAdmi = servicioAdmi;
         this.httpServletRequest = httpServletRequest;
     }
+
     @GetMapping("/administrador")
     public ModelAndView mostrarBienvenido(Model model, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,7 +56,6 @@ public class ControladorAdministrador {
 
         return modelAndView;
     }
-
 
 
     @GetMapping("/cerrar-sesion")
@@ -103,44 +103,56 @@ public class ControladorAdministrador {
     @PostMapping("/modificar-etapa/{id}")
     public String mostrarFormularioModificarEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
 
-        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
-       model.addAttribute(etapaBuscada);
+        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
+        model.addAttribute(etapaBuscada);
         return "guardar-etapa";
     }
 
 
-
     @PostMapping("/actualizar-etapa")
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
-   servicioAdmi.actualizarEtapa(etapa);
+        servicioAdmi.actualizarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
 
     @PostMapping("/eliminar-etapa/{id}")
-    public String eliminarEtapa(@ModelAttribute Etapa etapa)  {
+    public String eliminarEtapa(@ModelAttribute Etapa etapa) {
         servicioAdmi.eliminarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
+
     @PostMapping("/verjuego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
         Usuario recupero = servicioLogin.obtenerUsuarioActual(httpServletRequest);
         List<Juego> juegos = servicioAdmi.listasDeJuegosPorEtapa(id);
         model.addAttribute("juegos", juegos);
-        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
+        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
         model.addAttribute(etapaBuscada);
-        if(recupero.getRol()=="ADMINISTRADOR") {
+        if (recupero.getRol().equalsIgnoreCase("ADMIN")) {
             return "verJuegoPorEtapaAdmi";
+        } else {
+            return "verJuegoPorEtapaUsuario";
+        }
+    }
+
+    @GetMapping("/verjuego")
+    public String verJuegoPorEtapa(HttpServletRequest request) {
+        Usuario recupero = servicioLogin.obtenerUsuarioActual(request);
+        if (recupero != null) {
+
+            request.getSession().setAttribute("ROL", recupero.getRol());
+            if (recupero.getRol().equals("ADMIN")) {
+                return "verJuegoPorEtapaAdmin";
+            }
+
+
         }
         return "verJuegoPorEtapaUsuario";
     }
 
-    @GetMapping("/verjuego")
-    public String verJuegoPorEtapa() {
 
-        return "verJuegoPorEtapaAdmi";
-    }
     @GetMapping("/modificar-juego/{id}")
     public String mostrarFormularioDeModificarJuego(@PathVariable Long id, Model model) throws juegoInexistente {
      Juego buscado=   servicioAdmi.buscarJuegoPorId(id);
