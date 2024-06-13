@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,11 +20,17 @@ public class ControladorAdministrador {
 
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
+    private ServicioProfesional servicioProfesional;
+    //private ServicioMetodo servicioMetodo;
+    //private ServicioTipoProfesional servicioTipoProfesional;
 
     @Autowired
-    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi) {
+    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
+        this.servicioProfesional = servicioProfesional;
+        //this.servicioMetodo = servicioMetodo;
+        //this.servicioTipoProfesional = servicioTipoProfesional;
     }
 
 
@@ -124,10 +129,9 @@ public class ControladorAdministrador {
     }
 
 
-
     @PostMapping("/actualizar-etapa")
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
-   servicioAdmi.actualizarEtapa(etapa);
+    servicioAdmi.actualizarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
@@ -147,6 +151,56 @@ public class ControladorAdministrador {
     }
 
 
+    //----------------------PROFESIONALES---------------------------------------
+    @GetMapping("/admin/gestionarProfesionales")
+    public ModelAndView verGestionarProfesionales() {
+        ModelAndView mav = new ModelAndView("gestionarProfesionales");
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        mav.addObject("profesionales", profesionales);
+        return mav;
+    }
+
+     @GetMapping("/admin/gestionarProfesionales/crear")
+     public ModelAndView  mostrarFormularioNuevo() {
+        ModelAndView mav = new ModelAndView("formulario_crear_profesional");
+         mav.addObject("profesional", new Profesional());
+         List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+         mav.addObject("metodos", metodos);
+         mav.addObject("tipos", tipos);
+         return mav;
+     }
+
+    @PostMapping("/admin/gestionarProfesionales/guardar")
+    public String agregarProfesional(@ModelAttribute Profesional profesional) {
+        Profesional profesionalGuardado = servicioProfesional.guardar(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
+
+    @GetMapping("/admin/gestionarProfesionales/editar/{id}")
+    public ModelAndView editarProfesional(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("formulario_editar_profesional");
+        Profesional profesional = servicioProfesional.obtenerPorId(id);
+        mav.addObject("profesional", profesional);
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        mav.addObject("metodos", metodos);
+        mav.addObject("tipos", tipos);
+        return mav;
+    }
+
+    @PostMapping("/admin/gestionarProfesionales/actualizar")
+    public String actualizarProfesional(@ModelAttribute Profesional profesional) {
+        servicioProfesional.actualizarProfesional(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
+
+    @GetMapping("/admin/gestionarProfesionales/eliminar/{id}")
+    public String eliminarProfesional(@PathVariable Long id) {
+       Profesional profesional = servicioProfesional.obtenerPorId(id);
+        servicioProfesional.eliminarProfesional(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
 }
 
 

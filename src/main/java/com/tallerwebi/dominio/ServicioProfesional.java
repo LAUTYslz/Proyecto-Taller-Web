@@ -22,5 +22,7 @@ public interface ServicioProfesional {
 
     List<TipoProfesional> traerTodosLosTipos();
 
+    Profesional obtenerPorId(Long id);
+
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }
