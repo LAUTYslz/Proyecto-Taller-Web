@@ -2,7 +2,6 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
-import com.tallerwebi.dominio.excepcion.juegoInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +18,21 @@ import java.util.List;
 @Controller
 public class ControladorAdministrador {
 
-    private final HttpServletRequest httpServletRequest;
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
+    private ServicioProfesional servicioProfesional;
+    //private ServicioMetodo servicioMetodo;
+    //private ServicioTipoProfesional servicioTipoProfesional;
 
     @Autowired
-    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, HttpServletRequest httpServletRequest) {
+    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
-        this.httpServletRequest = httpServletRequest;
+        this.servicioProfesional = servicioProfesional;
+        //this.servicioMetodo = servicioMetodo;
+        //this.servicioTipoProfesional = servicioTipoProfesional;
     }
+
 
     @GetMapping("/administrador")
     public ModelAndView mostrarBienvenido(Model model, HttpServletRequest request) {
@@ -39,17 +43,12 @@ public class ControladorAdministrador {
 
         // Agregar el usuario
         modelAndView.addObject("usuario", usuario);
+        List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+        List<Juego> juegos = servicioAdmi.listasDeJuegos();
 
-        // Verificar si ya se han cargado las etapas y los juegos en el modelo
-        if (!model.containsAttribute("etapas")) {
-            List<Etapa> etapas = servicioAdmi.listaDeEtapas();
-            model.addAttribute("etapas", etapas);
-        }
-
-        if (!model.containsAttribute("juegos")) {
-            List<Juego> juegos = servicioAdmi.listasDeJuegos();
-            model.addAttribute("juegos", juegos);
-        }
+        // Agregar las listas al modelo para que estén disponibles en la vista
+        model.addAttribute("etapas", etapas);
+        model.addAttribute("juegos", juegos);
 
         // Establecer la vista
         modelAndView.setViewName("administrador");
@@ -57,6 +56,27 @@ public class ControladorAdministrador {
         return modelAndView;
     }
 
+    @PostMapping("/administrador")
+    public ModelAndView mostrarBienvenidoPost(Model model, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        // Obtener el usuario actual
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        // Agregar el usuario
+        modelAndView.addObject("usuario", usuario);
+        List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+        List<Juego> juegos = servicioAdmi.listasDeJuegos();
+
+        // Agregar las listas al modelo para que estén disponibles en la vista
+        model.addAttribute("etapas", etapas);
+        model.addAttribute("juegos", juegos);
+
+        // Establecer la vista
+        modelAndView.setViewName("administrador");
+
+        return modelAndView;
+    }
 
     @GetMapping("/cerrar-sesion")
     public String cerrarSesion(HttpServletRequest request, HttpSession session) {
@@ -65,7 +85,7 @@ public class ControladorAdministrador {
         return "redirect:/";
     }
 
-   /* @GetMapping("/crearEtapa")
+    @GetMapping("/crearEtapa")
     public String mostrarFormularioCreacionEtapa(Model model) {
         model.addAttribute("etapa", new Etapa());
         return "crearEtapa"; // Asegúrate de que este sea el nombre correcto de tu vista
@@ -77,20 +97,20 @@ public class ControladorAdministrador {
       modelAndView.addObject("etapa", etapa);
         servicioAdmi.guardarEtapa(etapa);
         return "redirect:/crearJuego";
-    }*/
+    }
 
 
-   /* @GetMapping("/crearJuego")
+    @GetMapping("/crearJuego")
     public ModelAndView mostrarFormularioCrearJuego(Model model) {
         ModelAndView modelAndView = new ModelAndView("crearJuego");
         model.addAttribute("juego", new Juego());
         List<Etapa> etapasCreadas = servicioAdmi.listaDeEtapas();
         modelAndView.addObject("etapasCreadas", etapasCreadas);
         return modelAndView;
-    }*/
+    }
 
 
-   /* @PostMapping("/guardar-juego")
+    @PostMapping("/guardar-juego")
     public String crearJuego(Juego juego, Model model) {
         ModelAndView modelAndView = new ModelAndView();
         model.addAttribute(juego);
@@ -98,86 +118,90 @@ public class ControladorAdministrador {
         servicioAdmi.guardarJuego(juego);
     return  "redirect:/administrador";
 
-    }*/
+    }
 
     @PostMapping("/modificar-etapa/{id}")
     public String mostrarFormularioModificarEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
 
-        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
-        model.addAttribute(etapaBuscada);
+        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
+       model.addAttribute(etapaBuscada);
         return "guardar-etapa";
     }
 
 
     @PostMapping("/actualizar-etapa")
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
-        servicioAdmi.actualizarEtapa(etapa);
+    servicioAdmi.actualizarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
-
-    @PostMapping("/eliminar-etapa/{id}")
-    public String eliminarEtapa(@ModelAttribute Etapa etapa) {
-        servicioAdmi.eliminarEtapa(etapa);
-
-        return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
-    }
-
     @PostMapping("/verjuego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
-        Usuario recupero = servicioLogin.obtenerUsuarioActual(httpServletRequest);
-        List<Juego> juegos = servicioAdmi.listasDeJuegosPorEtapa(id);
-        model.addAttribute("juegos", juegos);
-        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
+
+        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
         model.addAttribute(etapaBuscada);
-        if (recupero.getRol().equalsIgnoreCase("ADMIN")) {
-            return "verJuegoPorEtapaAdmi";
-        } else {
-            return "verJuegoPorEtapaUsuario";
-        }
+        return "verJuegoPorEtapa";
     }
 
     @GetMapping("/verjuego")
-    public String verJuegoPorEtapa(HttpServletRequest request) {
-        Usuario recupero = servicioLogin.obtenerUsuarioActual(request);
-        if (recupero != null) {
-
-            request.getSession().setAttribute("ROL", recupero.getRol());
-            if (recupero.getRol().equals("ADMIN")) {
-                return "verJuegoPorEtapaAdmin";
-            }
-
-
-        }
-        return "verJuegoPorEtapaUsuario";
+    public String verJuegoPorEtapa() {
+        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
+        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+        return "verJuegoPorEtapa";
     }
 
 
-    @GetMapping("/modificar-juego/{id}")
-    public String mostrarFormularioDeModificarJuego(@PathVariable Long id, Model model) throws juegoInexistente {
-     Juego buscado=   servicioAdmi.buscarJuegoPorId(id);
-    model.addAttribute(buscado);
-      return "modificarJuego";
-    }
-    @GetMapping("/actualizar-juego")
-    public String modificarJuego(@ModelAttribute Juego juego) throws juegoInexistente {
-        servicioAdmi.actualizarJuego(juego);
-
-        return "redirect:/administrador";
-    }
-    @GetMapping("/verModificacionjuego")
-    public String verModificacionJuegoPorEtapa() {
-
-        return "modificarJuego";
-    }
-    @GetMapping("/eliminar-juego/{id}")
-    public String eliminarJuego(@PathVariable Long id, Model model) throws juegoInexistente {
-        Juego buscado=   servicioAdmi.buscarJuegoPorId(id);
-        servicioAdmi.eliminarJuego(buscado);
-        return "redirect:/administrador";
+    //----------------------PROFESIONALES---------------------------------------
+    @GetMapping("/admin/gestionarProfesionales")
+    public ModelAndView verGestionarProfesionales() {
+        ModelAndView mav = new ModelAndView("gestionarProfesionales");
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        mav.addObject("profesionales", profesionales);
+        return mav;
     }
 
+     @GetMapping("/admin/gestionarProfesionales/crear")
+     public ModelAndView  mostrarFormularioNuevo() {
+        ModelAndView mav = new ModelAndView("formulario_crear_profesional");
+         mav.addObject("profesional", new Profesional());
+         List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+         mav.addObject("metodos", metodos);
+         mav.addObject("tipos", tipos);
+         return mav;
+     }
 
+    @PostMapping("/admin/gestionarProfesionales/guardar")
+    public String agregarProfesional(@ModelAttribute Profesional profesional) {
+        Profesional profesionalGuardado = servicioProfesional.guardar(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
+
+    @GetMapping("/admin/gestionarProfesionales/editar/{id}")
+    public ModelAndView editarProfesional(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("formulario_editar_profesional");
+        Profesional profesional = servicioProfesional.obtenerPorId(id);
+        mav.addObject("profesional", profesional);
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        mav.addObject("metodos", metodos);
+        mav.addObject("tipos", tipos);
+        return mav;
+    }
+
+    @PostMapping("/admin/gestionarProfesionales/actualizar")
+    public String actualizarProfesional(@ModelAttribute Profesional profesional) {
+// aca tenes que agregar metodo y tipo de profesional en los parametro para hacerles el update a ellos
+        servicioProfesional.actualizarProfesional(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
+
+    @GetMapping("/admin/gestionarProfesionales/eliminar/{id}")
+    public String eliminarProfesional(@PathVariable Long id) {
+       Profesional profesional = servicioProfesional.obtenerPorId(id);
+        servicioProfesional.eliminarProfesional(profesional);
+        return "redirect:/admin/gestionarProfesionales";
+    }
 }
 
 
