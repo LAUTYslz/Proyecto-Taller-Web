@@ -40,20 +40,25 @@
         <label for="institucion">Institución:</label>
         <input type="text" id="institucion" th:field="*{institucion}" name="institucion"><br>
 
-        <label for="tipo">Tipo:</label>
-        <select id="tipo" th:field="*{tipo}" required name="tipo">
-            <option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+        <label for="tipo"d>Tipo:</label>
+        <select id="tipo"   name="tipo.id">
+            <option value="">Seleccionar Tipo </option>
+            <th:block th:each="tipo : ${tipos}">
+                <option th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+            </th:block>
         </select><br>
 
         <label for="metodo">Método:</label>
-        <select id="metodo" th:field="*{metodo}" required name="metodo">
-            <option th:each="metodo : ${metodos}" th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
+        <select id="metodo"   name="metodo.id">
+            <option value="">Seleccionar Metodo </option>
+            <th:block th:each="metodo : ${metodos}">
+                <option th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
+            </th:block>
         </select><br>
 
         <input type="submit" value="Actualizar">
 
     </form>
-
 
     <!-- /.container -->
     <div th:replace="home :: footer"></div>

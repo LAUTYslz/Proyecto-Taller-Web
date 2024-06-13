@@ -190,8 +190,10 @@ public class ControladorAdministrador {
     }
 
     @PostMapping("/admin/gestionarProfesionales/actualizar")
-    public String actualizarProfesional(@ModelAttribute Profesional profesional) {
+    public String actualizarProfesional(@ModelAttribute Profesional profesional, Model model) {
         servicioProfesional.actualizarProfesional(profesional);
+
+
         return "redirect:/admin/gestionarProfesionales";
     }
 
