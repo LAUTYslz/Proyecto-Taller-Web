@@ -12,8 +12,8 @@ public class Usuario {
     private Long id;
     private String email;
     private String password;
-    private String rol="USUARIO";
-    private String estado = "inactivo";// enum o boolean
+    private String rol;
+    private Boolean estado ;// enum o boolean
     private String nombre;
 
 
@@ -59,11 +59,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

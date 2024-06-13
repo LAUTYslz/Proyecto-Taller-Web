@@ -14,6 +14,8 @@ public interface ServicioLogin {
 
     void registrarHijo( Hijo hijo1);
 
+    void registrarConyuge(Long idUsuario, Usuario conyuge) throws UsuarioInexistente, UsuarioExistente;
+
     void asociarConyuge(String userEmail, Usuario conyuge);
 
     void setUltimoHijoAgregado(HttpServletRequest request, Hijo hijo);

@@ -4,7 +4,7 @@ CREATE TABLE Usuario (
                          email VARCHAR(255),
                          password VARCHAR(255),
                          rol VARCHAR(255),
-                         estado VARCHAR(255) DEFAULT 'inactivo',
+                         estado BOOLEAN DEFAULT FALSE,
                          conyuge_id BIGINT,
                          nombre VARCHAR(255),
                          FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
@@ -21,6 +21,12 @@ CREATE  TABLE IF NOT EXISTS Etapa (
                        hasta INT
 );
 
+INSERT INTO Etapa (nombre, desde, hasta)
+VALUES
+    ('etapa de 0 a 3 años', 0, 3),
+    ('etapa de 4 a 6 años', 4, 6),
+    ('etapa de 7 a 9 años', 7, 9),
+    ('etapa de 10 a 12 años', 10, 12);
 
 CREATE TABLE Juego (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -67,7 +73,7 @@ CREATE TABLE Hijo (
                       FOREIGN KEY (metodo_id) REFERENCES Metodo(id),
                       FOREIGN KEY (etapa_id) REFERENCES Etapa(id)
 );
-INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
+INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', true,'ADMINISTRADOR');
 
 
 
@@ -112,10 +118,3 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Tienda Juguetes', '+1122334462', 'ventas@tiendajuguetes.com', 'Calle Comercial 1617', 'Tienda Juguetes', 3, NULL),
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
-
-INSERT INTO Etapa (nombre, desde, hasta)
-VALUES
-    ('etapa de 0 a 3 años', 0, 3),
-    ('etapa de 4 a 6 años', 4, 6),
-    ('etapa de 7 a 9 años', 7, 9),
-    ('etapa de 10 a 12 años', 10, 12);

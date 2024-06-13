@@ -34,6 +34,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         if (usuarioEncontrado != null) {
             throw new UsuarioExistente();
         }
+        usuario.setRol("USUARIO");
         repositorioUsuario.guardar(usuario);
     }
 
@@ -55,7 +56,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 
 
 
-   /* @Override
+    @Override
    public void registrarConyuge(Long idUsuario, Usuario conyuge) throws UsuarioInexistente, UsuarioExistente {
         // Buscar al usuario actual en base a su ID
         Usuario usuario = repositorioUsuario.buscarPorId(idUsuario);
@@ -69,25 +70,21 @@ public class ServicioLoginImpl implements ServicioLogin {
         Usuario conyugeExistente = repositorioUsuario.buscarUsuario(conyuge.getEmail(), conyuge.getPassword());
         if(conyugeExistente == null) {
             // Si el cónyuge no existe, guardarlo en la base de datos
+            usuario.setConyuge(conyuge);
             repositorioUsuario.guardar(conyuge);
         } else {
             // Si el cónyuge ya existe, lanzar una excepción
             throw new UsuarioExistente();
         }
 
-        // Asignar el cónyuge al usuario
-        usuario.setConyuge(conyuge);
 
-        // Actualizar el usuario en la base de datos para guardar la relación con el cónyuge
-        repositorioUsuario.guardar(usuario);
-        repositorioUsuario.guardar(conyuge);
-    }*/
+    }
 
     @Override
     public void asociarConyuge(String userEmail, Usuario conyuge) {
         Usuario usuario = repositorioUsuario.findByEmail(userEmail);
         usuario.setConyuge(conyuge);
-        conyuge.setConyuge(usuario);
+
         conyuge.setRol("ROL_CONYUGE");
         repositorioUsuario.guardar(usuario);
         repositorioUsuario.guardar(conyuge);
