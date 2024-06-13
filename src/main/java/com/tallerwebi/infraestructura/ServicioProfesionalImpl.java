@@ -143,6 +143,11 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     }
 
     @Override
+    public Profesional obtenerPorId(Long id) {
+        return repositorioProfesional.buscarProfesionalPorId(id);
+    }
+
+    @Override
     public Profesional guardar(Profesional profesional) {
         repositorioProfesional.guardar(profesional);
         return profesional;

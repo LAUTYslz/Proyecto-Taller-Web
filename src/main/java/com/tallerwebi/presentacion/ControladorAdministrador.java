@@ -191,7 +191,6 @@ public class ControladorAdministrador {
 
     @PostMapping("/admin/gestionarProfesionales/actualizar")
     public String actualizarProfesional(@ModelAttribute Profesional profesional) {
-// aca tenes que agregar metodo y tipo de profesional en los parametro para hacerles el update a ellos
         servicioProfesional.actualizarProfesional(profesional);
         return "redirect:/admin/gestionarProfesionales";
     }

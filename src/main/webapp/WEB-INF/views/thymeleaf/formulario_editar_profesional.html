@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Editar Profesional</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div th:replace="home :: nav"></div>
+
+    <h1>Editar Profesional</h1>
+    <form action="#" th:action="@{/admin/gestionarProfesionales/actualizar}" method="POST" th:object="${profesional}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" name="nombre" required><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" th:field="*{telefono}" name="telefono"><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" name="email"><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" th:field="*{direccion}" name="direccion"><br>
+
+        <label for="institucion">Institución:</label>
+        <input type="text" id="institucion" th:field="*{institucion}" name="institucion"><br>
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" th:field="*{tipo}" required name="tipo">
+            <option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+        </select><br>
+
+        <label for="metodo">Método:</label>
+        <select id="metodo" th:field="*{metodo}" required name="metodo">
+            <option th:each="metodo : ${metodos}" th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
+        </select><br>
+
+        <input type="submit" value="Actualizar">
+
+    </form>
+
+
+    <!-- /.container -->
+    <div th:replace="home :: footer"></div>
+
+    <!-- Boostrap core js -->
+    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -51,7 +51,7 @@ public class ControladorProfesional {
         ModelAndView mav = new ModelAndView("profesional");
 
         try {
-            List<Profesional> profesionales = obtenerProfesionalesPorMetodoYTipo(nombreTipo, nombreMetodo);;
+            List<Profesional> profesionales = obtenerProfesionalesPorMetodoYTipo(nombreTipo, nombreMetodo);
 
             mav.addObject("profesionales", profesionales);
             mav.addObject("metodos", servicioContacto.traerTodosLosMetodos());
