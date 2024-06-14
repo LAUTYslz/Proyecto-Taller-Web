@@ -96,5 +96,24 @@ public class RepositorioTipoProfesionalTest {
         return repositorioTipoContacto.buscarTipos();
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void quePuedaBuscarUnTipoContactoPorId(){
+        TipoProfesional tipoContacto = givenExisteTipo("Pediatra");
+        Long idContacto = tipoContacto.getId();
+        TipoProfesional tipoBuscado = whenBuscoTipoContactoPorId(idContacto);
+        thenObtengoTipoPorId(tipoBuscado);
+    }
+
+    private void thenObtengoTipoPorId(TipoProfesional tipoBuscado) {
+        assertThat(tipoBuscado.getNombre(), equalTo("Pediatra"));
+        assertThat(tipoBuscado.getId(), equalTo(1L));
+    }
+
+    private TipoProfesional whenBuscoTipoContactoPorId(Long idContacto) {
+        return repositorioTipoContacto.traerTipoPorId(idContacto);
+    }
+
 
 }

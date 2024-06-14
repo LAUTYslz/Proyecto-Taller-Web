@@ -38,11 +38,12 @@
         <label for="institucion">Institución:</label>
         <input type="text" id="institucion" th:field="*{institucion}" name="institucion"><br>
 
+
         <label for="tipo">Tipo:</label>
         <select id="tipo" name="tipo" required>
             <option value="">Seleccionar tipo de profesional</option>
             <th:block th:each="tipo : ${tipos}">
-                <option th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+                <option th:value="${tipo.nombre}" th:text="${tipo.nombre}"></option>
             </th:block>
         </select><br>
 
@@ -50,14 +51,16 @@
         <select id="metodo" name="metodo" required>
             <option value="">Seleccionar método</option>
             <th:block th:each="metodo : ${metodos}">
-                <option th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
+                <option th:value="${metodo.nombre}" th:text="${metodo.nombre}"></option>
             </th:block>
         </select><br>
 
         <input type="submit" value="Guardar">
     </form>
 
-
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
     <!-- /.container -->
     <div th:replace="home :: footer"></div>
 

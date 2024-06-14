@@ -4,6 +4,7 @@ C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\mai
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\ControladorSuscripcion.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Hijo.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ModeloTest.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\NoPudoGuardarseElProfesional.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioAdmiImpl.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\presentacion\RespuestaTest.java
@@ -18,6 +19,7 @@ C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\mai
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Profesional.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioProfesional.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioTipoContactoImpl.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MetodoNoEncontradoPorID.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MetodoNoEncontrado.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioAdmi.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
@@ -44,6 +46,7 @@ C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\mai
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Etapa.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\ServicioAdmiImpl.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaInexistente.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\TipoNoEncontradoPorID.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioUsuario.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioUsuarioImpl.java

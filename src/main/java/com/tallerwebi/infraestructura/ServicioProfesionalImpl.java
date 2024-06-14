@@ -2,6 +2,7 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
+import com.tallerwebi.dominio.excepcion.NoPudoGuardarseElProfesional;
 import com.tallerwebi.dominio.excepcion.NoSeEncontraronProfesionalesEnLaBusqueda;
 import com.tallerwebi.dominio.excepcion.TipoProfesionalNoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,13 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
 
     @Override
     public void guardarProfesional(Profesional profesional, String nombreMetodo, String nombreTipoContacto) {
+        if (nombreMetodo != null && nombreMetodo.isEmpty()) {
+            nombreMetodo = null;
+        }
+        if (nombreTipoContacto != null && nombreTipoContacto.isEmpty()) {
+            nombreTipoContacto = null;
+        }
+
         TipoProfesional tipo = repositorioTipoProfesional.buscarPorNombreDeTipo(nombreTipoContacto);
         if (tipo == null) {
             throw new TipoProfesionalNoEncontrado(nombreTipoContacto);
@@ -149,8 +157,13 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
 
     @Override
     public Profesional guardar(Profesional profesional) {
-        repositorioProfesional.guardar(profesional);
-        return profesional;
+        try{
+            repositorioProfesional.guardar(profesional);
+            return profesional;
+        } catch (Exception e) {
+            throw new NoPudoGuardarseElProfesional();
+        }
+
     }
 
 

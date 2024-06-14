@@ -5,10 +5,7 @@ import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +18,16 @@ public class ControladorAdministrador {
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
     private ServicioProfesional servicioProfesional;
-    //private ServicioMetodo servicioMetodo;
-    //private ServicioTipoProfesional servicioTipoProfesional;
+    private ServicioMetodo servicioMetodo;
+    private ServicioTipoProfesional servicioTipoProfesional;
 
     @Autowired
     public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
         this.servicioProfesional = servicioProfesional;
-        //this.servicioMetodo = servicioMetodo;
-        //this.servicioTipoProfesional = servicioTipoProfesional;
+        this.servicioMetodo = servicioMetodo;
+        this.servicioTipoProfesional = servicioTipoProfesional;
     }
 
 
@@ -172,9 +169,43 @@ public class ControladorAdministrador {
      }
 
     @PostMapping("/admin/gestionarProfesionales/guardar")
-    public String agregarProfesional(@ModelAttribute Profesional profesional) {
-        Profesional profesionalGuardado = servicioProfesional.guardar(profesional);
-        return "redirect:/admin/gestionarProfesionales";
+    public ModelAndView agregarProfesional(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("telefono") String telefono,
+            @RequestParam("email") String email,
+            @RequestParam("direccion") String direccion,
+            @RequestParam("institucion") String institucion,
+            @RequestParam("tipo") String nombreTipo,
+            @RequestParam("metodo") String nombreMetodo)
+    {
+        ModelAndView mav = new ModelAndView();
+        try{
+            //TipoProfesional tipo = servicioTipoProfesional.buscarTipoPorId(tipoId);
+            //Metodo metodo = servicioMetodo.buscarMetodoPorId(metodoId);
+
+
+            Profesional profesional = new Profesional();
+            profesional.setNombre(nombre);
+            profesional.setTelefono(telefono);
+            profesional.setEmail(email);
+            profesional.setDireccion(direccion);
+            profesional.setInstitucion(institucion);
+            //profesional.setTipo(tipo);
+            //profesional.setMetodo(metodo);
+
+
+            servicioProfesional.guardarProfesional(profesional,nombreMetodo,nombreTipo);
+            mav.setViewName ("redirect:/admin/gestionarProfesionales");
+        } catch (Exception e) {
+            mav.setViewName ("formulario_crear_profesional");
+            mav.addObject("error", e.getMessage());
+            mav.addObject("profesional", new Profesional());
+            List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+            List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+            mav.addObject("metodos", metodos);
+            mav.addObject("tipos", tipos);
+        }
+        return mav;
     }
 
     @GetMapping("/admin/gestionarProfesionales/editar/{id}")

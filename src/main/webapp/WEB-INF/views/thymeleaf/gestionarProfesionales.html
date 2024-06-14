@@ -17,48 +17,54 @@
 
 </head>
 <body>
-<div th:replace="home :: nav"></div>
-    <h1>Gestión de profesionales</h1>
-    <a th:href="@{/admin/gestionarProfesionales/crear}">Crear Nuevo Profesional</a>
+<main>
+    <div th:replace="home :: nav"></div>
+        <h1>Gestión de profesionales</h1>
+        <a th:href="@{/admin/gestionarProfesionales/crear}">Crear Nuevo Profesional</a>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th>Dirección</th>
-            <th>Institución</th>
-            <th>Tipo</th>
-            <th>Método</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="profesional : ${profesionales}">
-            <td th:text="${profesional.id}"></td>
-            <td th:text="${profesional.nombre}"></td>
-            <td th:text="${profesional.telefono}"></td>
-            <td th:text="${profesional.email}"></td>
-            <td th:text="${profesional.direccion}"></td>
-            <td th:text="${profesional.institucion}"></td>
-            <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
-            <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
-            <td>
-                <a th:href="@{/admin/gestionarProfesionales/editar/{id}(id=${profesional.id})}">Editar</a>
-                |
-                <a th:href="@{/admin/gestionarProfesionales/eliminar/{id}(id=${profesional.id})}">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th>Institución</th>
+                <th>Tipo</th>
+                <th>Método</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="profesional : ${profesionales}">
+                <td th:text="${profesional.id}"></td>
+                <td th:text="${profesional.nombre}"></td>
+                <td th:text="${profesional.telefono}"></td>
+                <td th:text="${profesional.email}"></td>
+                <td th:text="${profesional.direccion}"></td>
+                <td th:text="${profesional.institucion}"></td>
+                <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
+                <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
+                <td>
+                    <a th:href="@{/admin/gestionarProfesionales/editar/{id}(id=${profesional.id})}">Editar</a>
+                    |
+                    <a th:href="@{/admin/gestionarProfesionales/eliminar/{id}(id=${profesional.id})}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+</main>
 <!-- /.container -->
 <div th:replace="home :: footer"></div>
 
 <!-- Boostrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

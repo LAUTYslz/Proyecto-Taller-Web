@@ -40,6 +40,7 @@
         <label for="institucion">Institución:</label>
         <input type="text" id="institucion" th:field="*{institucion}" name="institucion"><br>
 
+        <!--
         <label for="tipo">Tipo:</label>
         <select id="tipo" th:field="*{tipo}" required name="tipo">
             <option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
@@ -49,7 +50,7 @@
         <select id="metodo" th:field="*{metodo}" required name="metodo">
             <option th:each="metodo : ${metodos}" th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
         </select><br>
-
+        -->
         <input type="submit" value="Actualizar">
 
     </form>
