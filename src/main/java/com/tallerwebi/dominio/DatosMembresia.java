@@ -1,6 +1,10 @@
 package com.tallerwebi.dominio;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+
+import java.util.Date;
 
 import static com.tallerwebi.dominio.Estado.INACTIVA;
 
@@ -12,8 +16,13 @@ public class DatosMembresia {
     private Long id;
     private String nombreCompleto;
     private String email;
+    @Enumerated(EnumType.STRING)
     private Estado estado=INACTIVA;
     private Long numeroTelefonico;
+    @DateTimeFormat(pattern = "yyy-mm-dd")
+    private Date fechaDeInicio;
+    @DateTimeFormat(pattern = "yyy-mm-dd")
+    private Date fechaDeBaja;
     @ManyToOne
     private Tarjeta tarjeta;
 
@@ -21,12 +30,6 @@ public class DatosMembresia {
 
     }
 
-    public DatosMembresia(String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
-        this.nombreCompleto = nombreCompleto;
-        this.email = email;
-        this.numeroTelefonico = numeroTelefonico;
-        this.tarjeta = new Tarjeta(tarjeta.getNumeroDeTarjeta(), tarjeta.getFechaDeVencimiento(), tarjeta.getCodigoDeSeguridad());
-    }
 
     public Long getNumeroTelefonico(){
         return this.numeroTelefonico;
@@ -59,15 +62,7 @@ public class DatosMembresia {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "DatosMembresia{" +
-                "nombreCompleto='" + nombreCompleto + '\'' +
-                ", email='" + email + '\'' +
-                ", numeroTelefonico=" + numeroTelefonico +
-                ", tarjeta=" + tarjeta +
-                '}';
-    }
+
 
     public Estado getEstado() {
         return estado;
@@ -83,6 +78,36 @@ public class DatosMembresia {
 
     public Long getId() {
         return id;
+    }
+
+    public Date getFechaDeInicio() {
+        return fechaDeInicio;
+    }
+
+    public void setFechaDeInicio(Date fechaDeInicio) {
+        this.fechaDeInicio = fechaDeInicio;
+    }
+
+    public Date getFechaDeBaja() {
+        return fechaDeBaja;
+    }
+
+    public void setFechaDeBaja(Date fechaDeBaja) {
+        this.fechaDeBaja = fechaDeBaja;
+    }
+
+    @Override
+    public String toString() {
+        return "DatosMembresia{" +
+                "id=" + id +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", email='" + email + '\'' +
+                ", estado=" + estado +
+                ", numeroTelefonico=" + numeroTelefonico +
+                ", fechaDeInicio=" + fechaDeInicio +
+                ", fechaDeBaja=" + fechaDeBaja +
+                ", tarjeta=" + tarjeta +
+                '}';
     }
 }
 

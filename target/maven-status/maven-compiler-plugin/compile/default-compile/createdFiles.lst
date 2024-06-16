@@ -11,6 +11,8 @@ com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
 com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
 com\tallerwebi\dominio\Hijo.class
+com\tallerwebi\dominio\Consulta.class
+com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
@@ -22,6 +24,7 @@ com\tallerwebi\dominio\DatosMembresia.class
 com\tallerwebi\dominio\ServicioCelndario.class
 com\tallerwebi\dominio\TipoProfesional.class
 com\tallerwebi\config\DatabaseInitializationConfig.class
+com\tallerwebi\dominio\excepcion\UsuarioNoPoseeMembresiaActivada.class
 com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
@@ -37,6 +40,7 @@ com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
 com\tallerwebi\dominio\Juego.class
 com\tallerwebi\infraestructura\ServicioCalendarioImpl.class
 com\tallerwebi\dominio\excepcion\juegoInexistente.class
+com\tallerwebi\dominio\excepcion\NoposeeEtapa.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
 com\tallerwebi\presentacion\ControladorAdministrador.class

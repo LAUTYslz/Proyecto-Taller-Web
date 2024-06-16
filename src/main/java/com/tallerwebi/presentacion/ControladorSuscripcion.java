@@ -4,10 +4,7 @@ import com.tallerwebi.dominio.DatosMembresia;
 import com.tallerwebi.dominio.ServicioLogin;
 import com.tallerwebi.dominio.ServicioMembresia;
 import com.tallerwebi.dominio.Usuario;
-import com.tallerwebi.dominio.excepcion.CodigoInvalido;
-import com.tallerwebi.dominio.excepcion.MembresiaExistente;
-import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -58,7 +55,7 @@ public class ControladorSuscripcion {
             model.put("error", "El número de tarjeta es inválido");
         } catch (CodigoInvalido e){
             model.put("error", "El código de seguridad es inválido");
-        } catch (UsuarioInexistente e) {
+        } catch (UsuarioInexistente | FechadeInicioNoIngresada e) {
             throw new RuntimeException(e);
         }
 

@@ -40,6 +40,12 @@
     <div>
         <strong>Código de Seguridad:</strong> <span th:text="${datosMembresia.tarjeta.codigoDeSeguridad}"></span>
     </div>
+    <div>
+        <strong>Fecha de Alta Membresia:</strong> <span th:text="${#dates.format(datosMembresia.fechaDeInicio, 'yyyy-MM-dd')}"></span>
+    </div>
+    <div>
+        <strong>Fecha de Baja Membresia :</strong> <span th:text="${#dates.format(datosMembresia.fechaDeBaja, 'yyyy-MM-dd')}"></span>
+    </div>
 </div>
 
 <div th:replace="home :: footer"></div>

@@ -1,8 +1,10 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.NoposeeEtapa;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.dominio.excepcion.UsuarioNoPoseeMembresiaActivada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +51,10 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
-    public void registrarHijo(Hijo hijo) {
-        asignarEtapa(hijo);
+    public void registrarHijo(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         repositorioUsuario.guardarHijo(hijo);
+
+
     }
 
 
@@ -129,7 +132,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         repositorioUsuario.actualizar(buscar);
     }
 
-    public void asignarEtapa(Hijo hijo) {
+    public void asignarEtapa(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
         Integer edad = hijo.getEdad();
         Etapa etapaEncontrada = null;
@@ -143,12 +146,14 @@ public class ServicioLoginImpl implements ServicioLogin {
 
         if (etapaEncontrada == null) {
             // Manejar el caso en el que ninguna etapa sea encontrada
-            throw new RuntimeException("No se encontró una etapa para la edad proporcionada");
+            throw new NoposeeEtapa();
         }
 
-        // Asignar la etapa encontrada al hijo
         hijo.setEtapa(etapaEncontrada);
-    }
+
+
+
+}
 }
 
 

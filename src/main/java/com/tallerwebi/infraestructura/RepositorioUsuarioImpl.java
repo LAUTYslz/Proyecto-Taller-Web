@@ -94,6 +94,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
         Hijo hijo = sessionFactory.getCurrentSession().load(Hijo.class, hijoId);
         sessionFactory.getCurrentSession().delete(hijo);
     }
+
+    @Override
+    public void actualizarHijo(Hijo hijo) {
+        sessionFactory.getCurrentSession().update(hijo);
+    }
 }
 
 

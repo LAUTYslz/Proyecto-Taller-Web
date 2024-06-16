@@ -31,7 +31,9 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infrae
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\HibernateConfig.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioNoPoseeMembresiaActivada.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\NoposeeEtapa.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioMembresia.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Etapa.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\PasswordLongitudIncorrecta.java
@@ -49,8 +51,10 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMetodoImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioAdmiImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioUsuarioImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Tarjeta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorLogin.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Consulta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Juego.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Profesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaImpl.java

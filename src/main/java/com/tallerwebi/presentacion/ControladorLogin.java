@@ -46,21 +46,40 @@ public class ControladorLogin {
 
     @RequestMapping(path = "/validar-login", method = RequestMethod.POST)
     public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
-        ModelMap model = new ModelMap();
+        ModelAndView modelAndView = new ModelAndView();
 
         Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
         if (usuarioBuscado != null) {
+            // Imprimir el estado del usuario para depuración
+            System.out.println("Estado del usuario: " + usuarioBuscado.getEstado());
+
             request.getSession().setAttribute("usuario", usuarioBuscado);
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+
             if (usuarioBuscado.getRol().equals("ADMIN")) {
-                return new ModelAndView("redirect:/administrador");
+                modelAndView.setViewName("redirect:/administrador");
+            } else if (usuarioBuscado.getRol().equals("USUARIO")) {
+                // Verificar el estado del usuario
+                if (usuarioBuscado.getMembresia().getEstado().equals(Estado.INACTIVA)) {
+                    modelAndView.setViewName("redirect:/bienvenido");
+                } else if (usuarioBuscado.getMembresia().getEstado().equals(Estado.INACTIVA)) {
+                    modelAndView.setViewName("redirect:/usuarioMembresia");
+                } else {
+                    // Manejar otros estados si es necesario
+                    modelAndView.setViewName("redirect:/bienvenido");
+                }
+            } else {
+                // Manejar otros roles si es necesario
+                modelAndView.setViewName("redirect:/bienvenido");
             }
-            return new ModelAndView("redirect:/bienvenido");
         } else {
-            model.put("error", "Usuario o clave incorrecta");
+            modelAndView.setViewName("redirect:/login");
         }
-        return new ModelAndView("login", model);
+
+        return modelAndView;
     }
+
+
 
 
     @RequestMapping(path = "/registrarse", method = RequestMethod.POST)
@@ -124,23 +143,30 @@ public class ControladorLogin {
 
         // Obtener el usuario actual
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-        DatosMembresia datosMembresia = new DatosMembresia();
-        // Verificar si el usuario tiene membresía
 
+        if (usuario != null) {
+            // Obtener la membresía del usuario
+            DatosMembresia membresia = usuario.getMembresia();
 
-            // Si el usuario tiene membresía, obtener la lista de hijos
+            // Obtener la lista de hijos del usuario
             List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
 
             // Agregar el usuario, la membresía y la lista de hijos al modelo
             modelAndView.addObject("usuario", usuario);
-            modelAndView.addObject("membresia", datosMembresia);
+            modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
 
             // Establecer la vista como "bienvenido"
             modelAndView.setViewName("bienvenido");
+        } else {
+            // Manejar el caso en el que no se pudo obtener el usuario
+            modelAndView.setViewName("redirect:/error"); // Redirigir a una página de error si es necesario
+        }
 
         return modelAndView;
     }
+
+
 
 
     @GetMapping(path = "/modificarUsuario/{id}")

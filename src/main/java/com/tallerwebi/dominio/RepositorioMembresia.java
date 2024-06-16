@@ -16,4 +16,6 @@ public interface RepositorioMembresia {
     List<DatosMembresia> listarMembresias();
 
     void guardarTarjeta(Tarjeta tarjeta);
+
+    void actualizarMembresia(DatosMembresia membresiaAActualizar);
 }

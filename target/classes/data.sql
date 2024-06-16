@@ -5,16 +5,18 @@ CREATE TABLE IF NOT EXISTS Tarjeta (
                          codigoDeSeguridad VARCHAR(3) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS DatosMembresia (
-                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                         nombreCompleto VARCHAR(255),
-                         email VARCHAR(255),
-                         estado VARCHAR(20) DEFAULT 'INACTIVA',
-                         numeroTelefonico BIGINT,
-                         tarjeta_id BIGINT,
-                         FOREIGN KEY (tarjeta_id) REFERENCES tarjeta(id)
-);
+CREATE TABLE IF NOT EXISTS  DatosMembresia (
+                              id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                 nombreCompleto VARCHAR(255) NOT NULL,
+                                email VARCHAR(255) NOT NULL,
+                                 estado ENUM('ACTIVADA', 'INACTIVA', 'PENDIENTE') DEFAULT 'INACTIVA',
+                              numeroTelefonico BIGINT,
+                                 fechaDeInicio DATE,
+                                fechaDeBaja DATE,
+                                  tarjeta_id BIGINT,
+                                 FOREIGN KEY (tarjeta_id) REFERENCES tarjeta(id)
 
+);
 
 
 

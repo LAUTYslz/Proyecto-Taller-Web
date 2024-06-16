@@ -53,4 +53,9 @@ public class RepositorioMembresiaImpl implements RepositorioMembresia {
     public void guardarTarjeta(Tarjeta tarjeta) {
         sessionFactory.getCurrentSession().save(tarjeta);
     }
+
+    @Override
+    public void actualizarMembresia(DatosMembresia membresiaAActualizar) {
+        sessionFactory.getCurrentSession().update(membresiaAActualizar);
+    }
 }
