@@ -4,7 +4,6 @@ import com.tallerwebi.dominio.Metodo;
 import com.tallerwebi.dominio.RepositorioMetodo;
 import com.tallerwebi.dominio.ServicioMetodo;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontradoPorID;
-import com.tallerwebi.dominio.excepcion.TipoNoEncontradoPorID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +26,10 @@ public class ServicioMetodoImpl implements ServicioMetodo {
             throw new MetodoNoEncontradoPorID(metodoId);
         }
         return metodoBuscado;
+    }
+
+    @Override
+    public Metodo buscarMetodoPorNombre(String nombreMetodo){
+        return repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
     }
 }

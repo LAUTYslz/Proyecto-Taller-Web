@@ -10,6 +10,7 @@
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionarProfesionales.css}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,48 +18,72 @@
 
 </head>
 <body>
-<main>
     <div th:replace="home :: nav"></div>
+
+    <main>
+
         <h1>Gestión de profesionales</h1>
-        <a th:href="@{/admin/gestionarProfesionales/crear}">Crear Nuevo Profesional</a>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Email</th>
-                <th>Dirección</th>
-                <th>Institución</th>
-                <th>Tipo</th>
-                <th>Método</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="profesional : ${profesionales}">
-                <td th:text="${profesional.id}"></td>
-                <td th:text="${profesional.nombre}"></td>
-                <td th:text="${profesional.telefono}"></td>
-                <td th:text="${profesional.email}"></td>
-                <td th:text="${profesional.direccion}"></td>
-                <td th:text="${profesional.institucion}"></td>
-                <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
-                <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
-                <td>
-                    <a th:href="@{/admin/gestionarProfesionales/editar/{id}(id=${profesional.id})}">Editar</a>
-                    |
-                    <a th:href="@{/admin/gestionarProfesionales/eliminar/{id}(id=${profesional.id})}">Eliminar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <form th:action="@{/admin/gestionarProfesionales}" method="get" class="filtrar-contactos">
+            <label for="metodo">Método: </label>
+            <select name="metodo" id="metodo">
+                <option value="">Selecciona un método</option>
+                <th:block th:each="metodo : ${metodos}" >
+                    <option th:value="${metodo.nombre}" th:text="${metodo.nombre}"></option>
+                </th:block>
+            </select>
+            <br>
+            <label for="tipo">Tipo:</label>
+            <select name="tipo" id="tipo">
+                <option value="">Selecciona un tipo</option>
+                <th:block th:each="tipo : ${tipos}">
+                    <option th:value="${tipo.nombre}" th:text="${tipo.nombre}"></option>
+                </th:block>
+            </select>
+            <br>
+            <button type="submit">Filtrar</button>
+        </form>
 
-    <div th:if="${error}">
-        <p th:text="${error}" style="color: red;"></p>
-    </div>
-</main>
+        <a th:href="@{/admin/gestionarProfesionales/crear}" class="btn crearButton">Crear Nuevo Profesional</a>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Dirección</th>
+                    <th>Institución</th>
+                    <th>Tipo</th>
+                    <th>Método</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="profesional : ${profesionales}">
+                    <td th:text="${profesional.id}"></td>
+                    <td th:text="${profesional.nombre}"></td>
+                    <td th:text="${profesional.telefono}"></td>
+                    <td th:text="${profesional.email}"></td>
+                    <td th:text="${profesional.direccion}"></td>
+                    <td th:text="${profesional.institucion}"></td>
+                    <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
+                    <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
+                    <td>
+                        <a class="editarButton" th:href="@{/admin/gestionarProfesionales/editar/{id}(id=${profesional.id})}">Editar</a>
+                        |
+                        <a class="elimiinarButton" th:href="@{/admin/gestionarProfesionales/eliminar/{id}(id=${profesional.id})}">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${error}">
+            <p th:text="${error}" style="color: red;"></p>
+        </div>
+    </main>
 <!-- /.container -->
 <div th:replace="home :: footer"></div>
 

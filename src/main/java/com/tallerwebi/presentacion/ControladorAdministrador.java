@@ -150,11 +150,28 @@ public class ControladorAdministrador {
 
     //----------------------PROFESIONALES---------------------------------------
     @GetMapping("/admin/gestionarProfesionales")
-    public ModelAndView verGestionarProfesionales() {
+    public ModelAndView verGestionarProfesionales(
+            @RequestParam(value = "metodo", required = false) String nombreMetodo,
+            @RequestParam(value = "tipo", required = false) String nombreTipo)
+    {
         ModelAndView mav = new ModelAndView("gestionarProfesionales");
-        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
-        mav.addObject("profesionales", profesionales);
+        try {
+            List<Profesional> profesionales = obtenerProfesionalesPorMetodoYTipo(nombreTipo, nombreMetodo);
+
+            mav.addObject("profesionales", profesionales);
+            mav.addObject("metodos", servicioProfesional.traerTodosLosMetodos());
+            mav.addObject("tipos", servicioProfesional.traerTodosLosTipos());
+        } catch (Exception e) {
+            mav.addObject("error", e.getMessage());
+
+        }
+        //List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        //mav.addObject("profesionales", profesionales);
         return mav;
+    }
+
+    public List<Profesional> obtenerProfesionalesPorMetodoYTipo(String nombreTipo, String nombreMetodo) {
+        return servicioProfesional.traerProfesionalesPorTipoYMetodo(nombreTipo, nombreMetodo);
     }
 
      @GetMapping("/admin/gestionarProfesionales/crear")
@@ -221,9 +238,45 @@ public class ControladorAdministrador {
     }
 
     @PostMapping("/admin/gestionarProfesionales/actualizar")
-    public String actualizarProfesional(@ModelAttribute Profesional profesional) {
-        servicioProfesional.actualizarProfesional(profesional);
-        return "redirect:/admin/gestionarProfesionales";
+    public ModelAndView actualizarProfesional(@RequestParam("id") Long id,
+                                              @RequestParam("nombre") String nombre,
+                                              @RequestParam("telefono") String telefono,
+                                              @RequestParam("email") String email,
+                                              @RequestParam("direccion") String direccion,
+                                              @RequestParam("institucion") String institucion,
+                                              @RequestParam("tipo") String nombreTipo,
+                                              @RequestParam("metodo") String nombreMetodo) {
+        ModelAndView mav = new ModelAndView();
+        try{
+            Profesional profesional = servicioProfesional.obtenerPorId(id);
+            if (profesional == null) {
+                throw new Exception("No se encontró el profesional con el ID proporcionado.");
+            }
+            //Metodo metodo = servicioMetodo.buscarMetodoPorNombre(nombreMetodo);
+            //TipoProfesional tipoProfesional = servicioTipoProfesional.buscarTipoPorNombre(nombreTipo);
+
+            profesional.setNombre(nombre);
+            profesional.setTelefono(telefono);
+            profesional.setEmail(email);
+            profesional.setDireccion(direccion);
+            profesional.setInstitucion(institucion);
+
+
+            servicioProfesional.actualizarProfesional(profesional, nombreMetodo, nombreTipo);
+            mav.setViewName ("redirect:/admin/gestionarProfesionales");
+        } catch (Exception e) {
+            mav.setViewName ("formulario_editar_profesional");
+            Profesional profesional = servicioProfesional.obtenerPorId(id);
+            mav.addObject("error", e.getMessage());
+            mav.addObject("profesional", profesional);
+            List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+            List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+            mav.addObject("metodos", metodos);
+            mav.addObject("tipos", tipos);
+
+            System.err.println("Error al actualizar profesional: " + e.getMessage());
+        }
+        return mav;
     }
 
     @GetMapping("/admin/gestionarProfesionales/eliminar/{id}")

@@ -48,13 +48,16 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
         profesional.setTipo(tipo);
 
         if(tipo.getNombre().equals("Tienda")){
+            profesional.setMetodo(null);
             repositorioProfesional.guardar(profesional);
             return;
         }
 
-        Metodo metodo = repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
-        if (metodo == null) {
-            throw new MetodoNoEncontrado(nombreMetodo);
+        Metodo metodo;
+        if (nombreMetodo != null) {
+            metodo = repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
+        }else{
+            metodo = null;
         }
         profesional.setMetodo(metodo);
 
@@ -62,9 +65,42 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     }
 
     @Override
-    public void actualizarProfesional(Profesional profesionalExistente) {
-        repositorioProfesional.modificar(profesionalExistente);
+    public void actualizarProfesional(Profesional profesional, String nombreMetodo, String nombreTipoContacto) {
+        if (nombreMetodo != null && nombreMetodo.isEmpty()) {
+            nombreMetodo = null;
+        }
+        if (nombreTipoContacto != null && nombreTipoContacto.isEmpty()) {
+            nombreTipoContacto = null;
+        }
+
+        TipoProfesional tipo = repositorioTipoProfesional.buscarPorNombreDeTipo(nombreTipoContacto);
+        if (tipo == null) {
+            throw new TipoProfesionalNoEncontrado(nombreTipoContacto);
+        }
+        profesional.setTipo(tipo);
+
+        if(tipo.getNombre().equals("Tienda")){
+            profesional.setMetodo(null);
+            repositorioProfesional.modificar(profesional);
+            return;
+        }
+
+        Metodo metodo;
+        if (nombreMetodo != null) {
+            metodo = repositorioMetodo.buscarPorNombreDeMetodo(nombreMetodo);
+        }else{
+            metodo = null;
+        }
+        profesional.setMetodo(metodo);
+
+        repositorioProfesional.modificar(profesional);
     }
+
+    @Override
+    public void actualizar(Profesional profesional) {
+        repositorioProfesional.modificar(profesional);
+    }
+
 
     @Override
     public void eliminarProfesional(Profesional profesionalExistente) {
@@ -169,3 +205,4 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
 
 
 }
+

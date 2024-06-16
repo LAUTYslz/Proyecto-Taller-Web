@@ -4,7 +4,6 @@ import com.tallerwebi.dominio.RepositorioTipoProfesional;
 import com.tallerwebi.dominio.ServicioTipoProfesional;
 import com.tallerwebi.dominio.TipoProfesional;
 import com.tallerwebi.dominio.excepcion.TipoNoEncontradoPorID;
-import com.tallerwebi.dominio.excepcion.TipoProfesionalNoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +27,10 @@ public class ServicioTipoContactoImpl implements ServicioTipoProfesional {
             throw new TipoNoEncontradoPorID(tipoId);
         }
         return tipoBuscado;
+    }
+
+    @Override
+    public TipoProfesional buscarTipoPorNombre(String nombreMetodo){
+        return repositorioTipoContacto.buscarPorNombreDeTipo(nombreMetodo);
     }
 }
