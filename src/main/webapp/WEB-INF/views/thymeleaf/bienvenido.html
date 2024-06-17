@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contactos</title>
+
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/css/bienvenido.css}">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos para los botones circulares */
+        .circle-button {
+            display: inline-block;
+            width: 150px; /* Ancho del círculo */
+            height: 150px; /* Altura del círculo */
+            border-radius: 50%;
+            background-color: blueviolet;
+            color: #fff;
+            text-align: center;
+            line-height: 150px; /* Centrado vertical del texto */
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 16px; /* Tamaño de la fuente */
+            text-decoration: none; /* Quitar subrayado del enlace */
+        }
+
+        /* Estilos para el contenedor de los botones */
+        .button-container {
+            margin-top:20px;
+            margin-bottom: 20px;
+            text-align: center; /* Centrar los botones */
+        }
+
+        /* Estilos para el hover */
+        .circle-button:hover {
+            background-color: #666666; /* Color más oscuro al pasar el ratón */
+            color:white;
+        }
+
+        /* Estilos para los datos del titular */
+        .titular {
+            background-color: #f9f9f9; /* Color de fondo */
+            padding: 20px; /* Espaciado interior */
+            margin-bottom: 20px; /* Espaciado inferior */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+
+        /* Estilos para los datos de los hijos */
+        .hijos {
+            background-color: #f9f9f9; /* Color de fondo */
+            padding: 20px; /* Espaciado interior */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+        h2{
+            background-color: #b9a0ea; /* Color de fondo */
+            padding: 20px; /* Espaciado interior */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+        /* Estilos para los títulos */
+        h3 {
+            background-color: #666666;/* Color de fondo */
+            padding: 20px; /* Espaciado interior */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+    <div class="navbar-nav">
+        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+        <a class="nav-link" href="#">Eventos/Cursos</a>
+        <a class="nav-link" th:href="@{/test}">Tests</a>
+        <a class="nav-link" href="#">Foro Comunidad</a>
+    </div>
+
+    <a class="navbar-brand" th:href="@{/home}">
+        <img th:src="@{/img/educareLogo.png}" alt="Logo">
+    </a>
+
+    <div class="navbar-nav ml-auto">
+
+        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
+        <div class="search-container">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Sección de Datos de Usuario -->
+    <section id="datos-usuario">
+
+        <div class="container">
+            <!-- Datos del titular -->
+            <div class="titular" >
+                <h1>Información del Titular</h1>
+                <h1>Bienvenido</h1>
+
+                <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
+                <p>Email : <span th:text="${usuario.email}"></span></p>
+                <p>Estado: <span th:text="${usuario.estado}"></span></p>
+
+                <!-- Verifica si el usuario tiene cónyuge -->
+                <p th:if="${usuario.getConyuge() != null}">Nombre del Cónyuge: <span th:text="${usuario.conyuge.nombre}"></span></p>
+                <p th:if="${usuario.getConyuge()!= null}">Email del Cónyuge: <span th:text="${usuario.conyuge.email}"></span></p>
+                <p th:if="${usuario.getConyuge() != null}">Estado del Cónyuge: <span th:text="${usuario.conyuge.estado}"></span></p>
+                <p th:if="${usuario.conyuge == null}">No hay Cónyuge Asociado</p>
+
+                <h2>Hijos</h2>
+                <div th:if="${#lists.size(hijos) > 0}">
+                    <ul>
+                        <li th:each="hijo : ${hijos}">
+                            <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
+                            <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
+                            <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
+                            <p>Fecha de Nacimiento: <span th:text="${#dates.format(hijo.fecha_nacimiento, 'yyyy-MM-dd')}"></span></p>
+
+                            <form th:action="@{/eliminar-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <form th:action="@{....}" method="post">
+                                    <button type="submit" class="btn btn-danger">Ver Test</button>
+                                    <form th:action="@{....}" method="post">
+                                        <button type="submit" class="btn btn-danger">Ver Profesional</button>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <div th:if="${#lists.size(hijos) == 0}">
+                    <p>No hay hijos agregados</p>
+                </div>
+
+
+
+        </div>
+        </div>
+    </section>
+
+    <!-- Sección de botones circulares -->
+    <div class="button-container">
+
+        <div class="circle-button"><a th:href="@{/modificarUsuario}">MODIFICAR DATOS</a></div>
+        <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
+        <div class="circle-button"><a th:href="@{/suscripcion}">MEMBRESIA</a></div>
+        <div class="circle-button"><a th:href="@{/contacto}">CONTACTO</a></div>
+        <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
+        <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
+    </div >
+    </div>
+    <a th:href="@{/vacunacion}">VACUNACION</a>
+    </div>
+
+</main>
+</body>
+</html>

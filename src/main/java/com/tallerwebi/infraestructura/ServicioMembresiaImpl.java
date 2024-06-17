@@ -1,11 +1,11 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.ServicioMembresia;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.CodigoInvalido;
 import com.tallerwebi.dominio.excepcion.MembresiaExistente;
 import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
 import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
-import com.tallerwebi.dominio.DatosMembresia;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Map;
@@ -14,38 +14,62 @@ import java.util.Map;
 @Transactional
 public class ServicioMembresiaImpl implements ServicioMembresia {
 
-    private Map<String, DatosMembresia> membresias;
+    private final RepositorioMembresia repositorioMembresia;
+
+    @Autowired
+    public ServicioMembresiaImpl(RepositorioMembresia repositorioMembresia) {
+        this.repositorioMembresia = repositorioMembresia;
+    }
 
     @Override
     public void darDeAltaMembresia(DatosMembresia datosMembresia) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido{
-
         if (!validarNumeroDeTarjeta(datosMembresia.getTarjeta().getNumeroDeTarjeta())){
             throw new TarjetaInvalida();
         }
 
-        if (buscarMembresia(datosMembresia.getEmail()) != null) {
-            throw new MembresiaExistente();
-        }
-
-        if (validarCodigoDeSeguridad(datosMembresia.getTarjeta().getCodigoDeSeguridad())){
+        if (!validarCVV(datosMembresia.getTarjeta().getCodigoDeSeguridad())){
             throw new CodigoInvalido();
         }
 
-        membresias.put(datosMembresia.getEmail(), datosMembresia);
+        if (repositorioMembresia.buscarMembresia(datosMembresia.getEmail()) != null){
+            throw new MembresiaExistente();
+        }
     }
 
     @Override
     public void darDeBajaMembresia(String email) throws MembresiaInexistente {
-        DatosMembresia membresiaAEliminar = buscarMembresia(email);
-
-        if (membresiaAEliminar == null){
+        DatosMembresia membresiaAEliminar = this.repositorioMembresia.buscarMembresia(email);
+        if (membresiaAEliminar != null) {
+            this.repositorioMembresia.eliminarMembresia(email);
+        } else {
             throw new MembresiaInexistente();
-        } membresias.remove(email);
+        }
     }
 
     @Override
-    public DatosMembresia buscarMembresia(String email) {
-        return membresias.get(email);
+    public DatosMembresia buscarMembresia(String email) throws MembresiaInexistente {
+        return this.repositorioMembresia.buscarMembresia(email);
+    }
+
+    private Boolean validarCVV(Integer cvv) throws CodigoInvalido {
+
+        if (cvv == null){
+            throw new CodigoInvalido();
+        }
+
+        int longitud = cvv.toString().length();
+
+        if (longitud != 3){
+            throw new CodigoInvalido();
+        }
+
+        String cvvString = cvv.toString();
+
+        for (char c : cvvString.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new CodigoInvalido();
+            }
+        } return true;
     }
 
     private Boolean validarNumeroDeTarjeta(Long numeroDeTarjeta) throws TarjetaInvalida {
@@ -55,20 +79,21 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
         }
 
         int longitud = numeroDeTarjeta.toString().length();
+
         if (longitud < 15 || longitud > 16){
             throw new TarjetaInvalida();
-        } return true;
-    }
-
-    private Boolean validarCodigoDeSeguridad(Integer codigo) throws CodigoInvalido {
-        if (codigo == null){
-            throw new CodigoInvalido();
         }
-        int longitud = codigo.toString().length();
-        if (longitud != 3){
-            throw new CodigoInvalido();
-        } return true;
-    }
 
+        String numeroDeTarjetaString = numeroDeTarjeta.toString();
+
+        for (char c : numeroDeTarjetaString.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new TarjetaInvalida();
+            }
+        }
+
+        return true;
+
+    }
 
 }

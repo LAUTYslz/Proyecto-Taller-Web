@@ -1,5 +1,6 @@
 package com.tallerwebi.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +17,13 @@ import org.thymeleaf.templatemode.TemplateMode;
 @EnableWebMvc
 @Configuration
 @ComponentScan({"com.tallerwebi.presentacion", "com.tallerwebi.dominio", "com.tallerwebi.infraestructura"})
+
 public class SpringWebConfig implements WebMvcConfigurer {
 
     // Spring + Thymeleaf need this
     @Autowired
     private ApplicationContext applicationContext;
+
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {

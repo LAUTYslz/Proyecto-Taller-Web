@@ -1,0 +1,25 @@
+.principios-educativos{
+    box-sizing: border-box;
+    background-color: #fafab0;
+    border-radius: 10px;
+    padding: 2vh;
+    margin: 4vh 0 4vh;
+}
+.principios-educativos ul{
+    box-sizing: border-box;
+    background-color: #b9a0ea;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1vh;
+    list-style-position: inside;
+}
+.principios-educativos ul li{
+    margin: 2vh 0 2vh;
+}
+.titulo-metodos{
+    margin-bottom: 4vh;
+    font-size: 7vh;
+}
+.subtitulo-metodos{
+    margin-top: 6vh;
+}

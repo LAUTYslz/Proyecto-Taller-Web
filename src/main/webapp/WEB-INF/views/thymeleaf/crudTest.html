@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAsperger</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/crudTest.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="container-fluid mt-4 mb-4">
+    <h1 class="text-center">Lista de Tests</h1>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <ul class="list-group">
+                <li th:each="test : ${tests}" class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <a th:text="${test.nombreTest}" th:href="@{/crudTest(id=${test.id})}">Ver preguntas y respuestas</a>
+                    </div>
+                    <div class="btn-group">
+                        <a th:href="@{/editarTest/{id}(id=${test.id})}" class="btn btn-primary">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a th:href="@{/borrarTest/{id}(id=${test.id})}" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div>
+                <label for="selectTest">Selecciona un test para ver sus preguntas y respuestas asociadas:</label>
+                <select id="selectTest" name="selectTest" onchange="location = this.value;" class="form-control">
+                    <option value="" disabled selected>Selecciona un Test</option>
+                    <option th:each="test : ${tests}"
+                            th:value="'/spring/crudTest?id=' + ${test.id}"
+                            th:text="${test.nombreTest}"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${selectTest != null}" class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <h2 th:text="'Preguntas para el test: ' + ${selectTest.nombreTest}" class="text-center mb-3"></h2>
+            <ul class="list-group">
+                <li th:each="pregunta : ${preguntas}" class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <a th:text="${pregunta.texto}" th:href="@{/crudTest(id=${pregunta.id})}"></a>
+                    </div>
+                    <div class="btn-group">
+                        <a th:href="@{/editarPregunta/{id}(id=${pregunta.id})}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a th:href="@{/borrarPregunta/{id}(id=${pregunta.id})}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div th:if="${selectTest != null}" class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <h2 th:text="'Respuestas para el test: ' + ${selectTest.nombreTest}" class="text-center mb-3"></h2>
+            <ul class="list-group">
+                <li th:each="respuesta : ${respuestas}" class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <a th:text="${respuesta.texto}" th:href="@{/crudTest(id=${respuesta.id})}"></a>
+                    </div>
+                    <div class="btn-group">
+                        <a th:href="@{/editarRespuesta/{id}(id=${respuesta.id})}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a th:href="@{/borrarRespuesta/{id}(id=${respuesta.id})}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div th:replace="home :: footer"></div>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+
+</body>
+
+</html>

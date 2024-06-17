@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAsperger</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/crudTest.css}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="containerCrud">
+    <h2>Agregar Nueva Pregunta</h2>
+    <form th:action="@{/guardarPregunta}" method="POST" th:object="${preguntaTest}">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-group">
+            <label for="modeloTestId">Seleccionar Test:</label>
+            <select id="modeloTestId" name="modeloTestId" class="form-control" required>
+                <option value="">Seleccionar Test</option>
+                <th:block th:each="test : ${modelosTest}">
+                    <option th:value="${test.id}" th:text="${test.nombreTest}" th:selected="${test.id == modeloTestId}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="texto">Texto de la Pregunta:</label>
+            <input type="text" id="texto" th:field="*{texto}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Pregunta</button>
+        <a th:href="@{/crearRespuesta}" class="btn btn-primary">Crear Respuesta</a>
+        <a th:href="@{/crudTest}" class="btn btn-primary">Volver</a>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div  th:replace="home :: footer"></div>
+</body>
+</html>

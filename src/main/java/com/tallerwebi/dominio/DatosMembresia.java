@@ -1,16 +1,24 @@
 package com.tallerwebi.dominio;
 
+import javax.persistence.*;
+
+@Entity
 public class DatosMembresia {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     private String nombreCompleto;
     private String email;
     private Long numeroTelefonico;
+    @ManyToOne
     private Tarjeta tarjeta;
 
     public DatosMembresia(){
 
     }
 
-    public DatosMembresia (String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
+    public DatosMembresia(String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.numeroTelefonico = numeroTelefonico;
@@ -56,5 +64,13 @@ public class DatosMembresia {
                 ", numeroTelefonico=" + numeroTelefonico +
                 ", tarjeta=" + tarjeta +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

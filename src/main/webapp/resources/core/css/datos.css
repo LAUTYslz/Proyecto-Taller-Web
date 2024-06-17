@@ -1,0 +1,191 @@
+.subtitulos-contacto{
+    margin-bottom: 3vh;
+}
+.main-datos{
+    width: 80%;
+    margin: auto auto 5vh;
+    box-sizing: border-box;
+}
+
+/*-----contenedores--------*/
+.contenedor-datos{
+    background-color: #fafab0;
+    padding: 2vh;
+    width: 50%;
+    border-radius: 10px;
+    margin: 3vh auto;
+}
+
+.contenedor-datos-texto ul,.contenedor-datos-texto{
+    background-color: #b9a0ea;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1vh;
+    list-style-position: inside;
+}
+.contenedor-datos-texto ul li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style-position: inside;
+
+}
+
+.contenedor-botones-datos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin: auto auto 5vh;
+    box-sizing:border-box;
+}
+/*--------botones de seccion mostrar datos------*/
+.btn-modificar-titular{
+    margin: auto;
+}
+.btn-datos-modificar{
+    width: 45vh;
+    /*font-size: 2.5vh;*/
+    background-color: #fafab0;
+    transition: .3s all;
+}
+.btn-datos-modificar:hover{
+    border: 1px solid #4f3c6e;
+    background-color: #fafab0;
+    scale:1.1
+}
+.btn-datos-eliminar{
+    width: 45vh;
+    /*font-size: 2.5vh;*/
+    background-color: #ef4b5a;
+    transition: .3s all;
+    height: 100%;
+    border-radius: 5px;
+    border:none;
+}
+.btn-datos-eliminar:hover{
+    border: 1px solid #4f3c6e;
+    background-color: #ef4b5a;
+    scale:1.1
+}
+.btn-datos-volver{
+    background-color: #4f3c6e;
+    border: 1px solid white;
+    color: white;
+    width: 20%;
+    /*font-size: 2.5vh;*/
+    margin-top: 2vh;
+    transition: .2s all;
+}
+.btn-datos-volver:hover{
+    scale: 1.1;
+    background-color: #4f3c6e;
+    color: white;
+
+}
+#btn-guardar-cambios{
+    margin-top: 3vh;
+}
+.contenedor-datos-texto ul li a{
+    width: 20vh;
+    /*font-size: 2.5vh;*/
+    background-color: #fafab0;
+}
+/*-----------formularios seccion datos----------------*/
+.form-mostrar-datos{
+    width: 40%;
+    margin: auto auto 5vh;
+    background-color: #fafab0;
+    box-sizing: border-box;
+    padding: 2vh;
+    border-radius: 10px;
+}
+.form-mostrar-datos a{
+    display: flex;
+    color: white;
+    background-color: #4f3c6e;
+    margin: 3vh auto 3vh;
+    justify-content: center;
+    align-items:center;
+    height: 5vh;
+    width: 80%;
+    border-radius: 5px;
+    transition: .2s all;
+    text-decoration: none;
+}
+.form-mostrar-datos a:hover{
+    scale:1.1;
+}
+
+
+/* !--------------- RESPONSIVE: TABLET ------------*/
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+
+    .main-datos{
+        width: 90%;
+    }
+    .contenedor-datos{
+        width: 70%;
+    }
+    .btn-datos-modificar{
+        width: 25vh;
+    }
+    .btn-datos-eliminar{
+        width: 100%;
+    }
+    .btn-datos-volver{
+        width: 30%;
+    }
+    .contenedor-datos-texto ul li a{
+        width: 13vh;
+    }
+    .contenedor-botones-datos{
+        width: 70%;
+    }
+    .form-mostrar-datos{
+        width: 60%;
+    }
+    .form-mostrar-datos a{
+        width: 80%;
+        height: 4vh;
+    }
+}
+
+/* !--------------RESPONSIVE CELULAR -----------*/
+@media only screen and (max-width: 768px) {
+    .main-datos{
+        width: 90%;
+    }
+    .contenedor-datos{
+        width: 100%;
+    }
+    .btn-datos-modificar{
+        width: 40vh;
+    }
+    .btn-datos-eliminar{
+        width: 40vh;
+        height: 7vh;
+    }
+    .btn-datos-volver{
+        width: 70%;
+    }
+    .contenedor-datos-texto ul li a{
+        width: 15vh;
+        font-size:2vh;
+    }
+    .contenedor-botones-datos{
+        width: 90%;
+        height: 17vh;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-mostrar-datos{
+        width: 100%;
+    }
+    .form-mostrar-datos a{
+        width: 100%;
+        height: 4vh;
+    }
+}
