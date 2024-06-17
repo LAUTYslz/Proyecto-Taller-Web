@@ -60,9 +60,9 @@ public class ControladorLogin {
                 modelAndView.setViewName("redirect:/administrador");
             } else if (usuarioBuscado.getRol().equals("USUARIO")) {
                 // Verificar el estado del usuario
-                if (usuarioBuscado.getMembresia().getEstado().equals(Estado.INACTIVA)) {
+                if ( usuarioBuscado.getMembresia()==null) {
                     modelAndView.setViewName("redirect:/bienvenido");
-                } else if (usuarioBuscado.getMembresia().getEstado().equals(Estado.INACTIVA)) {
+                } else if (usuarioBuscado.getMembresia().getEstado().equals(Estado.ACTIVADA)) {
                     modelAndView.setViewName("redirect:/usuarioMembresia");
                 } else {
                     // Manejar otros estados si es necesario
@@ -206,6 +206,7 @@ public class ControladorLogin {
         return new ModelAndView("guardar-hijo");
 
     }
+
     @RequestMapping(path = "/guardar-hijo", method = RequestMethod.POST)
     public ModelAndView guardarHijo(@ModelAttribute("hijo") Hijo hijo, HttpServletRequest request) {
         ModelMap modelo = new ModelMap();
@@ -217,13 +218,21 @@ public class ControladorLogin {
             servicioLogin.registrarHijo(hijo);
             modelo.addAttribute("hijo", hijo);
             modelo.put("usuario", usuario);
+
+            // Verificar la membresía del usuario
+            if (usuario.getMembresia() != null ) {
+                // Si tiene membresía activada, redireccionar a usuariomembresia
+                return new ModelAndView("usuarioMembresia", modelo);
+            } else {
+                // Si no tiene membresía activada, redireccionar a bienvenidos
+                return new ModelAndView("bienvenidos", modelo);
+            }
+
         } catch (Exception e) {
             modelo.put("error", "Error al registrar el nuevo usuario");
             return new ModelAndView("error", modelo); // Manejar cualquier otro error
         }
-        return new ModelAndView("guardar-hijo", modelo);
     }
-
     // Mostrar formulario para agregar cónyuge
     @GetMapping("/nuevoConyuge")
     public String mostrarFormularioAgregarConyuge(HttpServletRequest request, Model model) {

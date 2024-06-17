@@ -2,11 +2,13 @@ com\tallerwebi\dominio\excepcion\CodigoInvalido.class
 com\tallerwebi\dominio\Etapa.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\dominio\excepcion\MembresiaInexistente.class
+com\tallerwebi\dominio\RepositorioMembresiaActivada.class
 com\tallerwebi\dominio\ServicioAdmi.class
 com\tallerwebi\config\HibernateConfig.class
 com\tallerwebi\dominio\ServicioProfesional.class
 com\tallerwebi\dominio\RepositorioProfesional.class
 com\tallerwebi\dominio\RepositorioUsuario.class
+com\tallerwebi\infraestructura\RepositorioMembresiaActivadaImpl.class
 com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
 com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
@@ -14,8 +16,10 @@ com\tallerwebi\dominio\Hijo.class
 com\tallerwebi\dominio\Consulta.class
 com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
+com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
+com\tallerwebi\dominio\ServicioMembresiaActivada.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\dominio\Estado.class
 com\tallerwebi\dominio\excepcion\EtapaInexistente.class
@@ -43,6 +47,7 @@ com\tallerwebi\dominio\excepcion\juegoInexistente.class
 com\tallerwebi\dominio\excepcion\NoposeeEtapa.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
+com\tallerwebi\presentacion\ControladorMembresiaActivada.class
 com\tallerwebi\presentacion\ControladorAdministrador.class
 com\tallerwebi\infraestructura\ServicioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class
