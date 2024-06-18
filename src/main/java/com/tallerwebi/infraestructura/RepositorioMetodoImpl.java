@@ -44,10 +44,15 @@ public class RepositorioMetodoImpl implements RepositorioMetodo {
     }
 
     @Override
-    public Metodo buscarMetodoPorId(Long id) {
+    public Metodo traerMetodoPorId(Long metodoId) {
         return (Metodo) sessionFactory.getCurrentSession()
                 .createCriteria(Metodo.class)
-                .add(Restrictions.eq("id", id))
+                .add(Restrictions.eq("id", metodoId))
                 .uniqueResult();
+    }
+
+    @Override
+    public Metodo buscarMetodoPorId(Long metodoId) {
+        return null;
     }
 }

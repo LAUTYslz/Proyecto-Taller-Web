@@ -39,4 +39,12 @@ public class RepositorioTipoProfesionalImpl implements RepositorioTipoProfesiona
                 createCriteria(TipoProfesional.class)
                 .list();
     }
+
+    @Override
+    public TipoProfesional traerTipoPorId(Long tipoId) {
+        return (TipoProfesional) sessionFactory.getCurrentSession()
+                .createCriteria(TipoProfesional.class)
+                .add(Restrictions.eq("id", tipoId))
+                .uniqueResult();
+    }
 }

@@ -8,8 +8,8 @@ public interface ServicioProfesional {
 
     void guardarProfesional(Profesional profesional, String nombreMetodo, String nombreTipoContacto);
 
-    void actualizarProfesional(Profesional profesionalExistente);
-
+    void actualizarProfesional(Profesional profesionalExistente, String nombreMetodo, String nombreTipoContacto);
+    void actualizar(Profesional profesional);
     void eliminarProfesional(Profesional profesionalExistente);
 
     List<Profesional> traerProfesionalesPorMetodo(String nombreMetodo);

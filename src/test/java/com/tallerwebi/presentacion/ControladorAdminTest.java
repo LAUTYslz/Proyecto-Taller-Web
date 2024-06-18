@@ -3,6 +3,7 @@ package com.tallerwebi.presentacion;
 import com.tallerwebi.dominio.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
@@ -57,11 +58,12 @@ public class ControladorAdminTest {
     public void testGuardarProfesional() {
         // Crear un objeto Profesional de prueba
         Profesional profesional = new Profesional();
-        profesional.setNombre("John Doe");
-        profesional.setTelefono("123456789");
-        profesional.setEmail("john.doe@example.com");
-        profesional.setDireccion("123 Main St");
-        profesional.setInstitucion("Instituto XYZ");
+        String nombre = "John Doe";
+        String telefono = "123456789";
+        String email = "john.doe@example.com";
+        String direccion = "123 Main St";
+        String institucion = "Instituto XYZ";
+        String id = "1l";
 
         TipoProfesional tipo = new TipoProfesional();
         tipo.setId(1L);
@@ -78,7 +80,7 @@ public class ControladorAdminTest {
         when(servicioProfesional.guardar(any(Profesional.class))).thenReturn(profesional);
 
         // Llamar al método del controlador
-        String result = controladorAdministrador.agregarProfesional(profesional);
+        ModelAndView result = controladorAdministrador.agregarProfesional(nombre, telefono, email, direccion, institucion, id, id);
 
         // Verificar que el método de servicio fue llamado y el resultado de la vista
         verify(servicioProfesional, times(1)).guardar(profesional);
