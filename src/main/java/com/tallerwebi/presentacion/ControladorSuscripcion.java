@@ -46,9 +46,10 @@ public class ControladorSuscripcion {
        Usuario usuario= servicioLogin.obtenerUsuarioActual(request);
         try {
             servicioMembresia.darDeAltaMembresia(datosMembresia,usuario);
+            usuario = servicioLogin.buscarUsuarioPorId(usuario.getId());
             model.put("datosMembresia", datosMembresia);
             model.put("usuario", usuario);
-            return new ModelAndView("confirmacionMembresia", model);
+            return new ModelAndView("usuarioMembresia", model);
         } catch (MembresiaExistente ex){
             model.put("error", "Tu usuario ya cuenta con una membresía paga");
         } catch (TarjetaInvalida ex){

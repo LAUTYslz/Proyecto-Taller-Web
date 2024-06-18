@@ -2,11 +2,9 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 
-import com.tallerwebi.dominio.excepcion.MembresiaInexistente;
-import com.tallerwebi.dominio.excepcion.UsuarioExistente;
+import com.tallerwebi.dominio.excepcion.*;
 
 
-import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import com.tallerwebi.infraestructura.ServicioMembresiaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -200,7 +198,7 @@ public class ControladorLogin {
     }
 
     //creo un hijo
-    @RequestMapping(path = "/guardar-hijo")
+    @RequestMapping(path = "/guardar-hijos")
     public ModelAndView irAGuardar() {
 
         return new ModelAndView("guardar-hijo");
@@ -212,20 +210,26 @@ public class ControladorLogin {
         ModelMap modelo = new ModelMap();
         try {
             Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-
             // Asociar el hijo con el usuario
             hijo.setUsuario(usuario);
             servicioLogin.registrarHijo(hijo);
-            modelo.addAttribute("hijo", hijo);
-            modelo.put("usuario", usuario);
+
+            // Actualizar el usuario después de registrar el hijo
+            usuario = servicioLogin.buscarUsuarioPorId(usuario.getId()); // Actualiza el usuario desde la fuente de datos
+
+            DatosMembresia membresia = usuario.getMembresia();
 
             // Verificar la membresía del usuario
-            if (usuario.getMembresia() != null ) {
+            if (membresia != null && membresia.getEstado().equals(Estado.ACTIVADA)) {
                 // Si tiene membresía activada, redireccionar a usuariomembresia
+                List<Hijo> hijosActualizados = servicioLogin.buscarHijosPorId(usuario.getId());
+                modelo.addAttribute("hijos", hijosActualizados);
+                modelo.addAttribute("usuario", usuario);
+                modelo.addAttribute("membresia", membresia);
                 return new ModelAndView("usuarioMembresia", modelo);
             } else {
                 // Si no tiene membresía activada, redireccionar a bienvenidos
-                return new ModelAndView("bienvenidos", modelo);
+                return new ModelAndView("bienvenido", modelo);
             }
 
         } catch (Exception e) {

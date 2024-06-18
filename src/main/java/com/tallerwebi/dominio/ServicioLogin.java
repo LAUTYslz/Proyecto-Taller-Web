@@ -35,6 +35,12 @@ public interface ServicioLogin {
 
     void actualizarUsuario(Usuario buscado) throws UsuarioExistente, UsuarioInexistente;
 
+
+
+    Hijo busquedahijo(Long hijoid);
+
+    void actualizarHijo(Hijo buscarHijo);
+
     /* Etapa asignarEtapa(Hijo hijo);*/
 
     /* void registrarConyuge(Long id, Usuario conyuge) throws UsuarioExistente, UsuarioInexistente;*/

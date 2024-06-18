@@ -54,75 +54,177 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+        background-color: #f0f0f0; /* Color de fondo */
     }
+
     .containerInfo {
         display: flex;
-        justify-content: space-between;
-        margin: 20px auto;
-        max-width: 1000px;
-        padding: 0 20px;
+        flex-wrap: wrap; /* Ajuste para que los elementos se envuelvan en pantallas pequeñas */
+        justify-content: space-between; /* Espacio entre columnas */
+        padding: 20px;
     }
+.containerInfo a{
+    background-color: chocolate;
+    color: #4f3c6e;
+}
     .column {
-        flex: 1;
-        margin-right: 20px;
+        flex: 1; /* Las columnas se ajustan al contenido */
+        background-color: #fff; /* Fondo blanco */
+        margin-bottom: 20px; /* Espacio entre columnas */
+        padding: 20px;
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
     }
-    .column:last-child {
-        margin-right: 0;
+
+    .perfil {
+        background-color: #fff; /* Fondo blanco */
+        padding: 20px;
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
     }
-    h2 {
-        color: #333;
+
+    .perfil h2 {
+        margin-top: 0;
     }
-    p {
-        color: #666;
+
+    .perfil p {
+        margin-bottom: 5px;
     }
-    button {
-        display: block;
+
+    .circle-button {
+        display: inline-block;
+        background-color: #007bff; /* Color de fondo del botón */
+        color: #fff; /* Color del texto */
+        padding: 10px 20px; /* Espaciado interno */
+        border-radius: 20px; /* Bordes redondeados */
+        margin-top: 10px; /* Espacio superior */
+    }
+
+    .circle-button a {
+        color: #fff; /* Color del texto del enlace */
+        text-decoration: none; /* Sin subrayado */
+    }
+
+    .fa {
+        margin-right: 5px; /* Espacio entre el icono y el texto */
+    }
+    hijos {
+        margin-bottom: 20px;
+    }
+
+    .lista-hijos {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .hijo {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    .hijo-info {
+        margin-bottom: 10px;
+    }
+
+    .asociar-metodo-form {
         margin-top: 10px;
-        padding: 10px 20px;
-        background-color: darkslateblue;
-        color: #fff;
-        border: none;
+    }
+
+    /* Estilos para los elementos del formulario */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
         border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
+        border: 1px solid #ccc;
+    }
+
+
+
+    .btn-green {
+        background-color: #28a745;
+    }
+
+    .btn:hover,
+    .btn-green:hover {
+        background-color: #0056b3;
     }
 
 </style>
 
 
 
+<body>
 <div class="containerInfo">
     <div class="column">
         <h2>Metodo Montessori</h2>
-        <p>El método Montessori se caracteriza por proveer un ambiente preparado: ordenado, estético, simple, real, donde cada elemento tiene su razón de ser en el desarrollo de los niños. El aula Montessori integra edades agrupadas en períodos de 3 años, lo que promueve naturalmente la socialización, el respeto y la solidaridad.
-
-            El ambiente preparado ofrece al niño oportunidades para comprometerse en un trabajo interesante, elegido libremente, que propicia prolongados períodos de concentración que no deben ser interrumpidos. La libertad se desarrolla dentro de límites claros que permite a los niños convivir en la pequeña sociedad del aula.
-
-            Los niños trabajan con materiales concretos científicamente diseñados, que brindan las llaves para explorar el mundo y para desarrollar habilidades cognitivas básicas. Los materiales están diseñados para que el niño pueda reconocer el error por sí mismo y hacerse responsable del propio aprendizaje.
-
-            El adulto es un observador y un guía; ayuda y estimula al niño en todos sus esfuerzos. Le permite actuar, querer y pensar por sí mismo, ayudándolo a desarrollar confianza y disciplina interior.
-
-            La educación Montessori cubre todos los períodos educativos desde el nacimiento hasta los 18 años brindando un currículo integrado.</p>
-        <button id="montessori" Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Montessori</a></button>
+        <p>El método Montessori se caracteriza por proveer un ambiente preparado: ordenado, estético, simple, real, donde cada elemento tiene su razón de ser en el desarrollo de los niños. El aula Montessori integra edades agrupadas en períodos de 3 años, lo que promueve naturalmente la socialización, el respeto y la solidaridad.</p>
+        <button id="montessori" type="Submit"><a role="button" href="/">Montessori</a></button>
     </div>
     <div class="column">
-        <h2>Metodo Doman </h2>
-        <p>Este método está diseñado para que los padres puedan aplicarlo con su hijo, adaptándolo a las características y necesidades del pequeño. Este método se basa en inputs y outputs. Es decir, al niño se le van presentando estímulos adecuados tanto en intensidad como en frecuencia y claridad para favorecer su desarrollo y que el niño disfrute del proceso.
-
-            Estos estímulos reciben el nombre de Bits de inteligencia y se pueden procesar por cualquiera de las vías sensoriales: oído, tacto, visión y gusto. Los Bits se agrupan en categorías para favorecer la formación de conexiones neuronales y han de ser novedosos, simples y concreto.
-
-            Por lo tanto, este método se trata básicamente en mostrar al niño series de cinto tarjetas con palabras, escritas con letras grandes y que correspondan a una misma categoría para que el niño vaya estableciendo relaciones. Después, poco a poco se van añadiendo categorías.
-
-            Así, las categorías pueden ser: colores, animales, juguetes, vocabulario del cuerpo, familia, etc. Además, el aprendizaje en este método se da en diferentes fases</p>
-        <button id="doman"  Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Doman</a></button>
+        <h2>Metodo Doman</h2>
+        <p>Este método está diseñado para que los padres puedan aplicarlo con su hijo, adaptándolo a las características y necesidades del pequeño. Este método se basa en inputs y outputs. Es decir, al niño se le van presentando estímulos adecuados tanto en intensidad como en frecuencia y claridad para favorecer su desarrollo y que el niño disfrute del proceso.</p>
+        <button id="doman" type="Submit"><a role="button" href="/nuevo-usuario">Doman</a></button>
     </div>
     <div class="column">
-        <h2>Metodo Waldorf </h2>
-        <p>La metodología Waldorf es una técnica de enseñanza que nace en las premisas establecidas por Rudolf Steiner. Esta pedagogía está basada en la libre instrucción por parte de los alumnos, es decir, que sean autónomos a la hora de ir realizando y adquiriendo los conocimientos a lo largo del propio proceso educativo. Esta metodología fomenta sobre todo el grupo cooperativo entre los estudiantes, centrando en cada etapa educativa diferentes hipótesis de trabajo y enseñanza, que los alumnos irán adquiriendo de forma paulatina cuando estén preparados para asimilar dichos conceptos. En este caso, el docente es el encargado de ir observando a los niños y niñas en todo momento para ir introduciendo los conocimientos que precisen en cada una de las diferentes etapas educativas, fomentando en cada una de ellas las materias de arte, música y trabajos más artesanales y manipulativos..</p>
-        <button id="waldorf"  Type="Submit"><a role="button" th:href="@{/nuevo-usuario}">Seleccionar Waldorf</a></button>
+        <h2>Metodo Waldorf</h2>
+        <p>La metodología Waldorf es una técnica de enseñanza que nace en las premisas establecidas por Rudolf Steiner. Esta pedagogía está basada en la libre instrucción por parte de los alumnos, es decir, que sean autónomos a la hora de ir realizando y adquiriendo los conocimientos a lo largo del propio proceso educativo.</p>
+        <button id="waldorf" type="Submit"><a role="button" href="/nuevo-usuario">Waldorf</a></button>
+    </div>
+    <div class="column">
+        <div class="perfil">
+            <h2>Mi Perfil</h2>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+            <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+
+
+            <i class="fa-solid fa-plus"></i>
+            <h2>Hijos</h2>
+            <div th:if="${hijos != null and #lists.size(hijos) > 0}">
+                <ul>
+                    <li th:each="hijo : ${hijos}">
+                        <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
+                        <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
+                        <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
+                        <p>ETAPA de SU Hijo:
+                            <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
+                            <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
+                        <form th:action="@{/asociar-metodo/{hijoId}(hijoId=${hijo.id})}" method="post">
+                            <div class="form-group">
+                                <label for="metodo_id">Seleccionar Método:</label>
+                                <select class="form-control" id="metodo_id" name="metodo_id" required>
+                                    <option value="">Seleccionar Método</option>
+                                    <th:block th:each="metodo : ${metodos}">
+                                        <option th:value="${metodo.id}" th:text="${metodo.nombre}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-green">Asociar Método</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div th:if="${hijos == null or #lists.size(hijos) == 0}">
+                <p>No hay hijos registrados.</p>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+</body>
+</html>
 
 <div th:replace="home :: footer"></div>
 

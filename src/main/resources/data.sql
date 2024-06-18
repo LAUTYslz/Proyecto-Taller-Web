@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS Metodo (
     nombre VARCHAR(50)
 );
 
+
+
 INSERT INTO Metodo (nombre)
 SELECT 'WALDORF'
 WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'WALDORF');

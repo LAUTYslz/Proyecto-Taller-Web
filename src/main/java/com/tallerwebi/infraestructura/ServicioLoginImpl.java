@@ -53,7 +53,7 @@ public class ServicioLoginImpl implements ServicioLogin {
     @Override
     public void registrarHijo(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         repositorioUsuario.guardarHijo(hijo);
-
+        asignarEtapa(hijo);
 
     }
 
@@ -130,6 +130,16 @@ public class ServicioLoginImpl implements ServicioLogin {
         buscar.setEmail(usuario.getEmail());
         buscar.setPassword(usuario.getPassword());
         repositorioUsuario.actualizar(buscar);
+    }
+
+    @Override
+    public Hijo busquedahijo(Long hijoid) {
+        return repositorioUsuario.buscarhijo(hijoid);
+    }
+
+    @Override
+    public void actualizarHijo(Hijo buscarHijo) {
+        repositorioUsuario.actualizarHijo(buscarHijo);
     }
 
     public void asignarEtapa(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {

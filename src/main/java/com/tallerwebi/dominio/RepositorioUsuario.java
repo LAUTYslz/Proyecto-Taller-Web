@@ -29,6 +29,8 @@ public interface RepositorioUsuario {
 
     void actualizarHijo(Hijo hijo);
 
+    Hijo buscarhijo(Long hijoid);
+
 
 
     /*void guardarHijo(Usuario hijo);*/
