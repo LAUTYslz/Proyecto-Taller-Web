@@ -60,10 +60,11 @@
              margin: 4px 2px;
              cursor: pointer;
              border-radius: 50px;
+             font-family: Schoolbell, cursive;
          }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Schoolbell, cursive;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -84,6 +85,7 @@
             padding: 20px;
             margin-top:10px;
             margin-left:10px;
+            font-family: Schoolbell, cursive;
 
         }
         .container p{
@@ -104,6 +106,7 @@
             border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
+            font-family: Schoolbell, cursive;
 
             transition: background-color 0.3s;
         }
@@ -156,7 +159,7 @@
         <tbody>
         <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
             <td th:text="${etapa.id}"></td>
-            <td><a th:href="@{'/detalleEtapa/' + ${etapa.id}}" th:text="${etapa.nombre}"></a></td>
+            <td th:text="${etapa.nombre}"></td>
             <td th:text="${etapa.desde}"></td>
             <td th:text="${etapa.hasta}"></td>
             <td>

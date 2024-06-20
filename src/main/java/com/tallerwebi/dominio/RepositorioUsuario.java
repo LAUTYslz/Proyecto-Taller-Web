@@ -27,6 +27,10 @@ public interface RepositorioUsuario {
 
     void borrarHijo(Long hijoId);
 
+    void actualizarHijo(Hijo hijo);
+
+    Hijo buscarhijo(Long hijoid);
+
 
 
     /*void guardarHijo(Usuario hijo);*/

@@ -50,4 +50,12 @@ public class RepositorioMetodoImpl implements RepositorioMetodo {
                 .add(Restrictions.eq("id", metodoId))
                 .uniqueResult();
     }
+
+    @Override
+    public Metodo buscarMetodoPorId(Long id) {
+        return (Metodo) sessionFactory.getCurrentSession()
+                .createCriteria(Metodo.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+    }
 }

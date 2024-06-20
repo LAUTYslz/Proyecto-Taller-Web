@@ -2,6 +2,7 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
+import com.tallerwebi.dominio.excepcion.juegoInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,17 +135,49 @@ public class ControladorAdministrador {
     }
     @PostMapping("/verjuego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
-
         Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
         model.addAttribute(etapaBuscada);
-        return "verJuegoPorEtapa";
+        List<Juego> lista= servicioAdmi.listasDeJuegosPorEtapa(etapaBuscada.getId());
+        model.addAttribute("juegos", lista);
+        return "verJuegoPorEtapaAdmi";
+    }
+    @GetMapping("/modificar-juego/{id}")
+    public String mostarformJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        model.addAttribute(juegoBuscado);
+
+        return "modificarJuego";
+    }
+    @PostMapping("/actualizar-juego/{id}")
+    public String modificarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        model.addAttribute(juegoBuscado);
+        servicioAdmi.actualizarJuego(juegoBuscado);
+        return "verJuegoPorEtapaAdmi";
+    }
+
+
+    @PostMapping("/eliminar-juego/{id}")
+    public String eliminarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        servicioAdmi.eliminarJuego(juegoBuscado);
+        return "verJuegoPorEtapaAdmi";
     }
 
     @GetMapping("/verjuego")
     public String verJuegoPorEtapa() {
         // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
         // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
-        return "verJuegoPorEtapa";
+        return "verJuegoPorEtapaAdmi";
+    }
+    @GetMapping("/verjuegoModificado")
+    public String verJuegoMoa() {
+        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
+        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+        return "modificarJuego";
     }
 
 

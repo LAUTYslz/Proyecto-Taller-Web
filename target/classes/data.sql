@@ -1,3 +1,25 @@
+CREATE TABLE IF NOT EXISTS Tarjeta (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         numeroDeTarjeta VARCHAR(16) NOT NULL,
+                         fechaDeVencimiento DATE NOT NULL,
+                         codigoDeSeguridad VARCHAR(3) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS  DatosMembresia (
+                              id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                 nombreCompleto VARCHAR(255) NOT NULL,
+                                email VARCHAR(255) NOT NULL,
+                                 estado ENUM('ACTIVADA', 'INACTIVA', 'PENDIENTE') DEFAULT 'INACTIVA',
+                              numeroTelefonico BIGINT,
+                                 fechaDeInicio DATE,
+                                fechaDeBaja DATE,
+                                  tarjeta_id BIGINT,
+                                 FOREIGN KEY (tarjeta_id) REFERENCES tarjeta(id)
+
+);
+
+
+
 
 CREATE TABLE Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -6,11 +28,13 @@ CREATE TABLE Usuario (
                          rol VARCHAR(255),
                          estado VARCHAR(255) DEFAULT 'inactivo',
                          conyuge_id BIGINT,
+                         membresia_id BIGINT,
                          nombre VARCHAR(255),
-                         FOREIGN KEY (conyuge_id) REFERENCES Usuario(id)
+                         FOREIGN KEY (conyuge_id) REFERENCES Usuario(id),
+                        FOREIGN KEY (membresia_id) REFERENCES DatosMembresia (id)
 );
 
-
+DROP TABLE IF EXISTS etapa;
 CREATE TABLE IF NOT EXISTS etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
@@ -60,6 +84,8 @@ CREATE TABLE IF NOT EXISTS Metodo (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50)
 );
+
+
 
 INSERT INTO Metodo (nombre)
 SELECT 'WALDORF'
@@ -128,19 +154,3 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
 
-CREATE TABLE Tarjeta (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         numeroDeTarjeta VARCHAR(16) NOT NULL,
-                         fechaDeVencimiento DATE NOT NULL,
-                         codigoDeSeguridad VARCHAR(3) NOT NULL
-);
-
-CREATE TABLE DatosMembresia
-(
-    id               BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombreCompleto   VARCHAR(100) NOT NULL,
-    email            VARCHAR(100) NOT NULL,
-    numeroTelefonico VARCHAR(15),
-    tarjeta_id       BIGINT,
-    FOREIGN KEY (tarjeta_id) REFERENCES Tarjeta (id)
-);

@@ -1,8 +1,10 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.NoposeeEtapa;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.dominio.excepcion.UsuarioNoPoseeMembresiaActivada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         if (usuarioEncontrado != null) {
             throw new UsuarioExistente();
         }
+        usuario.setRol("USUARIO");
         repositorioUsuario.guardar(usuario);
     }
 
@@ -48,12 +51,15 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
-    public void registrarHijo(Hijo hijo) {
-
+    public void registrarHijo(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         repositorioUsuario.guardarHijo(hijo);
+        asignarEtapa(hijo);
+
     }
 
-   /* @Override
+
+
+    @Override
    public void registrarConyuge(Long idUsuario, Usuario conyuge) throws UsuarioInexistente, UsuarioExistente {
         // Buscar al usuario actual en base a su ID
         Usuario usuario = repositorioUsuario.buscarPorId(idUsuario);
@@ -67,25 +73,21 @@ public class ServicioLoginImpl implements ServicioLogin {
         Usuario conyugeExistente = repositorioUsuario.buscarUsuario(conyuge.getEmail(), conyuge.getPassword());
         if(conyugeExistente == null) {
             // Si el cónyuge no existe, guardarlo en la base de datos
+            usuario.setConyuge(conyuge);
             repositorioUsuario.guardar(conyuge);
         } else {
             // Si el cónyuge ya existe, lanzar una excepción
             throw new UsuarioExistente();
         }
 
-        // Asignar el cónyuge al usuario
-        usuario.setConyuge(conyuge);
 
-        // Actualizar el usuario en la base de datos para guardar la relación con el cónyuge
-        repositorioUsuario.guardar(usuario);
-        repositorioUsuario.guardar(conyuge);
-    }*/
+    }
 
     @Override
     public void asociarConyuge(String userEmail, Usuario conyuge) {
         Usuario usuario = repositorioUsuario.findByEmail(userEmail);
         usuario.setConyuge(conyuge);
-        conyuge.setConyuge(usuario);
+
         conyuge.setRol("ROL_CONYUGE");
         repositorioUsuario.guardar(usuario);
         repositorioUsuario.guardar(conyuge);
@@ -120,28 +122,48 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
-    public Etapa asignarEtapa(Hijo hijo) {
+    public void actualizarUsuario(Usuario usuario) throws UsuarioInexistente {
+        Usuario buscar= repositorioUsuario.buscarPorId(usuario.getId());
+        if (buscar == null) {
+            throw new UsuarioInexistente();
+        }
+        buscar.setEmail(usuario.getEmail());
+        buscar.setPassword(usuario.getPassword());
+        repositorioUsuario.actualizar(buscar);
+    }
+
+    @Override
+    public Hijo busquedahijo(Long hijoid) {
+        return repositorioUsuario.buscarhijo(hijoid);
+    }
+
+    @Override
+    public void actualizarHijo(Hijo buscarHijo) {
+        repositorioUsuario.actualizarHijo(buscarHijo);
+    }
+
+    public void asignarEtapa(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
         Integer edad = hijo.getEdad();
-        Etapa etapaEnopntrada = null;
+        Etapa etapaEncontrada = null;
 
         for (Etapa etapa : listaEtapa) {
             if (edad >= etapa.getDesde() && edad <= etapa.getHasta()) {
-                etapaEnopntrada = etapa;
-                hijo.setEtapa(etapaEnopntrada);
-                break;
+                etapaEncontrada = etapa;
+                break; // Se encontró la etapa, no es necesario continuar iterando
             }
-
-            if (etapaEnopntrada == null) {
-                // Manejar el caso en el que ninguna etapa sea encontrada
-                throw new RuntimeException("No se encontró una etapa para la edad proporcionada");
-            }
-
-
-
         }
-        return etapaEnopntrada;
-    }
+
+        if (etapaEncontrada == null) {
+            // Manejar el caso en el que ninguna etapa sea encontrada
+            throw new NoposeeEtapa();
+        }
+
+        hijo.setEtapa(etapaEncontrada);
+
+
+
+}
 }
 
 

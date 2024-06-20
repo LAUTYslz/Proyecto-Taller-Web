@@ -12,10 +12,11 @@ public class Usuario {
     private Long id;
     private String email;
     private String password;
-    private String rol="USUARIO";
-    private String estado = "inactivo";// enum o boolean
+    private String rol;
+    private Boolean estado ;// enum o boolean
     private String nombre;
-
+    @OneToOne
+    private DatosMembresia membresia;
 
     @OneToOne
     private Usuario conyuge;
@@ -59,11 +60,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -83,5 +84,25 @@ public class Usuario {
         this.conyuge = conyuge;
     }
 
+    public DatosMembresia getMembresia() {
+        return membresia;
+    }
 
+    public void setMembresia(DatosMembresia membresia) {
+        this.membresia = membresia;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rol='" + rol + '\'' +
+                ", estado=" + estado +
+                ", nombre='" + nombre + '\'' +
+                ", membresia=" + membresia +
+                ", conyuge=" + conyuge +
+                '}';
+    }
 }

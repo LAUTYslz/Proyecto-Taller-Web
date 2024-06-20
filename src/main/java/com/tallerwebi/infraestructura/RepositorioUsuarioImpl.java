@@ -70,7 +70,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
     @Override
     public void actualizar(Usuario usuario) {
-
+    sessionFactory.getCurrentSession().update(usuario);
     }
 
     @Override
@@ -93,6 +93,18 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     public void borrarHijo(Long hijoId) {
         Hijo hijo = sessionFactory.getCurrentSession().load(Hijo.class, hijoId);
         sessionFactory.getCurrentSession().delete(hijo);
+    }
+
+    @Override
+    public void actualizarHijo(Hijo hijo) {
+        sessionFactory.getCurrentSession().update(hijo);
+    }
+
+    @Override
+    public Hijo buscarhijo(Long id) {
+        return (Hijo) sessionFactory.getCurrentSession().createCriteria(Hijo.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
     }
 }
 

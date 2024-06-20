@@ -10,4 +10,8 @@ public interface RepositorioMetodo {
     List<Metodo> buscarMetodos();
 
     Metodo traerMetodoPorId(Long metodoId);
+
+
+
+    Metodo buscarMetodoPorId(Long id);
 }
