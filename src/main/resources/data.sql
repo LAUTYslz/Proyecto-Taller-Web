@@ -153,4 +153,16 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Tienda Juguetes', '+1122334462', 'ventas@tiendajuguetes.com', 'Calle Comercial 1617', 'Tienda Juguetes', 3, NULL),
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
-
+CREATE TABLE consulta (
+                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                          mensaje VARCHAR(255),
+                          usuario_id BIGINT,
+                          profesional_id BIGINT,
+                          hijo_id BIGINT,
+                          FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+                          FOREIGN KEY (profesional_id) REFERENCES profesional(id),
+                          FOREIGN KEY (hijo_id) REFERENCES hijo(id)
+);
+ALTER TABLE consulta
+    ADD COLUMN estado ENUM('SIN_LEER', 'LEIDO', 'RESPONDIDO') DEFAULT 'SIN_LEER',
+    ADD COLUMN fecha DATE;

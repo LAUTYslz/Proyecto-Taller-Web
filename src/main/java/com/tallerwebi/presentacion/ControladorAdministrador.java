@@ -2,6 +2,7 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
+import com.tallerwebi.dominio.excepcion.juegoInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
 @Controller
 public class ControladorAdministrador {
 
@@ -90,8 +90,8 @@ public class ControladorAdministrador {
 
     @PostMapping("/guardar-etapa")
     public String crearEtapa(Etapa etapa) {
-      ModelAndView modelAndView = new ModelAndView();
-      modelAndView.addObject("etapa", etapa);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("etapa", etapa);
         servicioAdmi.guardarEtapa(etapa);
         return "redirect:/crearJuego";
     }
@@ -113,7 +113,7 @@ public class ControladorAdministrador {
         model.addAttribute(juego);
         modelAndView.addObject("juego", juego);
         servicioAdmi.guardarJuego(juego);
-    return  "redirect:/administrador";
+        return  "redirect:/administrador";
 
     }
 
@@ -121,30 +121,80 @@ public class ControladorAdministrador {
     public String mostrarFormularioModificarEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
 
         Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
-       model.addAttribute(etapaBuscada);
+        model.addAttribute(etapaBuscada);
         return "guardar-etapa";
     }
 
 
     @PostMapping("/actualizar-etapa")
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
-    servicioAdmi.actualizarEtapa(etapa);
+        servicioAdmi.actualizarEtapa(etapa);
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
     @PostMapping("/verjuego-etapa/{id}")
-    public String verJuegosPorEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
+    public String verJuegosPorEtapa(@PathVariable Long id, Model model, HttpServletRequest request) throws EtapaInexistente {
+        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
+        model.addAttribute("etapa", etapaBuscada); // Asegúrate de agregar "etapa" como atributo al modelo
+        List<Juego> lista = servicioAdmi.listasDeJuegosPorEtapa(etapaBuscada.getId());
+        model.addAttribute("juegos", lista);
 
-        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
-        model.addAttribute(etapaBuscada);
-        return "verJuegoPorEtapa";
+        // Obtener el rol del usuario autenticado
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+        String rol = usuario.getRol();
+
+        // Redirigir según el rol
+        if (rol.equals("USUARIO")) {
+            return "verJuegoPorEtapaUsuario"; // Nombre lógico de la vista para usuarios
+        } else {
+            return "verJuegoPorEtapaAdmi"; // Nombre lógico de la vista para administradores
+        }
+    }
+
+
+    @GetMapping("/modificar-juego/{id}")
+    public String mostarformJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        model.addAttribute(juegoBuscado);
+
+        return "modificarJuego";
+    }
+    @PostMapping("/actualizar-juego/{id}")
+    public String modificarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        model.addAttribute(juegoBuscado);
+        servicioAdmi.actualizarJuego(juegoBuscado);
+        return "verJuegoPorEtapaAdmi";
+    }
+
+
+    @PostMapping("/eliminar-juego/{id}")
+    public String eliminarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
+
+        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        servicioAdmi.eliminarJuego(juegoBuscado);
+        return "verJuegoPorEtapaAdmi";
     }
 
     @GetMapping("/verjuego")
-    public String verJuegoPorEtapa() {
+    public String verJuegoPorEtapaAdmi() {
         // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
         // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
-        return "verJuegoPorEtapa";
+        return "verJuegoPorEtapaAdmi";
+    }
+    @GetMapping("/verJuegoPorEtapaUsuario")
+    public String verJuegoPorEtapaUsuario() {
+        // Lógica para manejar la solicitud
+        return "verJuegoPorEtapaUsuario"; // O el nombre de la vista a cargar
+    }
+
+    @GetMapping("/verjuegoModificado")
+    public String verJuegoMoa() {
+        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
+        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+        return "modificarJuego";
     }
 
 

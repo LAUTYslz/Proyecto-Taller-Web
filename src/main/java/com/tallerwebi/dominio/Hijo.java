@@ -86,4 +86,18 @@ public class Hijo {
     public void setEtapa(Etapa etapa) {
         this.etapa = etapa;
     }
+
+    @Override
+    public String toString() {
+        return "Hijo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", dni=" + dni +
+                ", fecha_nacimiento=" + fecha_nacimiento +
+                ", usuario=" + usuario +
+                ", metodo=" + metodo +
+                ", etapa=" + etapa +
+                '}';
+    }
 }

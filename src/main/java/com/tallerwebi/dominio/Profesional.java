@@ -24,6 +24,8 @@ public class Profesional {
     @JoinColumn(name = "metodo_id")
     private Metodo metodo;
 
+
+
     public Profesional() {
     }
 
@@ -91,4 +93,6 @@ public class Profesional {
     public void setMetodo(Metodo metodo) {
         this.metodo = metodo;
     }
+
+
 }

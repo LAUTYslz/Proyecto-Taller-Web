@@ -7,15 +7,13 @@ import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import com.tallerwebi.infraestructura.RepositorioMetodoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 public class ControladorMembresiaActivada {
@@ -37,7 +35,6 @@ public class ControladorMembresiaActivada {
         this.repositorioMetodoImpl = repositorioMetodoImpl;
     }
 
-
     @GetMapping("/usuarioMembresia")
     public ModelAndView mostrarMembresiaActivada(HttpServletRequest request) throws UsuarioInexistente, UsuarioExistente {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,14 +52,26 @@ public class ControladorMembresiaActivada {
                 // Si la lista de hijos es null, inicialízala como una lista vacía
                 hijos = new ArrayList<>();
             }
-            servicioLogin.actualizarUsuario(usuario);
-            request.getSession().setAttribute("usuario", usuario);
-            // Agregar el usuario, la membresía y la lista de hijos al modelo
+
+            Etapa etapa = null;
+            Metodo metodo = null;
+
+            // Verificar si hay al menos un hijo para obtener etapa y método
+            if (!hijos.isEmpty()) {
+                // Obtener la etapa y el método del primer hijo si la lista no está vacía
+                Hijo primerHijo = hijos.get(0);
+                etapa = primerHijo.getEtapa();
+                metodo = primerHijo.getMetodo();
+            }
+            actualizarSesion(request, usuario, hijos);
+            // Agregar el usuario, la membresía, la lista de hijos, la etapa y el método al modelo
             modelAndView.addObject("usuario", usuario);
             modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
+            modelAndView.addObject("etapa", etapa);
+            modelAndView.addObject("metodo", metodo); // Agregar el método al modelo
 
-            // Establecer la vista como "bienvenido"
+            // Establecer la vista como "usuarioMembresia"
             modelAndView.setViewName("usuarioMembresia");
         } else {
             // Manejar el caso en el que no se pudo obtener el usuario
@@ -70,6 +79,13 @@ public class ControladorMembresiaActivada {
         }
 
         return modelAndView;
+    }
+
+
+    // Método para actualizar la sesión con los datos actualizados
+    private void actualizarSesion(HttpServletRequest request, Usuario usuario, List<Hijo> hijos) {
+        request.getSession().setAttribute("usuario", usuario);
+        request.getSession().setAttribute("hijos", hijos);
     }
 
 
@@ -105,6 +121,8 @@ public class ControladorMembresiaActivada {
 
     @PostMapping("/asociar-metodo/{hijoId}")
     public ModelAndView seleccionarMetodoParaHijo(@PathVariable Long hijoId, @RequestParam Long metodo_id, HttpServletRequest request) throws UsuarioInexistente {
+        ModelAndView modelAndView = new ModelAndView();
+
         // Obtener el usuario actual
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
 
@@ -113,7 +131,7 @@ public class ControladorMembresiaActivada {
 
         if (usuario != null && hijo != null) {
             // Asociar el método al hijo
-            servicioMetodo.asociarHijo(hijoId, metodo_id);
+            hijo = servicioMetodo.asociarHijo(hijoId, metodo_id);
 
             // Actualizar el hijo en el servicio
             servicioLogin.actualizarHijo(hijo);
@@ -130,11 +148,93 @@ public class ControladorMembresiaActivada {
             request.getSession().setAttribute("hijo", hijo);
 
             // Redirigir a la página de usuarioMembresia con el modelo actualizado
-            return new ModelAndView("redirect:/usuarioMembresia");
+            modelAndView.setViewName("redirect:/usuarioMembresia");
         } else {
             // Manejar el caso en el que no se pueda obtener el usuario o el hijo
-            return new ModelAndView("redirect:/error");
+            modelAndView.setViewName("redirect:/error");
         }
+
+        return modelAndView;
     }
+
+    @GetMapping
+    public String listarProfesionales(Model model) {
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+
+        model.addAttribute("profesionales", profesionales);
+        model.addAttribute("metodos", metodos);
+        model.addAttribute("tipos", tipos);
+        model.addAttribute("consulta", new Consulta()); // Objeto para almacenar la consulta
+
+        return "realizarConsulta";
+    }
+
+
+    @PostMapping("/realizarConsulta")
+    public String filtrarProfesionales(@ModelAttribute("consulta") Consulta consulta, Model model, HttpServletRequest request) {
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        // Obtener la lista de hijos del usuario
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
+        if (hijos == null) {
+            // Si la lista de hijos es null, inicialízala como una lista vacía
+            hijos = new ArrayList<>();
+        }
+
+        model.addAttribute("profesionales", profesionales);
+        model.addAttribute("metodos", metodos);
+        model.addAttribute("tipos", tipos);
+        model.addAttribute("consulta", consulta);
+        model.addAttribute("hijos", hijos);
+
+
+        return "realizarConsulta";
+    }
+
+
+    @PostMapping("/profesionales-por-metodo")
+    public ModelAndView procesarConsulta(@RequestParam("hijoId") Long hijoId) {
+        ModelAndView modelAndView = new ModelAndView("realizarConsultaProfesional");
+
+        // Lógica para buscar al hijo y obtener el método asociado
+        Hijo buscarHijo = servicioLogin.busquedahijo(hijoId);
+        String metodoAsociado = buscarHijo.getMetodo().getNombre();
+
+        // Lógica para filtrar profesionales por el método asociado del hijo
+        List<Profesional> profesionaless = servicioProfesional.traerProfesionales();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        List<Profesional> filtro = servicioProfesional.traerProfesionalesPorMetodo(metodoAsociado);
+
+        // Añadir objetos al modelo para pasar a la vista
+        modelAndView.addObject("profesionales", filtro);
+        modelAndView.addObject("metodo", metodoAsociado);
+        modelAndView.addObject("hijo", buscarHijo);
+        modelAndView.addObject("tipos", tipos);
+        modelAndView.addObject("consulta", new Consulta()); // Objeto de consulta, si es necesario
+
+        return modelAndView;
+    }
+
+    // Otros métodos del controlador pueden estar presentes aquí
+
+
+    @PostMapping("/enviar-consulta")
+    public ModelAndView enviarConsulta(@ModelAttribute("consulta") Consulta consulta) {
+        ModelAndView modelAndView = new ModelAndView("exito");
+        Consulta guardadaConsulta = servicioMembresiaActivada.realizarConsulta(consulta);
+
+        return modelAndView;
+    }
+
+
 }
+
+
+
+
+
 

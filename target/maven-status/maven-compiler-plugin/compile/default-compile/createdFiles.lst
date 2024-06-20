@@ -34,6 +34,7 @@ com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
 com\tallerwebi\infraestructura\ServicioAdmiImpl.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
+com\tallerwebi\dominio\Mensaje.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
 com\tallerwebi\dominio\RepositorioAdmi.class

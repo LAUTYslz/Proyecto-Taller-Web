@@ -1,6 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.RepositorioMembresia;
+import com.tallerwebi.dominio.Consulta;
 import com.tallerwebi.dominio.RepositorioMembresiaActivada;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -17,4 +17,10 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
     }
 
 
+
+    @Override
+    public Consulta guardarConsulta(Consulta consulta) {
+        sessionFactory.getCurrentSession().saveOrUpdate(consulta);
+        return consulta;
+    }
 }

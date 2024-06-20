@@ -6,5 +6,5 @@ public interface ServicioMetodo {
 
     List<Metodo> buscarMetodos();
 
-    void asociarHijo(Long hijoId, Long metodoId);
+    Hijo asociarHijo(Long hijoId, Long metodoId);
 }

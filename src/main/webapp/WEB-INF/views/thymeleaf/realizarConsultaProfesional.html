@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Incluir Bootstrap 5.2 desde webjars -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- Incluir Bootstrap 4.5.2 desde CDN (¿es necesario? considera usar solo una versión) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionarProfesionales.css}"/>
+    <!-- Scripts -->
+    <script th:src="@{/js/main.js}"></script>
+</head>
+<body>
+<h1>Seleccionar Profesional</h1>
+
+<!-- Formulario para enviar la consulta -->
+<form th:action="@{/enviar-consulta}" method="post" th:object="${consulta}">
+    <!-- Campo oculto para el ID del hijo -->
+    <input type="hidden" id="hijoId" name="hijoId" th:value="${hijo.id}">
+
+    <!-- Mostrar el nombre del método asociado (posiblemente un error en la sintaxis) -->
+
+
+    <!-- Selección de profesional -->
+    <label for="profesional">Seleccionar Profesional:</label>
+    <select id="profesional" name="profesionalId">
+        <!-- Iterar sobre los profesionales disponibles -->
+        <option th:each="profesional : ${profesionales}"
+                th:value="${profesional.id}"
+                th:text="${profesional.nombre}"></option>
+    </select>
+    <br>
+
+    <!-- Campo para la consulta -->
+    <label for="mensaje">Escriba su consulta:</label>
+    <textarea id="mensaje" name="mensaje" th:text="*{mensaje}" rows="5"></textarea>
+    <br>
+
+    <!-- Botón de envío -->
+    <button type="submit" class="btn btn-primary">Enviar Consulta</button>
+</form>
+</body>
+</html>
