@@ -116,7 +116,7 @@ public class RepositorioMetodoTest {
     private void thenEncuentroMetodoPorId(Metodo metodoBuscado) {
         assertNotNull(metodoBuscado);
         assertThat(metodoBuscado.getNombre(), equalTo("DOMAN"));
-        assertThat(metodoBuscado.getId(), equalTo(1l));
+        assertThat(metodoBuscado.getId(), equalTo(1L));
     }
 
     private Metodo whenBuscoMetodoPorId(Long idMetodo) {
