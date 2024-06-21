@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -24,69 +25,12 @@ public class ControladorTurno {
     }
 
     @GetMapping("/agendar")
-    public ModelAndView mostrarFormularioAgendarTurno() {
-        ModelAndView mav = new ModelAndView("formulario_agendar_turno");
-        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
-        mav.addObject("profesionales", profesionales);
-        return mav;
-    }
-
-    @PostMapping("/agendar")
-    public ModelAndView agendarTurno(@RequestParam("usuarioId") Long usuarioId,
-                                     @RequestParam("profesionalId") Long profesionalId,
-                                     @RequestParam("fechaHora") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date fechaHora) {
-        ModelAndView mav = new ModelAndView();
-        try {
-            servicioTurno.agendarTurno(usuarioId, profesionalId, fechaHora);
-            mav.setViewName("redirect:/turnos/misTurnos");
-        } catch (Exception e) {
-            mav.setViewName("formulario_agendar_turno");
-            mav.addObject("error", e.getMessage());
-        }
-        return mav;
-    }
-
-    @GetMapping("/misTurnos")
-    public ModelAndView verMisTurnos(@RequestParam("usuarioId") Long usuarioId) {
-        ModelAndView mav = new ModelAndView("lista_turnos");
-        List<Turno> turnos = servicioTurno.obtenerTurnosPorUsuario(usuarioId);
-        mav.addObject("turnos", turnos);
-        return mav;
-    }
-
-    @PostMapping("/actualizarEstadoTurno")
-    public String actualizarEstadoTurno(@RequestParam Long turnoId,
-                                        @RequestParam EstadoTurno nuevoEstado) {
-        servicioTurno.actualizarEstadoTurno(turnoId, nuevoEstado);
-        return "redirect:/turnos";
-    }
-
-    /*
-    @GetMapping("/turnos/presenciales")
-    public ModelAndView mostrarTurnosPresenciales(HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if (usuario == null) {
-            // Redirige a la página de inicio de sesión si el usuario no está autenticado
-            return new ModelAndView("redirect:/login");
-        }
-
-        Long usuarioId = usuario.getId();
-
-        ModelAndView mav = new ModelAndView("turnos_presenciales");
-        List<Turno> turnos = servicioTurno.obtenerTurnosPorUsuario(usuarioId);
-        mav.addObject("turnos", turnos);
-        mav.addObject("usuarioId", usuarioId); // Para usar en el botón de agendar nuevo turno
-        return mav;
-    }
-
-    @GetMapping("/agendar")
     public ModelAndView mostrarFormularioAgendarTurno(HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario == null) {
             // Redirige a la página de inicio de sesión si el usuario no está autenticado
             return new ModelAndView("redirect:/login");
         }
-
         Long usuarioId = usuario.getId();
 
         ModelAndView mav = new ModelAndView("formulario_agendar_turno");
@@ -102,7 +46,6 @@ public class ControladorTurno {
                                      HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario == null) {
-            // Redirige a la página de inicio de sesión si el usuario no está autenticado
             return new ModelAndView("redirect:/login");
         }
 
@@ -111,7 +54,7 @@ public class ControladorTurno {
         ModelAndView mav = new ModelAndView();
         try {
             servicioTurno.agendarTurno(usuarioId, profesionalId, fechaHora);
-            mav.setViewName("redirect:/turnos/presenciales");
+            mav.setViewName("redirect:/gestionarTurnos");
         } catch (Exception e) {
             mav.setViewName("formulario_agendar_turno");
             mav.addObject("error", e.getMessage());
@@ -121,6 +64,23 @@ public class ControladorTurno {
         }
         return mav;
     }
+
+    @GetMapping("/gestionarTurnos")
+    public ModelAndView verMisTurnos(HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario == null) {
+            return new ModelAndView("redirect:/login");
+        }
+        Long usuarioId = usuario.getId();
+
+        ModelAndView mav = new ModelAndView("gestionar_turnos");
+        List<Turno> turnos = servicioTurno.obtenerTurnosPorUsuario(usuarioId);
+        mav.addObject("turnos", turnos);
+        mav.addObject("usuarioId", usuarioId); // Para usar en el botón de agendar nuevo turno
+
+        return mav;
+    }
+
 
     @PostMapping("/actualizarEstadoTurno")
     public String actualizarEstadoTurno(@RequestParam Long turnoId,
@@ -132,7 +92,7 @@ public class ControladorTurno {
         }
 
         servicioTurno.actualizarEstadoTurno(turnoId, nuevoEstado);
-        return "redirect:/turnos/presenciales";
+        return "redirect:/gestionarTurnos";
     }
 
     @PostMapping("/eliminarTurno")
@@ -144,7 +104,7 @@ public class ControladorTurno {
         }
 
         servicioTurno.eliminarTurno(turnoId);
-        return "redirect:/turnos/presenciales";
+        return "redirect:/gestionarTurnos";
     }
-     */
+
 }
