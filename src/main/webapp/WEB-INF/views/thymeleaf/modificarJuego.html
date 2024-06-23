@@ -48,8 +48,10 @@
 </nav>
 <style>
     /* Estilos para el formulario */
-    form {
-        max-width: 400px;
+
+
+    form.formulario {
+        max-width: 600px;
         margin: 0 auto;
         padding: 20px;
         border: 1px solid #ccc;
@@ -86,7 +88,7 @@
 <h2>Modificar Juego</h2>
 <h2><i class="fas fa-edit"></i> Empecemos </h2>
 <!-- Formulario para modificar etapa -->
-<form th:action="@{/actualizar-juego}" method="post" th:object="${juego}">
+<form class="formulario" th:action="@{/actualizar-juego}" method="post" th:object="${juego}">
     <!-- Campo oculto para el ID de la etapa -->
     <input type="hidden" th:field="*{id}">
 
@@ -94,8 +96,8 @@
     <label for="nombre"><i class="fas fa-file-signature"></i> Nombre:</label><br>
     <input type="text" id="nombre" th:value="${juego.nombre}" readonly><br>
 
-    <label for="desde"><i class="fas fa-calendar-alt"></i> Descripcion :</label><br>
-    <input type="number" id="desde" th:value="${juego.descripcion}" readonly><br>
+    <label for="descripcion"><i class="fas fa-calendar-alt"></i> Descripcion :</label><br>
+    <input type="text" id="descripcion" th:value="${juego.descripcion}" readonly><br>
 
 
 
@@ -103,8 +105,8 @@
     <label for="nuevoNombre"><i class="fas fa-edit"></i> Nuevo Nombre:</label><br>
     <input type="text" id="nuevoNombre" th:field="*{nombre}"><br>
 
-    <label for="nuevoDesde"><i class="fas fa-edit"></i>Nueva Descripcion:</label><br>
-    <input type="number" id="nuevoDesde" th:field="*{descripcion}"><br>
+    <label for="Nuevadescripcion"><i class="fas fa-edit"></i>Nueva Descripcion:</label><br>
+    <input type="text" id="Nuevadescripcion" th:field="*{descripcion}"><br>
 
 
 

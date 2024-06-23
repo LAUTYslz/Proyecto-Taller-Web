@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Crear Profesional</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div th:replace="home :: nav"></div>
+
+    <main>
+        <a class="btn btn-primary volver-btn" th:href="@{/admin/gestionarProfesionales}">Volver</a>
+        <h1>Crear Profesional</h1>
+
+        <div class="form-container">
+            <form class="form" action="#" th:action="@{/admin/gestionarProfesionales/guardar}" method="POST" th:object="${profesional}" >
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required name="nombre"><br>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" th:field="*{telefono}" name="telefono"><br>
+
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" name="email"><br>
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" th:field="*{direccion}" name="direccion"><br>
+
+                <label for="institucion">Institución:</label>
+                <input type="text" class="form-control" id="institucion" th:field="*{institucion}" name="institucion"><br>
+
+
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" class="form-control" name="tipo" required>
+                    <option value="">Seleccionar tipo de profesional</option>
+                    <th:block th:each="tipo : ${tipos}">
+                        <option th:value="${tipo.nombre}" th:text="${tipo.nombre}"></option>
+                    </th:block>
+                </select><br>
+
+                <label for="metodo">Método:</label>
+                <select id="metodo" class="form-control" name="metodo" required>
+                    <option value="">Seleccionar método</option>
+                    <th:block th:each="metodo : ${metodos}">
+                        <option th:value="${metodo.nombre}" th:text="${metodo.nombre}"></option>
+                    </th:block>
+                </select><br>
+
+                <input type="submit" class="btn btn-primary" value="Guardar">
+            </form>
+        </div>
+
+        <div th:if="${error}">
+            <p th:text="${error}" style="color: red;"></p>
+        </div>
+    </main>
+    <!-- /.container -->
+    <div th:replace="home :: footer"></div>
+
+    <!-- Boostrap core js -->
+    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

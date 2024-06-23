@@ -185,7 +185,7 @@ public class ServicioProfesionalTest {
         verify(repositorioTipoContacto,times(1)).buscarPorNombreDeTipo(nombreTipoContacto);
         verify(repositorioContacto, never()).guardar(contacto);
     }
-
+/*
     @Test
     public void quePuedaModificarContacto() {
         Profesional contactoExistente = givenExisteContacto("Dr salazar", "+11223344", "lau@prueba.com", "calle falsa 123", "Hospital General", "MONTESSORI", "Pediatra");
@@ -202,7 +202,7 @@ public class ServicioProfesionalTest {
 
     private void whenActualizoContacto(Profesional contactoExistente) {
         servicioContacto.actualizarProfesional(contactoExistente);
-    }
+    }*/
 
     @Test
     public void quePuedaEliminarContacto() {

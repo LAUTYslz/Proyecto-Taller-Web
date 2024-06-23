@@ -3,7 +3,7 @@ package com.tallerwebi.dominio;
 import java.util.List;
 
 public interface RepositorioProfesional {
-    Profesional buscarProfesional(String email, String password);
+    Profesional buscarProfesionalPorEmail(String email);
     void guardar(Profesional profesional);
     Profesional buscar(String email);
     void modificar(Profesional profesional);
@@ -16,4 +16,6 @@ public interface RepositorioProfesional {
     List<Profesional> traerProfesionalesPorTipo(String nombreTipo);
 
     List<Profesional> traerProfesionalesPorTipoYMetodo(String nombreTipo, String nombreMetodo);
+
+    Profesional buscarProfesionalPorId(Long id);
 }

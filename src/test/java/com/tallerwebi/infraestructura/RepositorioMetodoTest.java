@@ -24,8 +24,6 @@ import static org.hamcrest.Matchers.equalTo;
 @WebAppConfiguration
 @ContextConfiguration(classes = {SpringWebTestConfig.class, HibernateTestConfig.class})
 
-
-
 public class RepositorioMetodoTest {
     @Autowired
     private SessionFactory sessionFactory;
@@ -60,7 +58,10 @@ public class RepositorioMetodoTest {
     @Transactional
     @Rollback
     public void quePuedaBuscarUnMetodo(){
-        Metodo metodo = givenExisteMetodo("Doman");
+        //Metodo metodo = givenExisteMetodo("Doman");
+        Metodo metodo = new Metodo();
+        metodo.setNombre("DOMAN");
+        repositorioMetodo.guardar(metodo);
         Metodo metodoBuscado = whenBuscoMetodoPorNombre("Doman");
         thenEncuentroMetodo(metodoBuscado);
     }
@@ -97,6 +98,29 @@ public class RepositorioMetodoTest {
 
     private List<Metodo> whenBuscoMetodos() {
         return repositorioMetodo.buscarMetodos();
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void quePuedaBuscarUnMetodoPorId(){
+        //Metodo metodo = givenExisteMetodo("Doman");
+        Metodo metodo = new Metodo();
+        metodo.setNombre("DOMAN");
+        repositorioMetodo.guardar(metodo);
+        Long idMetodo = metodo.getId();
+        Metodo metodoBuscado = whenBuscoMetodoPorId(idMetodo);
+        thenEncuentroMetodoPorId(metodoBuscado);
+    }
+
+    private void thenEncuentroMetodoPorId(Metodo metodoBuscado) {
+        assertNotNull(metodoBuscado);
+        assertThat(metodoBuscado.getNombre(), equalTo("DOMAN"));
+        assertThat(metodoBuscado.getId(), equalTo(1L));
+    }
+
+    private Metodo whenBuscoMetodoPorId(Long idMetodo) {
+        return repositorioMetodo.traerMetodoPorId(idMetodo);
     }
 }
 

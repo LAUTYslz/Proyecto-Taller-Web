@@ -21,11 +21,10 @@ public class RepositorioProfesionalImpl implements RepositorioProfesional {
     }
 
     @Override
-    public Profesional buscarProfesional(String email, String nombre) {
+    public Profesional buscarProfesionalPorEmail(String email) {
         final Session session = sessionFactory.getCurrentSession();
         return (Profesional) session.createCriteria(Profesional.class)
                 .add(Restrictions.eq("email", email))
-                .add(Restrictions.eq("nombre", nombre))
                 .uniqueResult();
     }
 
@@ -89,6 +88,13 @@ public class RepositorioProfesionalImpl implements RepositorioProfesional {
                 .add(Restrictions.eq("metodoBuscado.nombre",nombreMetodo))
                 .add(Restrictions.eq("tipoBuscado.nombre",nombreTipo))
                 .list();
+    }
+
+    @Override
+    public Profesional buscarProfesionalPorId(Long id) {
+        return (Profesional) sessionFactory.getCurrentSession().createCriteria(Profesional.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
     }
 
 

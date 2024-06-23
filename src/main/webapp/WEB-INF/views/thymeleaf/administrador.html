@@ -60,10 +60,11 @@
              margin: 4px 2px;
              cursor: pointer;
              border-radius: 50px;
+             font-family: Schoolbell, cursive;
          }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Schoolbell, cursive;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -84,6 +85,7 @@
             padding: 20px;
             margin-top:10px;
             margin-left:10px;
+            font-family: Schoolbell, cursive;
 
         }
         .container p{
@@ -104,6 +106,7 @@
             border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
+            font-family: Schoolbell, cursive;
 
             transition: background-color 0.3s;
         }
@@ -134,7 +137,7 @@
     <div>
         <a  th:href="@{/crearEtapa}" type="button"><i class="fas fa-plus-circle"></i>Crear Etapa</a>
         <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
-        <a  th:href="@{/crearContacto}" type="button"><i class="fas fa-address-book"></i>Agregar Profesional</a>
+        <a  th:href="@{/admin/gestionarProfesionales}" type="button"><i class="fas fa-address-book"></i>Gestionar Profesionales</a>
         <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
         <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
 

@@ -8,4 +8,10 @@ public interface RepositorioMetodo {
     Metodo buscarPorNombreDeMetodo(String nombreMetodo);
 
     List<Metodo> buscarMetodos();
+
+    Metodo traerMetodoPorId(Long metodoId);
+
+
+
+    Metodo buscarMetodoPorId(Long id);
 }

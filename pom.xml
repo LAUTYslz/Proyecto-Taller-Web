@@ -73,7 +73,11 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>fullcalendar</artifactId>
+            <version>5.10.1</version> <!-- Reemplaza con la última versión disponible -->
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -123,12 +127,6 @@
             <scope>provided</scope>
         </dependency>
         -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
-        </dependency>
-
     </dependencies>
 
     <build>

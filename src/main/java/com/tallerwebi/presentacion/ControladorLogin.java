@@ -2,10 +2,10 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 
-import com.tallerwebi.dominio.excepcion.UsuarioExistente;
+import com.tallerwebi.dominio.excepcion.*;
 
 
-import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.infraestructura.ServicioMembresiaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +21,17 @@ import java.util.List;
 public class ControladorLogin {
 
     private final ServicioLogin servicioLogin;
-
+    private final ServicioMembresia servicioMembresia;
 
     @Autowired
-    public ControladorLogin(ServicioLogin servicioLogin ) {
-        this.servicioLogin = servicioLogin;
 
+    public ControladorLogin(ServicioLogin servicioLogin, ServicioMembresia servicioMembresia) {
+        this.servicioLogin = servicioLogin;
+        this.servicioMembresia = servicioMembresia;
     }
+
+
+
 
 
     @RequestMapping("/login")
@@ -40,21 +44,40 @@ public class ControladorLogin {
 
     @RequestMapping(path = "/validar-login", method = RequestMethod.POST)
     public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
-        ModelMap model = new ModelMap();
+        ModelAndView modelAndView = new ModelAndView();
 
         Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
         if (usuarioBuscado != null) {
+            // Imprimir el estado del usuario para depuración
+            System.out.println("Estado del usuario: " + usuarioBuscado.getEstado());
+
             request.getSession().setAttribute("usuario", usuarioBuscado);
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+
             if (usuarioBuscado.getRol().equals("ADMIN")) {
-                return new ModelAndView("redirect:/administrador");
+                modelAndView.setViewName("redirect:/administrador");
+            } else if (usuarioBuscado.getRol().equals("USUARIO")) {
+                // Verificar el estado del usuario
+                if ( usuarioBuscado.getMembresia()==null) {
+                    modelAndView.setViewName("redirect:/bienvenido");
+                } else if (usuarioBuscado.getMembresia().getEstado().equals(Estado.ACTIVADA)) {
+                    modelAndView.setViewName("redirect:/usuarioMembresia");
+                } else {
+                    // Manejar otros estados si es necesario
+                    modelAndView.setViewName("redirect:/bienvenido");
+                }
+            } else {
+                // Manejar otros roles si es necesario
+                modelAndView.setViewName("redirect:/bienvenido");
             }
-            return new ModelAndView("redirect:/bienvenido");
         } else {
-            model.put("error", "Usuario o clave incorrecta");
+            modelAndView.setViewName("redirect:/login");
         }
-        return new ModelAndView("login", model);
+
+        return modelAndView;
     }
+
+
 
 
     @RequestMapping(path = "/registrarse", method = RequestMethod.POST)
@@ -112,7 +135,6 @@ public class ControladorLogin {
         return new ModelAndView("bienvenido", model);
     }
 
-
     @GetMapping("/bienvenido")
     public ModelAndView mostrarBienvenido(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -120,26 +142,29 @@ public class ControladorLogin {
         // Obtener el usuario actual
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
 
-        // Obtener la lista de hijos del usuario
-        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
+        if (usuario != null) {
+            // Obtener la membresía del usuario
+            DatosMembresia membresia = usuario.getMembresia();
 
-        // Agregar el usuario y la lista de hijos al modelo
-        modelAndView.addObject("usuario", usuario);
-        modelAndView.addObject("hijos", hijos);
+            // Obtener la lista de hijos del usuario
+            List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
 
-        // Obtener la membresia del usuario actual
-        DatosMembresia membresiaDelUsuarioActual = servicioLogin.obtenerMembresiaPorEmail(usuario.getEmail());
+            // Agregar el usuario, la membresía y la lista de hijos al modelo
+            modelAndView.addObject("usuario", usuario);
+            modelAndView.addObject("membresia", membresia);
+            modelAndView.addObject("hijos", hijos);
 
-        // Agregar la membresia al modelo
-        modelAndView.addObject("membresia", membresiaDelUsuarioActual);
-
-        // Establecer la vista
-        modelAndView.setViewName("bienvenido");
-
-
+            // Establecer la vista como "bienvenido"
+            modelAndView.setViewName("bienvenido");
+        } else {
+            // Manejar el caso en el que no se pudo obtener el usuario
+            modelAndView.setViewName("redirect:/error"); // Redirigir a una página de error si es necesario
+        }
 
         return modelAndView;
     }
+
+
 
 
     @GetMapping(path = "/modificarUsuario/{id}")
@@ -173,30 +198,45 @@ public class ControladorLogin {
     }
 
     //creo un hijo
-    @RequestMapping(path = "/guardar-hijo")
+    @RequestMapping(path = "/guardar-hijos")
     public ModelAndView irAGuardar() {
 
         return new ModelAndView("guardar-hijo");
 
     }
+
     @RequestMapping(path = "/guardar-hijo", method = RequestMethod.POST)
     public ModelAndView guardarHijo(@ModelAttribute("hijo") Hijo hijo, HttpServletRequest request) {
         ModelMap modelo = new ModelMap();
         try {
             Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-
             // Asociar el hijo con el usuario
             hijo.setUsuario(usuario);
             servicioLogin.registrarHijo(hijo);
-            modelo.addAttribute("hijo", hijo);
-            modelo.put("usuario", usuario);
+
+            // Actualizar el usuario después de registrar el hijo
+            usuario = servicioLogin.buscarUsuarioPorId(usuario.getId()); // Actualiza el usuario desde la fuente de datos
+
+            DatosMembresia membresia = usuario.getMembresia();
+
+            // Verificar la membresía del usuario
+            if (membresia != null && membresia.getEstado().equals(Estado.ACTIVADA)) {
+                // Si tiene membresía activada, redireccionar a usuariomembresia
+                List<Hijo> hijosActualizados = servicioLogin.buscarHijosPorId(usuario.getId());
+                modelo.addAttribute("hijos", hijosActualizados);
+                modelo.addAttribute("usuario", usuario);
+                modelo.addAttribute("membresia", membresia);
+                return new ModelAndView("usuarioMembresia", modelo);
+            } else {
+                // Si no tiene membresía activada, redireccionar a bienvenidos
+                return new ModelAndView("bienvenido", modelo);
+            }
+
         } catch (Exception e) {
             modelo.put("error", "Error al registrar el nuevo usuario");
             return new ModelAndView("error", modelo); // Manejar cualquier otro error
         }
-        return new ModelAndView("guardar-hijo", modelo);
     }
-
     // Mostrar formulario para agregar cónyuge
     @GetMapping("/nuevoConyuge")
     public String mostrarFormularioAgregarConyuge(HttpServletRequest request, Model model) {

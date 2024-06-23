@@ -8,4 +8,6 @@ public interface RepositorioTipoProfesional {
     TipoProfesional buscarPorNombreDeTipo(String nombreTipo);
 
     List<TipoProfesional> buscarTipos();
+
+    TipoProfesional traerTipoPorId(Long tipoId);
 }

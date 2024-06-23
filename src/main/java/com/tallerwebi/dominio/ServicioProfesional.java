@@ -8,8 +8,8 @@ public interface ServicioProfesional {
 
     void guardarProfesional(Profesional profesional, String nombreMetodo, String nombreTipoContacto);
 
-    void actualizarProfesional(Profesional profesionalExistente);
-
+    void actualizarProfesional(Profesional profesionalExistente, String nombreMetodo, String nombreTipoContacto);
+    void actualizar(Profesional profesional);
     void eliminarProfesional(Profesional profesionalExistente);
 
     List<Profesional> traerProfesionalesPorMetodo(String nombreMetodo);
@@ -21,6 +21,8 @@ public interface ServicioProfesional {
     List<Metodo> traerTodosLosMetodos();
 
     List<TipoProfesional> traerTodosLosTipos();
+
+    Profesional obtenerPorId(Long id);
 
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }

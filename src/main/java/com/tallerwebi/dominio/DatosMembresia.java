@@ -1,7 +1,12 @@
 package com.tallerwebi.dominio;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+
+import java.util.Date;
+
+import static com.tallerwebi.dominio.Estado.INACTIVA;
 
 @Entity
 public class DatosMembresia {
@@ -11,45 +16,20 @@ public class DatosMembresia {
     private Long id;
     private String nombreCompleto;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Estado estado=INACTIVA;
     private Long numeroTelefonico;
+    @DateTimeFormat(pattern = "yyy-mm-dd")
+    private Date fechaDeInicio;
+    @DateTimeFormat(pattern = "yyy-mm-dd")
+    private Date fechaDeBaja;
     @ManyToOne
     private Tarjeta tarjeta;
-    private LocalDate fechaDeInicio;
-    private LocalDate fechaDeFin;
 
     public DatosMembresia(){
 
     }
 
-    public DatosMembresia(String nombreCompleto, String email, Long numeroTelefonico, Tarjeta tarjeta){
-        this.nombreCompleto = nombreCompleto;
-        this.email = email;
-        this.numeroTelefonico = numeroTelefonico;
-        this.tarjeta = new Tarjeta(tarjeta.getNumeroDeTarjeta(), tarjeta.getFechaDeVencimiento(), tarjeta.getCodigoDeSeguridad());
-        this.fechaDeInicio = LocalDate.now();
-        this.fechaDeFin = this.fechaDeInicio.plusMonths(1);
-    }
-
-    public Boolean isActiva(){
-        LocalDate now = LocalDate.now();
-        return (now.isEqual(fechaDeInicio) || now.isAfter(fechaDeInicio)) && (now.isEqual(fechaDeFin) || now.isBefore(fechaDeFin));
-    }
-
-    public LocalDate getFechaDeInicio() {
-        return fechaDeInicio;
-    }
-
-    public void setFechaDeInicio(LocalDate fechaDeInicio) {
-        this.fechaDeInicio = fechaDeInicio;
-    }
-
-    public LocalDate getFechaDeFin() {
-        return this.fechaDeFin;
-    }
-
-    public void setFechaDeFin(LocalDate fechaDeFin) {
-        this.fechaDeFin = fechaDeFin;
-    }
 
     public Long getNumeroTelefonico(){
         return this.numeroTelefonico;
@@ -82,14 +62,14 @@ public class DatosMembresia {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "DatosMembresia{" +
-                "nombreCompleto='" + nombreCompleto + '\'' +
-                ", email='" + email + '\'' +
-                ", numeroTelefonico=" + numeroTelefonico +
-                ", tarjeta=" + tarjeta +
-                '}';
+
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public void setId(Long id) {
@@ -99,4 +79,35 @@ public class DatosMembresia {
     public Long getId() {
         return id;
     }
+
+    public Date getFechaDeInicio() {
+        return fechaDeInicio;
+    }
+
+    public void setFechaDeInicio(Date fechaDeInicio) {
+        this.fechaDeInicio = fechaDeInicio;
+    }
+
+    public Date getFechaDeBaja() {
+        return fechaDeBaja;
+    }
+
+    public void setFechaDeBaja(Date fechaDeBaja) {
+        this.fechaDeBaja = fechaDeBaja;
+    }
+
+    @Override
+    public String toString() {
+        return "DatosMembresia{" +
+                "id=" + id +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", email='" + email + '\'' +
+                ", estado=" + estado +
+                ", numeroTelefonico=" + numeroTelefonico +
+                ", fechaDeInicio=" + fechaDeInicio +
+                ", fechaDeBaja=" + fechaDeBaja +
+                ", tarjeta=" + tarjeta +
+                '}';
+    }
 }
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Consulta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <style>
+        /* Aquí puedes agregar tus estilos CSS personalizados */
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="container">
+        <h1>Realizar Consulta</h1>
+
+        <!-- Mostrar nombre del profesional -->
+        <h2>Profesional: <span th:text="${profesional.nombre}"></span></h2>
+
+        <!-- Formulario para enviar la consulta -->
+        <form th:action="@{/realizar-consulta/{profesionalId}(profesionalId=${profesional.id})}" method="post" th:object="${consulta}">
+            <div class="form-group">
+                <label for="consulta">Escriba su consulta:</label>
+                <textarea class="form-control" id="consulta" name="consulta" rows="5" th:field="*{consulta}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Consulta</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

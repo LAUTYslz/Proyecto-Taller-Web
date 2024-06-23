@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,14 +18,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
+
     <style>
         /* Estilos para los botones circulares */
+
+        .boton-desactivada a {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #dacdea;
+            border-radius: 50px;
+            color: #FF0000;
+            border: none;
+            cursor: pointer;
+        }
+
+        .boton-activar a{
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #dacdea;
+            border-radius: 50px;
+            color: darkgreen;
+            border: none;
+            cursor: pointer;
+        }
         .circle-button {
+            font-family: Schoolbell, cursive;
             display: inline-block;
             width: 150px; /* Ancho del círculo */
             height: 150px; /* Altura del círculo */
             border-radius: 50%;
-            background-color: blueviolet;
+            background-color: #cc99ff;
             color: #fff;
             text-align: center;
             line-height: 150px; /* Centrado vertical del texto */
@@ -37,11 +59,41 @@
 
         /* Estilos para el contenedor de los botones */
         .button-container {
-            margin-top:20px;
+            margin-top: 20px;
             margin-bottom: 20px;
             text-align: center; /* Centrar los botones */
+            font-family: Schoolbell, cursive;
         }
 
+        /* Estilos para los botones */
+        .button-container .button {
+            background-color: #e6e6ff; /* Lila claro */
+            color: white; /* Tono complementario */
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0; /* Espacio entre los botones */
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px; /* Ancho de los botones */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+
+        /* Agregar efecto al pasar el cursor sobre los botones */
+        .button-container .button:hover {
+            background-color: #cc99ff; /* Cambia a un lila más oscuro al pasar el cursor */
+        }
+
+        /* Estilos para el segundo botón */
+        .button-container .button:nth-child(2) {
+            background-color: #cc99ff; /* Lila medio */
+            color: #330066; /* Tono complementario */
+        }
+
+        /* Estilos para el tercer botón */
+        .button-container .button:nth-child(3) {
+            background-color: #9966ff; /* Lila oscuro */
+            color: #ffccff; /* Tono complementario */
+        }
         /* Estilos para el hover */
         .circle-button:hover {
             background-color: #666666; /* Color más oscuro al pasar el ratón */
@@ -50,11 +102,14 @@
 
         /* Estilos para los datos del titular */
         .titular {
-            background-color: #f9f9f9; /* Color de fondo */
             padding: 20px; /* Espaciado interior */
             margin-bottom: 20px; /* Espaciado inferior */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+            border-radius: 100px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(10, 0, 0, 0.1); /* Sombra */
+            font-family: Schoolbell, cursive;
+
+            /* Fondo degradado */
+            background: linear-gradient(to right, #b9a0ea, #9370db); /* De lila claro a lila oscuro */
         }
 
         /* Estilos para los datos de los hijos */
@@ -105,21 +160,38 @@
 <main>
     <!-- Sección de Datos de Usuario -->
     <section id="datos-usuario">
-
         <div class="container">
             <!-- Datos del titular -->
-            <div class="titular" >
+            <div class="titular">
                 <h1>Información del Titular</h1>
                 <h1>Bienvenido</h1>
 
-                <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
-                <p>Email : <span th:text="${usuario.email}"></span></p>
-                <p>Estado: <span th:text="${usuario.estado}"></span></p>
 
-                <!-- Verifica si el usuario tiene cónyuge -->
-                <p th:if="${usuario.getConyuge() != null}">Nombre del Cónyuge: <span th:text="${usuario.conyuge.nombre}"></span></p>
-                <p th:if="${usuario.getConyuge()!= null}">Email del Cónyuge: <span th:text="${usuario.conyuge.email}"></span></p>
-                <p th:if="${usuario.getConyuge() != null}">Estado del Cónyuge: <span th:text="${usuario.conyuge.estado}"></span></p>
+                <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
+                <p>Email: <span th:text="${usuario.email}"></span></p>
+
+
+                <!-- Verificar si la membresía está presente -->
+                <div th:if="${membresia != null}">
+                    <p>Estado de la Membresía: <span th:text="${membresia.estado}"></span></p>
+
+                    <!-- Mostrar el botón si la membresía está inactiva -->
+                    <div th:if="${membresia.estado == 'INACTIVA' || membresia.estado == 'Inactiva'}">
+                        <a th:href="@{/activar-membresia}" class="boton-desactivada">¡Activa tu membresía!</a>
+                    </div>
+                    <!-- Mostrar el botón si la membresía está activa -->
+                    <div th:if="${membresia.estado == 'ACTIVA' || membresia.estado == 'Activada'}">
+                        <a th:href="@{/membresia-detalle}" class="boton-activar">¡Membresía Activada!</a>
+                    </div>
+                </div>
+
+                <!-- Mostrar mensaje si no hay membresía asociada -->
+                <p th:if="${membresia == null}">No hay Membresía Asociada</p>
+
+                <!-- Verificar si el usuario tiene cónyuge -->
+                <p th:if="${usuario.conyuge != null}">Nombre del Cónyuge: <span th:text="${usuario.conyuge.nombre}"></span></p>
+                <p th:if="${usuario.conyuge != null}">Email del Cónyuge: <span th:text="${usuario.conyuge.email}"></span></p>
+                <p th:if="${usuario.conyuge != null}">Estado del Cónyuge: <span th:text="${usuario.conyuge.estado}"></span></p>
                 <p th:if="${usuario.conyuge == null}">No hay Cónyuge Asociado</p>
 
                 <h2>Hijos</h2>
@@ -129,56 +201,42 @@
                             <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
                             <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
                             <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
-                            <p>ETAPA de SU Hijo: <span th:text="${hijo.etapa.getNombre()}"></span></p>
-                            <p>Fecha de Nacimiento: <span th:text="${#dates.format(hijo.fecha_nacimiento, 'yyyy-MM-dd')}"></span></p>
-
-                            <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}" method="post">
-                                <button type="submit" class="btn btn-primary">Ver Juegos Caseros en la Etapa de su hijo </button>
-                            </form>
-                            <form th:action="@{/eliminar-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                                <form th:action="@{/verTest-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
-                                    <button type="submit" class="btn btn-danger">Ver Test</button>
-                                    <form th:action="@{/verPeofesional-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
-                                        <button type="submit" class="btn btn-danger">Ver Profesional</button>
-
-                            </form>
+                            <p>ETAPA de SU Hijo:
+                                <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
+                                <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
+                            </p>
+                            <!-- Verificar si hijo.etapa.id no es nulo -->
+                            <div th:if="${hijo.etapa != null}">
+                                <form th:action="@{/ver-juego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}" method="post">
+                                    <button type="submit" class="btn btn-primary">Ver Juegos Caseros en la Etapa de su hijo</button>
+                                </form>
+                                <form th:action="@{/eliminar-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                                <form th:action="@{/ver-profesional-hijo/{hijoId}(hijoId=${hijo.id})}" method="post">
+                                    <button type="submit" class="btn btn-danger">Ver Profesional</button>
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>
+
                 <div th:if="${#lists.size(hijos) == 0}">
                     <p>No hay hijos agregados</p>
                 </div>
-
-                <h2> Membresía </h2>
-                <div th:if="${membresia != null}">
-                    <p> Tu membresía se encuentra activa </p>
-                </div>
-                <div th:if="${membresia == null}">
-                <p> Usted no cuenta con una membresía activa </p>
-                </div>
-
-
-        </div>
+            </div>
         </div>
     </section>
 
     <!-- Sección de botones circulares -->
     <div class="button-container">
 
-        <div class="circle-button"><a th:href="@{/modificarUsuario/{id}(id=${usuario.id})}">MODIFICAR DATOS TITULAR</a></div>
-        <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
-        <div class="circle-button"><a th:href="@{/suscripcion}">MEMBRESIA</a></div>
-        <div class="circle-button"><a th:href="@{/contacto}">CONTACTO</a></div>
-        <div class="circle-button"><a th:href="@{/membresiaPaga}">MEMBRESIA</a></div>
-        <div class="circle-button"><a th:href="@{/profesional}">PROFESIONALES</a></div>
-        <div class="circle-button"><a th:href="@{/nuevoConyuge}">AGREGAR CONYUGE</a></div>
-        <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
-    </div >
-    </div>
-    <a th:href="@{/vacunacion}">VACUNACION</a>
-    </div>
 
+        <div class="circle-button"><a th:href="@{/membresiaPaga}">ACTIVAR MEMBRESIA</a></div>
+
+
+        <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
+    </div>
 </main>
 </body>
 </html>

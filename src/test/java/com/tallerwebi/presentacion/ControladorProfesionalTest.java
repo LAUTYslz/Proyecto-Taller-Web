@@ -178,17 +178,17 @@ public class ControladorProfesionalTest {
         when(servicioProfesional.guardar(contactoExistente1)).thenReturn(contactoExistente1);
         when(servicioProfesional.guardar(contactoExistente2)).thenReturn(contactoExistente2);
         when(servicioProfesional.guardar(contactoExistente3)).thenReturn(contactoExistente3);
-        when(servicioProfesional.traerProfesionales()).thenReturn(contactos);
+        when(servicioProfesional.traerProfesionalesPorTipoYMetodo("","")).thenReturn(contactos);
 
         servicioProfesional.guardar(contactoExistente1);
         servicioProfesional.guardar(contactoExistente2);
         servicioProfesional.guardar(contactoExistente3);
 
-        ModelAndView mav = controladorProfesional.mostrarPaginaProfesionales(null,null);
-        List<Profesional> result = (List<Profesional>) mav.getModel().get("contactos");
+        ModelAndView mav = controladorProfesional.mostrarPaginaProfesionales("","");
+        List<Profesional> result = (List<Profesional>) mav.getModel().get("profesionales");
 
         assertEquals(contactos, result);
-        assertEquals("contacto", mav.getViewName());
+        assertEquals("profesional", mav.getViewName());
     }
 
     private Profesional givenExisteContacto(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo) {
@@ -277,6 +277,6 @@ public class ControladorProfesionalTest {
         verify(servicioProfesional,times(1)).guardar(contactoExistente1);
         verify(servicioProfesional,times(1)).traerProfesionalesPorTipoYMetodo(nombreTipo,nombreMetodo);
         assertEquals(contactosFiltrados, result);
-        assertEquals("/contacto/filtrarPorMetodoYTipo", mav.getViewName());
+        assertEquals("/profesional/filtrarPorMetodoYTipo", mav.getViewName());
     }
 }
