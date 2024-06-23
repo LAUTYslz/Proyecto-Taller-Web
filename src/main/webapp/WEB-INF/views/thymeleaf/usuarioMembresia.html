@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml" lang="">
 <head>
     <meta charset="UTF-8">
     <title>Bienvenido</title>
@@ -281,11 +281,11 @@
                     </div>
                     <div class="col">
                         <div class="card">
-                            <img th:src="@{/img/profe.jpg}" alt="profesional">
+                            <img th:src="@{/img/tienda.jpg}" alt="tienda">
                             <div class="card-body">
-                                <h5 class="card-title">Profesionales</h5>
-                                <a href="#" class="btn btn-primary">Ver Profesionales</a>
-                                <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
+                                <h5 class="card-title">Tienda Virtual</h5>
+                                <a th:href="@{/irALaTienda}" class="btn btn-primary">Ver Productos</a>
+                                <p class="card-text">Haz click para acceder a nuestra tienda</p>
                             </div>
                         </div>
                     </div>

@@ -20,7 +20,7 @@ public class HibernateTestConfig {
         dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
         dataSource.setUrl("jdbc:hsqldb:mem:db_");
         dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        dataSource.setPassword("Alexander2015");
         return dataSource;
     }
 
