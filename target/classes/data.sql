@@ -173,7 +173,7 @@ CREATE TABLE Producto(
     tienda_id INT NOT NULL,
     etapa_id BIGINT NOT NULL,
     FOREIGN KEY(tienda_id) REFERENCES Tienda(id),
-    FOREIGN KEY(etapa_id) REFERENCES Etapa(id)
+    FOREIGN KEY(etapa_id) REFERENCES etapa(id)
 );
 
 INSERT INTO Tienda (nombre, email, telefono) VALUES ('Mundo de Juguetes', 'contacto@mundojuguetes.com', '123-456-7890'),
@@ -206,3 +206,11 @@ Atrévete y vence los diferentes niveles! Requiere de 2 pilas "AA" ya incluidas!
 ('Ajedrez', '¡Ideal para dar tus primeros pasos en el ajedrez! Desarrolla tu habilidad mental y estratégica con este clásico,
 ideal para principiantes y aficionados', '21340', 'ajedrez.png', '1', '3', '4');
 ;
+
+CREATE TABLE Compra(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id BIGINT NOT NULL,
+    total DOUBLE NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
+);
