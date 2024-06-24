@@ -25,6 +25,7 @@ com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\dominio\Estado.class
 com\tallerwebi\dominio\excepcion\MetodoNoEncontradoPorID.class
 com\tallerwebi\dominio\excepcion\EtapaInexistente.class
+com\tallerwebi\dominio\RepositorioCompra.class
 com\tallerwebi\presentacion\RespuestaTest.class
 com\tallerwebi\infraestructura\ServicioTurnoImpl.class
 com\tallerwebi\dominio\ServicioCelndario.class
@@ -41,6 +42,7 @@ com\tallerwebi\MyServletInitializer.class
 com\tallerwebi\dominio\EstadoTurno.class
 com\tallerwebi\infraestructura\ServicioAdmiImpl.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
+com\tallerwebi\infraestructura\ServicioCompraImpl.class
 com\tallerwebi\dominio\ServicioMetodo.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
@@ -48,6 +50,7 @@ com\tallerwebi\dominio\RepositorioAdmi.class
 com\tallerwebi\infraestructura\RepositorioTiendaImpl.class
 com\tallerwebi\dominio\RepositorioTurno.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
+com\tallerwebi\dominio\excepcion\CompraInexistente.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
@@ -63,6 +66,7 @@ com\tallerwebi\dominio\RepositorioTienda.class
 com\tallerwebi\infraestructura\RepositorioMembresiaImpl.class
 com\tallerwebi\infraestructura\ServicioProductoImpl.class
 com\tallerwebi\dominio\RepositorioMetodo.class
+com\tallerwebi\infraestructura\RepositorioCompraImpl.class
 com\tallerwebi\Dto\DatosRegistro.class
 com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
@@ -95,6 +99,7 @@ com\tallerwebi\dominio\RepositorioMembresia.class
 com\tallerwebi\presentacion\ControladorSuscripcion.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class
 com\tallerwebi\dominio\Metodo.class
+com\tallerwebi\dominio\ServicioCompra.class
 com\tallerwebi\infraestructura\RepositorioProductoImpl.class
 com\tallerwebi\dominio\Usuario.class
 com\tallerwebi\presentacion\ControladorProfesional.class
