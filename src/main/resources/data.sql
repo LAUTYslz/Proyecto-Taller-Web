@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS Tarjeta (
                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
                          numeroDeTarjeta VARCHAR(16) NOT NULL,
@@ -153,16 +154,63 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Tienda Juguetes', '+1122334462', 'ventas@tiendajuguetes.com', 'Calle Comercial 1617', 'Tienda Juguetes', 3, NULL),
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
-CREATE TABLE consulta (
-                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                          mensaje VARCHAR(255),
-                          usuario_id BIGINT,
-                          profesional_id BIGINT,
-                          hijo_id BIGINT,
-                          FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-                          FOREIGN KEY (profesional_id) REFERENCES profesional(id),
-                          FOREIGN KEY (hijo_id) REFERENCES hijo(id)
+
+CREATE TABLE Tienda
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    nombre   VARCHAR(50)  NOT NULL,
+    email    VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20)  NOT NULL
 );
-ALTER TABLE consulta
-    ADD COLUMN estado ENUM('SIN_LEER', 'LEIDO', 'RESPONDIDO') DEFAULT 'SIN_LEER',
-    ADD COLUMN fecha DATE;
+
+CREATE TABLE Producto(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DOUBLE NOT NULL,
+    imagenUrl LONGBLOB,
+    stock BIGINT NOT NULL,
+    tienda_id INT NOT NULL,
+    etapa_id BIGINT NOT NULL,
+    FOREIGN KEY(tienda_id) REFERENCES Tienda(id),
+    FOREIGN KEY(etapa_id) REFERENCES etapa(id)
+);
+
+INSERT INTO Tienda (nombre, email, telefono) VALUES ('Mundo de Juguetes', 'contacto@mundojuguetes.com', '123-456-7890'),
+                                                    ('Rincón de los Libros', 'soporte@rincondeloslibros.com', '345-678-9012'),
+                                                    ('Todo para Niños', 'ventas@todoparaninos.com', '456-789-0123');
+
+INSERT INTO Producto (nombre, descripcion, precio, imagenUrl, stock, tienda_id, etapa_id) VALUES
+('Perro de peluche', 'Perro De Peluche 22 Cm Phi Phi Toys Color Marrón. Su característica
+hipoalergénica permite que los mas pequeños del hogar puedan jugar por horas junto a su peluche con la
+tranquilidad de que sus materiales no provocarán ninguna reacción alérgica', '8103', 'perroDePeluche.png',
+ '5', '1', '1'),
+('Peluche Squishmallow 30cm', 'Descubre la magia de los Squishmallow, peluches
+increíblemente suaves y abrazables que enamorará a grandes y pequeños. Su diseño encantador
+y su textura esponjosa lo convierten los compañeros ideales para momentos de relax y diversión.
+Perfecto para decorar cualquier espacio con un toque de ternura', '45000', 'squishmallow.png',
+'2', '1', '1'),
+('Cocodrilo Mordelón', 'Poné a prueba tu velocidad para que no te muerda el cocodrilo Uno levanta la mandíbula y el otro pone el dedo.
+Es un juego dónde tus reflejos tienen un rol muy importante! cada uno de los jugadores va a ir presionando, por turno,
+los dientes del cocodrilo, ¡pero Ojo!, que su boca no se cierre y te coma el dedo!', '8790', 'cocomordelon.png', '3',
+ '2', '2'),
+('Ajedrez', 'Una versión con piezas y tablero de piezas y tablero de menor tamaño. ¡Ideal para dar tus primeros pasos en el ajedrez!
+Desarrolla tus habilidad mental y estratégica con este clásico, ideal para principiantes y aficionados. Recomendado a partir de los 6 años',
+ '11990', 'ajedrez.png', '6', '2', '2'),
+('Rompecabezas Marvel', '¡Las tardes de lluvia van a ser las mejores! Con el puzzle Marvel Avengers vas a disfrutar de largas
+horas de entretenimiento asegurado. Además, ejercitarás la mente al incrementar tu concentración y desarrollar tu creatividad.
+Aceptá el desafío de armarlo en el menor tiempo posible, ya sea solo o trabajando en equipo con amigos o familiares', '29990', 'puzzle',
+ '3', '3', '3'),
+('Memo Star', 'Memoriza la secuencia de colores y sonido! ¿Cómo estamos de memoria? ¿Podrás recordar la secuencia de colores?
+Atrévete y vence los diferentes niveles! Requiere de 2 pilas "AA" ya incluidas!', '11500', 'memostar.png', '7', '3', '3'),
+('Ajedrez', '¡Ideal para dar tus primeros pasos en el ajedrez! Desarrolla tu habilidad mental y estratégica con este clásico,
+ideal para principiantes y aficionados', '21340', 'ajedrez.png', '1', '3', '4');
+;
+
+CREATE TABLE Compra(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id BIGINT NOT NULL,
+    total DOUBLE NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
+);

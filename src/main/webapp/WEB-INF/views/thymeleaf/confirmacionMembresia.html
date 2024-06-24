@@ -22,26 +22,28 @@
 <div th:replace="home :: nav"></div>
 
 <div class="container">
-    <h2>Confirmación de Membresía</h2>
-    <p>Gracias por suscribirte. Aquí están los detalles de tu membresía:</p>
+    <h2 class="titulo-confirmacion">Confirmación de Membresía</h2>
+    <p class="agradecimiento">Gracias por suscribirte. Aquí están los detalles de tu membresía:</p>
 
-    <div>
-        <strong>Nombre completo:</strong> <span th:text="${datosMembresia.nombreCompleto}"></span>
-    </div>
-    <div>
-        <strong>Email:</strong> <span th:text="${datosMembresia.email}"></span>
-    </div>
-    <div>
-        <strong>Número telefónico:</strong> <span th:text="${datosMembresia.numeroTelefonico}"></span>
-    </div>
-    <div>
-        <strong>Número de tarjeta:</strong> <span th:text="${datosMembresia.tarjeta.numeroDeTarjeta}"></span>
-    </div>
-    <div>
-        <strong>Fecha de Vencimiento:</strong> <span th:text="${datosMembresia.tarjeta.fechaDeVencimiento}"></span>
-    </div>
-    <div>
-        <strong>Código de Seguridad:</strong> <span th:text="${datosMembresia.tarjeta.codigoDeSeguridad}"></span>
+    <div class="informacion-membresia">
+        <div>
+            <strong>Nombre completo:</strong> <span th:text="${datosMembresia.nombreCompleto}"></span>
+        </div>
+        <div>
+            <strong>Email:</strong> <span th:text="${datosMembresia.email}"></span>
+        </div>
+        <div>
+            <strong>Número telefónico:</strong> <span th:text="${datosMembresia.numeroTelefonico}"></span>
+        </div>
+        <div>
+            <strong>Número de tarjeta:</strong> <span th:text="${datosMembresia.tarjeta.numeroDeTarjeta}"></span>
+        </div>
+        <div>
+            <strong>Fecha de Vencimiento:</strong> <span th:text="${datosMembresia.tarjeta.fechaDeVencimiento}"></span>
+        </div>
+        <div>
+            <strong>Código de Seguridad:</strong> <span th:text="${datosMembresia.tarjeta.codigoDeSeguridad}"></span>
+        </div>
     </div>
     <div>
         <strong>Fecha de Alta Membresia:</strong> <span th:text="${#dates.format(datosMembresia.fechaDeInicio, 'yyyy-MM-dd')}"></span>

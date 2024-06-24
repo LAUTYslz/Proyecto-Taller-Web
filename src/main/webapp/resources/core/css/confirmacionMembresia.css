@@ -1,0 +1,8 @@
+.informacion-membresia {
+    display: flex;
+    flex-direction: column;
+}
+
+.informacion-membresia div, .titulo-confirmacion, .agradecimiento {
+    margin: 20px;
+}
