@@ -1,0 +1,135 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--<div id="expirationDate"></div>-->
+
+<!--<div id="cardNumber"></div>-->
+
+<!--<div id="securityCode"> </div>-->
+
+<!--<script src="https://sdk.mercadopago.com/js/v2"></script>-->
+<!--<script> const mp = new MercadoPago("TEST-963a91a8-49a7-4d4d-b6b2-db648d0dffbc"); </script>-->
+<!--<script>-->
+
+<!--    // informar a los MPs dónde debe montar las entradas-->
+
+<!--    const cardNumberElement = mp.fields.create('cardNumber', {-->
+<!--        placeholder: "Número do cartão"-->
+<!--    }).mount('cardNumber');-->
+
+<!--    const expirationDateElement = mp.fields.create('expirationDate', {-->
+<!--        placeholder: "MM/YY",-->
+<!--    }).mount('expirationDate');-->
+
+<!--    const securityCodeElement = mp.fields.create('securityCode', {-->
+<!--        placeholder: "Código de segurança"-->
+<!--    }).mount('securityCode');-->
+
+<!--    // Obtener tipos de documentos-->
+
+<!--    (async function getIdentificationTypes() {-->
+<!--        try {-->
+<!--            const identificationTypes = await mp.getIdentificationTypes();-->
+
+<!--            const identificationTypeElement = document.getElementById('docType');-->
+
+<!--            createSelectOptions(identificationTypeElement, identificationTypes);-->
+
+<!--        } catch (e) {-->
+<!--            return console.error('Error getting identificationTypes: ', e);-->
+<!--        }-->
+<!--    })();-->
+
+<!--    function createSelectOptions(elem, options, labelsAndKeys = { label: "name", value: "id" }) {-->
+
+<!--        const { label, value } = labelsAndKeys;-->
+
+<!--        elem.options.length = 0;-->
+
+<!--        const tempOptions = document.createDocumentFragment();-->
+
+<!--        options.forEach(option => {-->
+<!--            const optValue = option[value];-->
+<!--            const optLabel = option[label];-->
+
+<!--            const opt = document.createElement('option');-->
+<!--            opt.value = optValue;-->
+<!--            opt.textContent = optLabel;-->
+
+<!--            tempOptions.appendChild(opt);-->
+<!--        });-->
+
+<!--        elem.appendChild(tempOptions);-->
+<!--    }-->
+
+<!--    // Obtener método de pago c tarjeta-->
+
+<!--    cardNumberElement.on('binChange', guessPaymentMethod);-->
+
+<!--    async function getPaymentMethods(data) {-->
+<!--        const { bin } = data-->
+<!--        const { results } = await mp.getPaymentMethods({ bin });-->
+<!--        // O id do payment estará em results[0].id-->
+<!--    }-->
+
+<!--    // Obtener banco emisor-->
+
+<!--    async function getIssuers(paymentMethodId, bin) {-->
+<!--        const issuears = await mp.getIssuers({paymentMethodId, bin });-->
+<!--    }-->
+
+<!--    // Obtener numero de cuotas-->
+<!--    async function getInstallments(paymentMethodId, bin) {-->
+<!--        const installments = await mp.getInstallments({-->
+<!--            amount: document.getElementById('transactionAmount').value,-->
+<!--            bin,-->
+<!--            paymentTypeId: 'credit_card'-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Crear token de tarjeta-->
+<!--    async function createCardToken(){-->
+<!--        const token = await mp.fields.createCardToken({-->
+<!--            cardholderName,-->
+<!--            identificationType,-->
+<!--            identificationNumber,-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Enviar pago-->
+<!--    doSubmit = false;-->
+<!--    document.getElementById('paymentForm').addEventListener('submit', getCardToken);-->
+
+<!--    async function getCardToken(event) {-->
+<!--        event.preventDefault();-->
+<!--        if (!doSubmit) {-->
+<!--            let $form = document.getElementById('paymentForm');-->
+<!--            const token = await mp.fields.createCardToken({-->
+<!--                cardholderName: document.getElementById('cardholderName').value,-->
+<!--                identificationType: document.getElementById('docType').value,-->
+<!--                identificationNumber: document.getElementById('docNumber').value,-->
+<!--            })-->
+<!--            setCardTokenAndPay(token.id)-->
+<!--        }-->
+<!--    };-->
+
+<!--    function setCardTokenAndPay(token) {-->
+<!--        let form = document.getElementById('paymentForm');-->
+<!--        let card = document.createElement('input');-->
+<!--        card.setAttribute('name', 'token');-->
+<!--        card.setAttribute('type', 'hidden');-->
+<!--        card.setAttribute('value', token);-->
+<!--        form.appendChild(card);-->
+<!--        doSubmit = true;-->
+<!--        form.submit();-->
+<!--    }-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

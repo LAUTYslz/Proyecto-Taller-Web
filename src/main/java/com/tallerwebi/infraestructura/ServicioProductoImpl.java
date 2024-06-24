@@ -75,5 +75,14 @@ public class ServicioProductoImpl implements ServicioProducto {
         }
     }
 
+    @Override
+    public Producto buscarProductoPorId(Long id) throws ProductoInexistente {
+        if (repositorioProducto.obtenerInfoProducto(id) != null) {
+            return repositorioProducto.obtenerInfoProducto(id);
+        } else {
+            throw new ProductoInexistente();
+        }
+    }
+
 
 }

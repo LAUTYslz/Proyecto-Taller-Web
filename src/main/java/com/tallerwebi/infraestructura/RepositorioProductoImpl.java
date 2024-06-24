@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-@Repository("repositorioMembresia")
+@Repository("repositorioProducto")
 public class RepositorioProductoImpl implements RepositorioProducto {
     private final SessionFactory sessionFactory;
 
@@ -63,7 +63,8 @@ public class RepositorioProductoImpl implements RepositorioProducto {
     public List<Producto> obtenerProductosPorEtapa(Long id) {
         return (List<Producto>) sessionFactory.getCurrentSession()
                 .createCriteria(Producto.class)
-                .add(Restrictions.eq("etapa_id", id))
+                .createAlias("etapa", "e") // createAlias = JOIN Etapa e
+                .add(Restrictions.eq("e.id", id))
                 .list();
     }
 

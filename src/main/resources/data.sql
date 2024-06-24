@@ -173,7 +173,7 @@ CREATE TABLE Producto(
     tienda_id INT NOT NULL,
     etapa_id BIGINT NOT NULL,
     FOREIGN KEY(tienda_id) REFERENCES Tienda(id),
-    FOREIGN KEY(etapa_id) REFERENCES Etapa(id)
+    FOREIGN KEY(etapa_id) REFERENCES etapa(id)
 );
 
 INSERT INTO Tienda (nombre, email, telefono) VALUES ('Mundo de Juguetes', 'contacto@mundojuguetes.com', '123-456-7890'),
