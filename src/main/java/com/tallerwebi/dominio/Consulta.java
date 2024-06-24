@@ -12,6 +12,8 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensaje;
+
+    @Enumerated(EnumType.STRING)
     private Mensaje estado;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
@@ -63,5 +65,35 @@ public class Consulta {
 
     public void setHijo(Hijo hijo) {
         this.hijo = hijo;
+    }
+
+
+    public Mensaje getEstado(Mensaje sinLeer) {
+        return estado;
+    }
+
+    public void setEstado(Mensaje estado) {
+        this.estado = estado;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "id=" + id +
+                ", mensaje='" + mensaje + '\'' +
+                ", estado=" + estado +
+                ", fecha=" + fecha +
+                ", usuario=" + usuario +
+                ", profesional=" + profesional +
+                ", hijo=" + hijo +
+                '}';
     }
 }

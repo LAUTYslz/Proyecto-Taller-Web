@@ -1,8 +1,8 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.Consulta;
-import com.tallerwebi.dominio.RepositorioMembresiaActivada;
+import com.tallerwebi.dominio.*;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -20,7 +20,21 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
 
     @Override
     public Consulta guardarConsulta(Consulta consulta) {
-        sessionFactory.getCurrentSession().saveOrUpdate(consulta);
+        sessionFactory.getCurrentSession().save(consulta);
         return consulta;
+    }
+
+    @Override
+    public void actualizarConsulta(Consulta consulta) {
+        sessionFactory.getCurrentSession().update(consulta);
+    }
+
+    @Override
+    public Consulta buscarConsulta(Long usuarioid) {
+        return (Consulta) sessionFactory.getCurrentSession()
+                .createCriteria(Consulta.class)
+                .createAlias("usuario","usuarioBuscado")
+                .add(Restrictions.eq("usuarioBuscado.id",usuarioid)).uniqueResult();
+
     }
 }

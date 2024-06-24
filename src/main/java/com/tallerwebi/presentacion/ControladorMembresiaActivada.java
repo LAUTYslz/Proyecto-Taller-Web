@@ -1,7 +1,6 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import com.tallerwebi.infraestructura.RepositorioMetodoImpl;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -63,13 +63,17 @@ public class ControladorMembresiaActivada {
                 etapa = primerHijo.getEtapa();
                 metodo = primerHijo.getMetodo();
             }
-            actualizarSesion(request, usuario, hijos);
+
+            Consulta consulta =new Consulta();
+
+            actualizarSesion(request, usuario, hijos,consulta);
             // Agregar el usuario, la membresía, la lista de hijos, la etapa y el método al modelo
             modelAndView.addObject("usuario", usuario);
             modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
             modelAndView.addObject("etapa", etapa);
             modelAndView.addObject("metodo", metodo); // Agregar el método al modelo
+            modelAndView.addObject("consulta",consulta); // Objeto para almacenar la consulta
 
             // Establecer la vista como "usuarioMembresia"
             modelAndView.setViewName("usuarioMembresia");
@@ -82,10 +86,13 @@ public class ControladorMembresiaActivada {
     }
 
 
+
+
     // Método para actualizar la sesión con los datos actualizados
-    private void actualizarSesion(HttpServletRequest request, Usuario usuario, List<Hijo> hijos) {
+    private void actualizarSesion(HttpServletRequest request, Usuario usuario, List<Hijo> hijos, Consulta consulta) {
         request.getSession().setAttribute("usuario", usuario);
         request.getSession().setAttribute("hijos", hijos);
+        request.getSession().setAttribute("consulta", consulta);
     }
 
 
@@ -196,8 +203,8 @@ public class ControladorMembresiaActivada {
     }
 
 
-    @PostMapping("/profesionales-por-metodo")
-    public ModelAndView procesarConsulta(@RequestParam("hijoId") Long hijoId) {
+    @PostMapping("/seleccionDeProfesional")
+    public ModelAndView procesarConsulta(@RequestParam("hijoId") Long hijoId, Model model) {
         ModelAndView modelAndView = new ModelAndView("realizarConsultaProfesional");
 
         // Lógica para buscar al hijo y obtener el método asociado
@@ -209,29 +216,63 @@ public class ControladorMembresiaActivada {
         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
         List<Profesional> filtro = servicioProfesional.traerProfesionalesPorMetodo(metodoAsociado);
 
-        // Añadir objetos al modelo para pasar a la vista
+        model.addAttribute("hijoId", hijoId);
         modelAndView.addObject("profesionales", filtro);
         modelAndView.addObject("metodo", metodoAsociado);
         modelAndView.addObject("hijo", buscarHijo);
         modelAndView.addObject("tipos", tipos);
         modelAndView.addObject("consulta", new Consulta()); // Objeto de consulta, si es necesario
 
+
+
         return modelAndView;
     }
 
     // Otros métodos del controlador pueden estar presentes aquí
 
-
-    @PostMapping("/enviar-consulta")
-    public ModelAndView enviarConsulta(@ModelAttribute("consulta") Consulta consulta) {
+  @PostMapping("/enviar-consulta")
+    public ModelAndView enviarConsulta(@ModelAttribute("consulta") Consulta consulta,
+                                       @RequestParam("hijoId") Long hijoId,
+                                       @RequestParam("profesionalId") Long profesionalId, HttpServletRequest request) throws UsuarioInexistente {
         ModelAndView modelAndView = new ModelAndView("exito");
-        Consulta guardadaConsulta = servicioMembresiaActivada.realizarConsulta(consulta);
+
+        // Lógica para buscar al hijo y asignarlo a la consulta
+
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+      List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
+        Hijo hijo = servicioLogin.buscarunhijoDeLaLista(hijos, hijoId);
+
+
+      // Lógica para buscar al profesional y asignarlo a la consulta
+        Profesional profesional = servicioProfesional.obtenerPorId(profesionalId);
+        // Asignar el hijo y el profesional a la consulta
+
+
+
+        // Aquí podrías realizar otras operaciones necesarias antes de guardar la consulta, como validar o procesar datos adicionales
+
+        // Guardar la consulta
+        Consulta guardadaConsulta = servicioMembresiaActivada.realizarConsulta(consulta, hijo,profesional,usuario); // Suponiendo que tienes un servicio para gestionar las consultas
+
+        // Añadir objetos al modelo para pasar a la vista
+        modelAndView.addObject("consulta", guardadaConsulta); // Pasar la consulta guardada a la vista
+        modelAndView.addObject("profesionales", servicioProfesional.traerProfesionales()); // Obtener todos los profesionales para la vista
+        modelAndView.addObject("hijos",hijos);
 
         return modelAndView;
     }
 
+    @GetMapping("/irALaTienda")
+    public ModelAndView irALaTienda(){
+        return new ModelAndView("tiendaVirtual");
+    }
+
+
+
 
 }
+
+
 
 
 
