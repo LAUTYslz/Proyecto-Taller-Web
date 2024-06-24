@@ -9,7 +9,7 @@ public interface ServicioCompra {
 
    Compra buscarCompraPorId(Long id) throws CompraInexistente;
    List<Compra> getAllCompras();
-   void agregarCompra(Compra compra);
+   void agregarCompra(Compra compra, Long idUsuario);
    void eliminarCompra(Compra compra);
    Boolean agregarProducto(Producto producto, Long idCompra);
    Boolean eliminarProducto(Producto producto, Long idCompra);
@@ -18,5 +18,6 @@ public interface ServicioCompra {
    Boolean cancelarCompra(Long id);
    Boolean aplicarDescuento(Integer desc, Long idCompra);
    Compra obtenerCompraActual(HttpServletRequest request);
+   void actualizarCompra(Compra compra);
 
 }

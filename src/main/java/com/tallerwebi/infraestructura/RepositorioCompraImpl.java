@@ -47,4 +47,9 @@ public class RepositorioCompraImpl implements RepositorioCompra {
     public void eliminarCompra(Compra compra) {
         sessionFactory.getCurrentSession().delete(compra);
     }
+
+    @Override
+    public void actualizarCompra(Compra compra) {
+        sessionFactory.getCurrentSession().saveOrUpdate(compra);
+    }
 }

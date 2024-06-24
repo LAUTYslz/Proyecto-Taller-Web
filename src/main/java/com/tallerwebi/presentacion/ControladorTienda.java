@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.CompraInexistente;
 import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.StockInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,7 @@ public class ControladorTienda {
         if (compra == null) {
             // inicializar si no existe
             compra = new Compra();
+            servicioCompra.agregarCompra(compra, usuario.getId());
             session.setAttribute("compra", compra);
         }
 
@@ -100,18 +102,20 @@ public class ControladorTienda {
             Producto producto = servicioProducto.buscarProductoPorId(productoId);
             Long stock = servicioProducto.consultarStockPorId(productoId);
             this.servicioCompra.agregarProducto(producto, compra.getId());
+            this.servicioCompra.actualizarCompra(compra);
+            compra = servicioCompra.buscarCompraPorId(compra.getId());
             session.setAttribute("compra", compra);
             model.addAttribute("mensaje", "Producto añadido al carrito");
 
         } catch (ProductoInexistente e){
             model.addAttribute("mensaje", "Lo siento. Hubo un error al añadir el producto al carrito");
-            return new ModelAndView("productos", model);
         } catch (StockInexistente e) {
             model.addAttribute("mensaje", "Lo siento. No contamos con suficiente stock de este producto");
-            return new ModelAndView("productos", model);
+        } catch (CompraInexistente e) {
+            model.addAttribute("mensaje", "Lo siento. No cuentas con un carrito.");
         }
 
-        return new ModelAndView("redirect:/productos");
+        return new ModelAndView("productos", model);
     }
 
     @RequestMapping("/carrito")

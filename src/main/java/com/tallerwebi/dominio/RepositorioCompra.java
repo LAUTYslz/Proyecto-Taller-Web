@@ -10,5 +10,5 @@ public interface RepositorioCompra {
     public List<Compra> getAllCompras();
     public void agregarCompra(Compra compra);
     public void eliminarCompra(Compra compra);
-
+    public void actualizarCompra(Compra compra);
 }

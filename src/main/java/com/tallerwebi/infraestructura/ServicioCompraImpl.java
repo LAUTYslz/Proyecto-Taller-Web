@@ -2,21 +2,25 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.CompraInexistente;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("servicioCompra")
 @Transactional
 public class ServicioCompraImpl implements ServicioCompra {
     private final RepositorioCompra repositorioCompra;
+    private final RepositorioUsuario repositorioUsuario;
 
     @Autowired
-    public ServicioCompraImpl(RepositorioCompra repositorioCompra) {
+    public ServicioCompraImpl(RepositorioCompra repositorioCompra, RepositorioUsuario repositorioUsuario) {
         this.repositorioCompra = repositorioCompra;
+        this.repositorioUsuario = repositorioUsuario;
     }
 
     @Override
@@ -33,7 +37,19 @@ public class ServicioCompraImpl implements ServicioCompra {
     }
 
     @Override
-    public void agregarCompra(Compra compra) {
+    public void agregarCompra(Compra compra, Long idUsuario) {
+
+        if (compra.getEstado() == null){
+            compra.setEstado(EstadoCompra.PENDIENTE);
+        }
+
+        if (compra.getUsuario() == null){
+            compra.setUsuario(repositorioUsuario.buscarPorId(idUsuario));
+        }
+
+        if (compra.getTotal() == null){
+            compra.setTotal(0.0);
+        }
         repositorioCompra.agregarCompra(compra);
     }
 
@@ -49,6 +65,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.agregarProducto(producto);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
@@ -59,6 +76,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.eliminarProducto(producto);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
@@ -69,6 +87,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.setProductos(productos);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
@@ -79,6 +98,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.setEstado(EstadoCompra.REALIZADA);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
@@ -89,6 +109,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.setEstado(EstadoCompra.CANCELADA);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
@@ -100,12 +121,22 @@ public class ServicioCompraImpl implements ServicioCompra {
         } else {
             Double valorConDescuento = compra.getTotal() - (compra.getTotal()*desc);
             compra.setTotal(valorConDescuento);
+            repositorioCompra.actualizarCompra(compra);
         } return true;
     }
 
     @Override
     public Compra obtenerCompraActual(HttpServletRequest request) {
-        return (Compra) request.getSession().getAttribute("compra");
+        Compra compra = (Compra) request.getSession().getAttribute("compra");
+
+        if (compra != null){
+            Hibernate.initialize(compra.getProductos());
+        } return compra;
+    }
+
+    @Override
+    public void actualizarCompra(Compra compra) {
+        repositorioCompra.actualizarCompra(compra);
     }
 
 

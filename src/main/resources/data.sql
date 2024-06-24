@@ -214,3 +214,12 @@ CREATE TABLE Compra(
     estado VARCHAR(20) NOT NULL,
     FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
 );
+
+CREATE TABLE compra_producto (
+                                 id INT AUTO_INCREMENT PRIMARY KEY,
+                                 compra_id BIGINT NOT NULL,
+                                 producto_id BIGINT NOT NULL,
+                                 FOREIGN KEY (compra_id) REFERENCES compra(id),
+                                 FOREIGN KEY (producto_id) REFERENCES producto(id)
+);
+

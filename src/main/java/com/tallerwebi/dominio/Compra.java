@@ -14,15 +14,20 @@ public class Compra {
     @ManyToOne
     Usuario usuario;
 
-    @OneToMany
-    private List<Producto> productos = new ArrayList<Producto>();
+    @ManyToMany
+    @JoinTable(
+            name = "compra_producto",
+            joinColumns = @JoinColumn(name = "compra_id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id")
+    )
+    private List<Producto> productos;
 
     private Double total;
 
     private EstadoCompra estado;
 
     public Compra(){
-
+        this.productos = new ArrayList<>();
     }
 
     public Long getId() {
