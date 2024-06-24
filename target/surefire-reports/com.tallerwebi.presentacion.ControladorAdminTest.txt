@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.presentacion.ControladorAdminTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.116 s <<< FAILURE! - in com.tallerwebi.presentacion.ControladorAdminTest
+com.tallerwebi.presentacion.ControladorAdminTest.testGuardarProfesional  Time elapsed: 0.011 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+servicioProfesional.guardar(
+    com.tallerwebi.dominio.Profesional@3911fec8
+);
+-> at com.tallerwebi.presentacion.ControladorAdminTest.testGuardarProfesional(ControladorAdminTest.java:86)
+
+However, there was exactly 1 interaction with this mock:
+servicioProfesional.guardarProfesional(
+    com.tallerwebi.dominio.Profesional@325e03b,
+    "1l",
+    "1l"
+);
+-> at com.tallerwebi.presentacion.ControladorAdministrador.agregarProfesional(ControladorAdministrador.java:247)
+
+
+	at com.tallerwebi.presentacion.ControladorAdminTest.testGuardarProfesional(ControladorAdminTest.java:86)
+

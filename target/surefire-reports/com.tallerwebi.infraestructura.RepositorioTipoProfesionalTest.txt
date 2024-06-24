@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.infraestructura.RepositorioTipoProfesionalTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! - in com.tallerwebi.infraestructura.RepositorioTipoProfesionalTest
+com.tallerwebi.infraestructura.RepositorioTipoProfesionalTest.quePuedaBuscarUnTipoContactoPorId  Time elapsed: 0.007 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected: <1L>
+     but: was <12L>
+	at com.tallerwebi.infraestructura.RepositorioTipoProfesionalTest.thenObtengoTipoPorId(RepositorioTipoProfesionalTest.java:111)
+	at com.tallerwebi.infraestructura.RepositorioTipoProfesionalTest.quePuedaBuscarUnTipoContactoPorId(RepositorioTipoProfesionalTest.java:106)
+

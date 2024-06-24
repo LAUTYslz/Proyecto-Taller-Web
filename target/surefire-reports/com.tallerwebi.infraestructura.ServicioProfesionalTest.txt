@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.infraestructura.ServicioProfesionalTest
+-------------------------------------------------------------------------------
+Tests run: 15, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.904 s <<< FAILURE! - in com.tallerwebi.infraestructura.ServicioProfesionalTest
+com.tallerwebi.infraestructura.ServicioProfesionalTest.queNoPuedaGuardarContactoSiNoExisteMetodo  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected com.tallerwebi.dominio.excepcion.MetodoNoEncontrado to be thrown, but nothing was thrown.
+	at com.tallerwebi.infraestructura.ServicioProfesionalTest.queNoPuedaGuardarContactoSiNoExisteMetodo(ServicioProfesionalTest.java:154)
+

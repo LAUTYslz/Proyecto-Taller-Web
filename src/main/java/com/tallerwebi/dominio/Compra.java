@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,11 +15,15 @@ public class Compra {
     Usuario usuario;
 
     @OneToMany
-    private List<Producto> productos;
+    private List<Producto> productos = new ArrayList<Producto>();
 
     private Double total;
 
     private EstadoCompra estado;
+
+    public Compra(){
+
+    }
 
     public Long getId() {
         return id;
@@ -42,13 +47,20 @@ public class Compra {
 
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
+
+        for (Producto producto : productos) {
+            this.total += producto.getPrecio();
+        }
+
     }
 
     public void agregarProducto(Producto producto) {
+        this.total += producto.getPrecio();
         this.productos.add(producto);
     }
 
     public void eliminarProducto(Producto producto) {
+        this.total -= producto.getPrecio();
         this.productos.remove(producto);
     }
 

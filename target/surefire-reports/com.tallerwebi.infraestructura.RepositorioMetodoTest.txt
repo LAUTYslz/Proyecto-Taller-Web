@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.infraestructura.RepositorioMetodoTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.959 s <<< FAILURE! - in com.tallerwebi.infraestructura.RepositorioMetodoTest
+com.tallerwebi.infraestructura.RepositorioMetodoTest.quePuedaBuscarUnMetodoPorId  Time elapsed: 0.012 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected: <1L>
+     but: was <5L>
+	at com.tallerwebi.infraestructura.RepositorioMetodoTest.thenEncuentroMetodoPorId(RepositorioMetodoTest.java:119)
+	at com.tallerwebi.infraestructura.RepositorioMetodoTest.quePuedaBuscarUnMetodoPorId(RepositorioMetodoTest.java:113)
+
