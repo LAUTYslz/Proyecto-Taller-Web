@@ -1,8 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.Compra;
-import com.tallerwebi.dominio.Producto;
-import com.tallerwebi.dominio.RepositorioCompra;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.CompraInexistente;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -40,7 +38,12 @@ public class RepositorioCompraImpl implements RepositorioCompra {
 
     @Override
     public void agregarCompra(Compra compra) {
-        sessionFactory.getCurrentSession().save(compra);
+        if (buscarCompraPorId(compra.getId()) == null) {
+            sessionFactory.getCurrentSession().save(compra);
+        } else {
+            sessionFactory.getCurrentSession().merge(compra);
+        }
+
     }
 
     @Override
@@ -51,5 +54,14 @@ public class RepositorioCompraImpl implements RepositorioCompra {
     @Override
     public void actualizarCompra(Compra compra) {
         sessionFactory.getCurrentSession().saveOrUpdate(compra);
+    }
+
+    @Override
+    public Compra getCarritoByUser(Usuario usuario) {
+        return (Compra) sessionFactory.getCurrentSession()
+                .createCriteria(Compra.class)
+                .add(Restrictions.eq("usuario", usuario))
+                .add(Restrictions.eq("estado", EstadoCompra.PENDIENTE))
+                .uniqueResult();
     }
 }

@@ -38,20 +38,7 @@ public class ServicioCompraImpl implements ServicioCompra {
     }
 
     @Override
-    public void agregarCompra(Compra compra, Long idUsuario) {
-
-        if (compra.getEstado() == null){
-            compra.setEstado(EstadoCompra.PENDIENTE);
-        }
-
-        if (compra.getUsuario() == null){
-            compra.setUsuario(repositorioUsuario.buscarPorId(idUsuario));
-        }
-
-        if (compra.getTotal() == null){
-            compra.setTotal(0.0);
-        }
-
+    public void agregarCompra(Compra compra) {
         repositorioCompra.agregarCompra(compra);
     }
 
@@ -61,6 +48,7 @@ public class ServicioCompraImpl implements ServicioCompra {
     }
 
     @Override
+    @Transactional
     public Boolean agregarProducto(Producto producto, Long idCompra) {
         Compra compra = repositorioCompra.buscarCompraPorId(idCompra);
         if (compra == null){
@@ -78,7 +66,6 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.eliminarProducto(producto);
-            compra.setTotal(compra.getTotal() - producto.getPrecio());
             repositorioCompra.actualizarCompra(compra);
         } return true;
     }
@@ -156,6 +143,11 @@ public class ServicioCompraImpl implements ServicioCompra {
     @Override
     public void actualizarCompra(Compra compra) {
         repositorioCompra.actualizarCompra(compra);
+    }
+
+    @Override
+    public Compra getCarritoByUser(Usuario usuario) {
+        return repositorioCompra.getCarritoByUser(usuario);
     }
 
 

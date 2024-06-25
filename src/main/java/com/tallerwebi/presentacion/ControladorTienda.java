@@ -1,10 +1,14 @@
 package com.tallerwebi.presentacion;
 
+import com.mysql.cj.AppendingBatchVisitor;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.CompraInexistente;
 import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.StockInexistente;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,9 +33,10 @@ public class ControladorTienda {
     private final ServicioLogin servicioLogin;
     private final ServicioCompra servicioCompra;
     private final RepositorioCompra repositorioCompra;
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    public ControladorTienda(RepositorioUsuario repositorioUsuario, ServicioTienda servicioTienda, ServicioProducto servicioProducto, RepositorioTienda repositorioTienda, RepositorioProducto repositorioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, RepositorioCompra repositorioCompra) {
+    public ControladorTienda(RepositorioUsuario repositorioUsuario, ServicioTienda servicioTienda, ServicioProducto servicioProducto, RepositorioTienda repositorioTienda, RepositorioProducto repositorioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, RepositorioCompra repositorioCompra, SessionFactory sessionFactory) {
         this.repositorioUsuario = repositorioUsuario;
         this.servicioTienda = servicioTienda;
         this.servicioProducto = servicioProducto;
@@ -39,6 +45,7 @@ public class ControladorTienda {
         this.servicioLogin = servicioLogin;
         this.servicioCompra = servicioCompra;
         this.repositorioCompra = repositorioCompra;
+        this.sessionFactory = sessionFactory;
     }
 
     @RequestMapping("/productos")
@@ -79,73 +86,112 @@ public class ControladorTienda {
         return new ModelAndView("detallesProducto", model);
     }
 
+    @RequestMapping("/carrito")
+    public ModelAndView verCarrito(HttpServletRequest request){
+        ModelMap model = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+        Compra carrito = servicioCompra.getCarritoByUser(usuario);
+
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        } else {
+            carrito = servicioCompra.getCarritoByUser(usuario);
+        }
+
+        if (carrito == null){
+            // Si el usuario no tiene carrito, crear uno y guardarlo en el repo:
+            carrito = new Compra();
+            carrito.setUsuario(usuario);
+            carrito.setProductos(new ArrayList<Producto>());
+            servicioCompra.agregarCompra(carrito);
+        } else {
+            List<Producto> productosEnCarrito = carrito.getProductos();
+
+            // Calcular el valor de la compra
+            Double totalCarrito = 0.0;
+            for (Producto producto : productosEnCarrito){
+                totalCarrito += producto.getPrecio();
+            }
+            // setear el total en el carrito
+            carrito.setTotal(totalCarrito);
+            // actualizar los valores
+            servicioCompra.agregarCompra(carrito);
+        }
+
+        model.addAttribute("compra", carrito);
+        return new ModelAndView("carrito", model);
+    }
+
     @RequestMapping("/agregarProducto")
     public ModelAndView agregarProducto(@RequestParam("productoId") Long productoId, HttpServletRequest request) {
         ModelMap model = new ModelMap();
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-        HttpSession session = request.getSession();
+        Compra carrito = servicioCompra.getCarritoByUser(usuario);
 
-        if (usuario == null) {
-            // Usuario no autenticado
+        if (usuario == null){
             return new ModelAndView("redirect:/login");
         }
 
-        Compra compra = (Compra) session.getAttribute("compra");
-        if (compra == null) {
-            // inicializar si no existe
-            compra = new Compra();
-            servicioCompra.agregarCompra(compra, usuario.getId());
-            session.setAttribute("compra", compra);
-        }
-
-        try {
-            Producto producto = servicioProducto.buscarProductoPorId(productoId);
-            Long stock = servicioProducto.consultarStockPorId(productoId);
-            this.servicioCompra.agregarProducto(producto, compra.getId());
-            this.servicioCompra.actualizarCompra(compra);
-            compra = servicioCompra.buscarCompraPorId(compra.getId());
-            session.setAttribute("compra", compra);
-            model.addAttribute("mensaje", "Producto añadido al carrito");
-
-        } catch (ProductoInexistente e){
-            model.addAttribute("mensaje", "Lo siento. Hubo un error al añadir el producto al carrito");
-        } catch (StockInexistente e) {
-            model.addAttribute("mensaje", "Lo siento. No contamos con suficiente stock de este producto");
-        } catch (CompraInexistente e) {
-            model.addAttribute("mensaje", "Lo siento. No cuentas con un carrito.");
-        }
-
-        return new ModelAndView("productos", model);
-    }
-
-    @RequestMapping("/carrito")
-    public ModelAndView mostrarCarrito(HttpServletRequest request){
-        ModelMap model = new ModelMap();
-        Compra compra = servicioCompra.obtenerCompraActual(request);
-
-        if (compra == null) {
-            model.addAttribute("mensaje", "Tu carrito está vacío");
+        // Si es nulo, crearlo
+        if (carrito == null){
+            carrito = new Compra();
+            carrito.setUsuario(usuario);
+            carrito.setProductos(new ArrayList<Producto>());
+            servicioCompra.agregarCompra(carrito);
         } else {
-            model.addAttribute("compra", compra);
-        } return new ModelAndView("carrito", model);
+            // recuperar el producto y agregarlo al carrito
+            try {
+                Producto producto = servicioProducto.buscarProductoPorId(productoId);
+                Long stock = servicioProducto.consultarStockPorId(productoId);
+                // Agregar
+                servicioCompra.agregarProducto(producto, carrito.getId());
+                // Calcular total
+                double totalCarrito = 0.0;
+                for (Producto productoEnCarrito : carrito.getProductos()) {
+                    totalCarrito += productoEnCarrito.getPrecio();
+                }
+                carrito.setTotal(totalCarrito);
 
+                // guardar el carrito actualizado
+                servicioCompra.actualizarCompra(carrito);
+
+            } catch (ProductoInexistente e){
+                model.addAttribute("mensaje", "El producto que intentas agregar ya no existe");
+                return new ModelAndView("carrito", model);
+            } catch (StockInexistente e) {
+                model.addAttribute("mensaje", "No contamos con suficiente stock de este producto");
+                return new ModelAndView("carrito", model);
+            }
+        }
+        return new ModelAndView("redirect:/productos");
     }
 
     @RequestMapping("/eliminarProducto")
-    public ModelAndView eliminarProducto(@RequestParam("productoId") Long productoId, HttpServletRequest request) {
+    public ModelAndView eliminarProducto(@RequestParam("productoId") Long productoId, HttpServletRequest request){
         ModelMap model = new ModelMap();
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-        Compra compraActual = servicioCompra.obtenerCompraActual(request);
 
-        try {
-            Producto producto = servicioProducto.buscarProductoPorId(productoId);
-            this.servicioCompra.eliminarProducto(producto, compraActual.getId());
-            model.addAttribute("mensaje", "Producto eliminado del carrito");
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        }
 
-        } catch (ProductoInexistente e){
-            model.addAttribute("mensaje", "Lo siento. Hubo un error al añadir el producto al carrito");
-            return new ModelAndView("productos", model);
-        } return new ModelAndView("carrito", model);
+        Compra carrito = servicioCompra.getCarritoByUser(usuario);
+        if (carrito == null){
+            model.addAttribute("mensaje", "Carrito no encontrado");
+        } else {
+            try {
+                Producto producto = servicioProducto.buscarProductoPorId(productoId);
+                servicioCompra.eliminarProducto(producto, carrito.getId()); // elimino el producto y la entidad se encarga de restarlo del total
+                servicioCompra.agregarCompra(carrito); // actualizo la compra
+
+            } catch (Exception e) {
+                model.addAttribute("mensaje", "Hubo un error al eliminar el producto del carrito");
+                return new ModelAndView("carrito", model);
+            }
+        } return new ModelAndView("redirect:/productos");
+
     }
+
+
 
 }

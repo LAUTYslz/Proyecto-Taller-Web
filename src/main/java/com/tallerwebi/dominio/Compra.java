@@ -29,6 +29,7 @@ public class Compra {
     public Compra(){
         this.productos = new ArrayList<>();
         this.total = 0.0;
+        this.estado = EstadoCompra.PENDIENTE;
     }
 
     public Long getId() {
