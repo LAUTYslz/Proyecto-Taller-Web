@@ -65,15 +65,18 @@ public class ControladorMembresiaActivada {
             }
 
             Consulta consulta = new Consulta();
-
-            actualizarSesion(request, usuario, hijos, consulta);
+            if(consulta.getUsuario()==null){
+                consulta =null;
+            }
+          Consulta consultaDeUsuario=  servicioMembresiaActivada.buscarConsultaPorUsuario(usuario.getId());
+            actualizarSesion(request, usuario, hijos, consultaDeUsuario);
             // Agregar el usuario, la membresía, la lista de hijos, la etapa y el método al modelo
             modelAndView.addObject("usuario", usuario);
             modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
             modelAndView.addObject("etapa", etapa);
             modelAndView.addObject("metodo", metodo); // Agregar el método al modelo
-            modelAndView.addObject("consulta", consulta); // Objeto para almacenar la consulta
+            modelAndView.addObject("consulta", consultaDeUsuario); // Objeto para almacenar la consulta
 
             // Establecer la vista como "usuarioMembresia"
             modelAndView.setViewName("usuarioMembresia");
@@ -166,9 +169,9 @@ public class ControladorMembresiaActivada {
     public String mostrarFormulario(Model model, HttpServletRequest request) {
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request); // Obtener el usuario actual (suponiendo que obtienes el usuario de alguna manera)
 
-        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId()); // Obtener los hijos del usuario actual
-
-        List<Profesional> profesionales = servicioProfesional.traerProfesionales(); // Asegúrate de obtener los profesionales disponibles
+        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());// Obtener los hijos del usuario actual
+       String metodo =hijos.get(0).getMetodo().getNombre();
+        List<Profesional> profesionales = servicioProfesional.traerProfesionalesPorMetodo(metodo) ;// Asegúrate de obtener los profesionales disponibles
 
         model.addAttribute("consulta", new Consulta()); // Objeto para almacenar la consulta
         model.addAttribute("hijos", hijos); // Agregar la lista de hijos al modelo

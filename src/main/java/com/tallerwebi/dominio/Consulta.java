@@ -84,6 +84,10 @@ public class Consulta {
         this.fecha = fecha;
     }
 
+    public Mensaje getEstado() {
+        return estado;
+    }
+
     @Override
     public String toString() {
         return "Consulta{" +

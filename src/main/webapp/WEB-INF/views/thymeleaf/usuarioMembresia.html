@@ -7,6 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/contacto.css}">
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/css/bienvenido.css}">
+
+    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}">
+
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
@@ -42,103 +45,7 @@
             </div>
         </div>
     </nav>
-    <style>
-        /* Estilos para el popup */
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-
-        /* Estilos para los enlaces */
-        .paso a {
-            text-decoration: none;
-            color: black;
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .paso a:hover {
-            color: chocolate;
-        }
-
-        /* Ajustes específicos para la página */
-        .custom-color-navbar {
-            background-color: #333; /* Cambiar el color de fondo de la barra de navegación */
-        }
-
-        .search-container {
-            margin-left: 10px; /* Ajuste del margen izquierdo para el contenedor de búsqueda */
-        }
-
-        /* Ajustes para la estructura de la página */
-        .pasos {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 50px;
-        }
-
-        .paso {
-            text-align: center;
-        }
-
-        .circulo {
-            width: 40px;
-            height: 40px;
-            background-color: chocolate;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 20px;
-            margin: 0 auto;
-        }
-
-        .pasos p {
-            margin-top: 10px;
-        }
-
-        .card-title {
-            font-weight: bold;
-        }
-
-        .perfil {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .circle-button {
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
 
@@ -160,23 +67,9 @@
                 <i class="fi fi-rr-arrow-right"></i> <!-- ícono de flecha -->
             </a>
         </div>
-        <div class="paso">
-            <a href="#popup">
-                <div class="circulo">3</div>
-                <p>Disfruta de nuestros beneficios</p>
-            </a>
-        </div>
+
     </div>
 
-    <!-- Popup o Modal -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="cerrarPopup()">&times;</span>
-            <h2>Información del Hijo</h2>
-            <p>Nombre del hijo: Juan</p>
-            <p>Membresía: Premium</p>
-        </div>
-    </div>
 
 
     <div class="container">
@@ -276,7 +169,7 @@
                                 </p>
                                 <p>Metodo de SU Hijo:
                                     <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
-                                <pre th:text="${hijo.toString()}"></pre>
+
                             </li>
                         </ul>
                     </div>
@@ -288,19 +181,40 @@
             </div>
         </div>
     </div>
-            <div>
+            <div class="col-md-4">
                 <!-- Información sobre consultas -->
                 <h2>Consultas</h2>
                 <div class="circulo">.</div>
-                <p>Total de consultas realizadas: <strong>3</strong></p>
-                <p>Consultas a profesional: <strong>Dr. Pérez</strong></p>
-                <p>Consultas contestadas: <strong>2</strong></p>
-                <pre th:if="${consulta != null}" th:text="${consulta.toString()}"></pre>
 
+
+
+                <!-- Mostrar información de la consulta si existe -->
+                <div th:if="${consulta != null}">
+                    <p>Consultas a profesional: <strong th:text="${consulta.profesional.nombre}"></strong></p>
+                    <p>Consultas al Hijo : <strong th:text="${consulta.hijo.nombre}"></strong></p>
+                    <p>Fecha de Consulta : <strong th:text="${consulta.fecha}"></strong></p>
+
+                    <div th:class="${consulta != null ? (consulta.estado == consulta.estado.SIN_LEER ? 'estado-sin-leer' : (consulta.estado == consulta.estado.LEIDO? 'estado-leida' : 'estado-respondida')) : ''}">
+                        <!-- Contenido de la consulta -->
+                        <p>Estado de la consulta: <strong th:text="${consulta.estado}"></strong></p>
+
+                    </div>
+                    <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDA" -->
+                    <div th:if="${consulta.estado == consulta.estado.RESPONDIDO}">
+                        <form th:action="@{/ver-respuesta}" method="post">
+                            <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                        </form>
+                    </div>
+                </div>
+
+                </div>
+
+                <!-- Mostrar mensaje cuando no hay consulta disponible -->
                 <p th:if="${consulta == null}">No hay consulta disponible</p>
-                <p>Última consulta: <strong>22/06/2024</strong></p>
+
 
             </div>
+
 
 </main>
 <script th:src="@{/usuarioMembre.js}"></script>
