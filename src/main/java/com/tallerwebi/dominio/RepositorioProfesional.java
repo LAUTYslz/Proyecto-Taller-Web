@@ -18,4 +18,6 @@ public interface RepositorioProfesional {
     List<Profesional> traerProfesionalesPorTipoYMetodo(String nombreTipo, String nombreMetodo);
 
     Profesional buscarProfesionalPorId(Long id);
+
+    List<Profesional> traerPrefesionalesSinTienda();
 }

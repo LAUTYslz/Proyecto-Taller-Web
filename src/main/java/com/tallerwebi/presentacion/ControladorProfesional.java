@@ -1,22 +1,47 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Profesional;
-import com.tallerwebi.dominio.ServicioProfesional;
+import com.tallerwebi.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 public class ControladorProfesional {
 
     private final ServicioProfesional servicioContacto;
+    private final ServicioLogin servicioLogin;
 
     @Autowired
-    public ControladorProfesional(ServicioProfesional servicioContacto){
+    public ControladorProfesional(ServicioProfesional servicioContacto, ServicioLogin servicioLogin){
         this.servicioContacto = servicioContacto;
+        this.servicioLogin = servicioLogin;
+    }
+
+    @GetMapping("/homeProfesional")
+    public ModelAndView mostrarBienvenido(Model model, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        // Obtener el usuario actual
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        // Agregar el usuario
+        //modelAndView.addObject("usuario", usuario);
+        //List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+        //List<Juego> juegos = servicioAdmi.listasDeJuegos();
+
+        // Agregar las listas al modelo para que estén disponibles en la vista
+        //model.addAttribute("etapas", etapas);
+        //model.addAttribute("juegos", juegos);
+        model.addAttribute("usuario", usuario);
+        // Establecer la vista
+        modelAndView.setViewName("home_profesional");
+
+        return modelAndView;
     }
 
 
@@ -63,21 +88,6 @@ public class ControladorProfesional {
         return mav;
     }
 
-
-/*
-    @GetMapping("/filtrar")
-    public ModelAndView filtrarContactosPorMetodo(String nombreMetodo) {
-        ModelAndView mav = new ModelAndView("contacto/filtrarPorMetodo");
-        mav.addObject("ContactosFiltradosPorMetodo", servicioContacto.traerContactosPorMetodo(nombreMetodo));
-        return mav;
-    }
-
-    @GetMapping("/filtrar")
-    public ModelAndView filtrarContactosPorTipo(String nombreTipo) {
-        ModelAndView mav = new ModelAndView("contacto/filtrarPorTipo");
-        mav.addObject("ContactosFiltradosPorTipo", servicioContacto.traerContactosPorTipo(nombreTipo));
-        return mav;
-    }*/
 
     @GetMapping("/filtrar")
     public ModelAndView filtrarContactosPorMetodoYTipo(String nombreMetodo, String nombreTipo) {

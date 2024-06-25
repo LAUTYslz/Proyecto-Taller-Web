@@ -232,21 +232,21 @@ public class ControladorAdministrador {
         try{
             //TipoProfesional tipo = servicioTipoProfesional.buscarTipoPorId(tipoId);
             //Metodo metodo = servicioMetodo.buscarMetodoPorId(metodoId);
-
-
             Profesional profesional = new Profesional();
             profesional.setNombre(nombre);
             profesional.setTelefono(telefono);
             profesional.setEmail(email);
             profesional.setDireccion(direccion);
             profesional.setInstitucion(institucion);
-            //profesional.setTipo(tipo);
-            //profesional.setMetodo(metodo);
 
+            Usuario usuarioProf = new Usuario();
+            usuarioProf.setNombre(nombre);
+            usuarioProf.setEmail(email);
 
             servicioProfesional.guardarProfesional(profesional,nombreMetodo,nombreTipo);
+            servicioLogin.registrarUsuarioProfesional(usuarioProf);
             mav.setViewName ("redirect:/admin/gestionarProfesionales");
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             mav.setViewName ("formulario_crear_profesional");
             mav.addObject("error", e.getMessage());
             mav.addObject("profesional", new Profesional());

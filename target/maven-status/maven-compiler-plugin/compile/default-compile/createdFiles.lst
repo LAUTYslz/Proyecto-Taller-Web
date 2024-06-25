@@ -18,9 +18,11 @@ com\tallerwebi\dominio\Hijo.class
 com\tallerwebi\dominio\Consulta.class
 com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
+com\tallerwebi\dominio\excepcion\ElUsuarioYatieneTurnoConElProfesional.class
 com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
+com\tallerwebi\dominio\excepcion\ElUsuarioYaTieneTurnoEnEsaFechaHora.class
 com\tallerwebi\dominio\ServicioMembresiaActivada.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\dominio\Estado.class
@@ -40,6 +42,7 @@ com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
 com\tallerwebi\dominio\RepositorioAdmi.class
+com\tallerwebi\dominio\excepcion\ProhibidoFechaAnteriorALaActual.class
 com\tallerwebi\dominio\Tarjeta.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\infraestructura\ServicioProfesionalImpl.class

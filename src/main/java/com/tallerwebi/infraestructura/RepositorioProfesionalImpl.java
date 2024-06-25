@@ -97,5 +97,13 @@ public class RepositorioProfesionalImpl implements RepositorioProfesional {
                 .uniqueResult();
     }
 
+    @Override
+    public List<Profesional> traerPrefesionalesSinTienda() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Profesional.class)
+                .createAlias("tipo", "tipoRestringido")
+                .add(Restrictions.ne("tipoRestringido.nombre", "Tienda"))
+                .list();    }
+
 
 }
