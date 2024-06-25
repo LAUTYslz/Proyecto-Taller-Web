@@ -230,7 +230,7 @@
                             <img th:src="@{/img/virtual.jpg}" alt="virtual">
                             <div class="card-body">
                                 <h5 class="card-title">Consultas</h5>
-                                <form th:action="@{/realizarConsulta}" method="post">
+                                <form th:action="@{/realizarConsulta}" method="get">
                                     <!-- Puedes incluir campos adicionales del formulario aquí si los necesitas -->
                                     <button type="submit" class="btn btn-primary">Realizar Consulta</button>
                                 </form>
@@ -295,6 +295,9 @@
                 <p>Total de consultas realizadas: <strong>3</strong></p>
                 <p>Consultas a profesional: <strong>Dr. Pérez</strong></p>
                 <p>Consultas contestadas: <strong>2</strong></p>
+                <pre th:if="${consulta != null}" th:text="${consulta.toString()}"></pre>
+
+                <p th:if="${consulta == null}">No hay consulta disponible</p>
                 <p>Última consulta: <strong>22/06/2024</strong></p>
 
             </div>

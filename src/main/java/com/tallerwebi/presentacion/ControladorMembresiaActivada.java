@@ -64,16 +64,16 @@ public class ControladorMembresiaActivada {
                 metodo = primerHijo.getMetodo();
             }
 
-            Consulta consulta =new Consulta();
+            Consulta consulta = new Consulta();
 
-            actualizarSesion(request, usuario, hijos,consulta);
+            actualizarSesion(request, usuario, hijos, consulta);
             // Agregar el usuario, la membresía, la lista de hijos, la etapa y el método al modelo
             modelAndView.addObject("usuario", usuario);
             modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
             modelAndView.addObject("etapa", etapa);
             modelAndView.addObject("metodo", metodo); // Agregar el método al modelo
-            modelAndView.addObject("consulta",consulta); // Objeto para almacenar la consulta
+            modelAndView.addObject("consulta", consulta); // Objeto para almacenar la consulta
 
             // Establecer la vista como "usuarioMembresia"
             modelAndView.setViewName("usuarioMembresia");
@@ -84,8 +84,6 @@ public class ControladorMembresiaActivada {
 
         return modelAndView;
     }
-
-
 
 
     // Método para actualizar la sesión con los datos actualizados
@@ -164,102 +162,35 @@ public class ControladorMembresiaActivada {
         return modelAndView;
     }
 
-    @GetMapping
-    public String listarProfesionales(Model model) {
-        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
-        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
-        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+    @GetMapping("/realizarConsulta")
+    public String mostrarFormulario(Model model, HttpServletRequest request) {
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request); // Obtener el usuario actual (suponiendo que obtienes el usuario de alguna manera)
 
-        model.addAttribute("profesionales", profesionales);
-        model.addAttribute("metodos", metodos);
-        model.addAttribute("tipos", tipos);
+        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId()); // Obtener los hijos del usuario actual
+
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales(); // Asegúrate de obtener los profesionales disponibles
+
         model.addAttribute("consulta", new Consulta()); // Objeto para almacenar la consulta
+        model.addAttribute("hijos", hijos); // Agregar la lista de hijos al modelo
+        model.addAttribute("profesionales", profesionales); // Agregar la lista de profesionales al modelo
 
         return "realizarConsulta";
     }
 
 
-    @PostMapping("/realizarConsulta")
-    public String filtrarProfesionales(@ModelAttribute("consulta") Consulta consulta, Model model, HttpServletRequest request) {
-        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
-        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
-        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
-        // Obtener la lista de hijos del usuario
+
+
+    @PostMapping("/enviar-consulta")
+    public String enviarConsulta(@ModelAttribute("consulta") Consulta consulta,HttpServletRequest request) {
+        // Aquí puedes acceder a los datos de consulta
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
-        if (hijos == null) {
-            // Si la lista de hijos es null, inicialízala como una lista vacía
-            hijos = new ArrayList<>();
-        }
+        Long hijoId = consulta.getHijo().getId();
+        Long profesionalId = consulta.getProfesional().getId();
+        String mensaje = consulta.getMensaje();
 
-        model.addAttribute("profesionales", profesionales);
-        model.addAttribute("metodos", metodos);
-        model.addAttribute("tipos", tipos);
-        model.addAttribute("consulta", consulta);
-        model.addAttribute("hijos", hijos);
-
-
-        return "realizarConsulta";
-    }
-
-
-    @PostMapping("/seleccionDeProfesional")
-    public ModelAndView procesarConsulta(@RequestParam("hijoId") Long hijoId, Model model) {
-        ModelAndView modelAndView = new ModelAndView("realizarConsultaProfesional");
-
-        // Lógica para buscar al hijo y obtener el método asociado
-        Hijo buscarHijo = servicioLogin.busquedahijo(hijoId);
-        String metodoAsociado = buscarHijo.getMetodo().getNombre();
-
-        // Lógica para filtrar profesionales por el método asociado del hijo
-        List<Profesional> profesionaless = servicioProfesional.traerProfesionales();
-        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
-        List<Profesional> filtro = servicioProfesional.traerProfesionalesPorMetodo(metodoAsociado);
-
-        model.addAttribute("hijoId", hijoId);
-        modelAndView.addObject("profesionales", filtro);
-        modelAndView.addObject("metodo", metodoAsociado);
-        modelAndView.addObject("hijo", buscarHijo);
-        modelAndView.addObject("tipos", tipos);
-        modelAndView.addObject("consulta", new Consulta()); // Objeto de consulta, si es necesario
-
-
-
-        return modelAndView;
-    }
-
-    // Otros métodos del controlador pueden estar presentes aquí
-
-  @PostMapping("/enviar-consulta")
-    public ModelAndView enviarConsulta(@ModelAttribute("consulta") Consulta consulta,
-                                       @RequestParam("hijoId") Long hijoId,
-                                       @RequestParam("profesionalId") Long profesionalId, HttpServletRequest request) throws UsuarioInexistente {
-        ModelAndView modelAndView = new ModelAndView("exito");
-
-        // Lógica para buscar al hijo y asignarlo a la consulta
-
-        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-      List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());
-        Hijo hijo = servicioLogin.buscarunhijoDeLaLista(hijos, hijoId);
-
-
-      // Lógica para buscar al profesional y asignarlo a la consulta
-        Profesional profesional = servicioProfesional.obtenerPorId(profesionalId);
-        // Asignar el hijo y el profesional a la consulta
-
-
-
-        // Aquí podrías realizar otras operaciones necesarias antes de guardar la consulta, como validar o procesar datos adicionales
-
-        // Guardar la consulta
-        Consulta guardadaConsulta = servicioMembresiaActivada.realizarConsulta(consulta, hijo,profesional,usuario); // Suponiendo que tienes un servicio para gestionar las consultas
-
-        // Añadir objetos al modelo para pasar a la vista
-        modelAndView.addObject("consulta", guardadaConsulta); // Pasar la consulta guardada a la vista
-        modelAndView.addObject("profesionales", servicioProfesional.traerProfesionales()); // Obtener todos los profesionales para la vista
-        modelAndView.addObject("hijos",hijos);
-
-        return modelAndView;
+        // Realiza las operaciones necesarias, como guardar la consulta en la base de datos
+        Consulta guardada = servicioMembresiaActivada.realizarConsulta(consulta, hijoId,profesionalId,usuario);
+        return "exito"; // Nombre de la vista de éxito
     }
 
     @GetMapping("/irALaTienda")

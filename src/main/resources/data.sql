@@ -79,7 +79,7 @@ INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Tirarle una 
 INSERT INTO Juego (nombre, descripcion, etapa_id) VALUES ('Juego de Esconder un objeto', 'Los padres pueden entretener al niño escondiendo uno de sus juguetes favoritos mientras lo utiliza.', 4);
 
 
-DROP TABLE IF EXISTS Metodo;
+
 
 CREATE TABLE IF NOT EXISTS Metodo (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -115,8 +115,7 @@ CREATE TABLE Hijo (
 
 
 INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
-
-CREATE TABLE TipoProfesional (
+CREATE TABLE IF NOT EXISTS TipoProfesional (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                       nombre VARCHAR(255)
 );
@@ -129,7 +128,7 @@ INSERT INTO TipoProfesional (nombre) VALUES ('Estimulacion temprana');
 INSERT INTO TipoProfesional (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
-CREATE TABLE Profesional (
+CREATE TABLE IF NOT EXISTS Profesional (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
 
@@ -234,4 +233,18 @@ CREATE TABLE turno (
                        estado VARCHAR(255) NOT NULL,
                        FOREIGN KEY (usuario_id) REFERENCES usuario(id),
                        FOREIGN KEY (profesional_id) REFERENCES profesional(id)
+);
+
+CREATE TABLE consulta (
+                          id BIGINT NOT NULL AUTO_INCREMENT,
+                          mensaje VARCHAR(255),
+                          estado VARCHAR(255),
+                          fecha DATE,
+                          usuario_id BIGINT,
+                          profesional_id BIGINT,
+                          hijo_id BIGINT,
+                          PRIMARY KEY (id),
+                          FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+                          FOREIGN KEY (profesional_id) REFERENCES profesional(id),
+                          FOREIGN KEY (hijo_id) REFERENCES hijo(id)
 );

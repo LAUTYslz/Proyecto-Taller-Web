@@ -11,7 +11,7 @@ public interface ServicioMembresiaActivada {
 
 
 
-    Consulta realizarConsulta(Consulta consulta, Hijo hijo, Profesional profesional, Usuario usuario);
+    Consulta realizarConsulta(Consulta consulta, Long hijo, Long profesional, Usuario usuario);
 
     Consulta buscarConsultaPorUsuario(Long usuarioid);
 }

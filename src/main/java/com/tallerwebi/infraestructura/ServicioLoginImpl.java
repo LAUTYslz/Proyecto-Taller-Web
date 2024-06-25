@@ -52,6 +52,11 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
+    public Hijo buscarunhijoDeLaLista(List<Hijo> hijos, Long hijoId) {
+        return null;
+    }
+
+    @Override
     public Usuario buscarUsuarioPorId(Long id) throws UsuarioInexistente {
         Usuario usuarioEncontrado = repositorioUsuario.buscarPorId(id);
         if (usuarioEncontrado == null) {

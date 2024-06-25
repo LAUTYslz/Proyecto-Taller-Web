@@ -22,6 +22,7 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infrae
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Compra.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTiendaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresiaActivada.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ProhibidoFechaAnteriorALaActual.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Etapa.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Mensaje.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTipoProfesional.java
@@ -97,5 +98,7 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Juego.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Profesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\CodigoInvalido.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ElUsuarioYaTieneTurnoEnEsaFechaHora.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioAdmiImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\PreguntaTest.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ElUsuarioYatieneTurnoConElProfesional.java

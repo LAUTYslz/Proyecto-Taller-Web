@@ -43,6 +43,8 @@ public interface ServicioLogin {
 
     void registrarUsuarioProfesional(Usuario usuarioProf);
 
+    Hijo buscarunhijoDeLaLista(List<Hijo> hijos, Long hijoId);
+
     /* Etapa asignarEtapa(Hijo hijo);*/
 
     /* void registrarConyuge(Long id, Usuario conyuge) throws UsuarioExistente, UsuarioInexistente;*/

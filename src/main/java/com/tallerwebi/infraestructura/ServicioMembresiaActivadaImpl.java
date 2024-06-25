@@ -14,29 +14,30 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
     private final RepositorioAdmi repositorioAdmi;
     private final RepositorioMembresiaActivada repositorioMembresiaActivada;
     private final ServicioLogin servicioLogin;
+    private final ServicioProfesional servicioProfesional;
 
-    public ServicioMembresiaActivadaImpl(RepositorioMembresia repositorioMembresia, RepositorioUsuario repositorioUsuario, RepositorioAdmi repositorioAdmi, RepositorioMembresiaActivada repositorioMembresiaActivada, ServicioLogin servicioLogin) {
+    public ServicioMembresiaActivadaImpl(RepositorioMembresia repositorioMembresia, RepositorioUsuario repositorioUsuario, RepositorioAdmi repositorioAdmi, RepositorioMembresiaActivada repositorioMembresiaActivada, ServicioLogin servicioLogin, ServicioProfesional servicioProfesional) {
         this.repositorioMembresia = repositorioMembresia;
         this.repositorioUsuario = repositorioUsuario;
         this.repositorioAdmi = repositorioAdmi;
         this.repositorioMembresiaActivada = repositorioMembresiaActivada;
         this.servicioLogin = servicioLogin;
+        this.servicioProfesional = servicioProfesional;
     }
 
 
     @Override
-    public Consulta realizarConsulta(Consulta consulta, Hijo hijo, Profesional profesional, Usuario usuario) {
-        repositorioMembresiaActivada.guardarConsulta(consulta);
+    public Consulta realizarConsulta(Consulta consulta, Long hijo, Long profesional, Usuario usuario) {
+
         consulta.setUsuario(usuario);
-
-       consulta.setProfesional(profesional);
-
-
-     consulta.setHijo(hijo);
+      Profesional profe=  servicioProfesional.obtenerPorId(profesional);
+       consulta.setProfesional(profe);
+        Hijo hijonuevo = servicioLogin.busquedahijo(hijo);
+        consulta.setHijo(hijonuevo);
 
         agregarFecha(consulta);
         agregarEstado(consulta);
-        repositorioMembresiaActivada.actualizarConsulta(consulta);
+        repositorioMembresiaActivada.guardarConsulta(consulta);
 
 
         return consulta;
