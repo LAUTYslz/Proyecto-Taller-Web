@@ -153,16 +153,25 @@ INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_i
 ('Tienda Juguetes', '+1122334462', 'ventas@tiendajuguetes.com', 'Calle Comercial 1617', 'Tienda Juguetes', 3, NULL),
 ('Dr. Alberto Lopez', '+1122334463', 'alberto.lopez@example.com', 'Calle Salud 1819', 'Hospital Oeste', 1, 2),
 ('Lic. Marta Fernandez', '+1122334464', 'marta.fernandez@example.com', 'Av. Libertador 2021', 'Clínica Infantil', 4, 1);
-CREATE TABLE consulta (
-                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                          mensaje VARCHAR(255),
-                          usuario_id BIGINT,
-                          profesional_id BIGINT,
-                          hijo_id BIGINT,
-                          FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-                          FOREIGN KEY (profesional_id) REFERENCES profesional(id),
-                          FOREIGN KEY (hijo_id) REFERENCES hijo(id)
+
+INSERT INTO Usuario( email, password, rol, estado, nombre) VALUES
+('juan.perez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Juan Pérez'),
+('maria.gomez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Maria Gomez'),
+('info@farmaciasalud.com', 'prof', 'PROFESIONAL', 'true','Farmacia Salud'),
+('ana.rodriguez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Ana Rodriguez'),
+('contacto@tiendainfantil.com', 'prof', 'PROFESIONAL', 'true','Tienda Infantil'),
+('luis.martinez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Luis Martinez'),
+('sofia.ramirez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Sofia Ramirez'),
+('ventas@tiendajuguetes.com', 'prof', 'PROFESIONAL', 'true','Tienda Juguetes'),
+('alberto.lopez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Alberto Lopez'),
+('marta.fernandez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Marta Fernandez');
+
+CREATE TABLE turno (
+                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       usuario_id BIGINT NOT NULL,
+                       profesional_id BIGINT NOT NULL,
+                       fecha_hora TIMESTAMP NOT NULL,
+                       estado VARCHAR(255) NOT NULL,
+                       FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+                       FOREIGN KEY (profesional_id) REFERENCES profesional(id)
 );
-ALTER TABLE consulta
-    ADD COLUMN estado ENUM('SIN_LEER', 'LEIDO', 'RESPONDIDO') DEFAULT 'SIN_LEER',
-    ADD COLUMN fecha DATE;

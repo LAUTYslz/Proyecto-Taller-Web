@@ -56,6 +56,8 @@ public class ControladorLogin {
 
             if (usuarioBuscado.getRol().equals("ADMIN")) {
                 modelAndView.setViewName("redirect:/administrador");
+            } else if (usuarioBuscado.getRol().equals("PROFESIONAL")) {
+                    modelAndView.setViewName("redirect:/homeProfesional");
             } else if (usuarioBuscado.getRol().equals("USUARIO")) {
                 // Verificar el estado del usuario
                 if ( usuarioBuscado.getMembresia()==null) {

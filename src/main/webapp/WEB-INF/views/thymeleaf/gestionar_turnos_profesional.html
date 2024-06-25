@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Turnos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionar_turnos.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+<main>
+
+    <h1>Mis Turnos</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Profesional</th>
+                <th>Fecha y Hora</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="turno : ${turnos}">
+                <td th:text="${turno.profesional.nombre}">Profesional</td>
+                <td th:text="${turno.fechaHora}">Fecha y Hora</td>
+                <td th:text="${turno.estado}">Estado</td>
+                <td>
+                    <form th:action="@{/actualizarEstadoTurno}" method="post">
+                        <input type="hidden" name="turnoId" th:value="${turno.id}">
+                        <select name="nuevoEstado">
+                            <option value="PENDIENTE">Pendiente</option>
+                            <option value="CONFIRMADO">Confirmado</option>
+                            <option value="CANCELADO">Cancelado</option>
+                        </select>
+                        <button type="submit">Actualizar</button>
+                    </form>
+                    <form th:action="@{/eliminarTurno}" method="post">
+                        <input type="hidden" name="turnoId" th:value="${turno.id}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="contenedor-mensaje-vacio" th:if="${mensaje}">
+        <h3 th:text="${mensaje}" ></h3>
+    </div>
+</main>
+
+
+<!-- /.container -->
+<div th:replace="home :: footer"></div>
+<!-- Boostrap core js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

@@ -41,9 +41,7 @@ public interface ServicioLogin {
 
     void actualizarHijo(Hijo buscarHijo);
 
-    Hijo buscarunhijoDeLaLista(List<Hijo> hijos, Long hijoId);
-
-
+    void registrarUsuarioProfesional(Usuario usuarioProf);
 
     /* Etapa asignarEtapa(Hijo hijo);*/
 

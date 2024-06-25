@@ -40,6 +40,16 @@ public class ServicioLoginImpl implements ServicioLogin {
         repositorioUsuario.guardar(usuario);
     }
 
+    @Override
+    public void registrarUsuarioProfesional(Usuario usuarioProf) {
+        Usuario usuarioEncontrado = repositorioUsuario.buscar(usuarioProf.getEmail());
+        if (usuarioEncontrado != null) {
+            throw new RuntimeException("El usuario ya existe");
+        }
+        usuarioProf.setRol("PROFESIONAL");
+        usuarioProf.setPassword("prof");
+        repositorioUsuario.guardar(usuarioProf);
+    }
 
     @Override
     public Usuario buscarUsuarioPorId(Long id) throws UsuarioInexistente {
@@ -142,15 +152,7 @@ public class ServicioLoginImpl implements ServicioLogin {
         repositorioUsuario.actualizarHijo(buscarHijo);
     }
 
-    @Override
-    public Hijo buscarunhijoDeLaLista(List<Hijo> hijos, Long hijoId) {
-        for (Hijo hijo : hijos) {
-            if (hijo.getId().equals(hijoId)) {
-                return hijo; // Retorna el hijo si se encuentra el ID
-            }
-        }
-        return null; // Retorna null si no se encuentra el hijo con el ID especificado
-    }
+
     public void asignarEtapa(Hijo hijo) throws UsuarioNoPoseeMembresiaActivada, NoposeeEtapa {
         List<Etapa> listaEtapa = repositorioAdmi.listaDeEtapas();
         Integer edad = hijo.getEdad();

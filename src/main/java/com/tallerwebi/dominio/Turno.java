@@ -18,6 +18,7 @@ public class Turno {
     private Profesional profesional;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_hora")  // Especifica el nombre de la columna en la base de datos
     private Date fechaHora;
 
     @Enumerated(EnumType.STRING)
