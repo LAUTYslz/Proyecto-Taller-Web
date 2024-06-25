@@ -132,7 +132,7 @@ public class ControladorAdministrador {
 
         return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
     }
-    @PostMapping("/verjuego-etapa/{id}")
+    @PostMapping("/ver-juego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model, HttpServletRequest request) throws EtapaInexistente {
         Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
         model.addAttribute("etapa", etapaBuscada); // Asegúrate de agregar "etapa" como atributo al modelo
