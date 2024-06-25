@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class ServicioCompraImpl implements ServicioCompra {
         if (compra.getTotal() == null){
             compra.setTotal(0.0);
         }
+
         repositorioCompra.agregarCompra(compra);
     }
 
@@ -76,6 +78,7 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.eliminarProducto(producto);
+            compra.setTotal(compra.getTotal() - producto.getPrecio());
             repositorioCompra.actualizarCompra(compra);
         } return true;
     }
@@ -87,8 +90,18 @@ public class ServicioCompraImpl implements ServicioCompra {
             return false;
         } else {
             compra.setProductos(productos);
+            compra.setTotal(calcularPrecioDeProductos(productos));
             repositorioCompra.actualizarCompra(compra);
         } return true;
+    }
+
+    private Double calcularPrecioDeProductos(List<Producto> productos){
+        Double precio = 0.0;
+
+        for (Producto producto : productos){
+            precio += producto.getPrecio();
+        }
+        return precio;
     }
 
     @Override
@@ -126,12 +139,18 @@ public class ServicioCompraImpl implements ServicioCompra {
     }
 
     @Override
+    @Transactional
     public Compra obtenerCompraActual(HttpServletRequest request) {
         Compra compra = (Compra) request.getSession().getAttribute("compra");
 
         if (compra != null){
             Hibernate.initialize(compra.getProductos());
-        } return compra;
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute("compra", compra);
+
+        return compra;
     }
 
     @Override

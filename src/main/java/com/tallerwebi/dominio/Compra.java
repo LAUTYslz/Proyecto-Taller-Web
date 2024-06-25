@@ -14,7 +14,7 @@ public class Compra {
     @ManyToOne
     Usuario usuario;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "compra_producto",
             joinColumns = @JoinColumn(name = "compra_id"),
@@ -28,6 +28,7 @@ public class Compra {
 
     public Compra(){
         this.productos = new ArrayList<>();
+        this.total = 0.0;
     }
 
     public Long getId() {
