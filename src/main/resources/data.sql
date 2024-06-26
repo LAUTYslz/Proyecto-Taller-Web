@@ -128,6 +128,7 @@ INSERT INTO TipoProfesional (nombre) VALUES ('Estimulacion temprana');
 INSERT INTO TipoProfesional (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
+DROP TABLE IF EXISTS Profesional;
 CREATE TABLE IF NOT EXISTS Profesional (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
@@ -248,3 +249,10 @@ CREATE TABLE consulta (
                           FOREIGN KEY (profesional_id) REFERENCES profesional(id),
                           FOREIGN KEY (hijo_id) REFERENCES hijo(id)
 );
+
+ALTER TABLE consulta
+ADD mes INT DEFAULT 0;
+ALTER TABLE consulta
+ADD anio INT DEFAULT 0;
+ALTER TABLE consulta
+ADD cantidad INT DEFAULT 0;

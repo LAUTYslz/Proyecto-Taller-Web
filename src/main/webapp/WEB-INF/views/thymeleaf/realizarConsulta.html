@@ -9,7 +9,7 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/js/main.js">
-    <link rel="stylesheet" href="/css/gestionarProfesionales.css">
+    <link rel="stylesheet" href="/css/realizarConsulta.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,43 +18,52 @@
 </head>
 <body>
 <div class="container">
-    <h1>Realizar Consulta</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="mt-4 mb-4">Realizar Consulta</h1>
 
-    <form th:action="@{/enviar-consulta}" method="post" th:object="${consulta}">
-        <div class="mb-3">
-            <label for="hijo">Seleccionar Hijo:</label>
-            <select id="hijo" name="hijoId" class="form-select" th:field="*{hijo.id}" >
-                <option value="">Seleccionar...</option>
-                <!-- Generar opciones dinámicamente con Thymeleaf -->
-                <option th:each="hijo : ${hijos}"
-                        th:value="${hijo.id}"
-                        th:text="${hijo.nombre}"
-                        th:attr="data-metodo=${hijo.metodo.nombre}">
-                </option>
-            </select>
+            <form th:action="@{/enviar-consulta}" method="post" th:object="${consulta}">
+                <div class="mb-3">
+                    <label for="hijo" class="form-label">Seleccionar Hijo:</label>
+                    <select id="hijo" name="hijoId" class="form-select" th:field="*{hijo.id}">
+                        <option value="">Seleccionar...</option>
+                        <!-- Generar opciones dinámicamente con Thymeleaf -->
+                        <option th:each="hijo : ${hijos}"
+                                th:value="${hijo.id}"
+                                th:text="${hijo.nombre}"
+                                th:attr="data-metodo=${hijo.metodo.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Sección para seleccionar profesional -->
+                <div id="profesionalSection" th:if="${consulta.hijo != null}">
+                    <div class="mb-3">
+                        <label for="profesional" class="form-label">Seleccionar Profesional:</label>
+                        <select id="profesional" name="profesionalId" class="form-select" th:field="*{profesional.id}">
+                            <option value="">Seleccionar...</option>
+                            <!-- Generar opciones dinámicamente con Thymeleaf basado en los profesionales -->
+                            <option th:each="profesional : ${profesionales}"
+                                    th:value="${profesional.id}"
+                                    th:text="${profesional.nombre}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje:</label>
+                    <textarea id="mensaje" th:text="*{mensaje}" name="mensaje" class="form-control" rows="4"></textarea>
+                </div>
+
+                <!-- Botón para enviar la consulta -->
+                <button type="submit" class="btn btn-primary">Enviar Consulta</button>
+            </form>
         </div>
-
-        <!-- Sección para seleccionar profesional -->
-        <div id="profesionalSection" th:if="${consulta.hijo != null}">
-            <div class="mb-3">
-                <label for="profesional">Seleccionar Profesional:</label>
-                <select id="profesional" name="profesionalId" class="form-select" th:field="*{profesional.id}">
-                    <option value="">Seleccionar...</option>
-                    <!-- Generar opciones dinámicamente con Thymeleaf basado en los profesionales -->
-                    <option th:each="profesional : ${profesionales}"
-                            th:value="${profesional.id}"
-                            th:text="${profesional.nombre}">
-                    </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" th:text="*{mensaje}" name="mensaje" class="form-control" rows="4"></textarea>
-        </div>
-
-        <!-- Botón para enviar la consulta -->
-        <button type="submit" class="btn btn-primary">Enviar Consulta</button>
-    </form>
+    </div>
 </div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

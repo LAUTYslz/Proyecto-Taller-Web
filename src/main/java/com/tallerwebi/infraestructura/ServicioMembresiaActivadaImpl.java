@@ -1,10 +1,14 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.CantidadDeConsultasAgotadas;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("servicioMembresiaActivada")
 @Transactional
@@ -25,27 +29,72 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
         this.servicioProfesional = servicioProfesional;
     }
 
-
     @Override
-    public Consulta realizarConsulta(Consulta consulta, Long hijo, Long profesional, Usuario usuario) {
+    public Consulta realizarConsulta(Consulta consulta, Long hijoId, Long profesionalId, Usuario usuario) throws CantidadDeConsultasAgotadas {
+        // Obtener fecha actual
+        LocalDate fechaActual = LocalDate.now();
+        int mesActual = fechaActual.getMonthValue();
+        int anioActual = fechaActual.getYear();
 
-        consulta.setUsuario(usuario);
-      Profesional profe=  servicioProfesional.obtenerPorId(profesional);
-       consulta.setProfesional(profe);
-        Hijo hijonuevo = servicioLogin.busquedahijo(hijo);
-        consulta.setHijo(hijonuevo);
+        // Buscar la cantidad de consultas existentes para este usuario en este mes y año
+        int cantidadConsultas = contarConsultasPorUsuarioMesAnio(usuario, mesActual);
 
-        agregarFecha(consulta);
-        agregarEstado(consulta);
-        repositorioMembresiaActivada.guardarConsulta(consulta);
+        if (cantidadConsultas < 3) {
+            // Aún hay espacio para más consultas, crear una nueva instancia de consulta
+            consulta.setUsuario(usuario);
+            consulta.setMensaje(consulta.getMensaje());
+            consulta.setProfesional(servicioProfesional.obtenerPorId(profesionalId));
+            consulta.setHijo(servicioLogin.busquedahijo(hijoId));
+            consulta.setCantidad(cantidadConsultas + 1); // Nueva consulta, incrementar cantidad
+            consulta.setMes(mesActual);
+            consulta.setAnio(anioActual);
+            agregarEstado(consulta);
+            agregarFecha(consulta);
+            repositorioMembresiaActivada.guardarConsulta(consulta);
+        } else {
+            // Se ha alcanzado el límite de consultas para este mes y año
+            throw new CantidadDeConsultasAgotadas();
+        }
 
-
-        return consulta;
+        return consulta; // Devolver la nueva consulta creada
     }
 
+
+    private Consulta buscarConsultaActualPorUsuarioProfesionalMesAnio(Usuario usuario, int mesActual, int anioActual) {
+        // Buscar todas las consultas del usuario en el mes y año dados
+        List<Consulta> consultas = buscarConsultaPorUsuario(usuario.getId());
+
+        // Filtrar las consultas por mes y año
+        List<Consulta> consultasFiltradas = consultas.stream()
+                .filter(consulta -> consulta.getMes() != null && consulta.getAnio() != null &&
+                        consulta.getMes().equals(mesActual) && consulta.getAnio().equals(anioActual))
+                .collect(Collectors.toList());
+
+        // Si hay consultas filtradas, devolver la primera (la actual)
+        if (!consultasFiltradas.isEmpty()) {
+            return consultasFiltradas.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    private int contarConsultasPorUsuarioMesAnio(Usuario usuario,  int mesActual) {
+        // Obtener la lista de consultas del usuario
+        List<Consulta> consultas = buscarConsultaPorUsuario(usuario.getId());
+
+        // Contar las consultas que coinciden con el mes y año actual
+        long cantidad = consultas.stream()
+                .filter(consulta -> consulta.getMes() != null &&
+                        consulta.getMes() == mesActual )
+                .count();
+
+        return (int) cantidad;
+    }
+
+
     @Override
-    public Consulta buscarConsultaPorUsuario(Long usuarioid) {
-        return (Consulta) repositorioMembresiaActivada.buscarConsulta(usuarioid);
+    public List<Consulta> buscarConsultaPorUsuario(Long usuarioid) {
+        return repositorioMembresiaActivada.buscarConsulta(usuarioid);
     }
 
     private void actualizarConsulta(Consulta consulta) {
@@ -54,6 +103,8 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
 
     private void agregarEstado(Consulta consulta) {
         consulta.setEstado(Mensaje.SIN_LEER);
+
+
     }
 
     private void agregarFecha(Consulta consulta) {

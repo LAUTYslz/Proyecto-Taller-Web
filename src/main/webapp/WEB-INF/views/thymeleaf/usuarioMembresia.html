@@ -19,7 +19,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-ZR8YToDj+7P/hRCjjmIv/l+1k7k29HhC1mGq7izqTjHbLyLMQf2aRdhe1KrInPrOsv/5oNm6Dc0iLk61YOTf9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-ZR8YToDj+7P/hRCjjmIv/l+1k7k29HhC1mGq7izqTjHbLyLMQf2aRdhe1KrInPrOsv/5oNm6Dc0iLk61YOTf9Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Incluir Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -52,16 +54,26 @@
 <main>
     <h1>Bienvenido, <span th:text="${usuario.nombre}"></span>!</h1>
 
+    <!-- Mostrar mensaje de error si existe -->
+    <div th:if="${param.error}">
+        <div class="alert alert-danger" role="alert">
+            ¡Has alcanzado el límite de consultas permitidas!
+        </div>
+    </div>
+    <div th:if="${mensaje}" class="alert alert-danger" role="alert">
+        <span th:text="${mensaje}"></span>
+    </div>
+
     <div class="pasos">
         <div class="paso">
-            <a th:href="@{/nuevoHijo}" >
+            <a th:href="@{/nuevoHijo}">
                 <div class="circulo">1</div>
                 <p>Registra a tu hijo</p>
                 <i class="fi fi-rr-arrow-right"></i> <!-- ícono de flecha -->
             </a>
         </div>
         <div class="paso">
-            <a th:href="@{/info}" >
+            <a th:href="@{/info}">
                 <div class="circulo">2</div>
                 <p>Selecciona el método de enseñanza</p>
                 <i class="fi fi-rr-arrow-right"></i> <!-- ícono de flecha -->
@@ -69,7 +81,6 @@
         </div>
 
     </div>
-
 
 
     <div class="container">
@@ -86,19 +97,21 @@
                                 <!-- Verificar si hijo no es nulo -->
                                 <div th:if="${hijos != null and #lists.size(hijos) > 0}">
 
-                                        <li th:each="hijo : ${hijos}">
-                                    <!-- Verificar si hijo.etapa es nulo -->
-                                    <div th:if="${hijo.etapa == null}">
-                                        <p class="card-text">No se encontró etapa para el hijo.</p>
-                                    </div>
+                                    <li th:each="hijo : ${hijos}">
+                                        <!-- Verificar si hijo.etapa es nulo -->
+                                        <div th:if="${hijo.etapa == null}">
+                                            <p class="card-text">No se encontró etapa para el hijo.</p>
+                                        </div>
 
-                                    <!-- Verificar si hijo.etapa no es nulo -->
-                                    <div th:if="${hijo.etapa != null}">
-                                        <form th:action="@{/ver-juego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}" method="post">
-                                            <button type="submit" class="btn btn-primary">Ver Juegos</button>
-                                        </form>
-                                        <p class="card-text">Haz click para acceder a nuestros juegos caseros, según la etapa de tu hijo.</p>
-                                    </div>
+                                        <!-- Verificar si hijo.etapa no es nulo -->
+                                        <div th:if="${hijo.etapa != null}">
+                                            <form th:action="@{/ver-juego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}"
+                                                  method="post">
+                                                <button type="submit" class="btn btn-primary">Ver Juegos</button>
+                                            </form>
+                                            <p class="card-text">Haz click para acceder a nuestros juegos caseros, según
+                                                la etapa de tu hijo.</p>
+                                        </div>
                                 </div>
 
                                 <!-- Manejar caso donde hijo es nulo -->
@@ -109,117 +122,124 @@
                         </div>
 
                         <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/bebe.jpg}" alt="medico">
-                            <div class="card-body">
-                                <h5 class="card-title">Turno Presenciales </h5>
-                                <a th:href="@{/gestionarTurnos}" class="btn btn-primary">Sacar Turno </a>
-                                <p class="card-text">Haz click para agendar tu próximo turno.</p>
+                            <div class="card">
+                                <img th:src="@{/img/bebe.jpg}" alt="medico">
+                                <div class="card-body">
+                                    <h5 class="card-title">Turno Presenciales </h5>
+                                    <a th:href="@{/gestionarTurnos}" class="btn btn-primary">Sacar Turno </a>
+                                    <p class="card-text">Haz click para agendar tu próximo turno.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/virtual.jpg}" alt="virtual">
-                            <div class="card-body">
-                                <h5 class="card-title">Consultas</h5>
-                                <form th:action="@{/realizarConsulta}" method="get">
-                                    <!-- Puedes incluir campos adicionales del formulario aquí si los necesitas -->
-                                    <button type="submit" class="btn btn-primary">Realizar Consulta</button>
-                                </form>
-                                <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
+                        <div class="col">
+                            <div class="card">
+                                <img th:src="@{/img/virtual.jpg}" alt="virtual">
+                                <div class="card-body">
+                                    <h5 class="card-title">Consultas</h5>
+                                    <form th:action="@{/realizarConsulta}" method="get">
+                                        <!-- Puedes incluir campos adicionales del formulario aquí si los necesitas -->
+                                        <button type="submit" class="btn btn-primary">Realizar Consulta</button>
+                                    </form>
+                                    <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/profe.jpg}" alt="profesional">
-                            <div class="card-body">
-                                <h5 class="card-title">Profesionales</h5>
-                                <a href="#" class="btn btn-primary">Ver Profesionales</a>
-                                <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
+                        <div class="col">
+                            <div class="card">
+                                <img th:src="@{/img/profe.jpg}" alt="profesional">
+                                <div class="card-body">
+                                    <h5 class="card-title">Profesionales</h5>
+                                    <a href="#" class="btn btn-primary">Ver Profesionales</a>
+                                    <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Columna para perfil -->
-            <div class="col-md-4">
-                <div class="perfil">
-                    <h2>Mi Perfil  </h2><i class="fa fa-user" aria-hidden="true"></i>
-                    <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
-                    <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
-                    <p><strong>Estado de membresía:</strong> <span th:text="${usuario.membresia.estado}"></span></p>
-                    <p><strong>Fecha de inicio de membresía:</strong> <span th:text="${usuario.membresia.fechaDeInicio}"></span></p>
-                    <p><strong>Fecha de baja:</strong> <span th:text="${usuario.membresia.fechaDeBaja}"></span></p>
-                    <p><strong>Número telefónico:</strong> <span th:text="${usuario.membresia.numeroTelefonico}"></span></p>
-                    <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div><i class="fa-solid fa-plus"></i>
+                <!-- Columna para perfil -->
+                <div class="col-md-4">
+                    <div class="perfil">
+                        <h2>Mi Perfil </h2><i class="fa fa-user" aria-hidden="true"></i>
+                        <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+                        <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+                        <p><strong>Estado de membresía:</strong> <span th:text="${usuario.membresia.estado}"></span></p>
+                        <p><strong>Fecha de inicio de membresía:</strong> <span
+                                th:text="${usuario.membresia.fechaDeInicio}"></span></p>
+                        <p><strong>Fecha de baja:</strong> <span th:text="${usuario.membresia.fechaDeBaja}"></span></p>
+                        <p><strong>Número telefónico:</strong> <span
+                                th:text="${usuario.membresia.numeroTelefonico}"></span></p>
+                        <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
+                        <i class="fa-solid fa-plus"></i>
 
-                    <h2>Hijos</h2>
-                    <div th:if="${hijos != null and #lists.size(hijos) > 0}">
-                        <ul>
-                            <li th:each="hijo : ${hijos}">
-                                <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
-                                <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
-                                <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
-                                <p>ETAPA de SU Hijo:
-                                    <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
-                                    <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
-                                </p>
-                                <p>Metodo de SU Hijo:
-                                    <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
+                        <h2>Hijos</h2>
+                        <div th:if="${hijos != null and #lists.size(hijos) > 0}">
+                            <ul>
+                                <li th:each="hijo : ${hijos}">
+                                    <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
+                                    <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
+                                    <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
+                                    <p>ETAPA de SU Hijo:
+                                        <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
+                                        <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
+                                    </p>
+                                    <p>Metodo de SU Hijo:
+                                        <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
 
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div th:if="${hijos == null or #lists.size(hijos) == 0}">
+                            <p>No hay hijos registrados.</p>
+                        </div>
                     </div>
-
-
-                    <div th:if="${hijos == null or #lists.size(hijos) == 0}">
-                        <p>No hay hijos registrados.</p>
                 </div>
             </div>
-        </div>
-    </div>
             <div class="col-md-4">
                 <!-- Información sobre consultas -->
                 <h2>Consultas</h2>
                 <div class="circulo">.</div>
 
 
-
                 <!-- Mostrar información de la consulta si existe -->
-                <div th:if="${consulta != null}">
-                    <p>Consultas a profesional: <strong th:text="${consulta.profesional.nombre}"></strong></p>
-                    <p>Consultas al Hijo : <strong th:text="${consulta.hijo.nombre}"></strong></p>
-                    <p>Fecha de Consulta : <strong th:text="${consulta.fecha}"></strong></p>
+                <div th:if="${consultas != null and #lists.size(consultas) > 0}">
+                    <div th:each="consulta : ${consultas}">
+                        <div class="consulta">
+                            <p>Consultas a profesional: <strong th:text="${consulta.profesional.nombre}"></strong></p>
+                            <p>Consultas al Hijo : <strong th:text="${consulta.hijo.nombre}"></strong></p>
+                            <p>Metodo del Hijo : <strong th:text="${consulta.hijo.metodo.nombre}"></strong></p>
+                            <p>Fecha de Consulta : <strong th:text="${consulta.fecha}"></strong></p>
+                            <pre>Fecha de Consulta : <strong th:text="${consulta.toString()}"></strong></pre>
+                            <div th:class="${consulta != null ? (consulta.estado == consulta.estado.SIN_LEER ? 'estado-sin-leer' : (consulta.estado == consulta.estado.LEIDO? 'estado-leida' : 'estado-respondida')) : ''}">
+                                <!-- Contenido de la consulta -->
+                                <p>Estado de la consulta: <strong th:text="${consulta.estado}"></strong></p>
 
-                    <div th:class="${consulta != null ? (consulta.estado == consulta.estado.SIN_LEER ? 'estado-sin-leer' : (consulta.estado == consulta.estado.LEIDO? 'estado-leida' : 'estado-respondida')) : ''}">
-                        <!-- Contenido de la consulta -->
-                        <p>Estado de la consulta: <strong th:text="${consulta.estado}"></strong></p>
+                            </div>
+                            <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDA" -->
+                            <div th:if="${consulta.estado == consulta.estado.RESPONDIDO}">
+                                <form th:action="@{/ver-respuesta}" method="post">
+                                    <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                                </form>
+                            </div>
+                        </div>
 
                     </div>
-                    <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDA" -->
-                    <div th:if="${consulta.estado == consulta.estado.RESPONDIDO}">
-                        <form th:action="@{/ver-respuesta}" method="post">
-                            <button type="submit" class="btn btn-primary">Ver respuesta</button>
-                        </form>
-                    </div>
-                </div>
+
+                    <!-- Mostrar mensaje cuando no hay consultas disponibles -->
+                    <p th:if="${consultas == null or #lists.size(consultas) == 0}">No hay consultas disponibles</p>
+
 
                 </div>
-
-                <!-- Mostrar mensaje cuando no hay consulta disponible -->
-                <p th:if="${consulta == null}">No hay consulta disponible</p>
-
-
-            </div>
 
 
 </main>
 <script th:src="@{/usuarioMembre.js}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 <div th:replace="home :: footer"></div>

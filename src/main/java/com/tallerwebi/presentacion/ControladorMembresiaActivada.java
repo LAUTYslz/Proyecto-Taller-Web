@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.CantidadDeConsultasAgotadas;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import com.tallerwebi.infraestructura.RepositorioMetodoImpl;
@@ -68,15 +69,15 @@ public class ControladorMembresiaActivada {
             if(consulta.getUsuario()==null){
                 consulta =null;
             }
-          Consulta consultaDeUsuario=  servicioMembresiaActivada.buscarConsultaPorUsuario(usuario.getId());
-            actualizarSesion(request, usuario, hijos, consultaDeUsuario);
+          List<Consulta> consultas=  servicioMembresiaActivada.buscarConsultaPorUsuario(usuario.getId());
+            actualizarSesion(request, usuario, hijos, consultas);
             // Agregar el usuario, la membresía, la lista de hijos, la etapa y el método al modelo
             modelAndView.addObject("usuario", usuario);
             modelAndView.addObject("membresia", membresia);
             modelAndView.addObject("hijos", hijos);
             modelAndView.addObject("etapa", etapa);
             modelAndView.addObject("metodo", metodo); // Agregar el método al modelo
-            modelAndView.addObject("consulta", consultaDeUsuario); // Objeto para almacenar la consulta
+            modelAndView.addObject("consultas", consultas); // Objeto para almacenar la consulta
 
             // Establecer la vista como "usuarioMembresia"
             modelAndView.setViewName("usuarioMembresia");
@@ -90,7 +91,7 @@ public class ControladorMembresiaActivada {
 
 
     // Método para actualizar la sesión con los datos actualizados
-    private void actualizarSesion(HttpServletRequest request, Usuario usuario, List<Hijo> hijos, Consulta consulta) {
+    private void actualizarSesion(HttpServletRequest request, Usuario usuario, List<Hijo> hijos,  List<Consulta> consulta) {
         request.getSession().setAttribute("usuario", usuario);
         request.getSession().setAttribute("hijos", hijos);
         request.getSession().setAttribute("consulta", consulta);
@@ -169,37 +170,56 @@ public class ControladorMembresiaActivada {
     public String mostrarFormulario(Model model, HttpServletRequest request) {
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request); // Obtener el usuario actual (suponiendo que obtienes el usuario de alguna manera)
 
-        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId());// Obtener los hijos del usuario actual
-       String metodo =hijos.get(0).getMetodo().getNombre();
-        List<Profesional> profesionales = servicioProfesional.traerProfesionalesPorMetodo(metodo) ;// Asegúrate de obtener los profesionales disponibles
+        List<Hijo> hijos = servicioLogin.buscarHijosPorId(usuario.getId()); // Obtener los hijos del usuario actual
+
+        try {
+            String metodo = hijos.get(0).getMetodo().getNombre(); // Obtener el nombre del método del primer hijo
+            List<Profesional> profesionales = servicioProfesional.traerProfesionalesPorMetodo(metodo); // Obtener profesionales según el método seleccionado
+
+            model.addAttribute("profesionales", profesionales); // Agregar la lista de profesionales al modelo
+        } catch (NullPointerException e) {
+            model.addAttribute("errorMensaje", "Debe seleccionar un método para realizar la consulta.");
+            return "info"; // Página de error donde se mostrará el mensaje
+        }
 
         model.addAttribute("consulta", new Consulta()); // Objeto para almacenar la consulta
         model.addAttribute("hijos", hijos); // Agregar la lista de hijos al modelo
-        model.addAttribute("profesionales", profesionales); // Agregar la lista de profesionales al modelo
 
-        return "realizarConsulta";
+        return "realizarConsulta"; // Nombre de la vista para mostrar el formulario de consulta
     }
-
 
 
 
     @PostMapping("/enviar-consulta")
-    public String enviarConsulta(@ModelAttribute("consulta") Consulta consulta,HttpServletRequest request) {
-        // Aquí puedes acceder a los datos de consulta
-        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
-        Long hijoId = consulta.getHijo().getId();
-        Long profesionalId = consulta.getProfesional().getId();
-        String mensaje = consulta.getMensaje();
+    public String enviarConsulta(@ModelAttribute("consulta") Consulta consulta, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        try {
+            // Aquí puedes acceder a los datos de consulta
+            Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+            Long hijoId = consulta.getHijo().getId();
+            Long profesionalId = consulta.getProfesional().getId();
+            String mensaje = consulta.getMensaje();
 
-        // Realiza las operaciones necesarias, como guardar la consulta en la base de datos
-        Consulta guardada = servicioMembresiaActivada.realizarConsulta(consulta, hijoId,profesionalId,usuario);
-        return "exito"; // Nombre de la vista de éxito
-    }
+            // Realiza las operaciones necesarias, como guardar la consulta en la base de datos
+            Consulta guardada = servicioMembresiaActivada.realizarConsulta(consulta, hijoId, profesionalId, usuario);
 
+            return "exito"; // Nombre de la vista de éxito
+        } catch (CantidadDeConsultasAgotadas e) {
+            // Agregar un mensaje flash para mostrar en la página usuarioMembresia
+            redirectAttributes.addFlashAttribute("mensaje", "¡Has alcanzado el límite de consultas permitidas!");
+
+            // Redirigir a la vista de usuarioMembresia
+            return "redirect:/usuarioMembresia";
+        }
+
+
+
+}
     @GetMapping("/irALaTienda")
     public ModelAndView irALaTienda(){
         return new ModelAndView("tiendaVirtual");
     }
+
+
 
 
 

@@ -25,6 +25,7 @@ com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
 com\tallerwebi\dominio\Mensaje.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
+com\tallerwebi\dominio\excepcion\DebeSeleccionarMetodo.class
 com\tallerwebi\dominio\RepositorioAdmi.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
@@ -39,6 +40,7 @@ com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
 com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
 com\tallerwebi\dominio\Hijo.class
+com\tallerwebi\dominio\excepcion\CantidadDeConsultasAgotadas.class
 com\tallerwebi\dominio\Consulta.class
 com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
 com\tallerwebi\presentacion\ControladorLogin.class

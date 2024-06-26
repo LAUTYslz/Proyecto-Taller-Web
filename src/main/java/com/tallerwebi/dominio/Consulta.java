@@ -12,6 +12,9 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensaje;
+    private Integer cantidad=0;
+    private Integer mes;
+    private Integer anio;
 
     @Enumerated(EnumType.STRING)
     private Mensaje estado;
@@ -88,11 +91,38 @@ public class Consulta {
         return estado;
     }
 
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Integer getMes() {
+        return mes;
+    }
+
+    public void setMes(Integer mes) {
+        this.mes = mes;
+    }
+
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
+    }
+
     @Override
     public String toString() {
         return "Consulta{" +
                 "id=" + id +
                 ", mensaje='" + mensaje + '\'' +
+                ", cantidad=" + cantidad +
+                ", mes=" + mes +
+                ", anio=" + anio +
                 ", estado=" + estado +
                 ", fecha=" + fecha +
                 ", usuario=" + usuario +

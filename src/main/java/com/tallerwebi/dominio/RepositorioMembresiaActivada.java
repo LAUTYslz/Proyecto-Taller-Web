@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface RepositorioMembresiaActivada {
 
@@ -15,5 +16,5 @@ public interface RepositorioMembresiaActivada {
 
 
 
-    Consulta buscarConsulta(Long usuarioid);
+    List <Consulta> buscarConsulta(Long usuarioid);
 }

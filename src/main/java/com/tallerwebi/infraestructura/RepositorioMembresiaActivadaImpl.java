@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository("repositorioMembresiaActivada")
@@ -30,11 +31,11 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
     }
 
     @Override
-    public Consulta buscarConsulta(Long usuarioid) {
-        return (Consulta) sessionFactory.getCurrentSession()
+    public List<Consulta> buscarConsulta(Long usuarioid) {
+        return (List <Consulta>)sessionFactory.getCurrentSession()
                 .createCriteria(Consulta.class)
                 .createAlias("usuario","usuarioBuscado")
-                .add(Restrictions.eq("usuarioBuscado.id",usuarioid)).uniqueResult();
+                .add(Restrictions.eq("usuarioBuscado.id",usuarioid)).list();
 
     }
 }

@@ -1,0 +1,58 @@
+/* Estilos para el formulario de realizar consulta */
+
+/* Estilo para el contenedor principal */
+.container {
+    margin-top: 30px;
+}
+
+/* Estilo para el título del formulario */
+h1 {
+    font-family: 'Schoolbell', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Estilo para los elementos del formulario */
+.form-label {
+    font-weight: bold;
+}
+
+.form-select,
+.form-control {
+    border-radius: 8px;
+    border-color: #ced4da; /* Color del borde */
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #007bff; /* Color del borde al hacer focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra al hacer focus */
+}
+
+/* Estilo para el botón de enviar */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Estilo para la sección de seleccionar profesional */
+#profesionalSection {
+    display: none; /* Ocultar inicialmente la sección de profesional */
+    margin-top: 20px;
+}
+
+/* Estilo para el mensaje de error */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}

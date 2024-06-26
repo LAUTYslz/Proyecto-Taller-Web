@@ -14,9 +14,7 @@
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">¡Consulta Enviada con Éxito!</h2>
                     <p class="card-text text-center">Tu consulta ha sido recibida y será procesada pronto.</p>
-                    <pre th:if="${consulta != null}" th:text="${consulta.toString()}"></pre>
 
-                    <p th:if="${consulta == null}">No hay consulta disponible</p>
 
                     <div class="text-center">
                         <a  th:href="@{/usuarioMembresia}" type="button"><i class="fas fa-book"></i> Volver </a>
