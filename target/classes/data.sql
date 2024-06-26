@@ -223,3 +223,21 @@ CREATE TABLE compra_producto (
                                  FOREIGN KEY (producto_id) REFERENCES producto(id)
 );
 
+INSERT INTO Producto (nombre, descripcion, precio, imagenUrl, stock, tienda_id, etapa_id) VALUES
+('Gimnasio Piano', 'Llegó el gimnasio piano musical con un barral suave, una manta confortable,
+espejo, sonajeros divertidos, sonidos y cambio de modo (4 melodías, notas musicales y completa la melodía)
+También podrá aprender letras y palabras con estos amiguitos.', '41990', 'gimnasioPiano.png', '6', '1', '1'),
+('Hipo Didáctico', 'El hipopótamo hace sonidos y melodías felices , y después de que termine la alimentación, puedes sacar las hojas de su panza y comenzar la diversión nuevamente.
+Hay números del 1 al 10 en la panza de Hippie , por lo que puede mostrarlos con el dedo mientras alimenta o cuenta con Hippie, para que el niño se familiarice con la apariencia de
+cada número. ¡La mascota es bilingüe!', '27890', 'hipoDidactico.png', '5', '2', '1'),
+('Taller de Yeso y Arcilla', 'Poné en un recipiente aproximadamente 5 cucharadas de yeso; agregale agua hasta apenas cubrirlo (medio vaso) y mezclá con la espátula. Tiene que quedar
+líquida, espesa, homogénea, y sin grumos; Pasalo con cuidado del recipiente al molde. Dejalo secar durante todo el día como mínimo; Cuando este bien seco estará listo para desmoldarlo.
+Hacelo con cuidado para que no se rompa; Si notás que esta húmedo aún, esperá un día mas para pintarlo con las temperas; Dejalo secar....¡Listo!. Ya sos todo un artesano ahora podés decorar
+tu casa como vos quieras.', '24560', 'taller.png', '2', '2', '2'),
+('Loa 5 bloques', 'El gran rompecabezas inteligente, con 5 bloques deberás poder armar cualquiera de los 60 desafíos.  ¡Es muy simple! Armar la pared de ladrillos utilizando las 5 piezas y que
+quede como indica la carta. Distintos niveles de dificultad.', '15320', 'toptoys.png', '7', '3', '2'),
+('Grúa de Construcción', 'Esta grúa mide 55cm de alto, gira 350° y la puedes controlar desde el mando por cable. ¡No te la podés perder! Pilas 2AA incluidas', '25660', 'grua.png', '4', '2', '3'),
+('Auto Porsche', 'Auto Metal Porsche Cayenne S Msz 1:38 Coleccion Escala 67302 Color Gris Oscuro. Este modelo a escala es una réplica detallada del vehículo real, con un diseño elegante y sofisticado.
+Sus medidas son: Largo 11 cm; Ancho 4 cm. Ideal para coleccionistas y amantes de los autos.', '11430', 'autoporsche.png', '10','3', '3'),
+('Juego de Cocina', 'Con un atractivo color amarillo, este juego de cocina incluye una amplia variedad de accesorios para que los niños puedan recrear sus propias aventuras culinarias', '5755', 'juegococina.png',
+ '7', '2', '4');

@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Producto {
@@ -95,5 +96,18 @@ public class Producto {
                 ", Imágen='" + imagenUrl + '\'' +
                 ", Stock=" + stock +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return Objects.equals(id, producto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

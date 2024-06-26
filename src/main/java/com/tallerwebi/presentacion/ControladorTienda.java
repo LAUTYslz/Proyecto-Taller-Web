@@ -182,13 +182,13 @@ public class ControladorTienda {
             try {
                 Producto producto = servicioProducto.buscarProductoPorId(productoId);
                 servicioCompra.eliminarProducto(producto, carrito.getId()); // elimino el producto y la entidad se encarga de restarlo del total
-                servicioCompra.agregarCompra(carrito); // actualizo la compra
+                servicioCompra.actualizarCompra(carrito); // actualizo la compra
 
             } catch (Exception e) {
                 model.addAttribute("mensaje", "Hubo un error al eliminar el producto del carrito");
                 return new ModelAndView("carrito", model);
             }
-        } return new ModelAndView("redirect:/productos");
+        } return new ModelAndView("redirect:/carrito");
 
     }
 
