@@ -241,3 +241,17 @@ quede como indica la carta. Distintos niveles de dificultad.', '15320', 'toptoys
 Sus medidas son: Largo 11 cm; Ancho 4 cm. Ideal para coleccionistas y amantes de los autos.', '11430', 'autoporsche.png', '10','3', '3'),
 ('Juego de Cocina', 'Con un atractivo color amarillo, este juego de cocina incluye una amplia variedad de accesorios para que los niños puedan recrear sus propias aventuras culinarias', '5755', 'juegococina.png',
  '7', '2', '4');
+
+CREATE TABLE DatosCompra(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    idCompra BIGINT,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    numDoc BIGINT NOT NULL,
+    celular BIGINT NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    direccion VARCHAR(100),
+    tarjeta_id BIGINT,
+    FOREIGN KEY (idCompra) REFERENCES compra(id),
+    FOREIGN KEY (tarjeta_id) REFERENCES tarjeta(id)
+);
