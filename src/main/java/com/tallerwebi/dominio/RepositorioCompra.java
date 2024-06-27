@@ -13,4 +13,5 @@ public interface RepositorioCompra {
     public void actualizarCompra(Compra compra);
     Compra getCarritoByUser(Usuario usuario);
     List<Producto> getProductosDeCompra(Long idCompra);
+    void agregarDatosCompra(DatosCompra compra);
 }

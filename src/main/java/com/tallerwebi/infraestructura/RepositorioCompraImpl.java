@@ -78,4 +78,11 @@ public class RepositorioCompraImpl implements RepositorioCompra {
             return compra.getProductos();
         }
     }
+
+    @Override
+    public void agregarDatosCompra(DatosCompra dto) {
+        sessionFactory.getCurrentSession().save(dto);
+    }
+
+
 }

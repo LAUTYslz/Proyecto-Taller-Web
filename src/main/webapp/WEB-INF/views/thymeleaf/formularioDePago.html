@@ -10,6 +10,7 @@
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formulario.css}"/>
 
     <title>Formulario de Pago</title>
 
@@ -19,8 +20,8 @@
 <div th:replace="home :: nav"></div>
 
 <div class="pay-container">
-    <div class="total-compra">
-        <p> Total: <span th:text="${compra.total}"></span> </p>
+    <div class="totalCompra">
+        <h3> Total: <strong> <span th:text="${compra.total}"> </span> </strong> </h3>
     </div>
 
     <div th:if="${error != null}" class="alert alert-danger" role="alert">
@@ -60,11 +61,11 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="fechaDeVencimiento"></label>
+                <label for="fechaDeVencimiento"> Fecha de Vencimiento</label>
                 <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" class="form-control" id="fechaDeVencimiento" name="fechaDeVencimiento" placeholder="dd/mm/yy">
             </div>
             <div class="form-group col-md-6">
-                <label for="codigoDeSeguridad"></label>
+                <label for="codigoDeSeguridad"> CVC </label>
                 <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" class="form-control" id="codigoDeSeguridad" name="codigoDeSeguridad" placeholder="123">
             </div>
         </div>

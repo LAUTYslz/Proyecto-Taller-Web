@@ -29,7 +29,6 @@ public class DatosCompra {
 
     private Long celular;
 
-    @DateTimeFormat(pattern = "yyy-mm-dd")
     private Date fecha;
 
     private String direccion;

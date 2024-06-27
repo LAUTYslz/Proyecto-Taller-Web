@@ -1,0 +1,19 @@
+.pay-container {
+    margin: 20px;
+    padding: 20px;
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="date"] {
+    width: 70%;
+}
+
+.datos-compra-container {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+    padding: 10px;
+}
+
+.datos-compra-container p {
+    margin: 20px;
+}

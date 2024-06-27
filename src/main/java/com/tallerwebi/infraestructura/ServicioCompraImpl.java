@@ -18,12 +18,10 @@ import java.util.List;
 @Transactional
 public class ServicioCompraImpl implements ServicioCompra {
     private final RepositorioCompra repositorioCompra;
-    private final RepositorioUsuario repositorioUsuario;
 
     @Autowired
     public ServicioCompraImpl(RepositorioCompra repositorioCompra, RepositorioUsuario repositorioUsuario) {
         this.repositorioCompra = repositorioCompra;
-        this.repositorioUsuario = repositorioUsuario;
     }
 
     @Override
@@ -42,11 +40,6 @@ public class ServicioCompraImpl implements ServicioCompra {
     @Override
     public void agregarCompra(Compra compra) {
         repositorioCompra.agregarCompra(compra);
-    }
-
-    @Override
-    public void eliminarCompra(Compra compra) {
-        repositorioCompra.eliminarCompra(compra);
     }
 
     @Override
@@ -70,27 +63,6 @@ public class ServicioCompraImpl implements ServicioCompra {
             compra.eliminarProducto(producto);
             repositorioCompra.actualizarCompra(compra);
         } return true;
-    }
-
-    @Override
-    public Boolean setearListaDeProductos(List<Producto> productos, Long idCompra) {
-        Compra compra = repositorioCompra.buscarCompraPorId(idCompra);
-        if (compra == null){
-            return false;
-        } else {
-            compra.setProductos(productos);
-            compra.setTotal(calcularPrecioDeProductos(productos));
-            repositorioCompra.actualizarCompra(compra);
-        } return true;
-    }
-
-    private Double calcularPrecioDeProductos(List<Producto> productos){
-        Double precio = 0.0;
-
-        for (Producto producto : productos){
-            precio += producto.getPrecio();
-        }
-        return precio;
     }
 
     @Override
@@ -180,25 +152,10 @@ public class ServicioCompraImpl implements ServicioCompra {
         if (compra == null) {
             return false;
         } else {
-            Double valorConDescuento = compra.getTotal() - (compra.getTotal()*desc);
+            Double valorConDescuento = compra.getTotal() - ((compra.getTotal()*desc)/100);
             compra.setTotal(valorConDescuento);
             repositorioCompra.actualizarCompra(compra);
         } return true;
-    }
-
-    @Override
-    @Transactional
-    public Compra obtenerCompraActual(HttpServletRequest request) {
-        Compra compra = (Compra) request.getSession().getAttribute("compra");
-
-        if (compra != null){
-            Hibernate.initialize(compra.getProductos());
-        }
-
-        HttpSession session = request.getSession();
-        session.setAttribute("compra", compra);
-
-        return compra;
     }
 
     @Override
