@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS Tarjeta (
                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
                          numeroDeTarjeta VARCHAR(16) NOT NULL,
@@ -214,7 +213,27 @@ CREATE TABLE Compra(
     estado VARCHAR(20) NOT NULL,
     FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
 );
+INSERT INTO Usuario( email, password, rol, estado, nombre) VALUES
+('juan.perez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Juan Pérez'),
+('maria.gomez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Maria Gomez'),
+('info@farmaciasalud.com', 'prof', 'PROFESIONAL', 'true','Farmacia Salud'),
+('ana.rodriguez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Ana Rodriguez'),
+('contacto@tiendainfantil.com', 'prof', 'PROFESIONAL', 'true','Tienda Infantil'),
+('luis.martinez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Luis Martinez'),
+('sofia.ramirez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Sofia Ramirez'),
+('ventas@tiendajuguetes.com', 'prof', 'PROFESIONAL', 'true','Tienda Juguetes'),
+('alberto.lopez@example.com', 'prof', 'PROFESIONAL', 'true','Dr. Alberto Lopez'),
+('marta.fernandez@example.com', 'prof', 'PROFESIONAL', 'true','Lic. Marta Fernandez');
 
+CREATE TABLE turno (
+                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       usuario_id BIGINT NOT NULL,
+                       profesional_id BIGINT NOT NULL,
+                       fecha_hora TIMESTAMP NOT NULL,
+                       estado VARCHAR(255) NOT NULL,
+                       FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+                       FOREIGN KEY (profesional_id) REFERENCES profesional(id)
+);
 CREATE TABLE compra_producto (
                                  id INT AUTO_INCREMENT PRIMARY KEY,
                                  compra_id BIGINT NOT NULL,

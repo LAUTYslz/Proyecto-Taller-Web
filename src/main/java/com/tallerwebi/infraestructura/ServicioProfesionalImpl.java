@@ -192,6 +192,11 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     }
 
     @Override
+    public List<Profesional> traerProfesionalesSinTienda() {
+        return repositorioProfesional.traerPrefesionalesSinTienda();
+    }
+
+    @Override
     public Profesional guardar(Profesional profesional) {
         try{
             repositorioProfesional.guardar(profesional);

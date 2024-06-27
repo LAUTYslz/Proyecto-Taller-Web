@@ -1,13 +1,12 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.Profesional;
-import com.tallerwebi.dominio.RepositorioTurno;
-import com.tallerwebi.dominio.Turno;
-import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -58,4 +57,30 @@ public class RepositorioTurnoImpl implements RepositorioTurno {
     public void eliminar(Turno turno) {
         sessionFactory.getCurrentSession().delete(turno);
     }
+
+    @Override
+    public List<Turno> traerTurnosActivosConProfesional(Long usuarioId, Long profesionalId) {
+        List<EstadoTurno> estadosBuscados = Arrays.asList(EstadoTurno.PENDIENTE, EstadoTurno.CONFIRMADO);
+
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .add(Restrictions.eq("usuario.id", usuarioId))
+                .add(Restrictions.eq("profesional.id", profesionalId))
+                .add(Restrictions.in("estado", estadosBuscados))
+                .list();
+    }
+
+    @Override
+    public List<Turno> traerTurnosActivosEnHorario(Long usuarioId, Date fechaHora) {
+        List<EstadoTurno> estadosBuscados = Arrays.asList(EstadoTurno.PENDIENTE, EstadoTurno.CONFIRMADO);
+
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .add(Restrictions.eq("usuario.id", usuarioId))
+                .add(Restrictions.in("estado", estadosBuscados))
+                .add(Restrictions.eq("fechaHora", fechaHora))
+                .list();
+    }
+
+
 }
