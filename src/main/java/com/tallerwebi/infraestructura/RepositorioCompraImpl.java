@@ -64,4 +64,18 @@ public class RepositorioCompraImpl implements RepositorioCompra {
                 .add(Restrictions.eq("estado", EstadoCompra.PENDIENTE))
                 .uniqueResult();
     }
+
+    @Override
+    public List<Producto> getProductosDeCompra(Long idCompra) {
+        Compra compra = (Compra) sessionFactory.getCurrentSession()
+                .createCriteria(Compra.class)
+                .add(Restrictions.eq("id", idCompra))
+                .uniqueResult();
+
+        if (compra == null) {
+            return null;
+        } else {
+            return compra.getProductos();
+        }
+    }
 }

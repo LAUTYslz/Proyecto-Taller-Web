@@ -2,9 +2,7 @@ package com.tallerwebi.presentacion;
 
 import com.mysql.cj.AppendingBatchVisitor;
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.CompraInexistente;
-import com.tallerwebi.dominio.excepcion.ProductoInexistente;
-import com.tallerwebi.dominio.excepcion.StockInexistente;
+import com.tallerwebi.dominio.excepcion.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -192,6 +187,64 @@ public class ControladorTienda {
 
     }
 
+    @RequestMapping("/finalizarCompra")
+    public ModelAndView finalizarCompra(@RequestParam("totalCompra") Double totalCompra, HttpServletRequest request){
+        ModelMap model = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        }
+
+        Compra carrito = servicioCompra.getCarritoByUser(usuario);
+
+        if (carrito == null){
+            model.addAttribute("mensaje", "Lo sentimos. Algo falló al procesar la compra. Inténtalo nuevamente.");
+            return new ModelAndView("carrito", model);
+        } else {
+            carrito.setTotal(totalCompra);
+            servicioCompra.actualizarCompra(carrito);
+            model.addAttribute("compra", carrito);
+
+            DatosCompra datosCompra = new DatosCompra();
+            datosCompra.setCompra(carrito);
+            model.addAttribute("datosCompra", datosCompra);
+
+        }
+
+        return new ModelAndView ("formularioDePago", model);
+
+    }
+
+    @RequestMapping(path= "/completarPago", method=RequestMethod.POST)
+    public ModelAndView completarPago(@ModelAttribute("datosCompra") DatosCompra datosCompra, HttpServletRequest request){
+        ModelMap model = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        }
+
+        Compra carrito = servicioCompra.getCarritoByUser(usuario);
+
+        if (carrito == null){
+            model.addAttribute("error", "Carrito no encontrado");
+            return new ModelAndView("formularioDePago", model);
+        }
+
+        try {
+
+            servicioCompra.darDeAltaCompra(datosCompra, usuario);
+            model.addAttribute("datosCompra", datosCompra);
+
+        } catch (TarjetaInvalida e) {
+            model.addAttribute("error", "El número de tarjeta ingresado no es correcto.");
+        } catch (CodigoInvalido e) {
+            model.addAttribute("error", "La tarjeta está vencida");
+        }
+
+        return new ModelAndView("compraExitosa", model);
+    }
 
 
 }

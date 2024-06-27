@@ -84,6 +84,7 @@ com\tallerwebi\dominio\excepcion\MetodoNoEncontrado.class
 com\tallerwebi\dominio\Turno.class
 com\tallerwebi\dominio\excepcion\StockInexistente.class
 com\tallerwebi\dominio\ServicioTienda.class
+com\tallerwebi\dominio\DatosCompra.class
 com\tallerwebi\dominio\excepcion\ProductoInexistente.class
 com\tallerwebi\dominio\Tarjeta.class
 com\tallerwebi\dominio\Producto.class

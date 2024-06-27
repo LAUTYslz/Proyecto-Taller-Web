@@ -1,7 +1,9 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.CodigoInvalido;
 import com.tallerwebi.dominio.excepcion.CompraInexistente;
+import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,6 +105,65 @@ public class ServicioCompraImpl implements ServicioCompra {
     }
 
     @Override
+    public Boolean darDeAltaCompra(DatosCompra datosCompra, Usuario usuario) throws TarjetaInvalida, CodigoInvalido {
+        if (!validarNumeroDeTarjeta(datosCompra.getTarjeta().getNumeroDeTarjeta())){
+            throw new TarjetaInvalida();
+        }
+
+        if (!validarCVV(datosCompra.getTarjeta().getCodigoDeSeguridad())){
+            throw new CodigoInvalido();
+        }
+
+        return finalizarCompra(datosCompra.getCompra().getId());
+    }
+
+    private Boolean validarCVV(Integer cvv) throws CodigoInvalido {
+
+        if (cvv == null){
+            throw new CodigoInvalido();
+        }
+
+        int longitud = cvv.toString().length();
+
+        if (longitud != 3){
+            throw new CodigoInvalido();
+        }
+
+        String cvvString = cvv.toString();
+
+        for (char c : cvvString.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new CodigoInvalido();
+            }
+        } return true;
+    }
+
+    private Boolean validarNumeroDeTarjeta(Long numeroDeTarjeta) throws TarjetaInvalida {
+
+        if (numeroDeTarjeta == null){
+            throw new TarjetaInvalida();
+        }
+
+
+        int longitud = numeroDeTarjeta.toString().length();
+
+        if (longitud < 15 || longitud > 16){
+            throw new TarjetaInvalida();
+        }
+
+        String numeroDeTarjetaString = numeroDeTarjeta.toString();
+
+        for (char c : numeroDeTarjetaString.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new TarjetaInvalida();
+            }
+        }
+
+        return true;
+
+    }
+
+    @Override
     public Boolean cancelarCompra(Long id){
         Compra compra = repositorioCompra.buscarCompraPorId(id);
         if (compra == null) {
@@ -148,6 +209,11 @@ public class ServicioCompraImpl implements ServicioCompra {
     @Override
     public Compra getCarritoByUser(Usuario usuario) {
         return repositorioCompra.getCarritoByUser(usuario);
+    }
+
+    @Override
+    public List<Producto> getProductosDeCompra(Long idCompra) {
+        return repositorioCompra.getProductosDeCompra(idCompra);
     }
 
 

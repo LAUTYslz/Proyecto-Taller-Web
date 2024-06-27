@@ -1,6 +1,8 @@
 package com.tallerwebi.dominio;
 
+import com.tallerwebi.dominio.excepcion.CodigoInvalido;
 import com.tallerwebi.dominio.excepcion.CompraInexistente;
+import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -20,5 +22,7 @@ public interface ServicioCompra {
    Compra obtenerCompraActual(HttpServletRequest request);
    void actualizarCompra(Compra compra);
    Compra getCarritoByUser(Usuario usuario);
+   List<Producto> getProductosDeCompra(Long idCompra);
+   Boolean darDeAltaCompra(DatosCompra datosCompra, Usuario usuario) throws TarjetaInvalida, CodigoInvalido;
 
 }

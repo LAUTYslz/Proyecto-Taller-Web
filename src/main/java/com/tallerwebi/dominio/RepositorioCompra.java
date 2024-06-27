@@ -12,4 +12,5 @@ public interface RepositorioCompra {
     public void eliminarCompra(Compra compra);
     public void actualizarCompra(Compra compra);
     Compra getCarritoByUser(Usuario usuario);
+    List<Producto> getProductosDeCompra(Long idCompra);
 }
