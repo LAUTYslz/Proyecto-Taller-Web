@@ -21,6 +21,8 @@ public class DatosMembresia {
     private Long numeroTelefonico;
     @DateTimeFormat(pattern = "yyy-mm-dd")
     private Date fechaDeInicio;
+
+
     @DateTimeFormat(pattern = "yyy-mm-dd")
     private Date fechaDeBaja;
     @ManyToOne

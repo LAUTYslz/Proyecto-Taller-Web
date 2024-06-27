@@ -1,58 +1,82 @@
-/* Estilos para el formulario de realizar consulta */
-
-/* Estilo para el contenedor principal */
-.container {
-    margin-top: 30px;
-}
-
 /* Estilo para el título del formulario */
 h1 {
     font-family: 'Schoolbell', cursive;
-    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 30px;
+    color: #4CAF50;
 }
 
-/* Estilo para los elementos del formulario */
+/* Estilo para el contenedor principal */
+.container {
+    margin-top: 50px;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las etiquetas de los campos */
 .form-label {
     font-weight: bold;
+    color: #333;
 }
 
-.form-select,
+/* Estilo para los campos de selección */
+.form-select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Estilo para el campo de mensaje */
 .form-control {
-    border-radius: 8px;
-    border-color: #ced4da; /* Color del borde */
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
-.form-select:focus,
-.form-control:focus {
-    border-color: #007bff; /* Color del borde al hacer focus */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra al hacer focus */
-}
-
-/* Estilo para el botón de enviar */
+/* Estilo para el botón de enviar consulta */
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
     padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #45a049;
 }
 
-/* Estilo para la sección de seleccionar profesional */
-#profesionalSection {
-    display: none; /* Ocultar inicialmente la sección de profesional */
-    margin-top: 20px;
+/* Estilo para los mensajes de error o éxito (opcional) */
+.alert {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-/* Estilo para el mensaje de error */
-.error-message {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 5px;
+.alert-success {
+    background-color: #dff0d8;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
 }

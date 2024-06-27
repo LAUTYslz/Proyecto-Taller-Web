@@ -211,15 +211,21 @@
                             <p>Consultas al Hijo : <strong th:text="${consulta.hijo.nombre}"></strong></p>
                             <p>Metodo del Hijo : <strong th:text="${consulta.hijo.metodo.nombre}"></strong></p>
                             <p>Fecha de Consulta : <strong th:text="${consulta.fecha}"></strong></p>
-                            <pre>Fecha de Consulta : <strong th:text="${consulta.toString()}"></strong></pre>
+                            <p>Cantidad de Consultas este Mes  : <strong th:text="${consulta.cantidad}"></strong></p>
                             <div th:class="${consulta != null ? (consulta.estado == consulta.estado.SIN_LEER ? 'estado-sin-leer' : (consulta.estado == consulta.estado.LEIDO? 'estado-leida' : 'estado-respondida')) : ''}">
                                 <!-- Contenido de la consulta -->
                                 <p>Estado de la consulta: <strong th:text="${consulta.estado}"></strong></p>
 
                             </div>
-                            <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDA" -->
-                            <div th:if="${consulta.estado == consulta.estado.RESPONDIDO}">
-                                <form th:action="@{/ver-respuesta}" method="post">
+                            <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDO" -->
+                            <div th:if="${consulta.estado == 'RESPONDIDO'}">
+
+                                    <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                                </form>
+                            </div>
+
+                            <div th:if="${consulta.respuesta !=null}">
+                                <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
                                     <button type="submit" class="btn btn-primary">Ver respuesta</button>
                                 </form>
                             </div>

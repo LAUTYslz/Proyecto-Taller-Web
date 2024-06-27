@@ -18,7 +18,6 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
     }
 
 
-
     @Override
     public Consulta guardarConsulta(Consulta consulta) {
         sessionFactory.getCurrentSession().save(consulta);
@@ -32,10 +31,27 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
 
     @Override
     public List<Consulta> buscarConsulta(Long usuarioid) {
-        return (List <Consulta>)sessionFactory.getCurrentSession()
+        return (List<Consulta>) sessionFactory.getCurrentSession()
                 .createCriteria(Consulta.class)
-                .createAlias("usuario","usuarioBuscado")
-                .add(Restrictions.eq("usuarioBuscado.id",usuarioid)).list();
+                .createAlias("usuario", "usuarioBuscado")
+                .add(Restrictions.eq("usuarioBuscado.id", usuarioid)).list();
+
+    }
+
+    @Override
+    public List<Consulta> buscarConsultasPorProfesionales(String email) {
+        return (List<Consulta>) sessionFactory.getCurrentSession()
+                .createCriteria(Consulta.class)
+                .createAlias("profesional", "profesionalBuscado")
+                .add(Restrictions.eq("profesionalBuscado.email", email)).list();
+
+    }
+
+    @Override
+    public Consulta buscarConsultaPorId(Long consultaId) {
+        return (Consulta) sessionFactory.getCurrentSession().createCriteria(Consulta.class)
+                .add(Restrictions.eq("id", consultaId))
+                .uniqueResult();
 
     }
 }

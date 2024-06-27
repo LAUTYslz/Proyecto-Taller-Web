@@ -256,3 +256,5 @@ ALTER TABLE consulta
 ADD anio INT DEFAULT 0;
 ALTER TABLE consulta
 ADD cantidad INT DEFAULT 0;
+ALTER TABLE consulta
+    ADD respuesta  VARCHAR(800);

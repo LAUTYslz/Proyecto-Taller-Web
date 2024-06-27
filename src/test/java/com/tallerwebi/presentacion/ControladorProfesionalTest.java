@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.infraestructura.ServicioMembresiaActivadaImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,12 +19,14 @@ public class ControladorProfesionalTest {
 
     private ServicioProfesional servicioProfesional;
     private ServicioLogin servicioLogin;
+    private ServicioMembresiaActivada servicioMembresiaActivada;
     private ControladorProfesional controladorProfesional;
+
 
     @BeforeEach
     public void setUp() {
         servicioProfesional = mock(ServicioProfesional.class);
-        controladorProfesional = new ControladorProfesional(servicioProfesional, servicioLogin);
+        controladorProfesional = new ControladorProfesional(servicioProfesional, servicioLogin, servicioMembresiaActivada);
     }
 
     @Test

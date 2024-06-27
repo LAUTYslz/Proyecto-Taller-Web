@@ -17,4 +17,12 @@ public interface RepositorioMembresiaActivada {
 
 
     List <Consulta> buscarConsulta(Long usuarioid);
+
+
+
+
+
+    List<Consulta> buscarConsultasPorProfesionales(String email);
+
+    Consulta buscarConsultaPorId(Long consultaId);
 }

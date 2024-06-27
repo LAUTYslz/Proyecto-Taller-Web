@@ -15,6 +15,7 @@ public class Consulta {
     private Integer cantidad=0;
     private Integer mes;
     private Integer anio;
+    private String respuesta;
 
     @Enumerated(EnumType.STRING)
     private Mensaje estado;
@@ -113,6 +114,14 @@ public class Consulta {
 
     public void setAnio(Integer anio) {
         this.anio = anio;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     @Override

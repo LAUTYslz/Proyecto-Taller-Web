@@ -36,7 +36,7 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
         int mesActual = fechaActual.getMonthValue();
         int anioActual = fechaActual.getYear();
 
-        // Buscar la cantidad de consultas existentes para este usuario en este mes y año
+        // Buscar la cantidad de consultas existentes para este usuario en este mes
         int cantidadConsultas = contarConsultasPorUsuarioMesAnio(usuario, mesActual);
 
         if (cantidadConsultas < 3) {
@@ -78,12 +78,13 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
         }
     }
 
+    // busco una lista de consultas, de esa lista, cuanto cuantas coinciden con el mismo mes.
     private int contarConsultasPorUsuarioMesAnio(Usuario usuario,  int mesActual) {
         // Obtener la lista de consultas del usuario
         List<Consulta> consultas = buscarConsultaPorUsuario(usuario.getId());
 
-        // Contar las consultas que coinciden con el mes y año actual
-        long cantidad = consultas.stream()
+        // Contar las consultas que coinciden con el mes
+        long cantidad = consultas.stream() // utilizo stream
                 .filter(consulta -> consulta.getMes() != null &&
                         consulta.getMes() == mesActual )
                 .count();
@@ -95,6 +96,24 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
     @Override
     public List<Consulta> buscarConsultaPorUsuario(Long usuarioid) {
         return repositorioMembresiaActivada.buscarConsulta(usuarioid);
+    }
+
+    @Override
+    public List<Consulta> buscarConsultasPorProfesionales(String email) {
+        return repositorioMembresiaActivada.buscarConsultasPorProfesionales(email);
+    }
+
+    @Override
+    public Consulta obtenerConsultaPorId(Long consultaId) {
+        return repositorioMembresiaActivada.buscarConsultaPorId(consultaId);
+    }
+
+    @Override
+    public void respuestaDeProfesionalAConsulta(Long consultaId, String respuesta) {
+        Consulta buscarConsulta = obtenerConsultaPorId(consultaId);
+        buscarConsulta.setRespuesta(respuesta);
+        buscarConsulta.setEstado(Mensaje.RESPONDIDO);
+        repositorioMembresiaActivada.actualizarConsulta(buscarConsulta);
     }
 
     private void actualizarConsulta(Consulta consulta) {

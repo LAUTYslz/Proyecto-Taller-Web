@@ -19,4 +19,15 @@ public interface ServicioMembresiaActivada {
 
 
     List<Consulta> buscarConsultaPorUsuario(Long usuarioid);
+
+
+
+
+
+
+    List<Consulta> buscarConsultasPorProfesionales(String email);
+
+    Consulta obtenerConsultaPorId(Long consultaId);
+
+    void respuestaDeProfesionalAConsulta(Long consultaId, String respuesta);
 }
