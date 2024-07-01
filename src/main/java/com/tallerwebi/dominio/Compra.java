@@ -1,11 +1,14 @@
 package com.tallerwebi.dominio;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity @Getter @Setter
 public class Compra {
 
     @Id
@@ -27,30 +30,13 @@ public class Compra {
 
     private EstadoCompra estado;
 
+    private String direccion;
+
+
     public Compra(){
         this.productos = new ArrayList<>();
         this.total = 0.0;
         this.estado = EstadoCompra.PENDIENTE;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
     }
 
     public void setProductos(List<Producto> productos) {
@@ -70,22 +56,6 @@ public class Compra {
     public void eliminarProducto(Producto producto) {
         this.total -= producto.getPrecio();
         this.productos.remove(producto);
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public EstadoCompra getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoCompra estado) {
-        this.estado = estado;
     }
 
     @Override

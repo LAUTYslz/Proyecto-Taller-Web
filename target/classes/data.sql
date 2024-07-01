@@ -274,3 +274,5 @@ CREATE TABLE DatosCompra(
     FOREIGN KEY (idCompra) REFERENCES compra(id),
     FOREIGN KEY (tarjeta_id) REFERENCES tarjeta(id)
 );
+
+ALTER TABLE Compra ADD direccion VARCHAR(100);

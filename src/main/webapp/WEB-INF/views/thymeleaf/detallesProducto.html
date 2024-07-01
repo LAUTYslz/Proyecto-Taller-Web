@@ -53,7 +53,10 @@
         <p> <span th:text="'Stock disponible: ' + ${stock}"></span> </p>
         <p> <span th:text="${producto.descripcion}"></span></p>
 
-        <button class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Agregar al carrito </button>
+        <form th:action="@{/agregarProducto}">
+            <input type="hidden" th:value="${producto.id}" name="productoId">
+            <button type="submit" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Agregar al carrito </button>
+        </form>
 
     </div>
 

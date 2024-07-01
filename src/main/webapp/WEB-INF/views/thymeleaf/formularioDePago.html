@@ -51,12 +51,12 @@
 
         <div class="form-group">
             <label for="celular">Número de celular</label>
-            <input th:field="*{celular}" type="number" class="form-control" id="celular">
+            <input th:field="*{celular}" type="number" class="form-control" id="celular" name="celular">
         </div>
 
         <div class="form-group">
             <label for="tarjeta">Número de tarjeta</label>
-            <input th:field="*{tarjeta.numeroDeTarjeta}" type="number" class="form-control" id="tarjeta">
+            <input th:field="*{tarjeta.numeroDeTarjeta}" type="number" class="form-control" id="tarjeta" name="tarjeta">
         </div>
 
         <div class="form-row">
@@ -72,7 +72,7 @@
 
         <div class="form-group">
             <label for="direccion">Dirección de facturación</label>
-            <input th:field="*{direccion}" type="text" class="form-control" id="direccion">
+            <input th:field="*{direccion}" type="text" class="form-control" id="direccion" name="direccion" autocomplete="on">
             <small id="dirHelp" class="form-text text-muted">Al contar con una membresía activa, tienes envío gratis</small>
         </div>
 
