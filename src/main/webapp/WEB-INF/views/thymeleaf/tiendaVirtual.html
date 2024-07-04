@@ -17,62 +17,72 @@
 
 <div th:replace="home :: nav"></div>
 
-<div class="container-cards">
-    <a th:href="@{/productos/etapa/1}">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img th:src="@{/img/etapa1.png}" alt="etapa1" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>Etapa 1</h1>
-                    <p>0 a 3 años</p>
-                </div>
-            </div>
-        </div>
-    </a>
+<div class="container-b">
 
-    <a th:href="@{/productos/etapa/2}">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img th:src="@{/img/etapa2.png}" alt="etapa2" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>Etapa 2</h1>
-                    <p>4 a 6 años</p>
-                </div>
-            </div>
-        </div>
-    </a>
+    <div class="section-button">
+        <a th:href="@{/carrito}"> <button class="btn btn-outline-primary"> Ver carrito  </button> </a>
+    </div>
 
-    <a th:href="@{/productos/etapa/3}">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img th:src="@{/img/etapa3.png}" alt="etapa3" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>Etapa 3</h1>
-                    <p>7 a 9 años</p>
+    <div class="container-cards">
+        <a th:href="@{/productos/etapa/1}">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img th:src="@{/img/etapa1.png}" alt="etapa1" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Etapa 1</h1>
+                        <p>0 a 3 años</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
 
-    <a th:href="@{/productos/etapa/4}">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img th:src="@{/img/etapa4.png}" alt="etapa4" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>Etapa 4</h1>
-                    <p>10 a 12 años</p>
+        <a th:href="@{/productos/etapa/2}">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img th:src="@{/img/etapa2.png}" alt="etapa2" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Etapa 2</h1>
+                        <p>4 a 6 años</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
+
+        <a th:href="@{/productos/etapa/3}">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img th:src="@{/img/etapa3.png}" alt="etapa3" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Etapa 3</h1>
+                        <p>7 a 9 años</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a th:href="@{/productos/etapa/4}">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img th:src="@{/img/etapa4.png}" alt="etapa4" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Etapa 4</h1>
+                        <p>10 a 12 años</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+
 </div>
 
 <div th:replace="home :: footer"></div>
