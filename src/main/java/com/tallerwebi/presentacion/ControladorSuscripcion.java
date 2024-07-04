@@ -17,15 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorSuscripcion {
 
-    private final RequestMappingHandlerAdapter requestMappingHandlerAdapter;
     private ServicioMembresia servicioMembresia;
     private final ServicioLogin servicioLogin;
 
 
-    public ControladorSuscripcion(ServicioMembresia servicioMembresia, ServicioLogin servicioLogin, RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
+    public ControladorSuscripcion(ServicioMembresia servicioMembresia, ServicioLogin servicioLogin) {
         this.servicioMembresia = servicioMembresia;
         this.servicioLogin = servicioLogin;
-        this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
     }
 
     @RequestMapping("/suscripcion")

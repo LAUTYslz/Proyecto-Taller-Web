@@ -1,46 +1,27 @@
 package com.tallerwebi.presentacion;
-
-import com.mysql.cj.AppendingBatchVisitor;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ControladorTienda {
-    private final RepositorioUsuario repositorioUsuario;
-    private final ServicioTienda servicioTienda;
+
     private final ServicioProducto servicioProducto;
-    private final RepositorioTienda repositorioTienda;
-    private final RepositorioProducto repositorioProducto;
     private final ServicioLogin servicioLogin;
     private final ServicioCompra servicioCompra;
-    private final RepositorioCompra repositorioCompra;
-    private final SessionFactory sessionFactory;
 
     @Autowired
-    public ControladorTienda(RepositorioUsuario repositorioUsuario, ServicioTienda servicioTienda, ServicioProducto servicioProducto, RepositorioTienda repositorioTienda, RepositorioProducto repositorioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, RepositorioCompra repositorioCompra, SessionFactory sessionFactory) {
-        this.repositorioUsuario = repositorioUsuario;
-        this.servicioTienda = servicioTienda;
+    public ControladorTienda(ServicioProducto servicioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra) {
         this.servicioProducto = servicioProducto;
-        this.repositorioTienda = repositorioTienda;
-        this.repositorioProducto = repositorioProducto;
         this.servicioLogin = servicioLogin;
         this.servicioCompra = servicioCompra;
-        this.repositorioCompra = repositorioCompra;
-        this.sessionFactory = sessionFactory;
     }
 
     @RequestMapping("/productos")
@@ -57,7 +38,7 @@ public class ControladorTienda {
             model.addAttribute("productos", productos);
             model.addAttribute("compra", new Compra()); // Al ingresar en una etapa, se manda un objeto compra para ser llenado cada vez q el usuario aprieta 'Agregar al carrito'
         } catch (ProductoInexistente e){
-            model.addAttribute("mensaje", "Actualmente no contamos con productos para la etapa de 0 a 3 años");
+            model.addAttribute("mensaje", "Actualmente no contamos con productos para esta etapa");
         }
 
         return new ModelAndView("productos", model);
@@ -228,19 +209,30 @@ public class ControladorTienda {
         Compra carrito = servicioCompra.getCarritoByUser(usuario);
 
         if (carrito == null){
-            model.addAttribute("error", "Carrito no encontrado");
+            model.put("error", "Carrito no encontrado");
             return new ModelAndView("formularioDePago", model);
         }
 
         try {
-
+            // Si la compra fue exitosa guardarla en el model y redirigir a compraExitosa.html
             servicioCompra.darDeAltaCompra(datosCompra, usuario);
-            model.addAttribute("datosCompra", datosCompra);
+
+            // Obtengo cada producto del carrito y disminuyo su stock, ya que la compra fue finalizada
+            for (Producto producto : servicioCompra.getProductosDeCompra(carrito.getId())) {
+                Long id = producto.getId();
+                servicioProducto.disminuirStockDeProducto(id);
+            }
+            model.put("datosCompra", datosCompra);
 
         } catch (TarjetaInvalida e) {
-            model.addAttribute("error", "El número de tarjeta ingresado no es correcto.");
+            model.put("error", "El número de tarjeta ingresado no es correcto.");
+            return new ModelAndView("formularioDePago", model);
         } catch (CodigoInvalido e) {
-            model.addAttribute("error", "La tarjeta está vencida");
+            model.put("error", "La tarjeta está vencida");
+            return new ModelAndView("formularioDePago", model);
+        } catch (ProductoInexistente e) {
+            model.put("error", "Lo siento, hubo un error al procesar tu compra.");
+            return new ModelAndView("formularioDePago", model);
         }
 
         return new ModelAndView("compraExitosa", model);

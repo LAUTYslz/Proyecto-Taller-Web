@@ -16,4 +16,5 @@ public interface ServicioProducto {
     List<Producto> obtenerProductosPorEtapa(Long id) throws ProductoInexistente;
     Long consultarStockPorId(Long id) throws StockInexistente;
     Producto buscarProductoPorId(Long id) throws ProductoInexistente;
+    Boolean disminuirStockDeProducto(Long id) throws ProductoInexistente;
 }

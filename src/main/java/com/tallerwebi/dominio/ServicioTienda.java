@@ -1,10 +1,12 @@
 package com.tallerwebi.dominio;
 
+import java.util.List;
+
 public interface ServicioTienda {
 
-    public Tienda obtenerListadoDeTiendas();
-    public String obtenerInfoTienda(Long id);
-    public Boolean guardarTienda(Tienda tienda);
-    public Boolean eliminarTienda(Long id);
+    List<Tienda> obtenerListadoDeTiendas();
+    String obtenerInfoTienda(Long id);
+    void guardarTienda(Tienda tienda);
+    void eliminarTienda(Long id);
 
 }

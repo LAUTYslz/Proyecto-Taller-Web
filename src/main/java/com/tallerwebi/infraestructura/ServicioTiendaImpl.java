@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("servicioTienda")
 @Transactional
@@ -20,22 +21,22 @@ public class ServicioTiendaImpl implements ServicioTienda {
     }
 
     @Override
-    public Tienda obtenerListadoDeTiendas() {
-        return null;
+    public List<Tienda> obtenerListadoDeTiendas() {
+        return (List<Tienda>) this.repositorioTienda.getAllTiendas();
     }
 
     @Override
     public String obtenerInfoTienda(Long id) {
-        return "";
+        return this.repositorioTienda.obtenerInfoTienda(id).toString();
     }
 
     @Override
-    public Boolean guardarTienda(Tienda tienda) {
-        return null;
+    public void guardarTienda(Tienda tienda) {
+      this.repositorioTienda.agregarTienda(tienda);
     }
 
     @Override
-    public Boolean eliminarTienda(Long id) {
-        return null;
+    public void eliminarTienda(Long id) {
+        this.repositorioTienda.eliminarTienda(id);
     }
 }

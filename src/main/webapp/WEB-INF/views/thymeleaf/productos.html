@@ -41,6 +41,10 @@
 
 <div class="container-cards">
 
+    <div class="section-button">
+        <a th:href="@{/carrito}"> <button class="btn btn-outline-primary"> Ver carrito  </button> </a>
+    </div>
+
     <!-- Mostrar mensaje -->
     <div th:if="${mensaje}">
         <p th:text="${mensaje}"></p>
@@ -61,7 +65,6 @@
     </div>
     </div>
 
-    <a th:href="@{/carrito}"> <button class="btn btn-outline-primary"> Ver carrito  </button> </a>
 
 </div>
 

@@ -84,5 +84,17 @@ public class ServicioProductoImpl implements ServicioProducto {
         }
     }
 
+    @Override
+    public Boolean disminuirStockDeProducto(Long id) throws ProductoInexistente {
+        Producto producto = repositorioProducto.obtenerInfoProducto(id);
+
+        if (producto != null){
+            producto.setStock(producto.getStock() - 1);
+            return true;
+        } else {
+            throw new ProductoInexistente();
+        }
+    }
+
 
 }
