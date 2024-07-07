@@ -1,25 +1,21 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.excepcion.CodigoInvalido;
-import com.tallerwebi.dominio.excepcion.CompraInexistente;
-import com.tallerwebi.dominio.excepcion.TarjetaInvalida;
+import com.tallerwebi.dominio.excepcion.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface ServicioCompra {
 
-   Compra buscarCompraPorId(Long id) throws CompraInexistente;
-   List<Compra> getAllCompras();
-   void agregarCompra(Compra compra);
-   Boolean agregarProducto(Producto producto, Long idCompra);
-   Boolean eliminarProducto(Producto producto, Long idCompra);
-   Boolean finalizarCompra(Long id);
-   Boolean cancelarCompra(Long id);
-   Boolean aplicarDescuento(Integer desc, Long idCompra);
-   void actualizarCompra(Compra compra);
-   Compra getCarritoByUser(Usuario usuario);
-   List<Producto> getProductosDeCompra(Long idCompra);
-   Boolean darDeAltaCompra(DatosCompra datosCompra, Usuario usuario) throws TarjetaInvalida, CodigoInvalido;
+    Compra buscarCompra(Long id) throws CompraInexistente;
+    void agregarCompra(Compra compra);
+    void actualizarCompra(Compra compra);
+    void eliminarCompra(Compra compra);
+    List<Producto> obtenerProductosDeCompra(Long id) throws NoHayProductos;
+    List<Compra> listarCompras();
+    List<Compra> obtenerHistorialDeComprasPorUsuario(Usuario usuario) throws HistorialInexistente;
+    Compra obtenerCarritoPorUsuario(Usuario usuario);
+    Compra iniciarCompra(Long id);
+    void agregarProductoACompra(Producto producto, Long idCompra) throws CompraInexistente;
+    void eliminarProductoACompra(Producto producto, Long idCompra) throws CompraInexistente;
 
 }

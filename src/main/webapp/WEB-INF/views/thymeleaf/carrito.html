@@ -19,7 +19,7 @@
 <div class="container mt-5">
     <h2>Tu Carrito de Compras</h2>
 
-    <div>
+    <div th:if="${mensaje != null}">
         <p th:text="${mensaje}"></p>
     </div>
 

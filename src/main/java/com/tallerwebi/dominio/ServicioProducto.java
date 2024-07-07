@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface ServicioProducto {
 
-    Producto buscarProductoPorNombre(String nombre) throws ProductoInexistente;
-    void agregarProducto(Producto producto);
+    void guardarProducto(Producto producto);
     void actualizarProducto(Producto producto);
-    void eliminarProducto(Long id);
-    List<Producto> listarProductos() throws NoHayProductos;
-    List<Producto> obtenerProductosPorEtapa(Long id) throws ProductoInexistente;
-    Long consultarStockPorId(Long id) throws StockInexistente;
-    Producto buscarProductoPorId(Long id) throws ProductoInexistente;
-    Boolean disminuirStockDeProducto(Long id) throws ProductoInexistente;
+    void eliminarProducto(Long idProducto);
+    Producto buscarProductoPorId(Long idProducto) throws ProductoInexistente;
+    Long consultarStockPorProducto(Long idProducto) throws StockInexistente;
+    void disminuirStockDeProducto(Long idProducto);
+    List<Producto> obtenerProductosPorEtapa(Long idEtapa) throws NoHayProductos;
+    List<Producto> listarProductos();
+
 }

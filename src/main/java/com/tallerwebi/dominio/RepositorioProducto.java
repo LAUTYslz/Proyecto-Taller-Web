@@ -1,16 +1,18 @@
 package com.tallerwebi.dominio;
 
+import com.tallerwebi.dominio.excepcion.StockInexistente;
+
 import java.util.List;
 
 public interface RepositorioProducto {
 
-    Producto buscarProductoPorNombre(String nombre);
-    void agregarProducto(Producto producto);
+    void guardarProducto(Producto producto);
     void actualizarProducto(Producto producto);
-    void eliminarProducto(Long id);
+    void eliminarProducto(Long idProducto);
+    Producto buscarProductoPorId(Long idProducto);
+    Long consultarStockPorProducto(Long idProducto);
+    void disminuirStockDeProducto(Long idProducto);
+    List<Producto> obtenerProductosPorEtapa(Long idEtapa);
     List<Producto> listarProductos();
-    List<Producto> obtenerProductosPorEtapa(Long id);
-    Long consultarStockPorId(Long id);
-    Producto obtenerInfoProducto(Long id);
 
 }

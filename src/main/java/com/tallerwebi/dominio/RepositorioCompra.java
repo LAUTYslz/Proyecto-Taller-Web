@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface RepositorioCompra {
 
-    public Compra buscarCompraPorId(Long id);
-    public List<Compra> getAllCompras();
-    public void agregarCompra(Compra compra);
-    public void eliminarCompra(Compra compra);
-    public void actualizarCompra(Compra compra);
-    Compra getCarritoByUser(Usuario usuario);
-    List<Producto> getProductosDeCompra(Long idCompra);
-    void agregarDatosCompra(DatosCompra compra);
+    Compra buscarCompra(Long id);
+    void agregarCompra(Compra compra);
+    void actualizarCompra(Compra compra);
+    void eliminarCompra(Compra compra);
+    List<Compra> listarCompras();
+    List<Compra> obtenerHistorialDeComprasPorUsuario(Usuario usuario);
+    Compra obtenerCarritoPorUsuario(Usuario usuario);
 }

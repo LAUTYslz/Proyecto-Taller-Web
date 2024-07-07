@@ -68,6 +68,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTurno.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\DatabaseInitializationConfig.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\HistorialInexistente.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTestImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTurnoImpl.java

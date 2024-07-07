@@ -18,7 +18,6 @@ public class DatosCompra {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "idCompra")
     private Compra compra;
 
     private String nombre;

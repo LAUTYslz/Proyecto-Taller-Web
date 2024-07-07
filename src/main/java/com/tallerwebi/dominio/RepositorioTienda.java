@@ -3,10 +3,10 @@ import java.util.List;
 
 public interface RepositorioTienda {
 
-    public List<Tienda> getAllTiendas();
-    public Tienda obtenerInfoTienda(Long id);
-    public void agregarTienda(Tienda tienda);
-    public void eliminarTienda(Long id);
-
+    List<Tienda> obtenerListadoDeTiendas();
+    Tienda obtenerTiendaPorId(Long id);
+    void guardarTienda(Tienda tienda);
+    void eliminarTienda(Long id);
+    void actualizarTienda(Tienda tienda);
 
 }
