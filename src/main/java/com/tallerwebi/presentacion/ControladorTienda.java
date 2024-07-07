@@ -15,12 +15,14 @@ public class ControladorTienda {
     private final ServicioProducto servicioProducto;
     private final ServicioLogin servicioLogin;
     private final ServicioCompra servicioCompra;
+    private final ServicioTarjeta servicioTarjeta;
 
     @Autowired
-    public ControladorTienda(ServicioProducto servicioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra) {
+    public ControladorTienda(ServicioProducto servicioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, ServicioTarjeta servicioTarjeta) {
         this.servicioProducto = servicioProducto;
         this.servicioLogin = servicioLogin;
         this.servicioCompra = servicioCompra;
+        this.servicioTarjeta = servicioTarjeta;
     }
 
     @RequestMapping("/productos")
@@ -104,12 +106,11 @@ public class ControladorTienda {
             carrito = servicioCompra.iniciarCompra(usuario.getId());
             servicioCompra.agregarCompra(carrito);
         } else {
-            // Si el carrito ya está creado le agrego los productos
+
             try {
                 Producto producto = servicioProducto.buscarProductoPorId(productoId);
                 Long stock = servicioProducto.consultarStockPorProducto(productoId);
 
-                // Agrego el producto al carrito
                 servicioCompra.agregarProductoACompra(producto, carrito.getId());
 
 
@@ -142,7 +143,7 @@ public class ControladorTienda {
         if (carrito == null){
             model.addAttribute("mensaje", "Carrito no encontrado");
         } else {
-            // Si el carrito existe elimino el producto
+
             try {
                 Producto producto = servicioProducto.buscarProductoPorId(productoId);
                 servicioCompra.eliminarProductoACompra(producto, carrito.getId());
@@ -158,6 +159,68 @@ public class ControladorTienda {
     }
 
 
+    @RequestMapping("/finalizarCompra")
+    public ModelAndView finalizarCompra(@RequestParam("totalCompra") Double totalCompra, HttpServletRequest request){
+        ModelMap model = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        }
+
+        Compra carrito = servicioCompra.obtenerCarritoPorUsuario(usuario);
+
+        if (carrito == null){
+            model.addAttribute("mensaje", "Lo sentimos. Algo falló al procesar la compra");
+            return new ModelAndView("carrito", model);
+        } else {
+            model.addAttribute("compra", carrito);
+            model.addAttribute("tarjeta", new Tarjeta());
+        }
+
+        return new ModelAndView("formularioDePagoCompra", model);
+
+    }
+
+    @RequestMapping("/completarPago")
+    public ModelAndView completarPago(@ModelAttribute("tarjeta") Tarjeta tarjeta, @RequestParam("idCompra") Long idCompra,
+                                      @RequestParam("direccion") String direccion, HttpServletRequest request){
+
+        ModelMap model = new ModelMap();
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+
+        if (usuario == null){
+            return new ModelAndView("redirect:/login");
+        }
+
+        Compra carrito = servicioCompra.obtenerCarritoPorUsuario(usuario);
+
+        if (carrito == null){
+            model.addAttribute("mensaje", "Lo sentimos. Algo falló al procesar la compra");
+            return new ModelAndView("carrito", model);
+        } else {
+            try {
+
+                servicioTarjeta.validarTarjeta(tarjeta);
+                servicioTarjeta.guardarTarjeta(tarjeta);
+                servicioCompra.asociarTarjetaACompra(idCompra, tarjeta);
+                servicioCompra.asociarDireccionACompra(idCompra, direccion);
+                servicioCompra.marcarComoRealizada(carrito.getId());
+
+                carrito = servicioCompra.buscarCompra(idCompra);
+                model.addAttribute("compra", carrito);
+
+            } catch (CompraInexistente e) {
+                model.addAttribute("error", "Lo sentimos. Algo falló al procesar el pago");
+                return new ModelAndView("carrito", model);
+            } catch (TarjetaInvalida e) {
+                model.addAttribute("error", "Revisa los datos ingresados de tu tarjeta");
+                return new ModelAndView("carrito", model);
+            }
+        }
+
+        return new ModelAndView("compraExitosa", model);
+    }
 
 }
 

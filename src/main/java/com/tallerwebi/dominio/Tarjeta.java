@@ -11,8 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
-@Entity @Getter
-@Setter
+@Entity @Getter @Setter
 public class Tarjeta {
 
     @Id
@@ -26,5 +25,6 @@ public class Tarjeta {
     public Tarjeta (){
 
     }
+
 
 }

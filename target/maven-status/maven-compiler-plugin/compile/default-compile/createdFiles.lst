@@ -1,3 +1,4 @@
+com\tallerwebi\dominio\RepositorioTarjeta.class
 com\tallerwebi\dominio\excepcion\MembresiaInexistente.class
 com\tallerwebi\dominio\excepcion\NoPudoGuardarseElProfesional.class
 com\tallerwebi\dominio\excepcion\TipoNoEncontradoPorID.class
@@ -8,6 +9,7 @@ com\tallerwebi\dominio\ServicioProfesional.class
 com\tallerwebi\dominio\RepositorioProfesional.class
 com\tallerwebi\dominio\RepositorioUsuario.class
 com\tallerwebi\infraestructura\RepositorioMembresiaActivadaImpl.class
+com\tallerwebi\infraestructura\ServicioTarjetaImpl.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
 com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
@@ -30,6 +32,7 @@ com\tallerwebi\dominio\ServicioMembresia.class
 com\tallerwebi\dominio\RepositorioAdmi.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class
 com\tallerwebi\dominio\excepcion\TarjetaInvalida.class
+com\tallerwebi\infraestructura\RepositorioTarjetaImpl.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
 com\tallerwebi\presentacion\ControladorAdministrador.class
@@ -46,6 +49,7 @@ com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
 com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\DatosMembresia.class
 com\tallerwebi\dominio\TipoProfesional.class
+com\tallerwebi\dominio\ServicioTarjeta.class
 com\tallerwebi\dominio\excepcion\HistorialInexistente.class
 com\tallerwebi\dominio\Tarjeta.class
 com\tallerwebi\infraestructura\ServicioProfesionalImpl.class

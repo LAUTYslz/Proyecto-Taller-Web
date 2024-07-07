@@ -26,6 +26,9 @@ public class Compra {
 
     private String direccion;
 
+    @ManyToOne
+    private Tarjeta tarjeta;
+
     public Compra(){
     }
 

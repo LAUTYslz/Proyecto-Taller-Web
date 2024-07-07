@@ -17,5 +17,8 @@ public interface ServicioCompra {
     Compra iniciarCompra(Long id);
     void agregarProductoACompra(Producto producto, Long idCompra) throws CompraInexistente;
     void eliminarProductoACompra(Producto producto, Long idCompra) throws CompraInexistente;
+    void asociarTarjetaACompra(Long idCompra, Tarjeta tarjeta) throws CompraInexistente;
+    void asociarDireccionACompra(Long idCompra, String direccion) throws CompraInexistente;
+    void marcarComoRealizada(Long idCompra) throws CompraInexistente;
 
 }

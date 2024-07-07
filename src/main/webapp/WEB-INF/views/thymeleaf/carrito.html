@@ -47,7 +47,7 @@
         </table>
         <p>Total: <span th:text="${compra.total}"></span></p>
 
-        <form th:action="@{finalizarCompra}">
+        <form th:action="@{/finalizarCompra}">
             <input type="hidden" th:value="${compra.total}" name="totalCompra">
             <button type="submit" class="btn btn-success"> Finalizar compra </button>
         </form>

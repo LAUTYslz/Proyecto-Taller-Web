@@ -9,7 +9,7 @@
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/formulario.css}"/>
+    <link rel="stylesheet" th:href="@{/css/compraExitosa.css}"/>
 
     <title>Compra exitosa</title>
 </head>
@@ -17,21 +17,22 @@
 
 <div th:replace="home :: nav"></div>
 
-<div th:if="${datosCompra != null}">
-    <div class="datos-compra-container">
+<div th:if="${compra != null}">
+    <div class="datos-facturacion-cont">
 
         <h2> Datos de facturación </h2>
-        <p> Total: <span th:text="${datosCompra.compra.total}"></span> </p>
-        <p> Nombre y Apellido: <span th:text="${datosCompra.nombre}"></span> </p>
-        <p> Email: <span th:text="${datosCompra.email}"></span></p>
-        <p> Número de documento: <span th:text="${datosCompra.numDoc}"></span></p>
-        <p> Celular: <span th:text="${datosCompra.celular}"></span></p>
-        <p> Fecha de compra: <span th:text="${datosCompra.fecha}"></span></p>
-        <p> Dirección de facturación: <span th:text="${datosCompra.direccion}"></span></p>
-        <p> Tarjeta: <span th:text="${datosCompra.tarjeta}"></span></p>
+        <p> Total: <span th:text="${compra.total}"></span> </p>
+        <p> Dirección de facturación: <span th:text="${compra.direccion}"></span></p>
+        <p> Tarjeta: <span th:text="${compra.tarjeta.numeroDeTarjeta}"></span></p>
+
+        <p> Productos: </p>
+        <ul th:each="producto : ${compra.productos}">
+            <li th:text="|${producto.nombre} - ${producto.precio}|"></li>
+        </ul>
 
     </div>
 </div>
+
 
 <div th:replace="home :: footer"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
