@@ -212,10 +212,10 @@ public class ControladorTienda {
 
             } catch (CompraInexistente e) {
                 model.addAttribute("error", "Lo sentimos. Algo falló al procesar el pago");
-                return new ModelAndView("carrito", model);
+                return new ModelAndView("formularioDePagoCompra", model);
             } catch (TarjetaInvalida e) {
                 model.addAttribute("error", "Revisa los datos ingresados de tu tarjeta");
-                return new ModelAndView("carrito", model);
+                return new ModelAndView("formularioDePagoCompra", model);
             }
         }
 

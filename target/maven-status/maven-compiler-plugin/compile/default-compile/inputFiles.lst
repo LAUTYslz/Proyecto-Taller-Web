@@ -5,6 +5,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioExistente.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTurno.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Turno.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioTarjetaImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ElUsuarioYatieneTurnoConElProfesional.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\EstadoCompra.java
@@ -29,7 +30,6 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Tarjeta.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioProfesional.java
-C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\DatosCompra.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ModeloTest.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioProducto.java
@@ -39,6 +39,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ElUsuarioYaTieneTurnoEnEsaFechaHora.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorLogin.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Etapa.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTarjeta.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTipoProfesional.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioProfesionalImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\RespuestaTest.java
@@ -84,6 +85,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorSuscripcion.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Compra.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\PasswordLongitudIncorrecta.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTarjeta.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorAdministrador.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MembresiaInexistente.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioMetodo.java
@@ -94,6 +96,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\inf
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\CodigoInvalido.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTienda.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\NoposeeEtapa.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTarjetaImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioUsuarioImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Profesional.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTipoProfesional.java

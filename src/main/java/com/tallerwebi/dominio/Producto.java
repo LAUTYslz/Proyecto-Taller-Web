@@ -17,25 +17,14 @@ public class Producto {
     private Double precio;
     private String imagenUrl;
     private Long stock;
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     private Tienda tienda;
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     private Etapa etapa;
 
     public Producto(){
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Producto producto = (Producto) o;
-        return Objects.equals(id, producto.id);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

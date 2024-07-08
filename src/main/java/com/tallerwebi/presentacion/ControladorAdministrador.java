@@ -2,7 +2,9 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
+import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.juegoInexistente;
+import com.tallerwebi.infraestructura.ServicioTiendaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 @Controller
 public class ControladorAdministrador {
 
+    private final ServicioTienda servicioTienda;
+    private final ServicioProducto servicioProducto;
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
     private ServicioProfesional servicioProfesional;
@@ -23,10 +27,12 @@ public class ControladorAdministrador {
     private ServicioTipoProfesional servicioTipoProfesional;
 
     @Autowired
-    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional) {
+    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioTienda servicioTienda, ServicioProducto servicioProducto) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
         this.servicioProfesional = servicioProfesional;
+        this.servicioTienda = servicioTienda;
+        this.servicioProducto = servicioProducto;
         this.servicioMetodo = servicioMetodo;
         this.servicioTipoProfesional = servicioTipoProfesional;
     }
@@ -318,6 +324,134 @@ public class ControladorAdministrador {
         servicioProfesional.eliminarProfesional(profesional);
         return "redirect:/admin/gestionarProfesionales";
     }
+
+
+    //----------------------GESTIÓN DE TIENDAS ---------------------------------------
+    @RequestMapping("/admin/gestionarTiendas")
+    public ModelAndView mostrarTiendas() {
+        ModelAndView mav = new ModelAndView("gestionarTiendas");
+
+        List<Tienda> tiendas = servicioTienda.obtenerListadoDeTiendas();
+
+        mav.addObject("tiendas", tiendas);
+
+        return mav;
+
+    }
+
+    // CREACIÓN
+
+    @RequestMapping("/admin/crearTienda")
+    public ModelAndView crearTienda(){
+        ModelAndView mav = new ModelAndView("form_crearTienda");
+
+        mav.addObject("tienda", new Tienda());
+
+        return mav;
+
+    }
+
+    @PostMapping("/admin/guardarTienda")
+    public ModelAndView guardarTienda(@ModelAttribute("tienda") Tienda tienda){
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarTiendas");
+
+        servicioTienda.guardarTienda(tienda);
+        Tienda tiendaCreada = servicioTienda.obtenerTiendaPorId(tienda.getId());
+        if (tiendaCreada == null) {
+            mav.addObject("error", "Lo sentimos. No hemos podido crear la tienda. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+    }
+
+    // EDICIÓN
+    @GetMapping("/admin/editarTienda/{id}")
+    public ModelAndView editarTienda(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("form_editarTienda");
+
+        Tienda tienda = servicioTienda.obtenerTiendaPorId(id);
+
+        mav.addObject("tienda", tienda);
+
+        return mav;
+
+    }
+
+    @PostMapping("/admin/guardarCambiosTienda")
+    public ModelAndView guardarCambiosTienda(@ModelAttribute("tienda") Tienda tienda){
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarTiendas");
+
+        if (tienda == null) {
+            mav.addObject("error", "Lo sentimos. No hemos podido guardar los cambios de la tienda");
+        } else {
+            servicioTienda.actualizarTienda(tienda);
+        }
+
+        return mav;
+    }
+
+    // ELIMINACIÓN
+
+    @RequestMapping("/admin/eliminarTienda/{id}")
+    public ModelAndView eliminarTienda(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarTiendas");
+        Tienda tienda = servicioTienda.obtenerTiendaPorId(id);
+
+        if (tienda == null) {
+            mav.addObject("error", "Lo sentimos. Hubo un error al eliminar la tienda. Intenta nuevamente más tarde");
+        } else {
+            servicioTienda.eliminarTienda(id);
+        }
+
+        return mav;
+
+    }
+
+    //----------------------GESTIÓN DE PRODUCTOS ---------------------------------------
+    @RequestMapping("/admin/gestionarProductos")
+    public ModelAndView mostrarProductos() {
+        ModelAndView mav = new ModelAndView("gestionarProductos");
+
+        List<Producto> productos = servicioProducto.listarProductos();
+
+        mav.addObject("productos", productos);
+
+        return mav;
+
+    }
+
+    // CREACIÓN
+
+    @RequestMapping("/admin/crearProducto")
+    public ModelAndView crearProducto(){
+        ModelAndView mav = new ModelAndView("form_crearProducto");
+
+        List<Tienda> tiendas = servicioTienda.obtenerListadoDeTiendas();
+        List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+
+        mav.addObject("producto", new Producto());
+        mav.addObject("tiendas", tiendas);
+        mav.addObject("etapas", etapas);
+
+        return mav;
+
+    }
+
+    @PostMapping("/admin/guardarProducto")
+    public ModelAndView guardarTienda(@ModelAttribute("producto") Producto producto) {
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+
+        servicioProducto.guardarProducto(producto);
+        try {
+            Producto productoCreado = servicioProducto.buscarProductoPorId(producto.getId());
+        } catch (Exception e) {
+            mav.addObject("error", "Lo sentimos. No hemos podido crear el producto. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+
+    }
+
 }
 
 
