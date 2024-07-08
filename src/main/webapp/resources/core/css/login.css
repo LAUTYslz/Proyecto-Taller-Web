@@ -1,0 +1,44 @@
+.btn-secondary{
+    background-color: darkslateblue;
+}
+.form-container{
+    margin-top:50px;
+    margin-bottom: 30px;
+}
+hr {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: .25;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10vh auto;
+}
+form{
+    width:60vh;
+}
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+input{
+    margin-bottom: 3vh;
+}
+label{
+    margin: 0;
+    padding: 0;
+    height: 10vh;
+}
+#ir-a-registrarme{
+    color: #ff7300;
+    text-decoration: none;
+    margin-top: 2vh;
+}

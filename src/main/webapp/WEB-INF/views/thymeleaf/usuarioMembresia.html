@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,191 +22,9 @@
     <!-- Incluir Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-        <div class="navbar-nav">
-            <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-            <a class="nav-link" href="#">Eventos/Cursos</a>
-            <a class="nav-link" th:href="@{/test}">Tests</a>
-            <a class="nav-link" href="#">Foro Comunidad</a>
-        </div>
-
-        <a class="navbar-brand" th:href="@{/home}">
-            <img th:src="@{/img/educareLogo.png}" alt="Logo">
-        </a>
-
-        <div class="navbar-nav ml-auto">
-
-            <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
-            <div class="search-container">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-            </div>
-        </div>
-    </nav>
-    <style>
-        /* Estilos para el popup */
-        .popup {
-            display: none; /* Ocultar por defecto */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-            z-index: 1000; /* Z-index alto para que esté por encima de todo */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .popup-content h2 {
-            margin-top: 0;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .close:hover {
-            color: red;
-        }
-
-        body {
-            font-family: emoji;
-            background-color: #f2f2f2;
-
-            padding: 20px
-        }
-
-        main {
-            display: flex;
-            flex-direction: column; /* Para alinear elementos verticalmente */
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Mínimo alto del viewport */
-        }
-
-        .container {
-            font-family: emoji;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 1000px;
-            margin-bottom: 20px; /* Espacio inferior */
-        }
-
-        .perfil {
-            background-color: lightgray;
-            padding: 77px;
-            border-radius: 132px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 155%;
-            max-width: 400px;
-            margin-left: 20px;
-            font-family: emoji;
-        }
-
-        h1 {
-            color: #4f3c6e; /* Violeta */
-            font-family: emoji;
-            margin-bottom: 20px;
-            margin-top:20px;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
-        }
-
-        .button {
-            background-color: #8a5aa4; /* Lila */
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #c6a1e3; /* Cambio de color en hover */
-        }
-
-        .btn-primary {
-            color: #dacdea;
-            background-color: #8a5aa4;
-            border-color: dimgray;
-        }
-        .pasos {
-            display: flex;
-            align-items: center;
-            justify-content: space-around; /* Espacio uniforme entre los pasos */
-            margin: 20px 0;
-        }
-
-        .paso {
-            text-align: center;
-            margin: 0 20px; /* Espacio horizontal entre los pasos */
-        }
-
-        .circulo {
-            width: 120px; /* Tamaño del círculo */
-            height: 120px; /* Tamaño del círculo */
-            background-color: chocolate;
-            border-radius: 50%;
-            color: white;
-            font-size: 36px; /* Tamaño del ícono dentro del círculo */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .paso i {
-            position: absolute;
-            bottom: -30px; /* Ajuste vertical */
-            left: 50%; /* Centrado horizontal */
-            transform: translateX(-50%); /* Centrado horizontal */
-            font-size: 24px;
-            color: chocolate;
-        }
-
-        /* Estilos para los enlaces */
-        .paso a {
-            text-decoration: none;
-            color: black;
-            display: block;
-            margin-top: 15px; /* Espacio entre el círculo y el texto */
-            font-weight: bold; /* Texto en negrita */
-            transition: color 0.3s ease; /* Transición suave del color */
-        }
-
-        .paso a:hover {
-            color: chocolate; /* Cambio de color al pasar el mouse */
-
-        }
-
-    </style>
 </head>
 <body>
+<div th:replace="home :: nav"></div>
 
 <main>
     <h1>Bienvenido, <span th:text="${usuario.nombre}"></span>!</h1>
@@ -244,8 +63,7 @@
     </div>
 
 
-    <div class="container">
-        <div class="row">
+    <div class="contenido-container">
             <!-- Columna para las cards -->
             <div class="col-md-8">
                 <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -293,7 +111,7 @@
             </div>
 
             <!-- Columna para perfil -->
-            <div class="col-md-4">
+            <div class="perfil-container">
                 <div class="perfil">
                     <h2>Mi Perfil  </h2><i class="fa fa-user" aria-hidden="true"></i>
                     <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
@@ -323,17 +141,17 @@
                     </div>
                     <div th:if="${hijos == null or #lists.size(hijos) == 0}">
                         <p>No hay hijos registrados.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
     </div>
 </main>
+<div th:replace="home :: footer"></div>
+
 <script th:src="@{/usuarioMembre.js}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
-<div th:replace="home :: footer"></div>
 </html>

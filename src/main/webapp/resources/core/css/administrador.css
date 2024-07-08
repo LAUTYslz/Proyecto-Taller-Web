@@ -1,0 +1,108 @@
+    /* Estilos básicos para el botón */
+.boton-modificar {
+    background-color: darkslateblue;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    /*font-family: Schoolbell, cursive;
+
+     */
+}
+
+body {
+    /*font-family: Schoolbell, cursive;
+
+     */
+    margin: 0;
+    padding: 0;
+}
+.gestion-container {
+    width: 70%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #4f3c6e;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.gestion-container a{
+    background-color: #b9a0ea;
+    border-radius: 50px;
+    color: white;
+    padding: 20px;
+    margin-top:10px;
+    margin-left:10px;
+    font-family: Schoolbell, cursive;
+    transition: all .2s;
+}
+.gestion-container a:hover{
+    scale: 1.1;
+    text-decoration: none;
+}
+.gestion-container p{
+    color: white;
+}
+h1 {
+    margin-top: 0;
+    color: white;
+}
+h2{
+    text-align:center;
+}
+button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: darkslateblue;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    font-family: Schoolbell, cursive;
+    width: 23vh;
+    transition: all 0.3s;
+}
+button:hover{
+    scale:1.1;
+}
+/* Estilos para la tabla */
+    .listado-container{
+        width: 70%;
+        margin: auto;
+        margin: auto auto 10vh;
+        border-radius: 20px;
+
+    }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #a384e1;
+}
+.input-acciones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding:3px;
+}
+th, td {
+    border: 1px solid #ffffff;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+    color: white;
+
+}
+thead{
+    background-color: darkslateblue;
+}
+

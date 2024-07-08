@@ -23,6 +23,8 @@
 
     <h1>Mis Turnos</h1>
 
+    <h3>El monto total a cobrar es: $<span th:text="${montoACobrar}"></span></h3>
+
     <div class="table-container">
         <table>
             <thead>
@@ -45,6 +47,8 @@
                             <option value="PENDIENTE">Pendiente</option>
                             <option value="CONFIRMADO">Confirmado</option>
                             <option value="CANCELADO">Cancelado</option>
+                            <option value="REALIZADO">Realizado</option>
+                            <option value="VENCIDO">Vencido</option>
                         </select>
                         <button type="submit">Actualizar</button>
                     </form>

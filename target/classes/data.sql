@@ -140,8 +140,9 @@ CREATE TABLE Profesional (
     tipo_id BIGINT,
     FOREIGN KEY (tipo_id) REFERENCES TipoProfesional(id),
     metodo_id BIGINT,
-    FOREIGN KEY (metodo_id) REFERENCES Metodo(id)
-    );
+    FOREIGN KEY (metodo_id) REFERENCES Metodo(id),
+    valorConsulta INT DEFAULT 10000
+);
 INSERT INTO Profesional (nombre, telefono, email, direccion, institucion, tipo_id, metodo_id) VALUES
 ('Dr. Juan Pérez', '+1122334455', 'juan.perez@example.com', 'Av. Siempre Viva 123', 'Hospital Central', 1, 1),
 ('Dr. Maria Gomez', '+1122334456', 'maria.gomez@example.com', 'Calle Falsa 456', 'Clínica Norte', 2, 2),

@@ -29,6 +29,7 @@ public class ServicioTurnoImpl implements ServicioTurno {
     public Turno agendarTurno(Long usuarioId, Long profesionalId, Date fechaHora) {
         List<Turno> turnosExistentesConMismoProfesional = repositorioTurno.traerTurnosActivosConProfesional(usuarioId, profesionalId);
         List<Turno> turnosExistentesEnMismaFechaHora = repositorioTurno.traerTurnosActivosEnHorario(usuarioId, fechaHora);
+        boolean profesionalOcupado = repositorioTurno.profesionalTieneTurnoEnFechaHora(profesionalId, fechaHora);
         Date fechaHoraActual = new Date();
 
         if (!turnosExistentesConMismoProfesional.isEmpty()) {
@@ -37,6 +38,8 @@ public class ServicioTurnoImpl implements ServicioTurno {
             throw new ElUsuarioYaTieneTurnoEnEsaFechaHora();
         } else if (fechaHora.before(fechaHoraActual)) {
             throw new ProhibidoFechaAnteriorALaActual();
+        } else if (profesionalOcupado) {
+            throw new RuntimeException("El profesional ya tiene un turno en esta fecha y hora.");
         }
 
         Usuario usuario = repositorioUsuario.buscarPorId(usuarioId);

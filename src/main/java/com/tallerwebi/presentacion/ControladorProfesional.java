@@ -29,14 +29,6 @@ public class ControladorProfesional {
         // Obtener el usuario actual
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
 
-        // Agregar el usuario
-        //modelAndView.addObject("usuario", usuario);
-        //List<Etapa> etapas = servicioAdmi.listaDeEtapas();
-        //List<Juego> juegos = servicioAdmi.listasDeJuegos();
-
-        // Agregar las listas al modelo para que estén disponibles en la vista
-        //model.addAttribute("etapas", etapas);
-        //model.addAttribute("juegos", juegos);
         model.addAttribute("usuario", usuario);
         // Establecer la vista
         modelAndView.setViewName("home_profesional");

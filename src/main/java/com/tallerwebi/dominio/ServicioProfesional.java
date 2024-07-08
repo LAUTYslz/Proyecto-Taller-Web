@@ -26,5 +26,7 @@ public interface ServicioProfesional {
 
     List<Profesional> traerProfesionalesSinTienda();
 
+    Integer calcularMontoACobrar(String mail);
+
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }

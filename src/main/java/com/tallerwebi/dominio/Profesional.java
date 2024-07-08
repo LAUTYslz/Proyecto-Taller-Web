@@ -24,6 +24,16 @@ public class Profesional {
     @JoinColumn(name = "metodo_id")
     private Metodo metodo;
 
+    private Integer valorConsulta = 10000;
+
+    public Integer getValorConsulta() {
+        return valorConsulta;
+    }
+
+    public void setValorConsulta(Integer valorConsulta) {
+        this.valorConsulta = valorConsulta;
+    }
+
     public Profesional() {
     }
 

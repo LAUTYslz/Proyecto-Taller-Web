@@ -17,7 +17,9 @@ com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
 com\tallerwebi\dominio\Hijo.class
 com\tallerwebi\dominio\Consulta.class
 com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.class
+com\tallerwebi\dominio\ServicioTurno.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
+com\tallerwebi\presentacion\ControladorTurno.class
 com\tallerwebi\dominio\excepcion\ElUsuarioYatieneTurnoConElProfesional.class
 com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
@@ -27,13 +29,17 @@ com\tallerwebi\dominio\ServicioMembresiaActivada.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\dominio\Estado.class
 com\tallerwebi\dominio\excepcion\MetodoNoEncontradoPorID.class
+com\tallerwebi\dominio\excepcion\ElProfesionalNoTieneTurnosRealizados.class
 com\tallerwebi\dominio\excepcion\EtapaInexistente.class
 com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\DatosMembresia.class
+com\tallerwebi\infraestructura\ServicioTurnoImpl.class
 com\tallerwebi\dominio\ServicioCelndario.class
 com\tallerwebi\dominio\TipoProfesional.class
 com\tallerwebi\config\DatabaseInitializationConfig.class
+com\tallerwebi\dominio\Turno.class
 com\tallerwebi\dominio\excepcion\UsuarioNoPoseeMembresiaActivada.class
+com\tallerwebi\infraestructura\RepositorioTurnoImpl.class
 com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
@@ -42,6 +48,7 @@ com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
 com\tallerwebi\dominio\RepositorioAdmi.class
+com\tallerwebi\dominio\RepositorioTurno.class
 com\tallerwebi\dominio\excepcion\ProhibidoFechaAnteriorALaActual.class
 com\tallerwebi\dominio\Tarjeta.class
 com\tallerwebi\infraestructura\RepositorioUsuarioImpl.class

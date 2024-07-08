@@ -2,7 +2,6 @@ package com.tallerwebi.dominio;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface RepositorioTurno {
     List<Turno> buscarTurnosPorUsuario(Usuario usuario);
@@ -20,4 +19,7 @@ public interface RepositorioTurno {
 
     List<Turno> traerTurnosActivosEnHorario(Long usuarioId, Date fechaHora);
 
+    boolean profesionalTieneTurnoEnFechaHora(Long profesionalId, Date fechaHora);
+
+    List<Turno> obtenerTurnosRealizadosPorProfesional(Long profesionalId);
 }

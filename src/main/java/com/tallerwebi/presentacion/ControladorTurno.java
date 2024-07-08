@@ -86,22 +86,27 @@ public class ControladorTurno {
                     mav.addObject("mensaje", mensaje);
                 }
                 mav.addObject("turnos", turnos);
+
+                Integer montoACobrar = servicioProfesional.calcularMontoACobrar(profesionalMail);
+                mav.addObject("montoACobrar", montoACobrar);
             }catch (RuntimeException e){
                 mav.addObject("error", e.getMessage());
             }
         } else {
             Long usuarioId = usuario.getId();
             mav.setViewName("gestionar_turnos");
-            List<Turno> turnos = servicioTurno.obtenerTurnosPorUsuario(usuarioId);
-            if (turnos.size() == 0) {
-                String mensaje = "El usuario no tiene turnos";
-                mav.addObject("mensaje", mensaje);
+            try{
+                List<Turno> turnos = servicioTurno.obtenerTurnosPorUsuario(usuarioId);
+                if (turnos.size() == 0) {
+                    String mensaje = "El usuario no tiene turnos";
+                    mav.addObject("mensaje", mensaje);
+                }
+                mav.addObject("turnos", turnos);
+                mav.addObject("usuarioId", usuarioId); // Para usar en el botón de agendar nuevo turno
+            }catch (RuntimeException e){
+                mav.addObject("error", e.getMessage());
             }
-            mav.addObject("turnos", turnos);
-            mav.addObject("usuarioId", usuarioId); // Para usar en el botón de agendar nuevo turno
         }
-
-
         return mav;
     }
 
@@ -121,6 +126,9 @@ public class ControladorTurno {
                 mav.addObject("mensaje", mensaje);
             }
             mav.addObject("turnos", turnos);
+
+            Integer montoACobrar = servicioProfesional.calcularMontoACobrar(profesionalMail);
+            mav.addObject("montoACobrar", montoACobrar);
         }catch (RuntimeException e){
             mav.addObject("error", e.getMessage());
         }

@@ -32,6 +32,7 @@ C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\mai
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\ServicioAdmi.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Consulta.java
+C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\excepcion\ElProfesionalNoTieneTurnosRealizados.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\RepositorioTipoProfesional.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\dominio\Turno.java
 C:\Users\salaz\OneDrive\Escritorio\Taller Web\Proyecto-Taller-Web-master\src\main\java\com\tallerwebi\Dto\DatosRegistro.java
