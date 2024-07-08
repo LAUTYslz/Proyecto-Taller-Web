@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Gestionar Consulta Profesional</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
+    <link rel="stylesheet" th:href="@{/css/consulta_profesionales_admi.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+<main>
+
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th>Institución</th>
+                <th>Tipo</th>
+                <th>Método</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <td th:text="${profesional.id}"></td>
+                <td th:text="${profesional.nombre}"></td>
+                <td th:text="${profesional.telefono}"></td>
+                <td th:text="${profesional.email}"></td>
+                <td th:text="${profesional.direccion}"></td>
+                <td th:text="${profesional.institucion}"></td>
+                <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
+                <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
+
+
+            </tbody>
+        </table>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Hijo</th>
+            <th>Método</th>
+            <th>Fecha</th>
+            <th>Cantidad Consulta</th>
+            <th>Precio Consulta</th>
+            <th>Importe Total</th>
+            <th>Estado de la Consulta</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterar sobre cada consulta -->
+        <tr th:each="consulta : ${consultas}">
+            <td th:text="${consulta.profesional.nombre}"></td>
+            <td th:text="${consulta.hijo.nombre}"></td>
+            <td th:text="${consulta.hijo.metodo.nombre}"></td>
+            <td th:text="${consulta.fecha}"></td>
+            <td th:text="${consulta.cantidad}"></td>
+            <td th:text="${consulta.precio}"></td>
+            <td th:text="${importeTotal}"></td>
+            <td th:class="${consulta != null ? (consulta.estado == 'SIN_LEER' ? 'estado-sin-leer' : (consulta.estado == 'LEIDO' ? 'estado-leida' : 'estado-respondida')) : ''}">
+                <strong th:text="${consulta.estado}"></strong>
+            </td>
+            <td>
+                <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDO" -->
+                <div th:if="${consulta.estado == 'RESPONDIDO'}">
+                    <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
+                        <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                    </form>
+                </div>
+                <!-- Mostrar botón "Ver respuesta" si hay una respuesta -->
+                <div th:if="${consulta.respuesta != null}">
+                    <form th:action="@{pagar/{id}(id=${consulta.id})/{id}(id=${profesional.id})}" method="get">
+                        <button type="submit" class="btn btn-primary">Pagar Consulta</button>
+                    </form>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Mostrar mensaje cuando no hay consultas disponibles -->
+    <p th:if="${#lists.isEmpty(consultas)}">No hay consultas disponibles</p>
+</main>
+<!-- /.container -->
+<div th:replace="home :: footer"></div>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

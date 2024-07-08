@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <title>Bienvenido</title>
 
-    <link rel="stylesheet" th:href="@{/css/contacto.css}">
-    <!-- Boostrap core css -->
-    <link rel="stylesheet" th:href="@{/css/bienvenido.css}">
 
-    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}">
+    <!-- Boostrap core css -->
+
+
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,10 +38,30 @@
         <a class="navbar-brand" th:href="@{/home}">
             <img th:src="@{/img/educareLogo.png}" alt="Logo">
         </a>
+<style>
+    header{
+        display:flex;
+    }
 
-        <div class="navbar-nav ml-auto">
+    .pasos{
+        margin-top: 20px;
+        margin-left: 81px;
+        display: flex;
+    }
+    .paso{
+        margin-left: 175px;
+        margin-top: 92px;
+    }
+</style>
 
-            <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
+            <div class="navbar-nav ml-auto">
+                <!-- Configuración del enlace para cerrar sesión -->
+                <a id="cerrarSesionLink" class="nav-link" th:href="@{/cerrar-sesion}" >Cerrar sesión</a>
+            </div>
+
+
+
+            </div>
             <div class="search-container">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
@@ -49,20 +70,42 @@
     </nav>
 
 </head>
-<body>
+<header>
+    <div class="tab-pane">
+        <h2>Mi Perfil <i class="fa fa-user" aria-hidden="true"></i></h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Email:</th>
+                <td th:text="${usuario.email}"></td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td th:text="${usuario.nombre}"></td>
+            </tr>
+            <tr>
+                <th>Estado de membresía:</th>
+                <td th:text="${usuario.membresia.estado}"></td>
+            </tr>
+            <tr>
+                <th>Fecha de inicio de membresía:</th>
+                <td th:text="${usuario.membresia.fechaDeInicio}"></td>
 
-<main>
-    <h1>Bienvenido, <span th:text="${usuario.nombre}"></span>!</h1>
 
-    <!-- Mostrar mensaje de error si existe -->
-    <div th:if="${param.error}">
-        <div class="alert alert-danger" role="alert">
-            ¡Has alcanzado el límite de consultas permitidas!
-        </div>
+            </tr>
+            <tr>
+                <th>Fecha de baja:</th>
+                <td th:text="${usuario.membresia.fechaDeBaja}"></td>
+            </tr>
+            <tr>
+                <th>Número telefónico:</th>
+                <td th:text="${usuario.membresia.numeroTelefonico}"></td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
-    <div th:if="${mensaje}" class="alert alert-danger" role="alert">
-        <span th:text="${mensaje}"></span>
-    </div>
+
 
     <div class="pasos">
         <div class="paso">
@@ -82,6 +125,24 @@
 
     </div>
 
+</header>
+
+<body>
+
+<main>
+
+
+
+    <!-- Mostrar mensaje de error si existe -->
+    <div th:if="${param.error}">
+        <div class="alert alert-danger" role="alert">
+            ¡Has alcanzado el límite de consultas permitidas!
+        </div>
+    </div>
+    <div th:if="${mensaje}" class="alert alert-danger" role="alert">
+        <span th:text="${mensaje}"></span>
+    </div>
+
 
     <div class="container">
         <div class="row">
@@ -93,44 +154,41 @@
                             <img th:src="@{/img/nene-jugando.jpg}" alt="juego">
                             <div class="card-body">
                                 <h5 class="card-title">Juegos Didacticos</h5>
-
-                                <!-- Verificar si hijo no es nulo -->
-                                <div th:if="${hijos != null and #lists.size(hijos) > 0}">
-
-                                    <li th:each="hijo : ${hijos}">
-                                        <!-- Verificar si hijo.etapa es nulo -->
-                                        <div th:if="${hijo.etapa == null}">
-                                            <p class="card-text">No se encontró etapa para el hijo.</p>
-                                        </div>
-
-                                        <!-- Verificar si hijo.etapa no es nulo -->
-                                        <div th:if="${hijo.etapa != null}">
-                                            <form th:action="@{/ver-juego-etapa/{etapaId}(etapaId=${hijo.etapa.id})}"
-                                                  method="post">
-                                                <button type="submit" class="btn btn-primary">Ver Juegos</button>
-                                            </form>
-                                            <p class="card-text">Haz click para acceder a nuestros juegos caseros, según
-                                                la etapa de tu hijo.</p>
-                                        </div>
-                                </div>
-
-                                <!-- Manejar caso donde hijo es nulo -->
-                                <div th:if="${hijo == null}">
-                                    <p class="card-text">No se encontró información del hijo.</p>
-                                </div>
+                                <a href="#" class="btn btn-primary">Ver Juegos</a>
+                                <p class="card-text">Haz click para acceder a nuestros juegos caseros, según la etapa de tu hijo.</p>
                             </div>
                         </div>
-
-                        <div class="col">
-                            <div class="card">
-                                <img th:src="@{/img/bebe.jpg}" alt="medico">
-                                <div class="card-body">
-                                    <h5 class="card-title">Turno Presenciales </h5>
-                                    <a th:href="@{/gestionarTurnos}" class="btn btn-primary">Sacar Turno </a>
-                                    <p class="card-text">Haz click para agendar tu próximo turno.</p>
-                                </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/bebe.jpg}" alt="medico">
+                            <div class="card-body">
+                                <h5 class="card-title">Turno Presenciales </h5>
+                                <a href="#" class="btn btn-primary">Sacar Turno </a>
+                                <p class="card-text">Haz click para agendar tu próximo turno.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/virtual.jpg}" alt="virtual">
+                            <div class="card-body">
+                                <h5 class="card-title">Consulta Virtuales</h5>
+                                <a href="#" class="btn btn-primary">Ir a Consultas</a>
+                                <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/profe.jpg}" alt="profesional">
+                            <div class="card-body">
+                                <h5 class="card-title">Profesionales</h5>
+                                <a href="#" class="btn btn-primary">Ver Profesionales</a>
+                                <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
+                            </div>
+                        </div>
+                    </div>
                         <div class="col">
                             <div class="card">
                                 <img th:src="@{/img/virtual.jpg}" alt="virtual">
@@ -157,96 +215,106 @@
                     </div>
                 </div>
 
-                <!-- Columna para perfil -->
-                <div class="col-md-4">
-                    <div class="perfil">
-                        <h2>Mi Perfil </h2><i class="fa fa-user" aria-hidden="true"></i>
-                        <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
-                        <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
-                        <p><strong>Estado de membresía:</strong> <span th:text="${usuario.membresia.estado}"></span></p>
-                        <p><strong>Fecha de inicio de membresía:</strong> <span
-                                th:text="${usuario.membresia.fechaDeInicio}"></span></p>
-                        <p><strong>Fecha de baja:</strong> <span th:text="${usuario.membresia.fechaDeBaja}"></span></p>
-                        <p><strong>Número telefónico:</strong> <span
-                                th:text="${usuario.membresia.numeroTelefonico}"></span></p>
-                        <div class="circle-button"><a th:href="@{/nuevoHijo}">AGREGAR HIJO</a></div>
-                        <i class="fa-solid fa-plus"></i>
 
-                        <h2>Hijos</h2>
-                        <div th:if="${hijos != null and #lists.size(hijos) > 0}">
-                            <ul>
-                                <li th:each="hijo : ${hijos}">
-                                    <p>Nombre del Hijo: <span th:text="${hijo.nombre}"></span></p>
-                                    <p>Edad del Hijo: <span th:text="${hijo.edad}"></span></p>
-                                    <p>DNI del Hijo: <span th:text="${hijo.dni}"></span></p>
-                                    <p>ETAPA de SU Hijo:
-                                        <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
-                                        <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
-                                    </p>
-                                    <p>Metodo de SU Hijo:
-                                        <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
-
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div th:if="${hijos == null or #lists.size(hijos) == 0}">
-                            <p>No hay hijos registrados.</p>
-                        </div>
-                    </div>
+            <h2>Hijos</h2>
+            <div th:if="${hijos != null and #lists.size(hijos) > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nombre del Hijo</th>
+                            <th>Edad del Hijo</th>
+                            <th>DNI del Hijo</th>
+                            <th>ETAPA de SU Hijo</th>
+                            <th>Metodo de SU Hijo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="hijo : ${hijos}">
+                            <td th:text="${hijo.nombre}"></td>
+                            <td th:text="${hijo.edad}"></td>
+                            <td th:text="${hijo.dni}"></td>
+                            <td>
+                                <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
+                                <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
+                            </td>
+                            <td>
+                                <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
+                                <span th:if="${hijo.metodo == null}">No asignado</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-4">
+            <p th:if="${hijos == null or #lists.size(hijos) == 0}">No hay hijos registrados</p>
+        </div>
+
+
+        <h2>Consultas</h2>
+            <div class="col">
                 <!-- Información sobre consultas -->
-                <h2>Consultas</h2>
-                <div class="circulo">.</div>
+
+                <div class="card">.</div>
 
 
                 <!-- Mostrar información de la consulta si existe -->
                 <div th:if="${consultas != null and #lists.size(consultas) > 0}">
-                    <div th:each="consulta : ${consultas}">
-                        <div class="consulta">
-                            <p>Consultas a profesional: <strong th:text="${consulta.profesional.nombre}"></strong></p>
-                            <p>Consultas al Hijo : <strong th:text="${consulta.hijo.nombre}"></strong></p>
-                            <p>Metodo del Hijo : <strong th:text="${consulta.hijo.metodo.nombre}"></strong></p>
-                            <p>Fecha de Consulta : <strong th:text="${consulta.fecha}"></strong></p>
-                            <p>Cantidad de Consultas este Mes  : <strong th:text="${consulta.cantidad}"></strong></p>
-                            <div th:class="${consulta != null ? (consulta.estado == consulta.estado.SIN_LEER ? 'estado-sin-leer' : (consulta.estado == consulta.estado.LEIDO? 'estado-leida' : 'estado-respondida')) : ''}">
-                                <!-- Contenido de la consulta -->
-                                <p>Estado de la consulta: <strong th:text="${consulta.estado}"></strong></p>
-
-                            </div>
-                            <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDO" -->
-                            <div th:if="${consulta.estado == 'RESPONDIDO'}">
-
-                                    <button type="submit" class="btn btn-primary">Ver respuesta</button>
-                                </form>
-                            </div>
-
-                            <div th:if="${consulta.respuesta !=null}">
-                                <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
-                                    <button type="submit" class="btn btn-primary">Ver respuesta</button>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Profesional</th>
+                            <th>Hijo</th>
+                            <th>Método del Hijo</th>
+                            <th>Fecha de Consulta</th>
+                            <th>Cantidad de Consultas este Mes</th>
+                            <th>Estado de la Consulta</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Iterar sobre cada consulta -->
+                        <tr th:each="consulta : ${consultas}">
+                            <td th:text="${consulta.profesional.nombre}"></td>
+                            <td th:text="${consulta.hijo.nombre}"></td>
+                            <td th:text="${consulta.hijo.metodo.nombre}"></td>
+                            <td th:text="${consulta.fecha}"></td>
+                            <td th:text="${consulta.cantidad}"></td>
+                            <td th:class="${consulta != null ? (consulta.estado == 'SIN_LEER' ? 'estado-sin-leer' : (consulta.estado == 'LEIDO' ? 'estado-leida' : 'estado-respondida')) : ''}">
+                                <strong th:text="${consulta.estado}"></strong>
+                            </td>
+                            <td>
+                                <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDO" -->
+                                <div th:if="${consulta.estado == 'RESPONDIDO'}">
+                                    <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
+                                        <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                                    </form>
+                                </div>
+                                <!-- Mostrar botón "Ver respuesta" si hay una respuesta -->
+                                <div th:if="${consulta.respuesta != null}">
+                                    <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
+                                        <button type="submit" class="btn btn-primary">Ver respuesta</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <!-- Mostrar mensaje cuando no hay consultas disponibles -->
-                    <p th:if="${consultas == null or #lists.size(consultas) == 0}">No hay consultas disponibles</p>
-
-
+                    <p th:if="${#lists.isEmpty(consultas)}">No hay consultas disponibles</p>
                 </div>
 
 
-</main>
+
 <script th:src="@{/usuarioMembre.js}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
 </body>
+</main>
+
 <div th:replace="home :: footer"></div>
 </html>

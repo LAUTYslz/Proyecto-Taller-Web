@@ -3,6 +3,8 @@ package com.tallerwebi.presentacion;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import com.tallerwebi.dominio.excepcion.juegoInexistente;
+import com.tallerwebi.infraestructura.ServicioMembresiaActivadaImpl;
+import com.tallerwebi.infraestructura.servicioPagoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,19 +17,24 @@ import java.util.List;
 @Controller
 public class ControladorAdministrador {
 
+
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
     private ServicioProfesional servicioProfesional;
     private ServicioMetodo servicioMetodo;
     private ServicioTipoProfesional servicioTipoProfesional;
+    private ServicioMembresiaActivada servicioMembresiaActivada;
+    private ServicioPago servicioPago;
 
     @Autowired
-    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional) {
+    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioMembresiaActivada servicioMembresiaActivada, ServicioPago servicioPago) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
         this.servicioProfesional = servicioProfesional;
         this.servicioMetodo = servicioMetodo;
         this.servicioTipoProfesional = servicioTipoProfesional;
+        this.servicioMembresiaActivada = servicioMembresiaActivada;
+        this.servicioPago= servicioPago;
     }
 
 
@@ -65,11 +72,11 @@ public class ControladorAdministrador {
         List<Etapa> etapas = servicioAdmi.listaDeEtapas();
         List<Juego> juegos = servicioAdmi.listasDeJuegos();
 
-        // Agregar las listas al modelo para que estén disponibles en la vista
+
         model.addAttribute("etapas", etapas);
         model.addAttribute("juegos", juegos);
 
-        // Establecer la vista
+
         modelAndView.setViewName("administrador");
 
         return modelAndView;
@@ -85,7 +92,7 @@ public class ControladorAdministrador {
     @GetMapping("/crearEtapa")
     public String mostrarFormularioCreacionEtapa(Model model) {
         model.addAttribute("etapa", new Etapa());
-        return "crearEtapa"; // Asegúrate de que este sea el nombre correcto de tu vista
+        return "crearEtapa";
     }
 
     @PostMapping("/guardar-etapa")
@@ -113,14 +120,14 @@ public class ControladorAdministrador {
         model.addAttribute(juego);
         modelAndView.addObject("juego", juego);
         servicioAdmi.guardarJuego(juego);
-        return  "redirect:/administrador";
+        return "redirect:/administrador";
 
     }
 
     @PostMapping("/modificar-etapa/{id}")
     public String mostrarFormularioModificarEtapa(@PathVariable Long id, Model model) throws EtapaInexistente {
 
-        Etapa etapaBuscada =servicioAdmi.buscarEtapa(id);
+        Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
         model.addAttribute(etapaBuscada);
         return "guardar-etapa";
     }
@@ -130,12 +137,13 @@ public class ControladorAdministrador {
     public String modificarEtapa(@ModelAttribute Etapa etapa) throws EtapaInexistente {
         servicioAdmi.actualizarEtapa(etapa);
 
-        return "redirect:/administrador"; // Redirigir a alguna página después de la modificación
+        return "redirect:/administrador";
     }
+
     @PostMapping("/ver-juego-etapa/{id}")
     public String verJuegosPorEtapa(@PathVariable Long id, Model model, HttpServletRequest request) throws EtapaInexistente {
         Etapa etapaBuscada = servicioAdmi.buscarEtapa(id);
-        model.addAttribute("etapa", etapaBuscada); // Asegúrate de agregar "etapa" como atributo al modelo
+        model.addAttribute("etapa", etapaBuscada);
         List<Juego> lista = servicioAdmi.listasDeJuegosPorEtapa(etapaBuscada.getId());
         model.addAttribute("juegos", lista);
 
@@ -143,11 +151,11 @@ public class ControladorAdministrador {
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
         String rol = usuario.getRol();
 
-        // Redirigir según el rol
+
         if (rol.equals("USUARIO")) {
-            return "verJuegoPorEtapaUsuario"; // Nombre lógico de la vista para usuarios
+            return "verJuegoPorEtapaUsuario";
         } else {
-            return "verJuegoPorEtapaAdmi"; // Nombre lógico de la vista para administradores
+            return "verJuegoPorEtapaAdmi";
         }
     }
 
@@ -155,15 +163,16 @@ public class ControladorAdministrador {
     @GetMapping("/modificar-juego/{id}")
     public String mostarformJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
 
-        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        Juego juegoBuscado = servicioAdmi.buscarJuegoPorId(id);
         model.addAttribute(juegoBuscado);
 
         return "modificarJuego";
     }
+
     @PostMapping("/actualizar-juego/{id}")
     public String modificarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente, juegoInexistente {
 
-        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        Juego juegoBuscado = servicioAdmi.buscarJuegoPorId(id);
         model.addAttribute(juegoBuscado);
         servicioAdmi.actualizarJuego(juegoBuscado);
         return "verJuegoPorEtapaAdmi";
@@ -173,27 +182,26 @@ public class ControladorAdministrador {
     @PostMapping("/eliminar-juego/{id}")
     public String eliminarJuego(@PathVariable Long id, Model model) throws EtapaInexistente, juegoInexistente {
 
-        Juego juegoBuscado =servicioAdmi.buscarJuegoPorId(id);
+        Juego juegoBuscado = servicioAdmi.buscarJuegoPorId(id);
         servicioAdmi.eliminarJuego(juegoBuscado);
         return "verJuegoPorEtapaAdmi";
     }
 
     @GetMapping("/verjuego")
     public String verJuegoPorEtapaAdmi() {
-        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
-        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+
         return "verJuegoPorEtapaAdmi";
     }
+
     @GetMapping("/verJuegoPorEtapaUsuario")
     public String verJuegoPorEtapaUsuario() {
-        // Lógica para manejar la solicitud
-        return "verJuegoPorEtapaUsuario"; // O el nombre de la vista a cargar
+
+        return "verJuegoPorEtapaUsuario";
     }
 
     @GetMapping("/verjuegoModificado")
     public String verJuegoMoa() {
-        // Aquí podrías agregar lógica para obtener los datos del juego relacionados con la etapa
-        // y pasarlos a la vista, pero por ahora, simplemente devolveremos la vista sin datos
+
         return "modificarJuego";
     }
 
@@ -202,8 +210,7 @@ public class ControladorAdministrador {
     @GetMapping("/admin/gestionarProfesionales")
     public ModelAndView verGestionarProfesionales(
             @RequestParam(value = "metodo", required = false) String nombreMetodo,
-            @RequestParam(value = "tipo", required = false) String nombreTipo)
-    {
+            @RequestParam(value = "tipo", required = false) String nombreTipo) {
         ModelAndView mav = new ModelAndView("gestionarProfesionales");
         try {
             List<Profesional> profesionales = obtenerProfesionalesPorMetodoYTipo(nombreTipo, nombreMetodo);
@@ -224,16 +231,16 @@ public class ControladorAdministrador {
         return servicioProfesional.traerProfesionalesPorTipoYMetodo(nombreTipo, nombreMetodo);
     }
 
-     @GetMapping("/admin/gestionarProfesionales/crear")
-     public ModelAndView  mostrarFormularioNuevo() {
+    @GetMapping("/admin/gestionarProfesionales/crear")
+    public ModelAndView mostrarFormularioNuevo() {
         ModelAndView mav = new ModelAndView("formulario_crear_profesional");
-         mav.addObject("profesional", new Profesional());
-         List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
-         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
-         mav.addObject("metodos", metodos);
-         mav.addObject("tipos", tipos);
-         return mav;
-     }
+        mav.addObject("profesional", new Profesional());
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        mav.addObject("metodos", metodos);
+        mav.addObject("tipos", tipos);
+        return mav;
+    }
 
     @PostMapping("/admin/gestionarProfesionales/guardar")
     public ModelAndView agregarProfesional(
@@ -243,10 +250,9 @@ public class ControladorAdministrador {
             @RequestParam("direccion") String direccion,
             @RequestParam("institucion") String institucion,
             @RequestParam("tipo") String nombreTipo,
-            @RequestParam("metodo") String nombreMetodo)
-    {
+            @RequestParam("metodo") String nombreMetodo) {
         ModelAndView mav = new ModelAndView();
-        try{
+        try {
             //TipoProfesional tipo = servicioTipoProfesional.buscarTipoPorId(tipoId);
             //Metodo metodo = servicioMetodo.buscarMetodoPorId(metodoId);
             Profesional profesional = new Profesional();
@@ -260,11 +266,11 @@ public class ControladorAdministrador {
             usuarioProf.setNombre(nombre);
             usuarioProf.setEmail(email);
 
-            servicioProfesional.guardarProfesional(profesional,nombreMetodo,nombreTipo);
+            servicioProfesional.guardarProfesional(profesional, nombreMetodo, nombreTipo);
             servicioLogin.registrarUsuarioProfesional(usuarioProf);
-            mav.setViewName ("redirect:/admin/gestionarProfesionales");
+            mav.setViewName("redirect:/admin/gestionarProfesionales");
         } catch (RuntimeException e) {
-            mav.setViewName ("formulario_crear_profesional");
+            mav.setViewName("formulario_crear_profesional");
             mav.addObject("error", e.getMessage());
             mav.addObject("profesional", new Profesional());
             List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
@@ -297,7 +303,7 @@ public class ControladorAdministrador {
                                               @RequestParam("tipo") String nombreTipo,
                                               @RequestParam("metodo") String nombreMetodo) {
         ModelAndView mav = new ModelAndView();
-        try{
+        try {
             Profesional profesional = servicioProfesional.obtenerPorId(id);
             if (profesional == null) {
                 throw new Exception("No se encontró el profesional con el ID proporcionado.");
@@ -313,9 +319,9 @@ public class ControladorAdministrador {
 
 
             servicioProfesional.actualizarProfesional(profesional, nombreMetodo, nombreTipo);
-            mav.setViewName ("redirect:/admin/gestionarProfesionales");
+            mav.setViewName("redirect:/admin/gestionarProfesionales");
         } catch (Exception e) {
-            mav.setViewName ("formulario_editar_profesional");
+            mav.setViewName("formulario_editar_profesional");
             Profesional profesional = servicioProfesional.obtenerPorId(id);
             mav.addObject("error", e.getMessage());
             mav.addObject("profesional", profesional);
@@ -331,13 +337,64 @@ public class ControladorAdministrador {
 
     @GetMapping("/admin/gestionarProfesionales/eliminar/{id}")
     public String eliminarProfesional(@PathVariable Long id) {
-       Profesional profesional = servicioProfesional.obtenerPorId(id);
+        Profesional profesional = servicioProfesional.obtenerPorId(id);
         servicioProfesional.eliminarProfesional(profesional);
         return "redirect:/admin/gestionarProfesionales";
     }
+
+    @GetMapping("/admin/gestionarProfesionales/consultas")
+    public ModelAndView consultaProfesional() {
+        ModelAndView mav = new ModelAndView("consulta_profesional_admi");
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        mav.addObject("profesionales", profesionales);
+        List<Consulta> consultas = servicioMembresiaActivada.listaDeConsultascreadas();
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        mav.addObject("metodos", metodos);
+        mav.addObject("tipos", tipos);
+        mav.addObject("consultas", consultas);
+        return mav;
+    }
+
+    @GetMapping("/admin/gestionarProfesionales/liquidar/{id}")
+    public ModelAndView liquidarConsultasProfesional(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("liquidacion_profesional_admi");
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        mav.addObject("profesionales", profesionales);
+        Profesional profesional = servicioProfesional.obtenerPorId(id);
+        List<Consulta> consultas= servicioMembresiaActivada.buscarConsultasPorProfesionales(profesional.getEmail());
+        Integer importeTotal =servicioMembresiaActivada.obtenerImporteTotalDeConsultasPorMesPorProfesional(profesional, consultas);
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+
+        mav.addObject("metodos", metodos);
+        mav.addObject("importeTotal", importeTotal);
+        mav.addObject("tipos", tipos);
+        mav.addObject("profesional", profesional);
+        mav.addObject("consultas", consultas);
+        return mav;
+    }
+
+
+    @GetMapping("/admin/gestionarProfesionales/pagar/{id}/{id}")
+    public ModelAndView liquidarConsultasProfesional(@PathVariable Long idConsulta, Long idProfesional) {
+        ModelAndView mav = new ModelAndView("pago_consulta_profesional");
+        Profesional profesional = servicioProfesional.obtenerPorId(idProfesional);
+        List<Consulta> consultas= servicioMembresiaActivada.buscarConsultasPorProfesionales(profesional.getEmail());
+        Integer importeTotal =servicioMembresiaActivada.obtenerImporteTotalDeConsultasPorMesPorProfesional(profesional, consultas);
+        List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
+        List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+      //  Pago nuevoPago = new Pago (servicioPago.generarPago(profesional,consultas,importeTotal));
+
+        mav.addObject("metodos", metodos);
+        mav.addObject("importeTotal", importeTotal);
+        mav.addObject("tipos", tipos);
+        mav.addObject("profesional", profesional);
+        mav.addObject("consultas", consultas);
+        return mav;
+    }
+
 }
-
-
 
 
 

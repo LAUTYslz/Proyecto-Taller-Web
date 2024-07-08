@@ -54,4 +54,10 @@ public class RepositorioMembresiaActivadaImpl implements RepositorioMembresiaAct
                 .uniqueResult();
 
     }
+
+    @Override
+    public List<Consulta> todasLasConsultasCreadas() {
+       return  (List<Consulta>) sessionFactory.getCurrentSession()
+                .createCriteria(Consulta.class).list();
+    }
 }

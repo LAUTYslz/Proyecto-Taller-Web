@@ -30,4 +30,8 @@ public interface ServicioMembresiaActivada {
     Consulta obtenerConsultaPorId(Long consultaId);
 
     void respuestaDeProfesionalAConsulta(Long consultaId, String respuesta);
+
+    List<Consulta> listaDeConsultascreadas();
+
+    Integer obtenerImporteTotalDeConsultasPorMesPorProfesional(Profesional profesional, List<Consulta> consultas);
 }

@@ -120,9 +120,9 @@ public class ControladorProfesional {
     public ModelAndView verDetallesHijoYRespuesta(@PathVariable Long id, @RequestParam Long consultaId) {
         ModelAndView mav = new ModelAndView("responderConsulta");
 
-        // Aquí deberías implementar la lógica para obtener los detalles del hijo y la consulta
-        Hijo hijo = servicioLogin.busquedahijo(id);  // Suponiendo que tienes un servicio para gestionar los hijos
-        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);  // Suponiendo que tienes un servicio para gestionar las consultas
+
+        Hijo hijo = servicioLogin.busquedahijo(id);
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
 
         mav.addObject("hijo", hijo);
         mav.addObject("consulta", consulta);

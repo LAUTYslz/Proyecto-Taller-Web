@@ -16,10 +16,11 @@ public class Consulta {
     private Integer mes;
     private Integer anio;
     private String respuesta;
+    private Integer precio=3000;
 
     @Enumerated(EnumType.STRING)
     private Mensaje estado;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fecha;
 
     @ManyToOne
@@ -124,19 +125,11 @@ public class Consulta {
         this.respuesta = respuesta;
     }
 
-    @Override
-    public String toString() {
-        return "Consulta{" +
-                "id=" + id +
-                ", mensaje='" + mensaje + '\'' +
-                ", cantidad=" + cantidad +
-                ", mes=" + mes +
-                ", anio=" + anio +
-                ", estado=" + estado +
-                ", fecha=" + fecha +
-                ", usuario=" + usuario +
-                ", profesional=" + profesional +
-                ", hijo=" + hijo +
-                '}';
+    public Integer getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
     }
 }

@@ -116,6 +116,20 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
         repositorioMembresiaActivada.actualizarConsulta(buscarConsulta);
     }
 
+    @Override
+    public List<Consulta> listaDeConsultascreadas() {
+        return repositorioMembresiaActivada.todasLasConsultasCreadas();
+    }
+
+    @Override
+    public Integer obtenerImporteTotalDeConsultasPorMesPorProfesional(Profesional profesional, List<Consulta> consultas) {
+        // Calcular la cantidad total de consultas sumando todas las cantidades
+
+        return (int) consultas.stream()
+                .mapToInt(Consulta::getPrecio)  // Mapea cada consulta a su cantidad utilizando el método getCantidad
+                .sum();
+    }
+
     private void actualizarConsulta(Consulta consulta) {
           repositorioMembresiaActivada.actualizarConsulta(consulta);
     }

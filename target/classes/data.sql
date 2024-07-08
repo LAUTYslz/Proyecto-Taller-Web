@@ -1,5 +1,5 @@
 
-CREATE TABLE IF NOT EXISTS Tarjeta (
+/*CREATE TABLE IF NOT EXISTS Tarjeta (
                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
                          numeroDeTarjeta VARCHAR(16) NOT NULL,
                          fechaDeVencimiento DATE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS  DatosMembresia (
 
 
 
-CREATE TABLE Usuario (
+CREATE TABLE IF NOT EXISTS Usuario (
                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                          email VARCHAR(255),
                          password VARCHAR(255),
@@ -35,7 +35,7 @@ CREATE TABLE Usuario (
                         FOREIGN KEY (membresia_id) REFERENCES DatosMembresia (id)
 );
 
-DROP TABLE IF EXISTS etapa;
+
 CREATE TABLE IF NOT EXISTS etapa (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        nombre VARCHAR(255),
@@ -99,7 +99,8 @@ SELECT 'DOMAN'
 WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'DOMAN');
 
 
-CREATE TABLE Hijo (
+
+CREATE TABLE IF NOT EXISTS Hijo (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                       nombre VARCHAR(255),
                       edad INT,
@@ -128,7 +129,7 @@ INSERT INTO TipoProfesional (nombre) VALUES ('Estimulacion temprana');
 INSERT INTO TipoProfesional (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
-DROP TABLE IF EXISTS Profesional;
+
 CREATE TABLE IF NOT EXISTS Profesional (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
@@ -235,8 +236,7 @@ CREATE TABLE turno (
                        FOREIGN KEY (usuario_id) REFERENCES usuario(id),
                        FOREIGN KEY (profesional_id) REFERENCES profesional(id)
 );
-
-CREATE TABLE consulta (
+CREATE TABLE IF NOT EXISTS consulta (
                           id BIGINT NOT NULL AUTO_INCREMENT,
                           mensaje VARCHAR(255),
                           estado VARCHAR(255),
@@ -258,3 +258,16 @@ ALTER TABLE consulta
 ADD cantidad INT DEFAULT 0;
 ALTER TABLE consulta
     ADD respuesta  VARCHAR(800);
+ALTER TABLE consulta
+    ADD precio INT DEFAULT 0;
+CREATE TABLE pago (
+                      id BIGINT  NOT NULL AUTO_INCREMENT,
+                      profesional_id BIGINT,
+                      consulta_id BIGINT,
+                      fecha_pago DATE,
+                      importe_total INTEGER,
+                      PRIMARY KEY (id),
+                      FOREIGN KEY (profesional_id) REFERENCES profesional (id),
+                      FOREIGN KEY (consulta_id) REFERENCES consulta (id)
+);
+*/

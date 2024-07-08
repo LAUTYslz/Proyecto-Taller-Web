@@ -19,11 +19,11 @@ public class DatosMembresia {
     @Enumerated(EnumType.STRING)
     private Estado estado=INACTIVA;
     private Long numeroTelefonico;
-    @DateTimeFormat(pattern = "yyy-mm-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fechaDeInicio;
 
 
-    @DateTimeFormat(pattern = "yyy-mm-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fechaDeBaja;
     @ManyToOne
     private Tarjeta tarjeta;

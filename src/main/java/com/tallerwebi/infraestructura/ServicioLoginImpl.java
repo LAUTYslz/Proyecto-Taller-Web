@@ -127,10 +127,18 @@ public class ServicioLoginImpl implements ServicioLogin {
     }
 
     @Override
-    public List<Hijo> buscarHijosPorId(Long usuarioid) {
-        return repositorioUsuario.buscarHijosPorId(usuarioid);
-    }
+    public List<Hijo> buscarHijosPorId(Long usuarioid)  {
+        List<Hijo> hijos = repositorioUsuario.buscarHijosPorId(usuarioid);
+        for (Hijo hijo: hijos
+        ) {
+            try {
+                asignarEtapa(hijo);
+            } catch (Exception e) {
 
+            }
+        }
+        return hijos;
+    }
     @Override
     public void eliminarHijo(Long hijoId) {
         repositorioUsuario.borrarHijo(hijoId);

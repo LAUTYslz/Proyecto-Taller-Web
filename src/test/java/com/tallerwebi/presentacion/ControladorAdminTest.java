@@ -17,14 +17,18 @@ public class ControladorAdminTest {
     private ServicioProfesional servicioProfesional;
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
+    private ServicioMembresiaActivada servicioMembresiaActivada;
     private ControladorAdministrador controladorAdministrador;
+    private ServicioPago servicioPago;
 
     @BeforeEach
     public void setUp() {
         servicioProfesional = mock(ServicioProfesional.class);
         servicioLogin = mock(ServicioLogin.class);
         servicioAdmi = mock(ServicioAdmi.class);
-        controladorAdministrador = new ControladorAdministrador(servicioLogin, servicioAdmi, servicioProfesional);
+        servicioMembresiaActivada = mock(ServicioMembresiaActivada.class);
+        servicioPago = mock(ServicioPago.class);
+        controladorAdministrador = new ControladorAdministrador(servicioLogin, servicioAdmi, servicioProfesional, servicioMembresiaActivada,servicioPago );
     }
 
     @Test

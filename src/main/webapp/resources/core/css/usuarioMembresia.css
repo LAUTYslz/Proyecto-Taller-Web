@@ -1,133 +1,29 @@
-/* Ajustes generales */
-.owl-carousel {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Permitir desplazamiento horizontal */
-    -webkit-overflow-scrolling: touch; /* Mejorar desplazamiento en dispositivos iOS */
+/* Estilos para el cuerpo y el main */
+body {
+    font-family: Arial, sans-serif; /* Cambia la fuente según necesidades */
+    background-color: #f8f9fa; /* Color de fondo para todo el cuerpo */
+    color: #333; /* Color de texto principal */
+    margin: 0;
+    padding: 0;
+}
+header{
+    display:flex;
 }
 
-.owl-carousel .item {
-    flex: 0 0 auto; /* Evitar que los items se estiren */
-    width: 100%; /* Ancho completo */
+main {
+    display: flex; /* Utiliza flexbox para manejar el layout */
+    justify-content: space-between; /* Distribuye los elementos a lo largo del main */
+    max-width: 1200px; /* Ancho máximo para el contenido principal */
+    margin: 20px auto; /* Margen exterior */
+    padding: 20px;
 }
-
-/* Estilos para la columna de perfil */
-.perfil {
-    background-color: #f8f9fa; /* Color de fondo del perfil */
-    border: 1px solid #ddd; /* Borde del perfil */
-    border-radius: 8px; /* Borde redondeado */
-    padding: 15px;
-    margin-top: 15px;
-    height: 100%; /* Ocupar la misma altura que el contenedor */
-}
-
-.perfil h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.perfil p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-/* Ajustes para la columna de las cards */
-.col-md-8 .owl-carousel {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.col-md-8 .owl-carousel .item {
-    padding: 10px; /* Espaciado entre items */
-    width: auto; /* Ancho automático para ajustarse al contenido */
-    margin-right: 10px; /* Espacio entre items */
-}
-
-.col-md-8 .owl-carousel .item .card {
-    border: 1px solid #ddd; /* Borde del card */
-    border-radius: 8px; /* Borde redondeado */
-    transition: all 0.3s ease; /* Transición suave */
-}
-
-.col-md-8 .owl-carousel .item .card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al hacer hover */
-}
-
-.col-md-8 .owl-carousel .item .card img {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.col-md-8 .owl-carousel .item .card .card-body {
-    padding: 15px;
-}
-
-.col-md-8 .owl-carousel .item .card .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.col-md-8 .owl-carousel .item .card .card-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.col-md-8 .owl-carousel .item .card .btn-primary {
-    background-color: #007bff; /* Color de fondo del botón */
-    border-color: #007bff; /* Color del borde del botón */
-    padding: 6px 12px; /* Espaciado interno del botón */
-    font-size: 0.9rem;
-}
-
-.col-md-8 .owl-carousel .item .card .btn-primary:hover {
-    background-color: #0056b3; /* Color de fondo al hacer hover */
-    border-color: #0056b3; /* Color del borde al hacer hover */
-}
-.estado-sin-leer {
-    border: 1px solid orange;
-    border-radius: 5px;
+.pasos .circulo{
+    width: 100px;
+    height: 108px;
+    border-radius: 50%;
     background-color: chocolate;
-}
 
-.estado-leida {
-    border: 1px solid yellow;
-    border-radius: 5px;
-    background-color: yellow;
-}
-
-.estado-respondida {
-    border: 1px solid green;
-    border-radius: 5px;
-    background-color: darkgreen;
-}
-/* Estilos para los pasos */
-.pasos {
-    display: flex;
-    justify-content: space-between; /* Distribuir los pasos equitativamente */
-    align-items: center; /* Centrar verticalmente */
-    margin-top: 20px;
-}
-
-.paso {
-    text-align: center;
-    width: calc(100% / 3); /* Ancho dividido en tres para cada paso */
-}
-
-.paso a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.paso .circulo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Forma de círculo */
-    background-color: #007bff; /* Color de fondo del círculo */
-    color: #fff; /* Color del número dentro del círculo */
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,11 +32,100 @@
     margin-bottom: 10px;
 }
 
-.paso p {
-    font-size: 0.9rem;
-    margin-bottom: 0;
+/* Estilos para el perfil */
+.perfil {
+    background-color: chocolate;
+    color: #4f3c6e;
+    border: 1px solid #ddd; /* Borde del perfil */
+    padding: 20px;
+    width: 100%; /* Ancho fijo para el perfil */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+    text-align: center;
 }
 
-.paso i {
-    margin-top: 5px;
+.perfil h2 {
+    font-size: 1.5rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.perfil p {
+    margin: 5px 0; /* Margen para los párrafos */
+}
+
+.perfil .btn-primary {
+    margin-top: 10px; /* Margen superior para el botón */
+}
+
+/* Estilos para las consultas */
+.consultas {
+    background-color: #fff; /* Color de fondo para las consultas */
+    border: 1px solid #ddd; /* Borde de las consultas */
+    padding: 20px;
+    width: 65%; /* Ancho fijo para las consultas */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+    overflow-y: auto; /* Scroll vertical si hay muchas consultas */
+    max-height: 400px; /* Altura máxima */
+}
+
+.consultas h2 {
+    font-size: 1.5rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.consultas .consulta {
+    margin-bottom: 15px; /* Margen inferior para cada consulta */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde de cada consulta */
+    background-color: #f0f0f0; /* Color de fondo para cada consulta */
+}
+
+.consultas .btn-primary {
+    margin-top: 10px; /* Margen superior para el botón */
+}
+
+/* Estilos para las cards */
+.cards {
+    display: flex; /* Utiliza flexbox para las cards */
+    justify-content: flex-end; /* Alinea las cards a la derecha */
+    gap: 15px; /* Espacio entre las cards */
+    width: 100%; /* Ancho total */
+}
+
+.cards .card {
+    width: calc(50% - 15px); /* Calcula el ancho de cada card */
+    border: 1px solid #ddd; /* Borde de las cards */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+}
+
+.cards .card-body {
+    padding: 20px; /* Padding del cuerpo de la card */
+}
+
+.cards .card-title {
+    font-size: 1.25rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.cards .card-text {
+    color: #666; /* Color de texto secundario */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Cambia a layout de columna en pantallas pequeñas */
+    }
+
+    .perfil, .consultas {
+        width: 100%; /* Ancho completo para el perfil y las consultas */
+        margin-bottom: 20px; /* Margen inferior */
+    }
+
+    .cards {
+        justify-content: flex-start; /* Alinea las cards a la izquierda */
+    }
+
+    .cards .card {
+        width: 100%; /* Ancho completo para las cards */
+    }
 }

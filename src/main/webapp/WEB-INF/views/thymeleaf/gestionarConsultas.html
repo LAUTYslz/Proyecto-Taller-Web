@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-10 offset-md-1">
             <h1 class="mt-4 mb-4">Bienvenido:<span th:text="${usuario.nombre}"> </span></h1>
-                <h3 class="mt-4 mb-4">Email :<span th:text="${usuario.email}"> </span></h3>
+
             <h1 class="mt-4 mb-4">Consultas Realizadas por el Profesional</h1>
 
             <!-- Tabla para mostrar las consultas -->
@@ -33,6 +33,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Hijo</th>
+                    <th>Fecha</th>
                     <th>Consulta</th>
                     <th>Usuario</th>
                     <th>Estado</th>
@@ -44,6 +45,7 @@
                 <tr th:each="consulta : ${consultas}">
                     <td th:text="${consulta.id}"></td>
                     <td th:text="${consulta.hijo.nombre}"></td>
+                    <td th:text="${consulta.fecha}"></td>
                     <td th:text="${consulta.mensaje}"></td>
                     <td th:text="${consulta.usuario.nombre}"></td>
                     <td th:text="${consulta.estado}"></td>
