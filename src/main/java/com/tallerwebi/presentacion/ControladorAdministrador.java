@@ -417,7 +417,6 @@ public class ControladorAdministrador {
         return mav;
 
     }
-
     //----------------------GESTIÓN DE PRODUCTOS ---------------------------------------
     @RequestMapping("/admin/gestionarProductos")
     public ModelAndView mostrarProductos() {
@@ -449,45 +448,48 @@ public class ControladorAdministrador {
     }
 
     @RequestMapping("/admin/guardarProducto")
-    public ModelAndView guardarProducto(@ModelAttribute("producto") Producto producto,
-                                        RedirectAttributes ra,
-                                        @RequestParam("imagenUrl") MultipartFile multipartFile){
+    public ModelAndView guardarProducto(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("precio") Double precio,
+            @RequestParam("stock") Long stock,
+            @RequestParam("tienda") Long idTienda,
+            @RequestParam("etapa") Long idEtapa,
+            RedirectAttributes ra,
+            @RequestParam(value = "imagenUrl") MultipartFile multipartFile) throws EtapaInexistente {
 
         ModelMap model = new ModelMap();
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio(precio);
+        producto.setStock(stock);
+        producto.setTienda(servicioTienda.obtenerTiendaPorId(idTienda));
+        producto.setEtapa(servicioAdmi.buscarEtapa(idEtapa));
         producto.setImagenUrl(fileName);
         servicioProducto.guardarProducto(producto);
 
-        try {
-            Producto pCreado = servicioProducto.buscarProductoPorId(producto.getId());
-        } catch (ProductoInexistente e){
-            model.addAttribute("error", "Hubo un error al crear el producto. Intenta nuevamente más tarde");
-        }
-
-        String uploadDir = "resources/core/img/";
+        String uploadDir = "src/main/webapp/resources/core/img";
 
         Path uploadPath = Paths.get(uploadDir);
 
         if (!Files.exists(uploadPath)){
             try {
                 Files.createDirectory(uploadPath);
+                InputStream inputStream = multipartFile.getInputStream();
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 model.addAttribute("Hubo un error al cargar la imágen, intenta nuevamente más tarde");
             }
 
         }
 
-        try (InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e){
-            model.addAttribute("error", "Lo sentimos, hubo un error al cargar la imágen del producto.");
-}
+        ra.addFlashAttribute("mensaje", "El producto ha sido guardado correctamente");
 
-       ra.addFlashAttribute("mensaje", "El producto ha sido guardado correctamente");
-
-        return new ModelAndView("redirect:/admin/gestionarProductos", model);
+        return new ModelAndView("redirect:/admin/gestionarProductos");
 
     }
 
