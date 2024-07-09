@@ -40,6 +40,8 @@ com\tallerwebi\infraestructura\ServicioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\CodigoInvalido.class
 com\tallerwebi\dominio\Etapa.class
 com\tallerwebi\dominio\ServicioLogin.class
+com\tallerwebi\config\MyApplication.class
+com\tallerwebi\config\MvcConfig.class
 com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
 com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
