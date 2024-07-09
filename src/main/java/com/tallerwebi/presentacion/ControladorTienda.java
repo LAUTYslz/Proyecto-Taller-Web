@@ -16,13 +16,15 @@ public class ControladorTienda {
     private final ServicioLogin servicioLogin;
     private final ServicioCompra servicioCompra;
     private final ServicioTarjeta servicioTarjeta;
+    private final ServicioCorreo servicioCorreo;
 
     @Autowired
-    public ControladorTienda(ServicioProducto servicioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, ServicioTarjeta servicioTarjeta) {
+    public ControladorTienda(ServicioProducto servicioProducto, ServicioLogin servicioLogin, ServicioCompra servicioCompra, ServicioTarjeta servicioTarjeta, ServicioCorreo servicioCorreo) {
         this.servicioProducto = servicioProducto;
         this.servicioLogin = servicioLogin;
         this.servicioCompra = servicioCompra;
         this.servicioTarjeta = servicioTarjeta;
+        this.servicioCorreo = servicioCorreo;
     }
 
     @RequestMapping("/productos")
@@ -219,7 +221,15 @@ public class ControladorTienda {
             }
         }
 
+        enviarCorreo(usuario.getEmail());
+
         return new ModelAndView("compraExitosa", model);
+    }
+
+    private void enviarCorreo(String email){
+        String asunto = "Compra";
+        String cuerpo = "¡Gracias por tu compra! Estaremos en contacto para mandarte el link de seguimiento de tu producto.";
+        servicioCorreo.enviarCorreo(email, asunto, cuerpo);
     }
 
 }

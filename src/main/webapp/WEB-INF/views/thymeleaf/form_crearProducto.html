@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
@@ -17,7 +18,15 @@
     <div class="form-container">
         <h2 class="my-4">Crear Nuevo Producto</h2>
 
-        <form th:action="@{/admin/guardarProducto}" th:object="${producto}" method="POST" enctype="multipart/form-data">
+        <div th:if="${mensaje != null}" class="w3-panel w3-pale-green w3-border" >
+            <p th:text="${mensaje}"></p>
+        </div>
+
+        <div th:if="${error != null}" class="w3-panel w3-red" >
+            <p th:text="${error}"></p>
+        </div>
+
+        <form th:action="@{/admin/guardarProducto}"  method="POST" enctype="multipart/form-data" th:object="${producto}">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
@@ -38,7 +47,7 @@
                 <label for="tienda">Tienda:</label>
                <select id="tienda" class="form-control" name="tienda" required>
                    <th:block th:each="tienda : ${tiendas}">
-                       <option th:value="${tienda.id}" th:text="${tienda}"></option>
+                       <option th:value="${tienda.id}" th:text="${tienda.nombre}"></option>
                    </th:block>
                </select> <br>
             </div>
@@ -54,9 +63,6 @@
                 <label for="imagenUrl"> Imágen </label>
                 <input type="file" id="imagenUrl" name="imagenUrl" accept="image/png, image/jpeg" required>
             </div>
-            <div class="preview">
-                <img id="thumbnail" alt="Producto Preview">
-            </div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
@@ -65,25 +71,6 @@
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $('#imagen').change(function() {
-            showImageThumbnail(this);
-        });
-    });
-
-    function showImageThumbnail(fileInput){
-        file = fileInput.files[0];
-        reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#thumbnail').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-</script>
 
 <div th:replace="home :: footer"></div>
 

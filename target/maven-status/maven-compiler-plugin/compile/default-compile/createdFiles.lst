@@ -11,9 +11,11 @@ com\tallerwebi\dominio\RepositorioUsuario.class
 com\tallerwebi\infraestructura\RepositorioMembresiaActivadaImpl.class
 com\tallerwebi\infraestructura\ServicioTarjetaImpl.class
 com\tallerwebi\infraestructura\RepositorioProfesionalImpl.class
+com\tallerwebi\config\MailConfig.class
 com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.class
 com\tallerwebi\presentacion\DatosLogin.class
 com\tallerwebi\dominio\excepcion\UsuarioExistente.class
+com\tallerwebi\infraestructura\ServicioCorreoImpl.class
 com\tallerwebi\dominio\ServicioMembresiaActivada.class
 com\tallerwebi\config\SpringWebConfig.class
 com\tallerwebi\dominio\Estado.class
@@ -40,8 +42,6 @@ com\tallerwebi\infraestructura\ServicioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\CodigoInvalido.class
 com\tallerwebi\dominio\Etapa.class
 com\tallerwebi\dominio\ServicioLogin.class
-com\tallerwebi\config\MyApplication.class
-com\tallerwebi\config\MvcConfig.class
 com\tallerwebi\infraestructura\RepositorioAdmiImpl.class
 com\tallerwebi\dominio\excepcion\UsuarioInexistente.class
 com\tallerwebi\dominio\excepcion\TipoProfesionalNoEncontrado.class
@@ -60,6 +60,7 @@ com\tallerwebi\infraestructura\ServicioCalendarioImpl.class
 com\tallerwebi\dominio\excepcion\juegoInexistente.class
 com\tallerwebi\dominio\excepcion\NoposeeEtapa.class
 com\tallerwebi\presentacion\ControladorMembresiaActivada.class
+com\tallerwebi\dominio\ServicioCorreo.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class
 com\tallerwebi\dominio\Usuario.class
 com\tallerwebi\presentacion\ControladorProfesional.class
