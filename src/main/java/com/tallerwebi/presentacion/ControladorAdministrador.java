@@ -4,18 +4,29 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.juegoInexistente;
-import com.tallerwebi.infraestructura.ServicioTiendaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 
-@Controller
+@Controller @MultipartConfig
 public class ControladorAdministrador {
 
     private final ServicioTienda servicioTienda;
@@ -437,18 +448,46 @@ public class ControladorAdministrador {
 
     }
 
-    @PostMapping("/admin/guardarProducto")
-    public ModelAndView guardarTienda(@ModelAttribute("producto") Producto producto) {
-        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+    @RequestMapping("/admin/guardarProducto")
+    public ModelAndView guardarProducto(@ModelAttribute("producto") Producto producto,
+                                        RedirectAttributes ra,
+                                        @RequestParam("imagenUrl") MultipartFile multipartFile){
 
+        ModelMap model = new ModelMap();
+
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        producto.setImagenUrl(fileName);
         servicioProducto.guardarProducto(producto);
+
         try {
-            Producto productoCreado = servicioProducto.buscarProductoPorId(producto.getId());
-        } catch (Exception e) {
-            mav.addObject("error", "Lo sentimos. No hemos podido crear el producto. Intenta nuevamente más tarde");
+            Producto pCreado = servicioProducto.buscarProductoPorId(producto.getId());
+        } catch (ProductoInexistente e){
+            model.addAttribute("error", "Hubo un error al crear el producto. Intenta nuevamente más tarde");
         }
 
-        return mav;
+        String uploadDir = "resources/core/img/" + producto.getId();
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)){
+            try {
+                Files.createDirectory(uploadPath);
+            } catch (IOException e) {
+                model.addAttribute("Hubo un error al cargar la imágen, intenta nuevamente más tarde");
+            }
+
+        }
+
+        try (InputStream inputStream = multipartFile.getInputStream()){
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e){
+            model.addAttribute("error", "Lo sentimos, hubo un error al cargar la imágen del producto.");
+}
+
+       ra.addFlashAttribute("mensaje", "El producto ha sido guardado correctamente");
+
+        return new ModelAndView("redirect:/admin/gestionarProductos", model);
 
     }
 

@@ -16,5 +16,5 @@ public interface ServicioProducto {
     void disminuirStockDeProducto(Long idProducto);
     List<Producto> obtenerProductosPorEtapa(Long idEtapa) throws NoHayProductos;
     List<Producto> listarProductos();
-
+    void setearImagen(Long idProducto, String imagenUrl) throws ProductoInexistente;
 }

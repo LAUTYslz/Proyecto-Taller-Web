@@ -79,4 +79,16 @@ public class ServicioProductoImpl implements ServicioProducto {
         return this.repositorioProducto.listarProductos();
     }
 
+    @Override
+    public void setearImagen(Long idProducto, String imagenUrl) throws ProductoInexistente {
+        Producto producto = this.repositorioProducto.buscarProductoPorId(idProducto);
+
+        if (producto != null){
+            producto.setImagenUrl(imagenUrl);
+            this.repositorioProducto.actualizarProducto(producto);
+        } else {
+            throw new ProductoInexistente();
+        }
+    }
+
 }

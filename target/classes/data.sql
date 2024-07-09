@@ -36,7 +36,7 @@
 # SELECT 'DOMAN'
 # WHERE NOT EXISTS (SELECT 1 FROM Metodo WHERE nombre = 'DOMAN');
 #
-# INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', 'true','ADMINISTRADOR');
+# INSERT INTO Usuario(id, email, password, rol, estado, nombre) VALUES(null, 'git@unlam.edu.ar', 'test', 'ADMIN', true,'ADMINISTRADOR');
 #
 # INSERT INTO TipoProfesional (nombre) VALUES ('Pediatra');
 # INSERT INTO TipoProfesional (nombre) VALUES ('Obstetra');
