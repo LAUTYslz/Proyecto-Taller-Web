@@ -465,7 +465,7 @@ public class ControladorAdministrador {
             model.addAttribute("error", "Hubo un error al crear el producto. Intenta nuevamente más tarde");
         }
 
-        String uploadDir = "resources/core/img/" + producto.getId();
+        String uploadDir = "resources/core/img/";
 
         Path uploadPath = Paths.get(uploadDir);
 
