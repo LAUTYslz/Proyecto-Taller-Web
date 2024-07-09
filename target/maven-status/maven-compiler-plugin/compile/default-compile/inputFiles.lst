@@ -24,6 +24,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\MyServletInitializer.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioInexistente.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioCorreoImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioCompra.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioProductoImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\juegoInexistente.java
@@ -34,6 +35,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ModeloTest.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioProducto.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TipoNoEncontradoPorID.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioCorreo.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTurno.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\TipoProfesional.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ElUsuarioYaTieneTurnoEnEsaFechaHora.java
@@ -108,6 +110,7 @@ C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dom
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\HibernateConfig.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioTiendaImpl.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioNoPoseeMembresiaActivada.java
+C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\MailConfig.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTest.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\PreguntaTest.java
 C:\Users\leite\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTienda.java
