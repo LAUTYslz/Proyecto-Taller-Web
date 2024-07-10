@@ -15,6 +15,7 @@ public class Pago {
     private LocalDate fechaPago;
     private Integer importeTotal;
 
+
     public Long getId() {
         return id;
     }

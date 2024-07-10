@@ -52,6 +52,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
        datosMembresia.setFechaDeBaja(fechaDeBaja);
        // activo memebresia, le cambio el estado
        activarMembresia(datosMembresia);
+       ingresaImporteACaja(datosMembresia);
 
         // Guardar la membresía
         repositorioMembresia.registrarMembresia(datosMembresia);
@@ -62,7 +63,13 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
 
     }
 
-    private void activarMembresia(DatosMembresia membresia) {
+    public void ingresaImporteACaja(DatosMembresia datosMembresia) {
+        Caja caja = new Caja();
+        caja.setIngreso(datosMembresia.getCuota());
+    }
+
+    public void activarMembresia(DatosMembresia membresia) {
+        membresia.setCuota(5000);
         membresia.setEstado(Estado.valueOf("ACTIVADA"));
     }
 

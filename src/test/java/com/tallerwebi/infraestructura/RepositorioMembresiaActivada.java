@@ -38,6 +38,7 @@ public class RepositorioMembresiaActivada {
     @Test
     @Transactional
     @Rollback
+
     public void quePuedaGuardarContactos() {
         TipoProfesional tipoPediatra = givenExisteTipo("Pediatra");
         Metodo metodoWaldorf = givenExisteMetodo("Waldorf");
@@ -49,5 +50,17 @@ public class RepositorioMembresiaActivada {
         assertThat(tipoPediatra, equalTo(contacto.getTipo()));
         assertThat(metodoWaldorf, equalTo(contacto.getMetodo()));
 
+    }
+
+    private Profesional givenExisteContacto(String s, TipoProfesional tipoPediatra, Metodo metodoWaldorf) {
+        return null;
+    }
+
+    private Metodo givenExisteMetodo(String waldorf) {
+        return null;
+    }
+
+    private TipoProfesional givenExisteTipo(String pediatra) {
+        return null;
     }
 }

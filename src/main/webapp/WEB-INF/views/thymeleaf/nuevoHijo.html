@@ -62,8 +62,6 @@
 <form class="hijos" action="#" th:action="@{/guardar-hijo}" method="POST" th:object="${hijo}">
     <label for="nombre">Nombre del Hijo:</label><br>
     <input th:field="*{nombre}" type="text" id="nombre" name="nombre" required><br><br>
-    <label for="edad">Edad del Hijo:</label><br>
-    <input  th:field="*{edad}" type="number" id="edad" name="edad" required><br><br>
     <label for="dni">Dni:</label><br>
     <input  th:field="*{dni}"type="number" id="dni" name="dni" required><br><br>
     <label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>

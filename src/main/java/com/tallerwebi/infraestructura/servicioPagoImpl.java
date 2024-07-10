@@ -30,12 +30,15 @@ public class servicioPagoImpl implements ServicioPago {
     }
 
     @Override
-    public Pago generarPago(Profesional profesional, List<Consulta> consultas, Integer importeTotal) {
+    public Pago generarPago(Profesional profesional, List<Consulta> consultas, Integer importeTotal, Caja caja) {
         Pago pago = new Pago();
         pago.setProfesional(profesional);
         pago.setImporteTotal(importeTotal);
         pago.setConsulta(consultas.get(0));
+        caja.setEgreso(importeTotal);
         return pago;
     }
+
+
 
 }

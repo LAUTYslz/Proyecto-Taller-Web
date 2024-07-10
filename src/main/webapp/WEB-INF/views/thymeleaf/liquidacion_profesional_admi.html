@@ -89,12 +89,11 @@
                         <button type="submit" class="btn btn-primary">Ver respuesta</button>
                     </form>
                 </div>
-                <!-- Mostrar botón "Ver respuesta" si hay una respuesta -->
+                <!-- Mostrar botón "Pagar Consulta" si hay una respuesta -->
                 <div th:if="${consulta.respuesta != null}">
-                    <form th:action="@{pagar/{id}(id=${consulta.id})/{id}(id=${profesional.id})}" method="get">
+                    <form th:action="@{/admin/gestionarProfesionales/pagar/{idConsulta}/{idProfesional}(idConsulta=${consulta.id},idProfesional=${profesional.id})}" method="get">
                         <button type="submit" class="btn btn-primary">Pagar Consulta</button>
                     </form>
-
                 </div>
             </td>
         </tr>

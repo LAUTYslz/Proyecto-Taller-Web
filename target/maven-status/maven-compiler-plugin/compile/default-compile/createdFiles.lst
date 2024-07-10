@@ -56,6 +56,7 @@ com\tallerwebi\dominio\Juego.class
 com\tallerwebi\infraestructura\ServicioCalendarioImpl.class
 com\tallerwebi\dominio\excepcion\juegoInexistente.class
 com\tallerwebi\dominio\excepcion\NoposeeEtapa.class
+com\tallerwebi\dominio\Caja.class
 com\tallerwebi\presentacion\ControladorMembresiaActivada.class
 com\tallerwebi\infraestructura\servicioPagoImpl.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class

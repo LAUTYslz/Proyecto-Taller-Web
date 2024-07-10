@@ -376,21 +376,24 @@ public class ControladorAdministrador {
     }
 
 
-    @GetMapping("/admin/gestionarProfesionales/pagar/{id}/{id}")
-    public ModelAndView liquidarConsultasProfesional(@PathVariable Long idConsulta, Long idProfesional) {
+    @GetMapping("/admin/gestionarProfesionales/pagar/{idConsulta}/{idProfesional}")
+    public ModelAndView liquidarConsultasProfesional(@PathVariable Long idConsulta, @PathVariable Long idProfesional) {
         ModelAndView mav = new ModelAndView("pago_consulta_profesional");
         Profesional profesional = servicioProfesional.obtenerPorId(idProfesional);
         List<Consulta> consultas= servicioMembresiaActivada.buscarConsultasPorProfesionales(profesional.getEmail());
         Integer importeTotal =servicioMembresiaActivada.obtenerImporteTotalDeConsultasPorMesPorProfesional(profesional, consultas);
         List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
-      //  Pago nuevoPago = new Pago (servicioPago.generarPago(profesional,consultas,importeTotal));
+        Caja caja = servicioAdmi.obtenerCaja();
+        Pago nuevoPago = new Pago() ;
+        nuevoPago= servicioPago.generarPago(profesional,consultas,importeTotal,caja);
 
         mav.addObject("metodos", metodos);
         mav.addObject("importeTotal", importeTotal);
         mav.addObject("tipos", tipos);
         mav.addObject("profesional", profesional);
         mav.addObject("consultas", consultas);
+        mav.addObject("caja", caja);
         return mav;
     }
 

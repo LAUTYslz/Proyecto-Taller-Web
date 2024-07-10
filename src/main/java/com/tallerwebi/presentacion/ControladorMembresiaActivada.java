@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.excepcion.CantidadDeConsultasAgotadas;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
 import com.tallerwebi.infraestructura.RepositorioMetodoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +19,25 @@ import java.util.List;
 
 @Controller
 public class ControladorMembresiaActivada {
-    private final RepositorioMetodoImpl repositorioMetodoImpl;
+
     private ServicioMembresiaActivada servicioMembresiaActivada;
     private ServicioLogin servicioLogin;
     private ServicioAdmi servicioAdmi;
     private ServicioProfesional servicioProfesional;
     private ServicioMetodo servicioMetodo;
     private ServicioTipoProfesional servicioTipoProfesional;
+    @Autowired
 
-    public ControladorMembresiaActivada(ServicioMembresiaActivada servicioMembresiaActivada, ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioMetodo servicioMetodo, ServicioTipoProfesional servicioTipoProfesional, RepositorioMetodoImpl repositorioMetodoImpl) {
+
+    public ControladorMembresiaActivada(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioMembresiaActivada servicioMembresiaActivada, ServicioMetodo servicioMetodo, ServicioTipoProfesional servicioTipoProfesional) {
         this.servicioMembresiaActivada = servicioMembresiaActivada;
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
         this.servicioProfesional = servicioProfesional;
         this.servicioMetodo = servicioMetodo;
         this.servicioTipoProfesional = servicioTipoProfesional;
-        this.repositorioMetodoImpl = repositorioMetodoImpl;
     }
+
 
     @GetMapping("/usuarioMembresia")
     public ModelAndView mostrarMembresiaActivada(HttpServletRequest request) throws UsuarioInexistente, UsuarioExistente {

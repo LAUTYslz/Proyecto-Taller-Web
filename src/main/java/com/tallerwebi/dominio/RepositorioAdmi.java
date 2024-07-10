@@ -29,4 +29,6 @@ public interface RepositorioAdmi {
     void actualizarJuegos(Juego buscarJuego);
 
     void eliminarJuegos(Juego juego);
+
+    Caja obtenerCajaDeProyecto();
 }

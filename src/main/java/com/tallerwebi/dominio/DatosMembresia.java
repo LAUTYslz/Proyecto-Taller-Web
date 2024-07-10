@@ -19,6 +19,7 @@ public class DatosMembresia {
     @Enumerated(EnumType.STRING)
     private Estado estado=INACTIVA;
     private Long numeroTelefonico;
+    private Integer cuota=0;
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fechaDeInicio;
 
@@ -98,18 +99,12 @@ public class DatosMembresia {
         this.fechaDeBaja = fechaDeBaja;
     }
 
-    @Override
-    public String toString() {
-        return "DatosMembresia{" +
-                "id=" + id +
-                ", nombreCompleto='" + nombreCompleto + '\'' +
-                ", email='" + email + '\'' +
-                ", estado=" + estado +
-                ", numeroTelefonico=" + numeroTelefonico +
-                ", fechaDeInicio=" + fechaDeInicio +
-                ", fechaDeBaja=" + fechaDeBaja +
-                ", tarjeta=" + tarjeta +
-                '}';
+    public Integer getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(Integer cuota) {
+        this.cuota = cuota;
     }
 }
 
