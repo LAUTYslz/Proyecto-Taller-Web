@@ -7,6 +7,7 @@ import com.tallerwebi.integracion.config.SpringWebTestConfig;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.verification.VerificationMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,7 +19,9 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -93,7 +96,33 @@ public class RepositorioTiendaTest {
 
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void queSePuedaEliminarUnaTienda(){
+        Tienda tienda = new Tienda();
+        tienda.setNombre("Original Store");
+        tienda.setTelefono("123456789");
+        tienda.setEmail("contacto@mundojuguetes.com");
+
+        repositorioTienda.guardarTienda(tienda);
+
+        whenEliminoTienda(tienda.getId());
+
+        thenTiendaNoEstaEnLaLista(tienda);
+
+    }
+
+    private void thenTiendaNoEstaEnLaLista(Tienda tienda) {
+        assertNull(repositorioTienda.obtenerTiendaPorId(tienda.getId()));
+        assertFalse(repositorioTienda.obtenerListadoDeTiendas().contains(tienda));
+    }
+
 //    PRIVATE
+
+    private void whenEliminoTienda(Long idTienda) {
+        repositorioTienda.eliminarTienda(idTienda);
+    }
 
     private void thenTiendaActualizada(Tienda tiendaBuscada) {
         assertNotNull(tiendaBuscada);
