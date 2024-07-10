@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 public class Profesional {
@@ -24,7 +25,53 @@ public class Profesional {
     @JoinColumn(name = "metodo_id")
     private Metodo metodo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "dia_atencion")
+    private DiasSemana diaAtencion;
+
+    @Column(name = "hora_desde")
+    private LocalTime horaDesde;
+
+    @Column(name = "hora_hasta")
+    private LocalTime horaHasta;
+
+    @Column(name = "duracion_sesiones")
+    private Integer duracionSesiones;
+
+
     private Integer valorConsulta = 10000;
+
+    public DiasSemana getDiaAtencion() {
+        return diaAtencion;
+    }
+
+    public void setDiaAtencion(DiasSemana diaAtencion) {
+        this.diaAtencion = diaAtencion;
+    }
+
+    public LocalTime getHoraDesde() {
+        return horaDesde;
+    }
+
+    public void setHoraDesde(LocalTime horaDesde) {
+        this.horaDesde = horaDesde;
+    }
+
+    public LocalTime getHoraHasta() {
+        return horaHasta;
+    }
+
+    public void setHoraHasta(LocalTime horaHasta) {
+        this.horaHasta = horaHasta;
+    }
+
+    public Integer getDuracionSesiones() {
+        return duracionSesiones;
+    }
+
+    public void setDuracionSesiones(Integer duracionSesiones) {
+        this.duracionSesiones = duracionSesiones;
+    }
 
     public Integer getValorConsulta() {
         return valorConsulta;

@@ -24,28 +24,36 @@
 
         <h1>Gestión de profesionales</h1>
 
-        <form th:action="@{/admin/gestionarProfesionales}" method="get" class="filtrar-contactos">
-            <label for="metodo">Método: </label>
-            <select name="metodo" id="metodo">
-                <option value="">Selecciona un método</option>
-                <th:block th:each="metodo : ${metodos}" >
-                    <option th:value="${metodo.nombre}" th:text="${metodo.nombre}"></option>
-                </th:block>
-            </select>
-            <br>
-            <label for="tipo">Tipo:</label>
-            <select name="tipo" id="tipo">
-                <option value="">Selecciona un tipo</option>
-                <th:block th:each="tipo : ${tipos}">
-                    <option th:value="${tipo.nombre}" th:text="${tipo.nombre}"></option>
-                </th:block>
-            </select>
-            <br>
-            <button type="submit">Filtrar</button>
-        </form>
+            <section class="formularios-container">
+                <form th:action="@{/admin/gestionarProfesionales}" method="get" class="filtrar-contactos">
+                    <label for="metodo">Método: </label>
+                    <select name="metodo" id="metodo">
+                        <option value="">Selecciona un método</option>
+                        <th:block th:each="metodo : ${metodos}" >
+                            <option th:value="${metodo.nombre}" th:text="${metodo.nombre}"></option>
+                        </th:block>
+                    </select>
+                    <br>
+                    <label for="tipo">Tipo:</label>
+                    <select name="tipo" id="tipo">
+                        <option value="">Selecciona un tipo</option>
+                        <th:block th:each="tipo : ${tipos}">
+                            <option th:value="${tipo.nombre}" th:text="${tipo.nombre}"></option>
+                        </th:block>
+                    </select>
+                    <br>
+                    <button type="submit">Filtrar</button>
+                </form>
 
-        <a th:href="@{/admin/gestionarProfesionales/crear}" class="btn crearButton">Crear Nuevo Profesional</a>
-
+                <div class="a-conteiner">
+                    <a th:href="@{/admin/gestionarProfesionales/crear}" class="btn crearButton">Crear Nuevo Profesional</a>
+                    <br>
+                    <a th:href="@{/generarTurnos}" class="btn crearButton">Generar Nuevos Turnos</a>
+                </div>
+            </section>
+        <div th:if="${mensaje}">
+            <p th:text="${mensaje}" style="color: green;"></p>
+        </div>
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -80,7 +88,7 @@
                 </tbody>
             </table>
         </div>
-        <div th:if="${error}">
+        <div th:if="${error}" class="error">
             <p th:text="${error}" style="color: red;"></p>
         </div>
     </main>

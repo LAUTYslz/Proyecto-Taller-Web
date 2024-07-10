@@ -13,7 +13,7 @@ public interface RepositorioTurno {
 
     void actualizarTurno(Turno turno);
 
-    void eliminar(Turno turno);
+    void cancelar(Turno turno);
 
     List<Turno> traerTurnosActivosConProfesional(Long usuarioId, Long profesionalId);
 
@@ -22,4 +22,12 @@ public interface RepositorioTurno {
     boolean profesionalTieneTurnoEnFechaHora(Long profesionalId, Date fechaHora);
 
     List<Turno> obtenerTurnosRealizadosPorProfesional(Long profesionalId);
+
+    List<Turno> obtenerTurnosPorEspecialidad(String nombreTipo);
+
+    List<Turno> traerTurnos();
+
+    void eliminarTurnos();
+
+    List<Turno> buscarTurnosReservadosPorProfesional(Profesional profesional);
 }

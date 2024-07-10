@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface ServicioProfesional {
@@ -27,6 +28,12 @@ public interface ServicioProfesional {
     List<Profesional> traerProfesionalesSinTienda();
 
     Integer calcularMontoACobrar(String mail);
+
+    List<TipoProfesional> traerTodosLosTiposSinTienda();
+
+    Profesional traerPorEmail(String profesionalMail);
+
+    void guardarDiasAtencion(Profesional profesional, DiasSemana diaSemana, LocalTime horaDesde, LocalTime horaHasta, int duracionSesiones);
 
     //Contacto guardar(String nombre, String telefono, String mail, String direccion, String institucion, String nombreMetodo, String nombreTipo);
 }

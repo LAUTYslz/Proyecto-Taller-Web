@@ -62,3 +62,24 @@ main{
 .filtrar-contactos button:hover{
     scale: 1.1;
 }
+
+.a-conteiner{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 4vh
+}
+.a-conteiner a{
+    width: 220px;
+}
+
+.error p{
+    text-align: center;
+}
+.error{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}

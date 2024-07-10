@@ -1,5 +1,6 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.Dto.DiasAtencionDTO;
 import com.tallerwebi.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -85,6 +87,47 @@ public class ControladorProfesional {
     public ModelAndView filtrarContactosPorMetodoYTipo(String nombreMetodo, String nombreTipo) {
         ModelAndView mav = new ModelAndView("/profesional/filtrarPorMetodoYTipo");
         mav.addObject("ContactosFiltradosPorTipoYMetodo", servicioContacto.traerProfesionalesPorTipoYMetodo(nombreTipo, nombreMetodo));
+        return mav;
+    }
+
+    @GetMapping("/setearDiasAtencion")
+    public ModelAndView setearDiasAtencion(HttpServletRequest request) {
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+        String profesionalMail = usuario.getEmail();
+        Profesional profesional = servicioContacto.traerPorEmail(profesionalMail);
+
+        ModelAndView mav = new ModelAndView();
+        DiasAtencionDTO diasAtencionDTO = new DiasAtencionDTO();
+        diasAtencionDTO.setIdProfesional(profesional.getId());
+        mav.addObject("diasAtencionDTO", diasAtencionDTO);
+        mav.addObject("profesional", profesional);
+        mav.setViewName("formulario_setear_dias_atencion");
+        return mav;
+    }
+
+    @PostMapping("/setearDiasAtencion")
+    public ModelAndView setearDiasAtencion(@ModelAttribute DiasAtencionDTO diasAtencionDTO) {
+        ModelAndView mav = new ModelAndView();
+
+        Long idProfesional = diasAtencionDTO.getIdProfesional();
+        String diaSemanaStr = diasAtencionDTO.getDiaSemana();
+        DiasSemana diaSemanaEnum;
+        try{
+            diaSemanaEnum = DiasSemana.valueOf(diaSemanaStr.toUpperCase());
+        } catch (IllegalArgumentException e){
+            mav.addObject("error", e.getMessage());
+            mav.setViewName("formulario_setear_dias_atencion");
+            return mav;
+        }
+        LocalTime horaDesde = diasAtencionDTO.getHoraDesde();
+        LocalTime horaHasta = diasAtencionDTO.getHoraHasta();
+        int duracionSesiones = diasAtencionDTO.getDuracionSesiones();
+
+        Profesional profesional = servicioContacto.obtenerPorId(idProfesional);
+
+        servicioContacto.guardarDiasAtencion(profesional, diaSemanaEnum, horaDesde, horaHasta, duracionSesiones);
+
+        mav.setViewName("redirect:/gestionarTurnos");
         return mav;
     }
 }

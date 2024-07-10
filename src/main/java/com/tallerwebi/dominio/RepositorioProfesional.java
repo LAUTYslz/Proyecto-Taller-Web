@@ -20,4 +20,6 @@ public interface RepositorioProfesional {
     Profesional buscarProfesionalPorId(Long id);
 
     List<Profesional> traerPrefesionalesSinTienda();
+
+    Profesional buscarProfesionalPorMail(String profesionalMail);
 }

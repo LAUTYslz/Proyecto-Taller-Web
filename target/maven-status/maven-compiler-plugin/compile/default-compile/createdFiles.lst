@@ -3,6 +3,7 @@ com\tallerwebi\dominio\Etapa.class
 com\tallerwebi\dominio\ServicioLogin.class
 com\tallerwebi\dominio\excepcion\MembresiaInexistente.class
 com\tallerwebi\dominio\excepcion\NoPudoGuardarseElProfesional.class
+com\tallerwebi\dominio\RepositorioDiasAtencion.class
 com\tallerwebi\dominio\excepcion\TipoNoEncontradoPorID.class
 com\tallerwebi\dominio\RepositorioMembresiaActivada.class
 com\tallerwebi\dominio\ServicioAdmi.class
@@ -44,6 +45,7 @@ com\tallerwebi\dominio\excepcion\NoSeEncontraronProfesionalesEnLaBusqueda.class
 com\tallerwebi\infraestructura\ServicioLoginImpl.class
 com\tallerwebi\MyServletInitializer.class
 com\tallerwebi\infraestructura\ServicioAdmiImpl.class
+com\tallerwebi\dominio\DiasSemana.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalImpl.class
 com\tallerwebi\dominio\Profesional.class
 com\tallerwebi\dominio\ServicioMembresia.class
@@ -59,9 +61,12 @@ com\tallerwebi\infraestructura\ServicioCalendarioImpl.class
 com\tallerwebi\dominio\excepcion\juegoInexistente.class
 com\tallerwebi\dominio\excepcion\NoposeeEtapa.class
 com\tallerwebi\dominio\ServicioTipoProfesional.class
+com\tallerwebi\dominio\DiasAtencion.class
 com\tallerwebi\dominio\RepositorioTipoProfesional.class
+com\tallerwebi\Dto\DiasAtencionDTO.class
 com\tallerwebi\presentacion\ControladorMembresiaActivada.class
 com\tallerwebi\presentacion\ControladorAdministrador.class
+com\tallerwebi\infraestructura\RepositorioDiasAtencionImpl.class
 com\tallerwebi\infraestructura\ServicioMembresiaImpl.class
 com\tallerwebi\dominio\excepcion\MembresiaExistente.class
 com\tallerwebi\dominio\Usuario.class

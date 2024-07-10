@@ -23,13 +23,16 @@ public class ServicioProfesionalTest {
     RepositorioMetodo repositorioMetodo = mock(RepositorioMetodo.class);
     RepositorioTipoProfesional repositorioTipoContacto = mock(RepositorioTipoProfesional.class);
     RepositorioTurno repositorioTurno = mock(RepositorioTurno.class);
-    ServicioProfesional servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno);
+    RepositorioDiasAtencion repositorioDiasAtencion = mock(RepositorioDiasAtencion.class);
+    ServicioProfesional servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno, repositorioDiasAtencion);
     @BeforeEach
     public void setUp() {
         repositorioContacto = mock(RepositorioProfesional.class);
         repositorioMetodo = mock(RepositorioMetodo.class);
         repositorioTipoContacto = mock(RepositorioTipoProfesional.class);
-        servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno);
+        repositorioTurno = mock(RepositorioTurno.class);
+        repositorioDiasAtencion = mock(RepositorioDiasAtencion.class);
+        servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno, repositorioDiasAtencion);
     }
 
     @Test

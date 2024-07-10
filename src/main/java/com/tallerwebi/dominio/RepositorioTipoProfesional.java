@@ -10,4 +10,6 @@ public interface RepositorioTipoProfesional {
     List<TipoProfesional> buscarTipos();
 
     TipoProfesional traerTipoPorId(Long tipoId);
+
+    List<TipoProfesional> buscarTiposSinTienda();
 }

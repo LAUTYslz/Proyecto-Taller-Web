@@ -9,7 +9,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto auto ;
+    margin: auto auto 10vh;
     background-color: rgba(163, 132, 225, 0.58);
     border-radius: 20px;
 }
@@ -17,7 +17,29 @@ table{
     width: 90%;
     flex-direction: column;
     justify-content: space-evenly;
+    table-layout: fixed;
 }
+.ver-turnos-disponibles{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    justify-content: space-around;
+    margin-bottom: 3vh;
+    align-items: end;
+    padding: 3vh;
+    background-color: #4f3c6e;
+    border-radius: 10px;
+}
+.ver-turnos-disponibles select{
+    width: 80%;
+}
+.ver-turnos-disponibles label{
+    color: white;
+}
+.ver-turnos-disponibles .btn{
+    height: 80%;
+}
+
 
 .agendarButton{
     margin: 3vh 0 1vh;
@@ -59,4 +81,22 @@ table{
 .contenedor-mensaje-vacio h3{
     text-align: center;
     color:darkslateblue;
+}
+
+.btn-agendar-container{
+    display: flex;
+    width: 40%;
+    margin: auto auto 3vh;
+    justify-content: center;
+}
+.btn-agendar{
+    width: 100%;
+}
+.error{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.error p{
+    text-align: center;
 }

@@ -1,3 +1,4 @@
+/*
 CREATE TABLE IF NOT EXISTS Tarjeta (
                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
                          numeroDeTarjeta VARCHAR(16) NOT NULL,
@@ -128,6 +129,7 @@ INSERT INTO TipoProfesional (nombre) VALUES ('Estimulacion temprana');
 INSERT INTO TipoProfesional (nombre) VALUES ('Psicopedagogo');
 
 -- Crear la tabla de contactos
+
 CREATE TABLE Profesional (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
@@ -171,8 +173,10 @@ CREATE TABLE turno (
                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
                        usuario_id BIGINT NOT NULL,
                        profesional_id BIGINT NOT NULL,
-                       fecha_hora TIMESTAMP NOT NULL,
-                       estado VARCHAR(255) NOT NULL,
                        FOREIGN KEY (usuario_id) REFERENCES usuario(id),
                        FOREIGN KEY (profesional_id) REFERENCES profesional(id)
 );
+
+
+ */
+SELECT * FROM turno where usuario_id is not null;
