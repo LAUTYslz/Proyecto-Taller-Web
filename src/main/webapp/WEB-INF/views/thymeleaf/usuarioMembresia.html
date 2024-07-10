@@ -212,8 +212,35 @@
                                 </div>
                             </div>
                         </div>
+
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/metodo.png}" alt="metodo">
+                            <div class="card-body">
+                                <h5 class="card-title">Crianza consciente</h5>
+                                <a th:href="@{/verHijoEInfoMetodoAsociado}" class="btn btn-primary">Ver métodos</a>
+                                <p class="card-text">Haz click para información de métodos de enseñanza y crianza consciente</p>
+                            </div>
+                        </div>
                     </div>
+
+
+
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/vacunacion.png}" alt="vacunacion">
+                            <div class="card-body">
+                                <h5 class="card-title">Calendario de vacunacion </h5>
+                                <a th:href="@{/vacunacionSeleccionar}" class="btn btn-primary">Ver Calendario </a>
+                                <p class="card-text">Haz click para ver las proximas vacunas de tu hijo.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+
+
 
 
             <h2>Hijos</h2>
@@ -249,7 +276,7 @@
             </div>
             <p th:if="${hijos == null or #lists.size(hijos) == 0}">No hay hijos registrados</p>
         </div>
-
+    </div>
 
         <h2>Consultas</h2>
             <div class="col">
@@ -306,15 +333,16 @@
 
 
 
+            </div>
 <script th:src="@{/usuarioMembre.js}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-</body>
 </main>
+</body>
+
 
 <div th:replace="home :: footer"></div>
 </html>

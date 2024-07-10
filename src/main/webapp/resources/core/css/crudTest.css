@@ -1,0 +1,13 @@
+.containerCrud {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px; /* Ajusta los márgenes laterales según necesites */
+    margin-right: 40px;
+
+
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

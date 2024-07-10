@@ -1,0 +1,194 @@
+.tituloVacunas{
+    font-family: Schoolbell, cursive;
+    font-size: xxx-large;
+}
+.containerVacunas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin-bottom: 40px;
+}
+
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+
+.card-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.card-body {
+    padding: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.containerCargarVacunas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.form-cargar-vacunas {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tituloCargarVacunas {
+    font-family: Schoolbell, cursive;
+    font-size: xxx-large;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 12px;
+}
+
+.botonCargarVacunas {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.botonCargarVacunas :hover {
+    background-color: #0056b3;
+}
+/**/
+.containerVacunasPendientes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.vacunas-pendientes {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.tituloVacunasPendientes {
+    font-family: Schoolbell, cursive;
+    font-size: xxx-large;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mensaje-alerta {
+    margin-bottom: 20px;
+}
+
+.proxima-vacuna, .sin-vacunas-pendientes {
+    margin-bottom: 10px;
+}
+
+.lista-vacunas-pendientes {
+    margin-bottom: 20px;
+}
+
+.form-cargar-vacunas-pendientes .btn-cargar-vacunas {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #ffffff; /* Color del texto */
+    background-color: #007bff; /* Color de fondo celeste */
+    font-weight: bold;
+    padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.form-cargar-vacunas-pendientes .btn-cargar-vacunas:hover {
+    background-color: #0056b3; /* Color de fondo celeste oscuro al hacer hover */
+}
+
+.form-cargar-vacunas-pendientes {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    max-width: 600px;
+}
+
+.form-cargar-vacunas-pendientes form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}

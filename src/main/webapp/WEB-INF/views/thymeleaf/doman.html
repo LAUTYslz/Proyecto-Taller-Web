@@ -8,10 +8,15 @@
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/css/metodos.css}"/>
+    <script th:href="@{/js/metodos.js}"></script>
 
 </head>
 <body>
@@ -27,6 +32,31 @@
     una edad muy temprana. Inicialmente diseñado para ayudar a niños con discapacidades mentales y físicas, como la
     parálisis crebral, el síndrome de Down y el autismo, el método también ha demostrado ser efectivo en el desarrollo
     cognitivo de niños sin estas condiciones.</p>
+
+
+    <div class="video-container">
+        <iframe id="thumbnail-video" src="https://www.youtube.com/embed/CPM1q5JBVI0" title="Método DOMAN | Enseña a LEER a tu BEBÉ Jugando" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="overlay">
+            <button onclick="openModal('https://www.youtube.com/embed/CPM1q5JBVI0')">Ver Video</button>
+        </div>
+    </div>
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Método DOMAN | Enseña a LEER a tu BEBÉ Jugando</h2>
+            <iframe id="modal-video" width="853" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <h2 class="subtitulo-metodos"> Principios educativos </h2>
+    <div class="principios-educativos">
+        <h3 class="caracteristica sub-subtitulo-metodos"> Estímulos visuales, auditivos y táctiles </h3>
+        <p class="desarrollo-caracteristica"> El método emplea "bits de inteligencia", que son estímulos visuales, auditivos
+            y de textura. Estos están diseñados para ser procesados e interpretados por los sentidos del niño, facilitando el
+            aprendizaje y la retención de información. </p>
+    </div>
+
 
     <h2 class="subtitulo-metodos"> Principios educativos </h2>
     <div class="principios-educativos">
@@ -68,7 +98,7 @@
 
 </div>
 
-
 <div th:replace="home :: footer"></div>
+<script th:src="@{/js/metodos.js}"></script>
 </body>
 </html>

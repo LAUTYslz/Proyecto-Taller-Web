@@ -232,12 +232,11 @@ h1{
         margin-left: 15px;
     }
 
-    a {
+    & a {
         color: rgba(99, 255, 220, 0.5);
     }
 
-    a:hover {
+    & a:hover {
         color: #58e3ca;
-    /
     }
 }
