@@ -34,45 +34,43 @@
 
     <!-- Mostrar importe total a pagar -->
     <h4>Importe Total a Pagar</h4>
-    <p>$ <span th:text="${importeTotal}"></span></p>
+    <p>$ <span th:text="${consulta.precio}"></span></p>
 
     <h4>Importe de Caja </h4>
-    <p>$ <span th:text="${importeTotal}"></span></p>
+    <p>$ <span th:text="${caja.saldoActual}"></span></p>
 
     <!-- Listado de Consultas realizadas por el profesional -->
     <h4>Consultas Realizadas</h4>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+
             <th>Fecha</th>
-            <th>Paciente</th>
-            <th>Descripción</th>
+            <th>Nombre de Titular</th>
+            <th>Nombre del Hijo</th>
+            <th>Precio</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="consulta, iterStat : ${consultas}">
-            <td th:text="${iterStat.index + 1}"></td>
+
+
             <td th:text="${#dates.format(consulta.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-            <td th:text="${consulta.paciente.nombre}"></td>
-            <td th:text="${consulta.descripcion}"></td>
+            <td th:text="${consulta.usuario.nombre}"></td>
+            <td th:text="${consulta.hijo.nombre}"></td>
+            <td th:text="${consulta.precio}"></td>
+
         </tr>
         </tbody>
     </table>
 
     <!-- Formulario para realizar el pago -->
     <h4>Realizar Pago</h4>
-    <form th:action="@{/admin/gestionarProfesionales/procesarPago}" method="post">
-        <input type="hidden" name="profesionalId" th:value="${profesional.id}">
-        <input type="hidden" name="importeTotal" th:value="${importeTotal}">
-
-
+    <form th:action="@{/admin/gestionarProfesionales/procesarPago/{profesionalId}/{consultaId}(profesionalId=${profesional.id}, consultaId=${consulta.id})}"
+          method="post">
 
         <!-- Botón para realizar el pago -->
         <button type="submit" class="btn btn-primary">Pagar</button>
     </form>
-
-</div>
 </body>
 <div th:replace="home :: footer"></div>
 </html>

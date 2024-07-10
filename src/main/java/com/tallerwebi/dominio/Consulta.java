@@ -16,8 +16,9 @@ public class Consulta {
     private Integer mes;
     private Integer anio;
     private String respuesta;
-    private Integer precio=3000;
-
+    private Integer precio=1000;
+    @Enumerated(EnumType.STRING)
+    private EstadoConsulta estadoConsulta;
     @Enumerated(EnumType.STRING)
     private Mensaje estado;
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
@@ -131,5 +132,13 @@ public class Consulta {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    public EstadoConsulta getEstadoConsulta() {
+        return estadoConsulta;
+    }
+
+    public void setEstadoConsulta(EstadoConsulta estadoConsulta) {
+        this.estadoConsulta = estadoConsulta;
     }
 }

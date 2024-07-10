@@ -24,6 +24,7 @@
 <div th:replace="home :: nav"></div>
 <main>
 
+    <a  th:href="@{/admin/gestionarProfesionales/verpagos}" class="btn btn-primary">Ver pagos Realizados</a>
 
     <div class="table-container">
         <table class="table">
@@ -58,39 +59,43 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Hijo</th>
-            <th>Método</th>
+
             <th>Fecha</th>
-            <th>Cantidad Consulta</th>
-            <th>Precio Consulta</th>
-            <th>Importe Total</th>
-            <th>Estado de la Consulta</th>
-            <th>Acciones</th>
+            <th>ESTADO DE PAGO </th>
+            <th>Nombre Profesional</th>
+            <th>Nombre del Hijo</th>
+            <th>Nombre del Usuario Titular</th>
+            <th>Precio Consulta </th>
+            <th>Estado de la Respuesta </th>
+            <th>Accion</th>
+
+
+
         </tr>
         </thead>
         <tbody>
         <!-- Iterar sobre cada consulta -->
         <tr th:each="consulta : ${consultas}">
+            <td th:text="${consulta.fecha}"></td>
+            <td th:text="${consulta.estadoConsulta}"></td>
             <td th:text="${consulta.profesional.nombre}"></td>
             <td th:text="${consulta.hijo.nombre}"></td>
-            <td th:text="${consulta.hijo.metodo.nombre}"></td>
-            <td th:text="${consulta.fecha}"></td>
-            <td th:text="${consulta.cantidad}"></td>
+            <td th:text="${consulta.usuario.nombre}"></td>
             <td th:text="${consulta.precio}"></td>
-            <td th:text="${importeTotal}"></td>
+
             <td th:class="${consulta != null ? (consulta.estado == 'SIN_LEER' ? 'estado-sin-leer' : (consulta.estado == 'LEIDO' ? 'estado-leida' : 'estado-respondida')) : ''}">
                 <strong th:text="${consulta.estado}"></strong>
             </td>
+
             <td>
                 <!-- Mostrar botón "Ver respuesta" si el estado es "RESPONDIDO" -->
-                <div th:if="${consulta.estado == 'RESPONDIDO'}">
+                <div th:if="${consulta.estado == T(com.tallerwebi.dominio.Mensaje).RESPONDIDO && consulta.estadoConsulta == T(com.tallerwebi.dominio.EstadoConsulta).PAGADA }">
                     <form th:action="@{/verRespuesta/{id}(id=${consulta.id})}" method="get">
                         <button type="submit" class="btn btn-primary">Ver respuesta</button>
                     </form>
                 </div>
                 <!-- Mostrar botón "Pagar Consulta" si hay una respuesta -->
-                <div th:if="${consulta.respuesta != null}">
+                <div th:if="${consulta.estadoConsulta == T(com.tallerwebi.dominio.EstadoConsulta).IMPAGA}">
                     <form th:action="@{/admin/gestionarProfesionales/pagar/{idConsulta}/{idProfesional}(idConsulta=${consulta.id},idProfesional=${profesional.id})}" method="get">
                         <button type="submit" class="btn btn-primary">Pagar Consulta</button>
                     </form>

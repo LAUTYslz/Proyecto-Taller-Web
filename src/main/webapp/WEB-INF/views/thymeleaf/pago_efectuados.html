@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Gestionar Consulta Profesional</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
+    <link rel="stylesheet" th:href="@{/css/consulta_profesionales_admi.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <div th:replace="home :: nav"></div>
+</head>
+<body>
+
+
+<table class=table>
+    <h3 >Pagos Efectuados</h3>
+    <thead>
+        <tr>
+            <th>ID Pago</th>
+            <th>Profesional</th>
+            <th>Consulta</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iteración sobre la lista de pagos -->
+        <tr th:each="pago : ${pagos}">
+            <td th:text="${pago.id}"></td>
+            <td th:text="${pago.profesional.nombre}"></td>
+            <td th:text="${pago.consulta.precio}"></td>
+            <td th:text="${pago.fechaPago}"></td>
+            <td th:text="${pago.importeTotal}"></td>
+        </tr>
+        </tbody>
+
+
+
+</table>
+<div>
+    <h2>Información de la Caja</h2>
+    <p><strong>Saldo Actual:</strong> <span th:text="${caja.saldoActual}"></span></p>
+
+</div>
+</body>
+</html>

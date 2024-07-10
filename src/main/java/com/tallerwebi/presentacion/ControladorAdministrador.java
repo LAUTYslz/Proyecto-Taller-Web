@@ -1,10 +1,9 @@
 package com.tallerwebi.presentacion;
 
+import com.sun.xml.txw2.Document;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
 import com.tallerwebi.dominio.excepcion.juegoInexistente;
-import com.tallerwebi.infraestructura.ServicioMembresiaActivadaImpl;
-import com.tallerwebi.infraestructura.servicioPagoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 @Controller
 public class ControladorAdministrador {
@@ -376,6 +377,7 @@ public class ControladorAdministrador {
     }
 
 
+
     @GetMapping("/admin/gestionarProfesionales/pagar/{idConsulta}/{idProfesional}")
     public ModelAndView liquidarConsultasProfesional(@PathVariable Long idConsulta, @PathVariable Long idProfesional) {
         ModelAndView mav = new ModelAndView("pago_consulta_profesional");
@@ -384,20 +386,64 @@ public class ControladorAdministrador {
         Integer importeTotal =servicioMembresiaActivada.obtenerImporteTotalDeConsultasPorMesPorProfesional(profesional, consultas);
         List<Metodo> metodos = servicioProfesional.traerTodosLosMetodos();
         List<TipoProfesional> tipos = servicioProfesional.traerTodosLosTipos();
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(idConsulta);
         Caja caja = servicioAdmi.obtenerCaja();
-        Pago nuevoPago = new Pago() ;
-        nuevoPago= servicioPago.generarPago(profesional,consultas,importeTotal,caja);
+
 
         mav.addObject("metodos", metodos);
         mav.addObject("importeTotal", importeTotal);
         mav.addObject("tipos", tipos);
         mav.addObject("profesional", profesional);
         mav.addObject("consultas", consultas);
+        mav.addObject("consulta", consulta);
         mav.addObject("caja", caja);
         return mav;
     }
 
+
+    @PostMapping("/admin/gestionarProfesionales/procesarPago/{profesionalId}/{consultaId}")
+    public ModelAndView procesarPago(
+            @PathVariable Long profesionalId,
+            @PathVariable Long consultaId) {
+        ModelAndView mav = new ModelAndView("pago_realizado"); // Vista para mostrar el resultado del pago
+        Profesional profesional = servicioProfesional.obtenerPorId(profesionalId);
+        Caja caja = servicioAdmi.obtenerCaja(); // Obtener la caja para actualizar el saldo
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
+        // Generar el pago y actualizar la caja
+
+        Pago pago = servicioPago.generarPago(profesional, consulta, caja);
+
+        // Agregar objetos al modelo para mostrar en la vista
+        mav.addObject("profesional", profesional);
+        mav.addObject("pago", pago);
+        mav.addObject("caja", caja);
+
+        return mav;
+    }
+
+
+    @GetMapping("/admin/gestionarProfesionales/verpagos")
+    public ModelAndView verPago(){
+        ModelAndView mav = new ModelAndView("pago_efectuados"); // Vista para mostrar el resultado del pago
+        List<Profesional> profesionales = servicioProfesional.traerProfesionales();
+        Caja caja = servicioAdmi.obtenerCaja(); // Obtener la caja para actualizar el saldo
+        List<Consulta> consultas = servicioMembresiaActivada.listaDeConsultascreadas();
+        // Generar el pago y actualizar la caja
+        List<Pago> pagos = servicioPago.obtenerListaPagos();
+
+
+        // Agregar objetos al modelo para mostrar en la vista
+        mav.addObject("profesionales", profesionales);
+        mav.addObject("consultas", consultas);
+        mav.addObject("pagos", pagos);
+        mav.addObject("caja", caja);
+
+        return mav;
+    }
+
+
 }
+
 
 
 

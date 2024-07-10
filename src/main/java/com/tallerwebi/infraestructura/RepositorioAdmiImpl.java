@@ -92,4 +92,12 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
                 createCriteria(Caja.class).uniqueResult();
     }
 
-}
+    @Override
+    public void actualizarCaja(Caja caja) {
+
+            sessionFactory.getCurrentSession().update(caja);
+        }
+
+    }
+
+

@@ -50,6 +50,7 @@ com\tallerwebi\presentacion\ControladorLogin.class
 com\tallerwebi\dominio\DatosMembresia.class
 com\tallerwebi\dominio\TipoProfesional.class
 com\tallerwebi\dominio\Tarjeta.class
+com\tallerwebi\dominio\EstadoConsulta.class
 com\tallerwebi\infraestructura\ServicioProfesionalImpl.class
 com\tallerwebi\dominio\Pago.class
 com\tallerwebi\dominio\Juego.class

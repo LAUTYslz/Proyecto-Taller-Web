@@ -14,6 +14,8 @@ public class Pago {
     private Consulta consulta;
     private LocalDate fechaPago;
     private Integer importeTotal;
+    @ManyToOne
+    private Caja caja;
 
 
     public Long getId() {
@@ -54,5 +56,13 @@ public class Pago {
 
     public void setImporteTotal(Integer importeTotal) {
         this.importeTotal = importeTotal;
+    }
+
+    public Caja getCaja() {
+        return caja;
+    }
+
+    public void setCaja(Caja caja) {
+        this.caja = caja;
     }
 }

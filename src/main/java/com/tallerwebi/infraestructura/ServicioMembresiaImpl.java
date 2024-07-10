@@ -4,7 +4,6 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,7 +22,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
     }
 
     @Override
-    public void darDeAltaMembresia(DatosMembresia datosMembresia, Usuario usuario) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, UsuarioInexistente, FechadeInicioNoIngresada {
+    public void darDeAltaMembresia(DatosMembresia datosMembresia, Usuario usuario, Caja obtenercaja) throws MembresiaExistente, TarjetaInvalida, CodigoInvalido, UsuarioInexistente, FechadeInicioNoIngresada {
         if (!validarNumeroDeTarjeta(datosMembresia.getTarjeta().getNumeroDeTarjeta())){
             throw new TarjetaInvalida();
         }
@@ -52,8 +51,8 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
        datosMembresia.setFechaDeBaja(fechaDeBaja);
        // activo memebresia, le cambio el estado
        activarMembresia(datosMembresia);
-       ingresaImporteACaja(datosMembresia);
-
+       ingresaImporteACaja(datosMembresia, obtenercaja);
+        repositorioAdmi.actualizarCaja(obtenercaja);
         // Guardar la membresía
         repositorioMembresia.registrarMembresia(datosMembresia);
         // Asociar la membresía con el usuario
@@ -63,8 +62,7 @@ public class ServicioMembresiaImpl implements ServicioMembresia {
 
     }
 
-    public void ingresaImporteACaja(DatosMembresia datosMembresia) {
-        Caja caja = new Caja();
+    public void ingresaImporteACaja(DatosMembresia datosMembresia, Caja caja) {
         caja.setIngreso(datosMembresia.getCuota());
     }
 

@@ -31,4 +31,6 @@ public interface RepositorioAdmi {
     void eliminarJuegos(Juego juego);
 
     Caja obtenerCajaDeProyecto();
+
+    void actualizarCaja(Caja caja);
 }

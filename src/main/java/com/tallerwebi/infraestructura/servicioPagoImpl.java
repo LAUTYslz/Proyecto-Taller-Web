@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service("servicioPago")
@@ -30,15 +31,45 @@ public class servicioPagoImpl implements ServicioPago {
     }
 
     @Override
-    public Pago generarPago(Profesional profesional, List<Consulta> consultas, Integer importeTotal, Caja caja) {
+    public Pago generarPago(Profesional profesional, Consulta consulta, Caja caja) {
         Pago pago = new Pago();
         pago.setProfesional(profesional);
-        pago.setImporteTotal(importeTotal);
-        pago.setConsulta(consultas.get(0));
-        caja.setEgreso(importeTotal);
+        Integer consultapago = consulta.getPrecio();
+        Integer  saldoActual= caja.getSaldoActual();
+        pago.setImporteTotal(consultapago);
+        pago.setConsulta(consulta);
+        pago.setFechaPago(LocalDate.now());
+
+        // Actualizar la caja
+        // Agregar el pago a la lista de pagos de la caja
+        caja.agregarPago(pago);
+
+
+        caja.setSaldoActual(saldoActual);
+        caja.setEgreso(consultapago);
+
+        // Actualizar el saldo actua caja.calcularSaldoActual();
+
+        // Guardar la caja actualizada en el repositorio administrativo
+        repositorioAdmi.actualizarCaja(caja);
+        consulta.setEstadoConsulta(EstadoConsulta.PAGADA);
+        repositorioMembresiaActivada.actualizarConsulta(consulta);
+        // Guardar el pago en el repositorio de pagos
+        repositorioPago.agregraPago(pago); // Actualizar la caja en el repositorio administrativo
+
+
         return pago;
     }
 
+    @Override
+    public Pago obtenerPagoPorId(Long pagoId) {
+        return repositorioPago.obtenerPago(pagoId);
+    }
+
+    @Override
+    public List<Pago> obtenerListaPagos() {
+        return repositorioPago.obtenerListaPagos();
+    }
 
 
 }

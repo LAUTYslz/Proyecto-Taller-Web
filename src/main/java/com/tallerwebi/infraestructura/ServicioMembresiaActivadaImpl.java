@@ -136,7 +136,7 @@ public class ServicioMembresiaActivadaImpl implements ServicioMembresiaActivada 
 
     private void agregarEstado(Consulta consulta) {
         consulta.setEstado(Mensaje.SIN_LEER);
-
+        consulta.setEstadoConsulta(EstadoConsulta.IMPAGA);
 
     }
 

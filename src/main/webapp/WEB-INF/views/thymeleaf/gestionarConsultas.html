@@ -51,7 +51,10 @@
                     <td th:text="${consulta.estado}"></td>
                     <td th:text="${consulta.profesional.tipo.nombre}"></td>
                     <td>
+                        <div th:if="${consulta.estado == T(com.tallerwebi.dominio.Mensaje).SIN_LEER}">
                         <a th:href="@{/responderConsulta/{id}(id=${consulta.hijo.id}, consultaId=${consulta.id})}" class="btn btn-primary">Responder Consulta</a>
+                        </div>
+
                     </td>
                 </tr>
                 </tbody>

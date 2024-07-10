@@ -2,7 +2,9 @@ package com.tallerwebi.dominio;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Caja {
@@ -13,11 +15,49 @@ public class Caja {
     private Date fecha;
     private Integer ingreso;
     private Integer egreso;
+    private Integer saldoActual;
     private String descripcion;
-    @ManyToOne
-    private Profesional profesional;
-    @ManyToOne
-    private Usuario usuario;
+    @OneToMany(mappedBy = "caja", fetch = FetchType.EAGER)
+    private List<Pago> pagos = new ArrayList<>();
+
+
+    public Integer getIngreso() {
+        return ingreso;
+    }
+
+    public void setIngreso(Integer ingreso) {
+        this.ingreso = ingreso;
+        calcularSaldoActual();
+    }
+
+    public Integer getEgreso() {
+        return egreso;
+    }
+
+    public void setEgreso(Integer egreso) {
+        this.egreso = egreso;
+        calcularSaldoActual();
+    }
+
+    public Integer getSaldoActual()
+    {
+
+        return saldoActual;
+    }
+
+    public void setSaldoActual(Integer saldoActual) {
+        this.saldoActual = saldoActual;
+    }
+
+    public void calcularSaldoActual() {
+
+        if (this.ingreso != null) {
+            saldoActual += this.ingreso;
+        }
+        if (this.egreso != null) {
+            saldoActual -= this.egreso;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -35,22 +75,6 @@ public class Caja {
         this.fecha = fecha;
     }
 
-    public Integer getEgreso() {
-        return egreso;
-    }
-
-    public void setEgreso(Integer egreso) {
-        this.egreso = egreso;
-    }
-
-    public Integer getIngreso() {
-        return ingreso;
-    }
-
-    public void setIngreso(Integer ingreso) {
-        this.ingreso = ingreso;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -59,21 +83,18 @@ public class Caja {
         this.descripcion = descripcion;
     }
 
-    public Profesional getProfesional() {
-        return profesional;
+    public List<Pago> getPagos() {
+        return pagos;
     }
 
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+    public void agregarPago(Pago pago) {
+        pagos.add(pago);
+        pago.setCaja(this);
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }
 
 

@@ -24,7 +24,7 @@
 <div th:replace="home :: nav"></div>
 <main>
 
-
+    <h2>Seleccione profesional a Liquidar </h2>
 
     <div class="table-container">
         <table class="table">
@@ -53,8 +53,8 @@
                 <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
                 <td>
                     <a class="editarButton" th:href="@{/admin/gestionarProfesionales/liquidar/{id}(id=${profesional.id})}">Liquidar </a>
-                    |
-                    <a class="elimiinarButton" th:href="@{/admin/gestionarProfesionales/estadistica/{id}(id=${profesional.id})}">Estadistica</a>
+
+
                 </td>
             </tr>
             </tbody>
