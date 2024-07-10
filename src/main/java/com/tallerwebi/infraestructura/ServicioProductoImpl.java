@@ -1,8 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.Producto;
-import com.tallerwebi.dominio.RepositorioProducto;
-import com.tallerwebi.dominio.ServicioProducto;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.NoHayProductos;
 import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.StockInexistente;
@@ -17,10 +15,12 @@ import java.util.List;
 public class ServicioProductoImpl implements ServicioProducto {
 
     private final RepositorioProducto repositorioProducto;
+    private final RepositorioCompra repositorioCompra;
 
     @Autowired
-    public ServicioProductoImpl(RepositorioProducto repositorioProducto) {
+    public ServicioProductoImpl(RepositorioProducto repositorioProducto, RepositorioCompra repositorioCompra) {
         this.repositorioProducto = repositorioProducto;
+        this.repositorioCompra = repositorioCompra;
     }
 
     @Override
@@ -34,7 +34,22 @@ public class ServicioProductoImpl implements ServicioProducto {
     }
 
     @Override
-    public void eliminarProducto(Long idProducto) {
+    public void eliminarProducto(Long idProducto) throws ProductoInexistente {
+        List<Compra> compras = repositorioCompra.listarCompras();
+        Producto producto = null;
+
+        try {
+            producto = buscarProductoPorId(idProducto);
+        } catch (ProductoInexistente e){
+            throw new ProductoInexistente();
+        }
+
+        if (compras != null) {
+            for (Compra compra : compras) {
+                compra.getProductos().remove(producto);
+            }
+        }
+
         this.repositorioProducto.eliminarProducto(idProducto);
     }
 

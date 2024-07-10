@@ -36,14 +36,16 @@ public class ControladorAdministrador {
     private ServicioProfesional servicioProfesional;
     private ServicioMetodo servicioMetodo;
     private ServicioTipoProfesional servicioTipoProfesional;
+    private ServicioCompra servicioCompra;
 
     @Autowired
-    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioTienda servicioTienda, ServicioProducto servicioProducto) {
+    public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioTienda servicioTienda, ServicioProducto servicioProducto, ServicioCompra servicioCompra) {
         this.servicioLogin = servicioLogin;
         this.servicioAdmi = servicioAdmi;
         this.servicioProfesional = servicioProfesional;
         this.servicioTienda = servicioTienda;
         this.servicioProducto = servicioProducto;
+        this.servicioCompra = servicioCompra;
         this.servicioMetodo = servicioMetodo;
         this.servicioTipoProfesional = servicioTipoProfesional;
     }
@@ -489,9 +491,75 @@ public class ControladorAdministrador {
 
         ra.addFlashAttribute("mensaje", "El producto ha sido guardado correctamente");
 
-        return new ModelAndView("redirect:/admin/gestionarProductos");
+        return new ModelAndView("redirect:/admin/gestionarProductos", model);
 
     }
+
+    // EDICIÓN
+    @RequestMapping("/admin/editarProducto/{id}")
+    public ModelAndView editarProducto(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("form_editarProducto");
+
+        try {
+            Producto producto = servicioProducto.buscarProductoPorId(id);
+            List<Tienda> tiendas = servicioTienda.obtenerListadoDeTiendas();
+            List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+
+            mav.addObject("producto", producto);
+            mav.addObject("tiendas", tiendas);
+            mav.addObject("etapas", etapas);
+
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Hubo un error al cargar el producto. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+    }
+
+    @PostMapping("/admin/guardarCambiosProducto")
+    public ModelAndView guardarCambiosProducto(@RequestParam("idProducto") Long id,
+                                               @RequestParam("nombre") String nombre,
+                                               @RequestParam("descripcion") String descripcion,
+                                               @RequestParam("precio") Double precio,
+                                               @RequestParam("stock") Long stock,
+                                               @RequestParam("tienda") Long idTienda,
+                                               @RequestParam("etapa") Long idEtapa){
+
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+
+        try {
+            Producto p = servicioProducto.buscarProductoPorId(id);
+            p.setNombre(nombre);
+            p.setDescripcion(descripcion);
+            p.setPrecio(precio);
+            p.setStock(stock);
+            p.setTienda(servicioTienda.obtenerTiendaPorId(idTienda));
+            p.setEtapa(servicioAdmi.buscarEtapa(idEtapa));
+            servicioProducto.actualizarProducto(p);
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Lo sentimos. No hemos podido guardar los cambios del producto");
+        } catch (EtapaInexistente e) {
+            mav.addObject("error", "Lo sentimos. No hemos podido obtener los datos de la etapa");
+        }
+
+        return mav;
+    }
+
+//    ELIMINACION
+    @RequestMapping("/admin/eliminarProducto/{id}")
+    public ModelAndView eliminarProducto(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+
+        try {
+            Producto producto = servicioProducto.buscarProductoPorId(id);
+            servicioProducto.eliminarProducto(id);
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Lo sentimos. Hubo un error al eliminar el producto. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+    }
+
 
 }
 

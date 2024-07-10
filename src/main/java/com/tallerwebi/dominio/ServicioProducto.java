@@ -10,7 +10,7 @@ public interface ServicioProducto {
 
     void guardarProducto(Producto producto);
     void actualizarProducto(Producto producto);
-    void eliminarProducto(Long idProducto);
+    void eliminarProducto(Long idProducto) throws ProductoInexistente;
     Producto buscarProductoPorId(Long idProducto) throws ProductoInexistente;
     Long consultarStockPorProducto(Long idProducto) throws StockInexistente;
     void disminuirStockDeProducto(Long idProducto);
