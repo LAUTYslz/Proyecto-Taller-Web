@@ -95,3 +95,5 @@
 # ('Auto Porsche', 'Este modelo a escala es una réplica detallada del vehículo real, con un diseño elegante y sofisticado. Ideal para coleccionistas y amantes de los autos.', '11430', 'autoporsche.png', '10','3', '3'),
 # ('Juego de Cocina', 'Con un atractivo color amarillo, este juego de cocina incluye una amplia variedad de accesorios para que los niños puedan recrear sus propias aventuras culinarias', '5755', 'juegococina.png',
 #  '7', '2', '4');
+
+# ALTER TABLE compra ADD COLUMN fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
