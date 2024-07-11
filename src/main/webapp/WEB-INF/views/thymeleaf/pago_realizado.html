@@ -32,8 +32,7 @@
         <p>Estado de la Caja después del pago:</p>
         <p>Saldo Actual: <span th:text="${caja.saldoActual}"></span></p>
 
-        <!-- Botón para redirigir a la página de administrador -->
-        <a th:href="@{/administrador}" class="btn btn-primary">Volver a Administrador</a>
+        <a class="btn btn-primary volver-btn" th:href="@{/admin/gestionarProfesionales}">Volver</a>
     </div>
 </div>
 
