@@ -1,0 +1,23 @@
+.contenedor-links-profesional{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+footer{
+    margin-top: 35vh;
+}
+.contenedor-links-profesional a{
+    background-color: #ff7300;
+    border: 1px solid #ff7300;
+    transition: .2s all;
+}
+.contenedor-links-profesional a:hover{
+    background-color: #9966ff;
+    border: 1px solid #9966ff;
+
+}

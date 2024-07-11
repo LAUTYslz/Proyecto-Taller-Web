@@ -32,17 +32,6 @@ public class Usuario {
 
     // Getters y Setters
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", rol='" + rol + '\'' +
-                ", estado=" + estado +
-                ", nombre='" + nombre + '\'' +
-                ", membresia=" + membresia +
-                ", conyuge=" + conyuge +
-                '}';
+
     }
-}
+

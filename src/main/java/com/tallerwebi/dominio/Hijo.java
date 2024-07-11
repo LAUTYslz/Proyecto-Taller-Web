@@ -2,6 +2,8 @@ package com.tallerwebi.dominio;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 @Entity
@@ -77,6 +79,7 @@ public class Hijo {
 
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+        calcularEdad(); // Calcular la edad automáticamente cuando se establece la fecha de nacimiento
     }
 
     public Etapa getEtapa() {
@@ -85,5 +88,19 @@ public class Hijo {
 
     public void setEtapa(Etapa etapa) {
         this.etapa = etapa;
+    }
+
+    private void calcularEdad() {
+        if (fecha_nacimiento != null) {
+            LocalDate fechaNacimiento = convertirADateLocal(fecha_nacimiento);
+            LocalDate fechaActual = LocalDate.now();
+            Period periodo = Period.between(fechaNacimiento, fechaActual);
+            this.edad = periodo.getYears();
+        }
+
+
+    }
+    private LocalDate convertirADateLocal(Date date) {
+        return date.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
     }
 }

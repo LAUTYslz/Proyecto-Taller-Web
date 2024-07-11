@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Proyecto Taller Web I</title>
+    <title>Bienvenido Administrador</title>
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/administrador.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
 
@@ -20,174 +21,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
+<body>
 
+<div th:replace="home :: nav"></div>
+    <main>
 
+    <div class="gestion-container">
+        <h1>Bienvenido Administrador</h1>
+        <p>Nombre Admi : <span th:text="${usuario.nombre}"></span></p>
+        <p>Email Admi : <span th:text="${usuario.email}"></span></p>
+        <div>
+            <a  th:href="@{/crearEtapa}" type="button"><i class="fas fa-plus-circle"></i>Crear Etapa</a>
+            <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
+            <a  th:href="@{/admin/gestionarProfesionales}" type="button"><i class="fas fa-address-book"></i>Gestionar Profesionales</a>
+            <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
+            <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
 
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-    <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" th:href="@{/test}">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
-    </div>
-
-    <a class="navbar-brand" th:href="@{/home}">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-    <div class="navbar-nav ml-auto">
-
-        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
         </div>
     </div>
-</nav>
-    <title>Bienvenido Administrador</title>
-    <style>
 
-             /* Estilos básicos para el botón */
-         .boton-modificar {
-             background-color: darkslateblue;
-             border: none;
-             color: white;
-             padding: 10px 20px;
-             text-align: center;
-             text-decoration: none;
-             display: inline-block;
-             font-size: 16px;
-             margin: 4px 2px;
-             cursor: pointer;
-             border-radius: 50px;
-             font-family: Schoolbell, cursive;
-         }
+        <h2>Listado de Etapas Creadas </h2>
+    <div class="listado-container">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
+                <td th:text="${etapa.id}"></td>
+                <td th:text="${etapa.nombre}"></td>
+                <td th:text="${etapa.desde}"></td>
+                <td th:text="${etapa.hasta}"></td>
+                <td class="input-acciones">
+                    <form th:action="@{/modificar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
 
-        body {
-            font-family: Schoolbell, cursive;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #4f3c6e;
-            border-radius: 50px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .container a{
-            background-color: #b9a0ea;
-            border-radius: 50px;
-            color: white;
-            padding: 20px;
-            margin-top:10px;
-            margin-left:10px;
-            font-family: Schoolbell, cursive;
+                        <button class="boton-modificar"><i class="fas fa-pencil-alt"></i> Modificar</button>
+                    </form>
 
-        }
-        .container p{
-            color: white;
-        }
-        h1 {
-            color: white;
-
-
-        }
-        button {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: darkslateblue;
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 16px;
-            font-family: Schoolbell, cursive;
-
-            transition: background-color 0.3s;
-        }
-             /* Estilos para la tabla */
-             table {
-                 border-collapse: collapse;
-                 width: 100%;
-             }
-
-             th, td {
-                 border: 1px solid #dddddd;
-                 text-align: left;
-                 padding: 8px;
-             }
-
-             th {
-                 background-color: #666666;
-                 color: white;
-             }
-
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>Bienvenido Administrador</h1>
-    <p>Nombre Admi : <span th:text="${usuario.nombre}"></span></p>
-    <p>Email Admi : <span th:text="${usuario.email}"></span></p>
-    <div>
-        <a  th:href="@{/crearEtapa}" type="button"><i class="fas fa-plus-circle"></i>Crear Etapa</a>
-        <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
-        <a  th:href="@{/admin/gestionarProfesionales}" type="button"><i class="fas fa-address-book"></i>Gestionar Profesionales</a>
-        <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
-        <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
-        <a  th:href="@{/admin/gestionarTiendas}" type="button"> <i class="fa-solid fa-store"></i> Gestionar Tiendas </a>
-        <a  th:href="@{/admin/gestionarProductos}" type="button"> <i class="fa-solid fa-cubes"></i> Gestionar productos </a>
-
-
+                    <form th:action="@{/eliminar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                    <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
+                    </form>
+                    <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                        <button class="boton-verJuegos" ><i class="fas fa-gamepad"></i> Ver juegos</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
-<div>
-    <h2>Listado de Etapas Creadas </h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Desde</th>
-            <th>Hasta</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="etapa : ${etapas}" th:if="${etapa != null}">
-            <td th:text="${etapa.id}"></td>
-            <td th:text="${etapa.nombre}"></td>
-            <td th:text="${etapa.desde}"></td>
-            <td th:text="${etapa.hasta}"></td>
-            <td>
-                <form th:action="@{/modificar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
-
-                    <button class="boton-modificar"><i class="fas fa-pencil-alt"></i> Modificar</button>
-                </form>
-
-                <form th:action="@{/eliminar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
-                <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
-                </form>
-                <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
-                    <button class="boton-verJuegos" ><i class="fas fa-gamepad"></i> Ver juegos</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-
-</div>
-</div>
-
+    </main>
+<div th:replace="home :: footer"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- ICONOS -->
-<script src="https://kit.fontawesome.com/65c8bcbd9c.js" crossorigin="anonymous"></script>
 </body>
 </html>

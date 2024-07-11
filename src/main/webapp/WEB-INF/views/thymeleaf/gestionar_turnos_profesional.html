@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/css/gestionar_turnos.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionarProfesionales.css}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,36 +24,25 @@
 
     <h1>Mis Turnos</h1>
 
-    <div class="table-container">
-        <table>
+    <a th:href="@{/setearDiasAtencion}" class="btn crearButton">Modificar mi dia de atención</a>
+
+
+    <div class="table-container" th:if="${turnos != null}">
+        <table class="table">
             <thead>
             <tr>
                 <th>Profesional</th>
-                <th>Fecha y Hora</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Paciente</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="turno : ${turnos}">
-                <td th:text="${turno.profesional.nombre}">Profesional</td>
-                <td th:text="${turno.fechaHora}">Fecha y Hora</td>
-                <td th:text="${turno.estado}">Estado</td>
-                <td>
-                    <form th:action="@{/actualizarEstadoTurno}" method="post">
-                        <input type="hidden" name="turnoId" th:value="${turno.id}">
-                        <select name="nuevoEstado">
-                            <option value="PENDIENTE">Pendiente</option>
-                            <option value="CONFIRMADO">Confirmado</option>
-                            <option value="CANCELADO">Cancelado</option>
-                        </select>
-                        <button type="submit">Actualizar</button>
-                    </form>
-                    <form th:action="@{/eliminarTurno}" method="post">
-                        <input type="hidden" name="turnoId" th:value="${turno.id}">
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td>
+                <td th:text="${turno.profesional.nombre}"></td>
+                <td th:text="${turno.fecha}"></td>
+                <td th:text="${turno.hora}"></td>
+                <td th:text="${turno.usuario.nombre}"></td>
             </tr>
             </tbody>
         </table>

@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -35,6 +36,7 @@ public class RepositorioTurnoImpl implements RepositorioTurno {
     }
 
     @Override
+    @Transactional
     public Turno guardarTurno(Turno turno) {
         sessionFactory.getCurrentSession().save(turno);
         return turno;
@@ -54,7 +56,7 @@ public class RepositorioTurnoImpl implements RepositorioTurno {
     }
 
     @Override
-    public void eliminar(Turno turno) {
+    public void cancelar(Turno turno) {
         sessionFactory.getCurrentSession().delete(turno);
     }
 
@@ -82,5 +84,65 @@ public class RepositorioTurnoImpl implements RepositorioTurno {
                 .list();
     }
 
+    @Override
+    public boolean profesionalTieneTurnoEnFechaHora(Long profesionalId, Date fechaHora) {
+        List<EstadoTurno> estadosBuscados = List.of(EstadoTurno.PENDIENTE, EstadoTurno.CONFIRMADO);
+        return sessionFactory.getCurrentSession()
+                    .createCriteria(Turno.class)
+                    .add(Restrictions.eq("profesional.id", profesionalId))
+                    .add(Restrictions.eq("fechaHora", fechaHora))
+                    .add(Restrictions.in("estado", estadosBuscados))
+                .uniqueResult() != null;
+            //Este método retorna true si el profesional ya tiene un turno en la fecha y hora especificadas.
+    }
+
+    @Override
+    public List<Turno> obtenerTurnosRealizadosPorProfesional(Long profesionalId) {
+        List<EstadoTurno> estadoBuscado = List.of(EstadoTurno.REALIZADO);
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .add(Restrictions.eq("profesional.id", profesionalId))
+                .add(Restrictions.in("estado", estadoBuscado))
+                .list();
+    }
+
+    @Override
+    public List<Turno> obtenerTurnosPorEspecialidad(String nombreTipo) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .createAlias("profesional", "profesionalBuscado")
+                .createAlias("profesionalBuscado.tipo", "tipoBuscado")
+                .add(Restrictions.eq("tipoBuscado.nombre", nombreTipo))
+                .list();
+    }
+
+    @Override
+    public List<Turno> traerTurnos() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .list();
+    }
+
+    @Override
+    @Transactional
+    public void eliminarTurnos() {
+        sessionFactory.getCurrentSession()
+                .createQuery("DELETE FROM Turno")
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public List<Turno> buscarTurnosReservadosPorProfesional(Profesional profesional) {
+        Long idProfesional = profesional.getId();
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Turno.class)
+                .add(Restrictions.eq("profesional.id", idProfesional))
+                .add(Restrictions.isNotNull("usuario"))
+                .list();
+    }
 
 }
+
+
+

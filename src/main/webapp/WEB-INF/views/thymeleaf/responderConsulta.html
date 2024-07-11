@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/css/bienvenido.css}">
+
+    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}">
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-ZR8YToDj+7P/hRCjjmIv/l+1k7k29HhC1mGq7izqTjHbLyLMQf2aRdhe1KrInPrOsv/5oNm6Dc0iLk61YOTf9Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+        <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+            <a class="nav-link" href="#">Eventos/Cursos</a>
+            <a class="nav-link" th:href="@{/test}">Tests</a>
+            <a class="nav-link" href="#">Foro Comunidad</a>
+        </div>
+
+        <a class="navbar-brand" th:href="@{/home}">
+            <img th:src="@{/img/educareLogo.png}" alt="Logo">
+        </a>
+
+        <div class="navbar-nav ml-auto">
+
+            <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
+            <div class="search-container">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+            </div>
+        </div>
+    </nav>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1 class="mt-4 mb-4">Consulta </h1>
+
+            <!-- Detalles del Hijo -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    Detalles del Hijo
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nombre del Hijo: <span th:text="${hijo.nombre}"></span></h5>
+                    <h5 class="card-text">Metodo: <span th:text="${hijo.metodo.nombre}"></span></h5>
+                    <h5 class="card-text">Edad: <span th:text="${hijo.edad}"></span></h5>
+                    <h5 class="card-text">Etapa: <span th:text="${hijo.etapa.nombre}"></span></h5>
+                    <h5 class="card-text">Estado de Membresia: <span th:text="${hijo.usuario.membresia.estado}"></span></h5>
+                    <h5 class="card-text">Email usuario: <span th:text="${hijo.usuario.email}"></span></h5>
+
+
+
+                </div>
+            </div>
+
+            <!-- Detalles de la Consulta -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    Detalles de la Consulta
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Mensaje de la Consulta</h5>
+                    <p class="card-text" th:text="${consulta.fecha}"></p>
+                    <p class="card-text" th:text="${consulta.profesional.nombre}"></p>
+                    <p class="card-text" th:text="${consulta.cantidad}"></p>
+                    <p class="card-text" th:text="${consulta.cantidad}"></p>
+                    <p class="card-text" th:text="${consulta.mensaje}"></p>
+                </div>
+            </div>
+
+            <!-- Formulario para responder a la consulta -->
+            <div class="card">
+                <div class="card-header">
+                    Responder Consulta
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/respuesta}" method="post">
+                        <div class="mb-3">
+                            <label for="respuesta" class="form-label">Respuesta</label>
+                            <textarea class="form-control" id="respuesta" name="respuesta" rows="3" required></textarea>
+                        </div>
+                        <input type="hidden" id="consultaId" name="consultaId" th:value="${consulta.id}">
+                        <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+>

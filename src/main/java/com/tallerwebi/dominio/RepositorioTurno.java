@@ -2,7 +2,6 @@ package com.tallerwebi.dominio;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface RepositorioTurno {
     List<Turno> buscarTurnosPorUsuario(Usuario usuario);
@@ -14,10 +13,21 @@ public interface RepositorioTurno {
 
     void actualizarTurno(Turno turno);
 
-    void eliminar(Turno turno);
+    void cancelar(Turno turno);
 
     List<Turno> traerTurnosActivosConProfesional(Long usuarioId, Long profesionalId);
 
     List<Turno> traerTurnosActivosEnHorario(Long usuarioId, Date fechaHora);
 
+    boolean profesionalTieneTurnoEnFechaHora(Long profesionalId, Date fechaHora);
+
+    List<Turno> obtenerTurnosRealizadosPorProfesional(Long profesionalId);
+
+    List<Turno> obtenerTurnosPorEspecialidad(String nombreTipo);
+
+    List<Turno> traerTurnos();
+
+    void eliminarTurnos();
+
+    List<Turno> buscarTurnosReservadosPorProfesional(Profesional profesional);
 }

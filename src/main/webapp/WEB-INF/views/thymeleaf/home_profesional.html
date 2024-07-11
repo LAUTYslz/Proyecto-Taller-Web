@@ -9,6 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home_profesional.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,7 @@
         <h1>Bienvenido <span th:text="${usuario.nombre}"></span></h1>
 
         <div class="contenedor-links-profesional">
-            <a th:href="@{/#}" class="btn agendarButton">Gestionar turnos virtuales</a>
+            <a th:href="@{/gestionarConsultas}" class="btn agendarButton">Gestionar turnos virtuales</a>
             <a th:href="@{/gestionarTurnos}" class="btn agendarButton">Gestionar turnos presenciales</a>
         </div>
 

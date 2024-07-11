@@ -24,7 +24,7 @@
 
     <main>
         <a class="btn btn-primary volver-btn" th:href="@{/admin/gestionarProfesionales}">Volver</a>
-        <h1>Crear Profesional</h1>
+        <h1>Crear profesional</h1>
 
         <div class="form-container">
             <form class="form" action="#" th:action="@{/admin/gestionarProfesionales/guardar}" method="POST" th:object="${profesional}" >
@@ -64,7 +64,7 @@
             </form>
         </div>
 
-        <div th:if="${error}">
+        <div th:if="${error}" class="error">
             <p th:text="${error}" style="color: red;"></p>
         </div>
     </main>

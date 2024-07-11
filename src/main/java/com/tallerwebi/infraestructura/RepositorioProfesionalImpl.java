@@ -105,5 +105,13 @@ public class RepositorioProfesionalImpl implements RepositorioProfesional {
                 .add(Restrictions.ne("tipoRestringido.nombre", "Tienda"))
                 .list();    }
 
+    @Override
+    public Profesional buscarProfesionalPorMail(String profesionalMail) {
+        return (Profesional) sessionFactory.getCurrentSession().
+                createCriteria(Profesional.class)
+                .add(Restrictions.eq("email", profesionalMail))
+                .uniqueResult();
+    }
+
 
 }

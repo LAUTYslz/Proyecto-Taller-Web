@@ -11,7 +11,5 @@ public interface RepositorioMetodo {
 
     Metodo traerMetodoPorId(Long metodoId);
 
-
-
-    Metodo buscarMetodoPorId(Long id);
+    Metodo buscarMetodoPorId(Long metodoId);
 }

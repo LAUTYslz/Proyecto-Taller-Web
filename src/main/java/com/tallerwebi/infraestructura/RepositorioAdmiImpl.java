@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Caja;
 import com.tallerwebi.dominio.Etapa;
 import com.tallerwebi.dominio.Juego;
 import com.tallerwebi.dominio.RepositorioAdmi;
@@ -85,4 +86,18 @@ public class RepositorioAdmiImpl implements RepositorioAdmi {
         sessionFactory.getCurrentSession().delete(juego);
     }
 
-}
+    @Override
+    public Caja obtenerCajaDeProyecto() {
+        return (Caja) sessionFactory.getCurrentSession().
+                createCriteria(Caja.class).uniqueResult();
+    }
+
+    @Override
+    public void actualizarCaja(Caja caja) {
+
+            sessionFactory.getCurrentSession().update(caja);
+        }
+
+    }
+
+

@@ -11,6 +11,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_admin.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,34 +21,10 @@
 </head>
 
 <body>
+<div th:replace="home :: nav"></div>
 
-
-
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">z
-    <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" href="#">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
-    </div>
-
-
-    <a class="navbar-brand" th:href="@{/home}">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-
-    <div class="navbar-nav ml-auto">
-        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
-        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <h2>Crear Nuevo Juego</h2>
+<main class="container">
+    <h1>Crear Nuevo Juego</h1>
     <p>El juego es un proceso de autodescubrimiento que ocurre al mismo tiempo que avanza su desarrollo cognitivo y psicomotor. Gracias al juego, los neonatos aprenden a moverse, a comunicarse, a comprender su entorno y a socializar con él.
         Jugar con un bebé recién nacido será divertido para el niño y para los padres siempre y cuando el juego se adapte a su nivel de desarrollo.
         No juega igual un bebé de tres semanas que uno de doce: un recién nacido se enamora de las muecas de su madre, que le parecen divertidas, mientras que el niño de un año se entretendrá con risas, bromas y aventuras que querrá descubrir por su cuenta.
@@ -72,6 +49,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Crear Juego</button>
     </form>
-</div>
+</main>
+<div th:replace="home :: footer"></div>
+
 </body>
 </html>

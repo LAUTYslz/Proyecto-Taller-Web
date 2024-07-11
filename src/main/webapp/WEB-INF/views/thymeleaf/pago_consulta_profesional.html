@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pago  Consulta Profesional</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
+    <link rel="stylesheet" th:href="@{/css/consulta_profesionales_admi.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+
+<body>
+<div class="container mt-4">
+    <h2>Pago de Consultas al Profesional</h2>
+
+    <!-- Mostrar información del profesional -->
+    <h4>Datos del Profesional</h4>
+    <p>Nombre: <span th:text="${profesional.nombre}"></span></p>
+    <p>Email: <span th:text="${profesional.email}"></span></p>
+
+    <!-- Mostrar importe total a pagar -->
+    <h4>Importe Total a Pagar</h4>
+    <p>$ <span th:text="${consulta.precio}"></span></p>
+
+    <h4>Importe de Caja </h4>
+    <p>$ <span th:text="${caja.saldoActual}"></span></p>
+
+    <!-- Listado de Consultas realizadas por el profesional -->
+    <h4>Consultas Realizadas</h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>Fecha</th>
+            <th>Nombre de Titular</th>
+            <th>Nombre del Hijo</th>
+            <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+            <td th:text="${#dates.format(consulta.fecha, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${consulta.usuario.nombre}"></td>
+            <td th:text="${consulta.hijo.nombre}"></td>
+            <td th:text="${consulta.precio}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Formulario para realizar el pago -->
+    <h4>Realizar Pago</h4>
+    <form th:action="@{/admin/gestionarProfesionales/procesarPago/{profesionalId}/{consultaId}(profesionalId=${profesional.id}, consultaId=${consulta.id})}"
+          method="post">
+
+        <!-- Botón para realizar el pago -->
+        <button type="submit" class="btn btn-primary">Pagar</button>
+    </form>
+</body>
+<div th:replace="home :: footer"></div>
+</html>
+

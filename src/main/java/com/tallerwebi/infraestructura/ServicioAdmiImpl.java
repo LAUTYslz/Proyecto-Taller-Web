@@ -108,4 +108,9 @@ public class ServicioAdmiImpl implements ServicioAdmi {
     public void eliminarJuego(Juego juego) {
         repositorioAdmi.eliminarJuegos(juego);
     }
+
+    @Override
+    public Caja obtenerCaja() {
+        return repositorioAdmi.obtenerCajaDeProyecto();
+    }
 }

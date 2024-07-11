@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Gestión de profesionales - Pago Realizado</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/gestionarProfesionales.css">
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+
+<div class="container">
+    <div class="table-container">
+        <h2>Pago Realizado</h2>
+        <p>Se ha realizado el pago correctamente para el profesional:</p>
+        <p>Nombre: <span th:text="${profesional.nombre}"></span></p>
+        <p>Importe Total: <span th:text="${pago.importeTotal}"></span></p>
+        <p>Fecha de Pago: <span th:text="${pago.fechaPago}"></span></p>
+        <p>Estado de la Caja después del pago:</p>
+        <p>Saldo Actual: <span th:text="${caja.saldoActual}"></span></p>
+
+        <!-- Botón para redirigir a la página de administrador -->
+        <a th:href="@{/administrador}" class="btn btn-primary">Volver a Administrador</a>
+    </div>
+</div>
+
+<div th:replace="home :: footer"></div>
+</body>
+</html>

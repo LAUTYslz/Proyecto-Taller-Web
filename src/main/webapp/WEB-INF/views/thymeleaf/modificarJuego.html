@@ -1,16 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Proyecto Taller Web I</title>
+    <title>Modificar Juego</title>
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_admin.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,100 +19,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
+<div th:replace="home :: nav"></div>
 
-
-
-
-
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">z
-    <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" href="#">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
-    </div>
-
-
-    <a class="navbar-brand" th:href="@{/home}">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-
-    <div class="navbar-nav ml-auto">
-        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
-        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-        </div>
-    </div>
-</nav>
-<style>
-    /* Estilos para el formulario */
-
-
-    form.formulario {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    label {
-        font-weight: bold;
-    }
-    input[type="text"],
-    input[type="number"] {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    button[type="submit"] {
-        background-color: #4f3c6e;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    button[type="submit"]:hover {
-        background-color: #b9a0ea;
-    }
-</style>
-</head>
 <body>
-<h2>Modificar Juego</h2>
-<h2><i class="fas fa-edit"></i> Empecemos </h2>
+<main>
+<h1>Modificar Juego</h1>
 <!-- Formulario para modificar etapa -->
-<form class="formulario" th:action="@{/actualizar-juego}" method="post" th:object="${juego}">
-    <!-- Campo oculto para el ID de la etapa -->
-    <input type="hidden" th:field="*{id}">
+    <form class="formulario" th:action="@{/actualizar-juego}" method="post" th:object="${juego}">
+        <!-- Campo oculto para el ID de la etapa -->
+        <input type="hidden" class="form-control" th:field="*{id}">
 
-    <!-- Mostrar datos actuales de la etapa -->
-    <label for="nombre"><i class="fas fa-file-signature"></i> Nombre:</label><br>
-    <input type="text" id="nombre" th:value="${juego.nombre}" readonly><br>
+        <!-- Mostrar datos actuales de la etapa -->
+        <label for="nombre"><i class="fas fa-file-signature"></i> Nombre:</label><br>
+        <input type="text" class="form-control" id="nombre" th:value="${juego.nombre}" readonly><br>
 
-    <label for="descripcion"><i class="fas fa-calendar-alt"></i> Descripcion :</label><br>
-    <input type="text" id="descripcion" th:value="${juego.descripcion}" readonly><br>
-
-
-
-    <!-- Campos de entrada para la modificación -->
-    <label for="nuevoNombre"><i class="fas fa-edit"></i> Nuevo Nombre:</label><br>
-    <input type="text" id="nuevoNombre" th:field="*{nombre}"><br>
-
-    <label for="Nuevadescripcion"><i class="fas fa-edit"></i>Nueva Descripcion:</label><br>
-    <input type="text" id="Nuevadescripcion" th:field="*{descripcion}"><br>
+        <label for="descripcion"><i class="fas fa-calendar-alt"></i> Descripcion :</label><br>
+        <input type="text" class="form-control" id="descripcion" th:value="${juego.descripcion}" readonly><br>
 
 
 
-    <!-- Botón para enviar el formulario -->
-    <button type="submit"><i class="fas fa-save"></i> Modificar Juego</button>
-</form>
+        <!-- Campos de entrada para la modificación -->
+        <label for="nuevoNombre"><i class="fas fa-edit"></i> Nuevo Nombre:</label><br>
+        <input type="text" class="form-control" id="nuevoNombre" th:field="*{nombre}"><br>
+
+        <label for="Nuevadescripcion"><i class="fas fa-edit"></i>Nueva Descripcion:</label><br>
+        <input type="text" class="form-control" id="Nuevadescripcion" th:field="*{descripcion}"><br>
+
+
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit"><i class="fas fa-save"></i> Modificar Juego</button>
+    </form>
+</main>
+<div th:replace="home :: footer"></div>
+
 </body>
 </html>
