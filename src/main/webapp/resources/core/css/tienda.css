@@ -1,20 +1,22 @@
 .container-b {
-    background: #ffffff;
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
-    margin: 50px auto 100px;
+    margin: 20px auto 20px;
+    background-color: #dacdea;
 }
 .section-button {
     text-align: center;
     margin-bottom: 30px;
+    background-color: #dacdea;
 }
 .container-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
+    background-color: #dacdea;
 }
 .flip-card {
     background-color: transparent;

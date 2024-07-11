@@ -237,7 +237,7 @@ public class ControladorLogin {
 
         } catch (Exception e) {
             modelo.put("error", "Error al registrar el nuevo usuario");
-            return new ModelAndView("error", modelo); // Manejar cualquier otro error
+            return new ModelAndView("guardar-hijo", modelo); // Manejar cualquier otro error
         }
     }
     // Mostrar formulario para agregar cónyuge
