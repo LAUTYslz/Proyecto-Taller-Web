@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/css/gestionar_turnos.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionarProfesionales.css}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +24,11 @@
 
     <h1>Mis Turnos</h1>
 
-    <a th:href="@{/setearDiasAtencion}" class="btn-primary btn">Modificar dias de atencion</a>
+    <a th:href="@{/setearDiasAtencion}" class="btn crearButton">Modificar mi dia de atención</a>
 
 
     <div class="table-container" th:if="${turnos != null}">
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>Profesional</th>

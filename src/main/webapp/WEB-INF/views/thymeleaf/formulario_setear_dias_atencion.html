@@ -11,6 +11,8 @@
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
     <link rel="stylesheet" th:href="@{/css/gestionarProfesionales.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,34 +22,40 @@
 <body>
 <div th:replace="home :: nav"></div>
 <main>
+    <a class="btn btn-primary volver-btn" th:href="@{/gestionarTurnos}">Volver</a>
+
+    <h1>Modificar dia de atención</h1>
     <div class="form-container">
-        <form th:action="@{/setearDiasAtencion}" method="POST" th:object="${diasAtencionDTO}">
+        <form th:action="@{/setearDiasAtencion}" method="POST" th:object="${diasAtencionDTO}" class="form">
             <input type="hidden" th:field="*{idProfesional}" th:value="${profesional.id}">
 
-            <label>Día de la semana:</label>
-            <select th:field="*{diaSemana}">
-                <option value="LUNES">Lunes</option>
-                <option value="MARTES">Martes</option>
-                <option value="MIERCOLES">Miércoles</option>
-                <option value="JUEVES">Jueves</option>
-                <option value="VIERNES">Viernes</option>
-                <option value="SABADO">Sábado</option>
-            </select>
+            <div class="form-group">
+                <label>Día de la semana:</label>
+                <select th:field="*{diaSemana}" class="form-control">
+                    <option value="LUNES">Lunes</option>
+                    <option value="MARTES">Martes</option>
+                    <option value="MIERCOLES">Miércoles</option>
+                    <option value="JUEVES">Jueves</option>
+                    <option value="VIERNES">Viernes</option>
+                    <option value="SABADO">Sábado</option>
+                </select>
+            </div>
+
             <br>
 
             <label>Hora desde:</label>
-            <input type="time" th:field="*{horaDesde}" required>
+            <input type="time" th:field="*{horaDesde}" required class="form-control">
             <br>
 
             <label>Hora hasta:</label>
-            <input type="time" th:field="*{horaHasta}" required>
+            <input type="time" th:field="*{horaHasta}" required class="form-control">
             <br>
 
             <label>Duración de las sesiones (minutos):</label>
-            <input type="number" th:field="*{duracionSesiones}" min="15" step="15" required>
+            <input type="number" th:field="*{duracionSesiones}" min="15" step="15" required class="form-control">
             <br>
 
-            <button type="submit">Guardar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
     <div th:if="${error}">

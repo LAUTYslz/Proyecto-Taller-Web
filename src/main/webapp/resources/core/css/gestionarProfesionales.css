@@ -13,7 +13,7 @@ main{
 
 .crearButton{
     margin: 3vh  0 1vh;
-    width: 17%;
+    width: 25%;
     display: flex;
     justify-content: center;
     background-color: #ff7300;
@@ -72,7 +72,7 @@ main{
     margin-bottom: 4vh
 }
 .a-conteiner a{
-    width: 220px;
+    width: 240px;
 }
 
 .error p{
