@@ -1,11 +1,13 @@
 package com.tallerwebi.presentacion;
-
+import com.tallerwebi.integracion.config.SpringWebTestConfig;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
 import com.tallerwebi.dominio.excepcion.UsuarioInexistente;
+import com.tallerwebi.integracion.config.SpringWebTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -49,6 +51,7 @@ public class ControladorMembresiaActivadaTest {
 
 
     }
+
     @Test
     public void testCrearConsulta() {
         Consulta consultaEsperada = new Consulta();
@@ -63,6 +66,7 @@ public class ControladorMembresiaActivadaTest {
         //verifico que lo que obtbe sea igual a la que cree
         assertThat(consultaObtendida.getId(), equalTo(consultaEsperada.getId()));
     }
+
     @Test
     public void testBuscarConsultaCreadaPorUsuario() {
         Consulta consultaEsperada = new Consulta();
@@ -79,7 +83,7 @@ public class ControladorMembresiaActivadaTest {
         consultas.add(consultaEsperada);
 
 // cuando traigo al mockito y le digo que esa metodo me tine que retornar lo que le pongo a then return
-        when(servicioMembresiaActivada.buscarConsultaPorUsuario (usuarioid)).thenReturn(consultas);
+        when(servicioMembresiaActivada.buscarConsultaPorUsuario(usuarioid)).thenReturn(consultas);
         List<Consulta> listaObtenida = whenBuscoreConsultasPorUsuario(usuarioid);
 
 
@@ -88,9 +92,11 @@ public class ControladorMembresiaActivadaTest {
         //verifico que lo que obtbe sea igual a la que cree
         assertThat(listaObtenida.size(), equalTo(1));
     }
+
     private List<Consulta> whenBuscoreConsultasPorUsuario(Long id) {
         return servicioMembresiaActivada.buscarConsultaPorUsuario(id);
     }
+
     @Test
     public void testObtenerVariasConsultasCreadas() {
         Consulta consulta = new Consulta();
@@ -100,8 +106,8 @@ public class ControladorMembresiaActivadaTest {
 
         List<Consulta> consultas = new ArrayList<Consulta>();
         consultas.add(consulta);
-       consultas.add(consulta1);
-       consultas.add(consulta2);
+        consultas.add(consulta1);
+        consultas.add(consulta2);
 
         when(servicioMembresiaActivada.listaDeConsultascreadas()).thenReturn(consultas);
 
@@ -110,6 +116,7 @@ public class ControladorMembresiaActivadaTest {
         verify(servicioMembresiaActivada, times(1)).listaDeConsultascreadas();
         assertThat(listaObtenida.size(), equalTo(3));
     }
+
     private List<Consulta> whenBuscoConsultas() {
         return servicioMembresiaActivada.listaDeConsultascreadas();
     }
@@ -153,6 +160,7 @@ public class ControladorMembresiaActivadaTest {
         verify(servicioLogin, times(1)).buscarHijosPorId(1L);
         verify(servicioMembresiaActivada, times(1)).buscarConsultaPorUsuario(1L);
     }
+
     @Test
     public void testVerMetodos() throws UsuarioInexistente, UsuarioExistente {
         // Mock HttpServletRequest
@@ -165,7 +173,7 @@ public class ControladorMembresiaActivadaTest {
 
         List<Hijo> hijos = new ArrayList<>();
         hijos.add(new Hijo());
-        Metodo metodo= new Metodo();
+        Metodo metodo = new Metodo();
         List<Metodo> metodos = new ArrayList<>();
         metodos.add(metodo);
 
@@ -192,9 +200,11 @@ public class ControladorMembresiaActivadaTest {
         verify(servicioLogin, times(1)).buscarHijosPorId(1L);
         verify(servicioMetodo, times(1)).buscarMetodos();
     }
-
-
 }
+
+
+
+
 
 
 

@@ -15,8 +15,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -31,43 +29,81 @@ public class RepositorioMembresiaActivada {
     @Autowired
     private RepositorioProfesional repositorioProfesional;
     @Autowired
+    private RepositorioUsuario repositorioUsuario;
+    @Autowired
     private RepositorioMetodo repositorioMetodo;
     @Autowired
     private RepositorioTipoProfesional repositorioTipoProfesional;
+    @Autowired
+    private RepositorioMembresiaActivadaImpl repositorioMembresiaActivada;
 
     @Test
     @Transactional
     @Rollback
 
-    public void quePuedaGuardarContactos() {
-        TipoProfesional tipoPediatra = givenExisteTipo("Pediatra");
-        Metodo metodoWaldorf = givenExisteMetodo("Waldorf");
 
-        Profesional contacto = givenExisteContacto("Dr. Pérez", tipoPediatra, metodoWaldorf);
+    public void quesepuedaGuardarConsulta() {
+        // Simular existencia de entidades
+        Usuario usuario = givenExisteUsuario("Ayelen");
+        TipoProfesional tipoPediatra = givenExisteTipo("Pediatria");
+        Metodo metodo = givenExisteMetodo("Metodo");
+        Profesional contacto = givenExisteProfesional("Dr. Pérez", tipoPediatra, metodo);
 
-        assertNotNull(contacto.getId());
-        assertThat("Dr. Pérez", equalTo(contacto.getNombre()));
-        assertThat(tipoPediatra, equalTo(contacto.getTipo()));
-        assertThat(metodoWaldorf, equalTo(contacto.getMetodo()));
+        // Crear consulta
+        Consulta consulta = new Consulta();
+        consulta.setUsuario(usuario);
+        consulta.setProfesional(contacto); // Asignar el profesional a la consulta, si es necesario
+
+        // Guardar consulta
+        repositorioMembresiaActivada.guardarConsulta(consulta);
+
+        // Verificar que la consulta se haya guardado correctamente
+        assertNotNull(consulta.getId()); // Verificar que se haya generado un ID
+
 
     }
 
+    // Métodos para simular existencia de entidades
 
+    private Usuario givenExisteUsuario(String ayelen) {
+        Usuario usuario = new Usuario();
 
-
-
-    private Profesional givenExisteContacto(String s, TipoProfesional tipoPediatra, Metodo metodoWaldorf) {
-        return null;
+       repositorioUsuario.guardar(usuario);
+        return usuario;
     }
 
-    private Metodo givenExisteMetodo(String waldorf) {
-        return null;
+    private Hijo givenExisteHijo(Usuario usuario) {
+        Hijo hijo = new Hijo();
+        hijo.setId(1L); // Supongamos que el hijo tiene ID 1
+        hijo.setUsuario(usuario); // Asignar usuario al hijo
+        repositorioUsuario.guardarHijo(hijo);
+        return hijo;
     }
 
-    private TipoProfesional givenExisteTipo(String pediatra) {
-        return null;
+    private TipoProfesional givenExisteTipo(String nombre) {
+        TipoProfesional tipoProfesional = new TipoProfesional();
+        tipoProfesional.setNombre(nombre);
+        // Lógica para guardar el tipo de profesional si es necesario
+
+        return tipoProfesional;
     }
 
+    private Metodo givenExisteMetodo(String nombre) {
+        Metodo metodo = new Metodo();
+        metodo.setNombre(nombre);
+        repositorioMetodo.guardar(metodo);
+        // Lógica para guardar el método si es necesario
+        return metodo;
+    }
 
-
+    private Profesional givenExisteProfesional(String nombre, TipoProfesional tipoProfesional, Metodo metodo) {
+        Profesional profesional = new Profesional();
+        profesional.setNombre(nombre);
+        profesional.setTipo(tipoProfesional);
+        profesional.setMetodo(metodo);
+        repositorioProfesional.guardar(profesional);
+        // Lógica para guardar el profesional si es necesario
+        return profesional;
+    }
 }
+

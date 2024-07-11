@@ -1,8 +1,10 @@
 package com.tallerwebi.dominio;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 public class Usuario {
@@ -21,20 +23,12 @@ public class Usuario {
     @OneToOne
     private Usuario conyuge;
 
+    @OneToMany
+    List<Compra> compras;
+
 
     // Getters y Setters
 
-
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
@@ -76,14 +70,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Usuario getConyuge() {
-        return conyuge;
-    }
-
-    public void setConyuge(Usuario conyuge) {
-        this.conyuge = conyuge;
-    }
-
     public DatosMembresia getMembresia() {
         return membresia;
     }
@@ -92,17 +78,28 @@ public class Usuario {
         this.membresia = membresia;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", rol='" + rol + '\'' +
-                ", estado=" + estado +
-                ", nombre='" + nombre + '\'' +
-                ", membresia=" + membresia +
-                ", conyuge=" + conyuge +
-                '}';
+    public Usuario getConyuge() {
+        return conyuge;
+    }
+
+    public void setConyuge(Usuario conyuge) {
+        this.conyuge = conyuge;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
+
