@@ -35,6 +35,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
                 .uniqueResult();
     }
 
+
     @Override
     public void guardar(Usuario usuario) {
 
