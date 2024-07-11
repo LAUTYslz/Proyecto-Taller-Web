@@ -1,0 +1,31 @@
+.card {
+    background-color: #FFF3E0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.card-body {
+    padding: 20px;
+
+}
+
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-separado {
+    margin-right: 10px;
+}
+
+.btn-gestionar {
+    margin-right: 10px;
+}

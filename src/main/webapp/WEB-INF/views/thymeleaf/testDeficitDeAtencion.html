@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestTDHA</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/test.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<main class="background-overlayTDHA">
+
+
+    <div class="test-form">
+        <h1>Test de deteccion temprana de TDHA</h1>
+        <form th:action="@{/testTdha/submit}" method="POST" th:object="${modeloTest}">
+            <!-- Preguntas -->
+            <div class="question">
+                <label for="pregunta1">1. ¿Tu hijo(a) tiene dificultad para prestar atención a los detalles y comete errores por descuido?</label>
+                <select name="respuestas[0].texto" id="pregunta1">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta2">2. ¿Frecuentemente parece no escuchar cuando se le habla directamente?</label>
+                <select name="respuestas[1].texto" id="pregunta2">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta3">3. ¿Tu hijo(a) tiene problemas para mantener la atención en tareas o actividades?</label>
+                <select name="respuestas[2].texto" id="pregunta3">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta4">4. ¿A menudo parece no seguir instrucciones y no termina tareas escolares, domésticas o deberes en el trabajo?</label>
+                <select name="respuestas[3].texto" id="pregunta4">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta5">5. ¿Tiene dificultad para organizarse en tareas o actividades?</label>
+                <select name="respuestas[4].texto" id="pregunta5">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta6">6. ¿A menudo evita, le disgusta o es renuente a participar en tareas que requieren un esfuerzo mental sostenido?</label>
+                <select name="respuestas[5].texto" id="pregunta6">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta7">7. ¿Frecuentemente pierde cosas necesarias para tareas o actividades?</label>
+                <select name="respuestas[6].texto" id="pregunta7">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta8">8. ¿Se distrae fácilmente por estímulos externos?</label>
+                <select name="respuestas[7].texto" id="pregunta8">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta9">9. ¿A menudo olvida las actividades cotidianas?</label>
+                <select name="respuestas[8].texto" id="pregunta9">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta10">10. ¿Es impulsivo, interrumpiendo a otros o actuando sin pensar?</label>
+                <select name="respuestas[9].texto" id="pregunta10">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <button class="buttonTest" type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+
+
+</main>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+</body>
+</html>

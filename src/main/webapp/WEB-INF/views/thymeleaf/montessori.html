@@ -8,9 +8,14 @@
 
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <script th:href="@{/js/metodos.js}"></script>
     <link rel="stylesheet" th:href="@{/css/metodos.css}"/>
 
 </head>
@@ -29,6 +34,30 @@
         en la espontaneidad y en la elección de los alumnos en lugar de en sistemas rígidos y basados en el cumplimiento
         de determinados criterios de evaluación académica. Para Montessori, el respeto y la promoción de la independencia del
         niño es clave.</p>
+
+    <div class="video-container">
+        <iframe id="thumbnail-video" src="https://www.youtube.com/embed/7N6bQes9y7I?si=jLFd5nmheNIqta0l" title="Método DOMAN | Enseña a LEER a tu BEBÉ Jugando" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="overlay">
+            <button onclick="openModal('https://www.youtube.com/embed/7N6bQes9y7I?si=jLFd5nmheNIqta0l')">Ver Video</button>
+        </div>
+    </div>
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Método DOMAN | Enseña a LEER a tu BEBÉ Jugando</h2>
+            <iframe id="modal-video" width="853" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <h2 class="subtitulo-metodos"> Principios educativos </h2>
+    <div class="principios-educativos">
+        <h3 class="caracteristica sub-subtitulo-metodos"> Estímulos visuales, auditivos y táctiles </h3>
+        <p class="desarrollo-caracteristica"> El método emplea "bits de inteligencia", que son estímulos visuales, auditivos
+            y de textura. Estos están diseñados para ser procesados e interpretados por los sentidos del niño, facilitando el
+            aprendizaje y la retención de información. </p>
+    </div>
+
 
     <h2 class="subtitulo-metodos"> Principios educativos </h2>
 
@@ -83,7 +112,7 @@
     </div>
 
     <div class="principios-educativos">
-        <h3 class="caracteristica sub-subtitulo-metodos"> Profesor como gúia y supervisor </h3>
+        <h3 class="caracteristica sub-subtitulo-metodos"> Profesor como guía y supervisor </h3>
         <p class="desarrollo-caracteristica"> El profesor guía a los alumnos evitando obstaculizar su proceso de autoeducación. Así, sus roles
         se relacionan con la preparación del entorno académico, la observación de los niños para promover el aprendizaje individualizado, la
         introducción de nuevos materiales educativos y el aporte de información. </p>
@@ -93,5 +122,6 @@
 
 
 <div th:replace="home :: footer"></div>
+<script th:src="@{/js/metodos.js}"></script>
 </body>
 </html>

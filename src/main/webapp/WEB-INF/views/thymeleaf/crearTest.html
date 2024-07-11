@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAsperger</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/crudTest.css}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+    .card {
+        background-color: #FFF3E0;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="containerCrud">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center">Crear nuevo test</h2>
+            <form th:action="@{/guardarModeloTest}" method="POST" th:object="${modeloTest}">
+                <input type="hidden" th:field="*{id}" />
+                <div class="form-group mb-4">
+                    <label for="nombreTest">Nombre del Test:</label>
+                    <input type="text" id="nombreTest" th:field="*{nombreTest}" class="form-control" required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="descripcionTest">Descripción del Test:</label>
+                    <input type="text" id="descripcionTest" th:field="*{descripcionTest}" class="form-control" required>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Guardar Test</button>
+                    <a th:href="@{/crearPregunta}" class="btn btn-primary">Crear Pregunta</a>
+                    <a th:href="@{/crudTest}" class="btn btn-warning">Gestionar tests</a>
+                    <a th:href="@{/administrador}" class="btn btn-secondary">Volver al inicio</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bienvenido</title>
@@ -99,6 +99,32 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/metodo.png}" alt="metodo">
+                            <div class="card-body">
+                                <h5 class="card-title">Crianza consciente</h5>
+                                <a th:href="@{/verHijoEInfoMetodoAsociado}" class="btn btn-primary">Ver métodos</a>
+                                <p class="card-text">Haz click para información de métodos de enseñanza y crianza consciente</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col">
+                        <div class="card">
+                            <img th:src="@{/img/vacunacion.png}" alt="vacunacion">
+                            <div class="card-body">
+                                <h5 class="card-title">Calendario de vacunacion </h5>
+                                <a th:href="@{/vacunacionSeleccionar}" class="btn btn-primary">Ver Calendario </a>
+                                <p class="card-text">Haz click para ver las proximas vacunas de tu hijo.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col">
                         <div class="card">
                             <img th:src="@{/img/tienda.jpg}" alt="profesional">
@@ -203,6 +229,8 @@
 
 
 
+
+
         <script th:src="@{/usuarioMembre.js}"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
@@ -210,5 +238,8 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-</body>
+
 </main>
+
+</body>
+</html>

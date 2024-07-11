@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar vacunas pendientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/vacunas.css}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+<h1 class="tituloVacunasPendientes">Vacunas Pendientes para <span th:text="${hijo.nombre}">Hijo</span></h1>
+<div class="containerVacunasPendientes">
+    <div class="vacunas-pendientes">
+
+
+        <div th:if="${warningMessage}" class="mensaje-alerta">
+            <p th:text="${warningMessage}" class="warning-message"></p>
+        </div>
+
+        <h2>Próxima vacuna recomendada:</h2>
+        <p th:if="${proximaVacuna}" class="proxima-vacuna">
+            La próxima vacuna recomendada es: <span th:text="${proximaVacuna[0].nombreVacuna}"></span>
+        </p>
+        <p th:unless="${proximaVacuna}" class="sin-vacunas-pendientes">
+            No hay vacunas pendientes por el momento.
+        </p>
+
+        <h2>Vacunas pendientes:</h2>
+        <ul th:if="${vacunasPendientes.size() > 0}" class="lista-vacunas-pendientes">
+            <li th:each="vacuna : ${vacunasPendientes}" th:text="${vacuna.nombreVacuna}"></li>
+        </ul>
+        <p th:unless="${vacunasPendientes.size() > 0}" class="sin-vacunas-pendientes">
+            No hay vacunas pendientes por el momento.
+        </p>
+
+
+        <form id="cargarVacunasForm" th:action="@{/cargarVacunas}" method="post" class="form-cargar-vacunas-pendientes">
+            <input type="hidden" name="hijoId" th:value="${hijo.id}" />
+            <div class="button-container">
+                <button class="btn-cargar-vacunas" type="submit">Cargar más vacunas</button>
+                <a th:href="@{/vacunacionSeleccionar}" class="btn-volver-inicio">Volver al inicio</a>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<div th:replace="home :: footer"></div>
+
+<!-- Bootstrap core js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

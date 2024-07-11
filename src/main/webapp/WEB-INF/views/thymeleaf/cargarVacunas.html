@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado vacunas obligatorias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/vacunas.css}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+<h1 class="tituloCargarVacunas">Cargar Vacunas para <span th:text="${hijo.nombre}">Hijo</span></h1>
+
+<div class="containerCargarVacunas">
+    <div class="form-cargar-vacunas">
+
+        <form action="#" th:action="@{/guardarVacunas}" method="post">
+            <input type="hidden" name="hijoId" th:value="${hijo.id}"/>
+            <ul>
+                <li th:each="vacuna : ${todasVacunas}">
+                    <input type="checkbox" name="vacunas" th:value="${vacuna.name()}" th:checked="${vacunasCargadas.contains(vacuna)}"/> <span th:text="${vacuna.nombreVacuna}"></span>
+                </li>
+            </ul>
+            <button class="botonCargarVacunas" type="submit">Guardar Vacunas</button>
+        </form>
+    </div>
+</div>
+<div th:replace="home :: footer"></div>
+
+<!-- Boostrap core js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

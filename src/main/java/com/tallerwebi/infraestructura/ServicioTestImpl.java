@@ -1,60 +1,55 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.ServicioTest;
-import com.tallerwebi.presentacion.RespuestaTest;
+import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.enums.ResultadoAutismo;
+import com.tallerwebi.dominio.enums.ResultadoTDHA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.tallerwebi.dominio.ModeloTest;
+
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service("servicioTest")
 @Transactional
 public class ServicioTestImpl implements ServicioTest {
 
+    private final ModeloTestRepositorio modeloTestRepositorio;
+    private final PreguntaTestRepositorio preguntaTestRepositorio;
+    private final RespuestaTestRepositorio respuestaTestRepositorio;
+
+
+    @Autowired
+    public ServicioTestImpl(ModeloTestRepositorio modeloTestRepositorio, PreguntaTestRepositorio preguntaTestRepositorio, RespuestaTestRepositorio respuestaTestRepositorio) {
+        this.modeloTestRepositorio = modeloTestRepositorio;
+        this.preguntaTestRepositorio = preguntaTestRepositorio;
+        this.respuestaTestRepositorio = respuestaTestRepositorio;
+    }
+
     @Override
     public String calcularResultadoAutismo(ModeloTest modeloTest) {
         int contadorRespuestasSi = 0;
         List<RespuestaTest> respuestas = modeloTest.getRespuestas();
-        String textoResultadoAutismo = null;
 
         for (RespuestaTest respuesta : respuestas) {
-            if ("si".equals(respuesta.getTexto())) {
+            if ("si".equalsIgnoreCase(respuesta.getTexto())) {
                 contadorRespuestasSi++;
             }
         }
 
+        ResultadoAutismo resultado = obtenerResultadoAutismo(contadorRespuestasSi);
+        return resultado.getTexto();
+    }
+
+    private ResultadoAutismo obtenerResultadoAutismo(int contadorRespuestasSi) {
         if (contadorRespuestasSi <= 3) {
-            textoResultadoAutismo= "No se Detectan Indicios de Autismo. Tras completar el test, " +
-                    "los resultados indican que no se han detectado indicios " +
-                    "de autismo en este momento. Es importante tener en cuenta " +
-                    "que este test es una herramienta inicial y que los resultados " +
-                    "pueden variar. Siempre es recomendable seguir observando " +
-                    "el desarrollo de su hijo y consultar con un profesional de la salud" +
-                    " infantil si surgen preocupaciones adicionales en el futuro.";
+            return ResultadoAutismo.NO_DETECTADO;
         } else if (contadorRespuestasSi <= 6) {
-            textoResultadoAutismo= "Se Observan Algunos Indicios que Podrían Ser Indicativos de Autismo" +
-                    "Después de completar el test, se han identificado algunos indicios " +
-                    "que podrían ser indicativos de autismo. Es importante recordar " +
-                    "que estos resultados son preliminares y que se necesita una " +
-                    "evaluación más detallada para confirmar cualquier diagnóstico. " +
-                    "Le recomendamos que busque el consejo de un profesional de la salud" +
-                    " infantil para una evaluación adicional y para obtener más " +
-                    "orientación sobre los pasos a seguir.";
+            return ResultadoAutismo.ALGUNOS_INDICIOS;
         } else {
-            textoResultadoAutismo= "Los Resultados Sugieren una Alta Probabilidad de Autismo. " +
-                    " Basándose en los resultados del test, se sugiere una alta " +
-                    "probabilidad de autismo. Es importante comprender que estos resultados" +
-                    " son generados por un algoritmo y que no reemplazan la evaluación " +
-                    "de un profesional médico. Le recomendamos encarecidamente que" +
-                    " consulte con un profesional de la salud infantil para una evaluación " +
-                    "más exhaustiva y para obtener un diagnóstico preciso. " +
-                    "El apoyo y la orientación de un profesional pueden ser fundamentales " +
-                    "para ayudar a su hijo a recibir el cuidado y el apoyo necesarios." +
-                    "En el siguiente enlace te dejamos una lista de profesionales cerca " +
-                    "de tu hogar para que tu niño y vos hagan una consulta";
+            return ResultadoAutismo.ALTA_PROBABILIDAD;
         }
-        return textoResultadoAutismo;
     }
 
     @Override
@@ -98,6 +93,133 @@ public class ServicioTestImpl implements ServicioTest {
                     "para ayudar a su hijo a recibir el cuidado y el apoyo necesarios.";
         }
         return textoResultadoAsperger;
+    }
+
+    @Override
+    public String calcularResultadoTdha(ModeloTest modeloTest) {
+        int contadorRespuestasSi = 0;
+        List<RespuestaTest> respuestas = modeloTest.getRespuestas();
+
+        for (RespuestaTest respuesta : respuestas) {
+            if ("si".equalsIgnoreCase(respuesta.getTexto())) {
+                contadorRespuestasSi++;
+            }
+        }
+
+        ResultadoTDHA resultado = obtenerResultadoTdha(contadorRespuestasSi);
+        return resultado.getTexto();
+    }
+
+    private ResultadoTDHA obtenerResultadoTdha(int contadorRespuestasSi) {
+        if (contadorRespuestasSi <= 3) {
+            return ResultadoTDHA.NO_DETECTADO;
+        } else if (contadorRespuestasSi <= 6) {
+            return ResultadoTDHA.ALGUNOS_INDICIOS;
+        } else {
+            return ResultadoTDHA.ALTA_PROBABILIDAD;
+        }
+    }
+
+    @Override
+    public String calcularResultadoDislexia(ModeloTest respuestasTest) {
+        return null;
+    }
+
+
+    @Override
+    public void crearTest(ModeloTest modeloTest) {
+        for (PreguntaTest pregunta : modeloTest.getPreguntas()) {
+            pregunta.setModeloTest(modeloTest);
+        }
+        for (RespuestaTest respuesta : modeloTest.getRespuestas()) {
+            respuesta.setModeloTest(modeloTest);
+        }
+        modeloTestRepositorio.guardar(modeloTest);
+    }
+
+    @Override
+    public List<ModeloTest> obtenerTodosLosTests() {
+        return modeloTestRepositorio.obtenerTodos();
+    }
+
+    @Override
+    public void guardarPregunta(PreguntaTest preguntaTest) {
+        preguntaTestRepositorio.guardar(preguntaTest);
+    }
+
+    @Override
+    public List<PreguntaTest> obtenerTodasLasPreguntas() {
+
+        return preguntaTestRepositorio.obtenerTodos();
+    }
+
+    @Override
+    public void guardarRespuesta(RespuestaTest respuestaTest) {
+
+        respuestaTestRepositorio.guardar(respuestaTest);
+    }
+
+    @Override
+    public List<RespuestaTest> obtenerTodasLasRespuestas() {
+
+        return respuestaTestRepositorio.obtenerTodos();
+    }
+
+    @Override
+    public Optional<ModeloTest> obtenerTestPorId(Long id) {
+
+        return modeloTestRepositorio.findById(id);
+    }
+
+    @Override
+    public void editarTest(ModeloTest modeloTest) {
+        modeloTestRepositorio.guardar(modeloTest);
+    }
+
+    @Override
+    public void eliminarTest(Long id) {
+        modeloTestRepositorio.eliminarPorId(id);
+    }
+
+    @Override
+    public void editarPregunta(PreguntaTest preguntaTest) {
+        preguntaTestRepositorio.editarPregunta(preguntaTest);
+    }
+
+    @Override
+    public void eliminarPregunta(Long id) {
+        preguntaTestRepositorio.eliminarPorId(id);
+    }
+
+    @Override
+    public void editarRespuesta(RespuestaTest respuestaTest) {
+        respuestaTestRepositorio.editarRespuesta(respuestaTest);
+    }
+
+    @Override
+    public void eliminarRespuesta(Long id) {
+
+        respuestaTestRepositorio.eliminarPorId(id);
+    }
+
+    @Override
+    public Optional<PreguntaTest> obtenerPreguntaPorId(Long id) {
+        return preguntaTestRepositorio.findById(id);
+    }
+
+    @Override
+    public Optional<RespuestaTest> obtenerRespuestaPorId(Long id) {
+        return respuestaTestRepositorio.findById(id);
+    }
+
+    @Override
+    public List<RespuestaTest> obtenerRespuestasPorModeloTestId(Long modeloTestId) {
+        return respuestaTestRepositorio.obtenerRespuestasPorModeloTestId(modeloTestId);
+    }
+
+    @Override
+    public List<PreguntaTest> obtenerPreguntasPorModeloTestId(Long modeloTestId) {
+        return preguntaTestRepositorio.obtenerPreguntasPorModeloTestId(modeloTestId);
     }
 }
 
