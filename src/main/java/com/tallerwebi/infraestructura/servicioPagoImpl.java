@@ -45,7 +45,7 @@ public class servicioPagoImpl implements ServicioPago {
         caja.agregarPago(pago);
 
 
-        caja.setSaldoActual(saldoActual);
+
         caja.setEgreso(consultapago);
 
         // Actualizar el saldo actua caja.calcularSaldoActual();

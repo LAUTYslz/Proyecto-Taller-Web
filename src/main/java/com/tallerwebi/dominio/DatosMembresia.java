@@ -20,11 +20,9 @@ public class DatosMembresia {
     private Estado estado=INACTIVA;
     private Long numeroTelefonico;
     private Integer cuota=0;
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy ")
     private Date fechaDeInicio;
-
-
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy ")
     private Date fechaDeBaja;
     @ManyToOne
     private Tarjeta tarjeta;

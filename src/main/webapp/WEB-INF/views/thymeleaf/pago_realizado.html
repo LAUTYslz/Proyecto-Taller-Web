@@ -28,7 +28,7 @@
         <p>Se ha realizado el pago correctamente para el profesional:</p>
         <p>Nombre: <span th:text="${profesional.nombre}"></span></p>
         <p>Importe Total: <span th:text="${pago.importeTotal}"></span></p>
-        <p>Fecha de Pago: <span th:text="${#dates.format(pago.fechaPago, 'dd-MM-yyyy')}"></span></p>
+        <p>Fecha de Pago: <span th:text="${pago.fechaPago}"></span></p>
         <p>Estado de la Caja después del pago:</p>
         <p>Saldo Actual: <span th:text="${caja.saldoActual}"></span></p>
 
