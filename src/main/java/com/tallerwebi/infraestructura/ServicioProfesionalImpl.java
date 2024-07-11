@@ -19,15 +19,13 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     private final RepositorioMetodo repositorioMetodo;
     private final RepositorioTipoProfesional repositorioTipoProfesional;
     private final RepositorioTurno repositorioTurno;
-    private final RepositorioDiasAtencion repositorioDiasAtencion;
 
     @Autowired
-    public ServicioProfesionalImpl(RepositorioProfesional repositorioProfesional, RepositorioMetodo repositorioMetodo, RepositorioTipoProfesional repositorioTipoProfesional, RepositorioTurno repositorioTurno, RepositorioDiasAtencion repositorioDiasAtencion) {
+    public ServicioProfesionalImpl(RepositorioProfesional repositorioProfesional, RepositorioMetodo repositorioMetodo, RepositorioTipoProfesional repositorioTipoProfesional, RepositorioTurno repositorioTurno) {
         this.repositorioProfesional = repositorioProfesional;
         this.repositorioMetodo = repositorioMetodo;
         this.repositorioTipoProfesional = repositorioTipoProfesional;
         this.repositorioTurno = repositorioTurno;
-        this.repositorioDiasAtencion = repositorioDiasAtencion;
     }
 
     @Override

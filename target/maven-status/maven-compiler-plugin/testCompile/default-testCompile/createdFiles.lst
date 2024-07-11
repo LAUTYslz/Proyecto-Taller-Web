@@ -1,3 +1,4 @@
+com\tallerwebi\infraestructura\RespuestasTestRepositorioTest.class
 com\tallerwebi\integracion\config\SpringWebTestConfig.class
 com\tallerwebi\integracion\ControladorLoginTest.class
 com\tallerwebi\punta_a_punta\VistaLoginE2E.class
@@ -6,7 +7,10 @@ com\tallerwebi\infraestructura\RepositorioMetodoTest.class
 com\tallerwebi\presentacion\ControladorProfesionalTest.class
 com\tallerwebi\infraestructura\ServicioProfesionalTest.class
 com\tallerwebi\integracion\config\HibernateTestConfig.class
+com\tallerwebi\infraestructura\VacunasRepositorioTest.class
 com\tallerwebi\punta_a_punta\vistas\VistaLogin.class
+com\tallerwebi\infraestructura\ModeloTestRepositorioTest.class
+com\tallerwebi\infraestructura\PreguntasRepositorioTest.class
 com\tallerwebi\infraestructura\RepositoriaUsuarioTest.class
 com\tallerwebi\infraestructura\RepositorioProfesionalTest.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalTest.class

@@ -24,7 +24,7 @@
 <body>
 
 <div th:replace="home :: nav"></div>
-    <main>
+<main>
 
     <div class="gestion-container">
         <h1>Bienvenido Administrador</h1>
@@ -35,12 +35,15 @@
             <a  th:href="@{/crearJuego}" type="button"><i class="fas fa-gamepad"></i>Crear Juego</a>
             <a  th:href="@{/admin/gestionarProfesionales}" type="button"><i class="fas fa-address-book"></i>Gestionar Profesionales</a>
             <a  th:href="@{/crearTest}" type="button"><i class="fas fa-file-alt"></i>Crear Test</a>
+            <a  th:href="@{/admin/gestionarTiendas}" type="button"> <i class="fa-solid fa-store"></i> Gestionar Tiendas </a>
+            <a  th:href="@{/admin/gestionarProductos}" type="button"> <i class="fa-solid fa-cubes"></i> Gestionar productos</a>
+            <!--
             <a  th:href="@{/crearMetodo}" type="button"><i class="fas fa-book"></i> Crear Metodo</a>
-
+            -->
         </div>
     </div>
 
-        <h2>Listado de Etapas Creadas </h2>
+    <h2>Listado de Etapas Creadas </h2>
     <div class="listado-container">
         <table>
             <thead>
@@ -65,9 +68,9 @@
                     </form>
 
                     <form th:action="@{/eliminar-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
-                    <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button class="boton-eliminar" ><i class="fas fa-trash-alt"></i> Eliminar</button>
                     </form>
-                    <form th:action="@{/verjuego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
+                    <form th:action="@{/ver-juego-etapa/{etapaId}(etapaId=${etapa.id})}" method="post">
                         <button class="boton-verJuegos" ><i class="fas fa-gamepad"></i> Ver juegos</button>
                     </form>
                 </td>
@@ -75,7 +78,7 @@
             </tbody>
         </table>
     </div>
-    </main>
+</main>
 <div th:replace="home :: footer"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

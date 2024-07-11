@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestDislexia</title>
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/testtdha.css}"/>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<main class="background-overlay4">
+
+
+    <div class="test-form">
+        <h1>Test de deteccion temprana de dislexia</h1>
+        <form th:action="@{/testDislexia/submit}" method="POST" th:object="${modeloTest}">
+            <!-- Preguntas -->
+            <div class="question">
+                <label for="pregunta1">1. ¿Tiene dificultades para leer en voz alta?</label>
+                <select name="respuestas[0].texto" id="pregunta1">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta2">2. ¿Le cuesta recordar secuencias, como el alfabeto o los meses del año?</label>
+                <select name="respuestas[1].texto" id="pregunta2">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta3">3. ¿Confunde palabras que suenan similares?</label>
+                <select name="respuestas[2].texto" id="pregunta3">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta4">4. ¿Evita leer por placer debido a las dificultades que experimenta?</label>
+                <select name="respuestas[3].texto" id="pregunta4">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta5">5. ¿Tiene problemas para seguir instrucciones escritas?</label>
+                <select name="respuestas[4].texto" id="pregunta5">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta6">6. ¿Confunde letras que tienen formas similares, como "b" y "d"?</label>
+                <select name="respuestas[5].texto" id="pregunta6">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta7">7. ¿Escribe las palabras al revés o invierte letras y números?</label>
+                <select name="respuestas[6].texto" id="pregunta7">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta8">8. ¿Le resulta difícil dividir palabras en sílabas o identificar rimas?</label>
+                <select name="respuestas[7].texto" id="pregunta8">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta9">9. ¿Necesita más tiempo para leer y escribir que sus compañeros?</label>
+                <select name="respuestas[8].texto" id="pregunta9">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="pregunta10">10. ¿Tiene problemas para memorizar datos, como tablas de multiplicar?</label>
+                <select name="respuestas[9].texto" id="pregunta10">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <button class="buttonTest" type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+
+
+</main>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+</body>
+</html>

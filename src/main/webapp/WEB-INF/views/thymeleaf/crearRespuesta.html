@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestEspectoAsperger</title>
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- Custom styles -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/crudTestCrearRta.css}"/>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div th:replace="home :: nav"></div>
+
+<div class="container">
+    <div class="card shadow p-4 bg-orange">
+        <h2 class="mb-4">Agregar Nueva Respuesta</h2>
+        <form th:action="@{/guardarRespuesta}" method="POST" th:object="${respuestaTest}">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-group mb-3">
+                <label for="modeloTestId">Seleccionar Test:</label>
+                <select id="modeloTestId" name="modeloTestId" class="form-control" required>
+                    <option value="">Seleccionar Test</option>
+                    <th:block th:each="test : ${modelosTest}">
+                        <option th:value="${test.id}" th:text="${test.nombreTest}" th:selected="${test.id == modeloTestId}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="texto">Texto de la Respuesta:</label>
+                <textarea id="texto" th:field="*{texto}" class="form-control" rows="6" required></textarea>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary me-2">Guardar Respuesta</button>
+                <a th:href="@{/crudTest}" class="btn btn-warning me-2">Gestionar tests</a>
+                <a th:href="@{/administrador}" class="btn btn-secondary">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div class="footerTest" th:replace="home :: footer"></div>
+
+</body>
+</html>
