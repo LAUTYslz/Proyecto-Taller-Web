@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.integracion.config.HibernateTestConfig;
@@ -123,5 +123,4 @@ public class RepositorioMetodoTest {
         return repositorioMetodo.traerMetodoPorId(idMetodo);
     }
 }
-
 

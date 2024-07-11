@@ -1,4 +1,4 @@
-package com.tallerwebi.Infraestructura;
+package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
@@ -23,16 +23,14 @@ public class ServicioProfesionalTest {
     RepositorioMetodo repositorioMetodo = mock(RepositorioMetodo.class);
     RepositorioTipoProfesional repositorioTipoContacto = mock(RepositorioTipoProfesional.class);
     RepositorioTurno repositorioTurno = mock(RepositorioTurno.class);
-    RepositorioDiasAtencion repositorioDiasAtencion = mock(RepositorioDiasAtencion.class);
-    ServicioProfesional servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno, repositorioDiasAtencion);
+    ServicioProfesional servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno);
     @BeforeEach
     public void setUp() {
         repositorioContacto = mock(RepositorioProfesional.class);
         repositorioMetodo = mock(RepositorioMetodo.class);
         repositorioTipoContacto = mock(RepositorioTipoProfesional.class);
         repositorioTurno = mock(RepositorioTurno.class);
-        repositorioDiasAtencion = mock(RepositorioDiasAtencion.class);
-        servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno, repositorioDiasAtencion);
+        servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto, repositorioTurno);
     }
 
     @Test

@@ -1,11 +1,9 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.ModeloTestRepositorio;
-import com.tallerwebi.dominio.PreguntaTest;
-import com.tallerwebi.dominio.PreguntaTestRepositorio;
-import com.tallerwebi.dominio.ServicioTest;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.presentacion.ControladorTest;
 import org.junit.Before;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
@@ -17,37 +15,41 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class PreguntasRepositorioTest {
     private ModeloTestRepositorio mockModeloTestRepositorio;
-    private PreguntaTestRepositorio mockPreguntaTestRepositorio;
     @Mock
+    private PreguntaTestRepositorio mockPreguntaTestRepositorio;
+    @InjectMocks
     private ServicioTest mockServicioTest;
 
     @InjectMocks
     private ControladorTest mockControladorTest;
 
-    @Before
+
+    @BeforeMethod
     public void setUp() {
         mockPreguntaTestRepositorio = mock(PreguntaTestRepositorio.class);
         mockModeloTestRepositorio = mock(ModeloTestRepositorio.class);
         mockControladorTest = mock(ControladorTest.class);
         mockServicioTest= mock(ServicioTest.class);
+        MockitoAnnotations.openMocks(this);
 
     }
-    @BeforeEach
-    public void setUp1() {
-        MockitoAnnotations.openMocks(this);
-    }
+
     @Test
     public void testGuardarPregunta() {
-        PreguntaTest preguntaTest = new PreguntaTest(); // Crea un objeto PreguntaTest
+        ModeloTest modeloTest = new ModeloTest();
+        modeloTest.setId(1L);
+        PreguntaTest preguntaTest = new PreguntaTest();
         preguntaTest.setTexto("¿Cuál es la capital de Francia?");
-
+        preguntaTest.setModeloTest(modeloTest);
         mockPreguntaTestRepositorio.guardar(preguntaTest);
 
-        verify(mockPreguntaTestRepositorio, times(1)).guardar(preguntaTest);
+       // assertTrue(mockPreguntaTestRepositorio.obtenerPreguntasPorModeloTestId(modeloTest.getId()));
+       verify(mockPreguntaTestRepositorio, times(1)).guardar(preguntaTest);
     }
 
     @Test
@@ -74,25 +76,17 @@ public class PreguntasRepositorioTest {
         // Then
         assertEquals(nuevoTexto, pregunta.getTexto());
     }
-    @Test
-    public void testGuardarPregunta2() {
-        PreguntaTest pregunta = new PreguntaTest();
-        pregunta.setTexto("¿Cuál es el río más largo del mundo?");
 
-        // Ejecuta el método guardar del repositorio
-        mockPreguntaTestRepositorio.guardar(pregunta);
-
-        // Verifica que se llamó al método guardar con la pregunta
-        verify(mockPreguntaTestRepositorio, times(1)).guardar(pregunta);
-    }
 
     @Test
     public void testEliminarPreguntaExistente() {
         Long idPregunta = 1L;
 
         mockPreguntaTestRepositorio.eliminarPorId(idPregunta);
+        List<PreguntaTest> actualPreguntas = mockPreguntaTestRepositorio.obtenerTodos();
 
-        verify(mockPreguntaTestRepositorio, times(1)).eliminarPorId(idPregunta);
+        assertTrue(actualPreguntas.isEmpty());
+        //verify(mockPreguntaTestRepositorio, times(1)).eliminarPorId(idPregunta);
     }
 
     @Test
@@ -120,9 +114,9 @@ public class PreguntasRepositorioTest {
 
     @Test
     public void testExistePreguntaPorId() {
-        Long idPregunta = 1L; // Suponiendo que existe una pregunta con este ID
+        Long idPregunta = 1L;
 
-        // Simula que el repositorio devuelve true si la pregunta existe
+
         when(mockPreguntaTestRepositorio.findById(idPregunta));
 
        assertEquals(idPregunta, 1L);

@@ -30,8 +30,8 @@ public class ControladorTest {
 
     @GetMapping("/seleccionTests")
     public String mostrarTests(Model model) {
-        List<ModeloTest> modeloTest = servicioTest.obtenerTodosLosTests(); // Obtener la lista de tests desde el servicio
-        model.addAttribute("modeloTest", modeloTest); // Agregar la lista al modelo para pasarlo a la vista
+        List<ModeloTest> modeloTest = servicioTest.obtenerTodosLosTests();
+        model.addAttribute("modeloTest", modeloTest);
         return "seleccionTests";
     }
 
@@ -57,6 +57,13 @@ public class ControladorTest {
         return new ModelAndView("testDeficitDeAtencion", modelo);
     }
 
+    @RequestMapping("/testDislexia")
+    public ModelAndView mostrarFormularioDislexia() {
+        ModelMap modelo = new ModelMap();
+        modelo.put("modeloTest", new ModeloTest());
+        return new ModelAndView("testDislexia", modelo);
+    }
+
     @RequestMapping("/testAutismo/submit")
     public ModelAndView procesarTestAutismo(@ModelAttribute("modeloTest") ModeloTest modeloTest, ModelMap model) {
         String resultado = servicioTest.calcularResultadoAutismo(modeloTest);
@@ -78,6 +85,14 @@ public class ControladorTest {
         model.put("resultado", resultado);
         return new ModelAndView("resultadoTest", model);
     }
+
+    @RequestMapping("/testDislexia/submit")
+    public ModelAndView procesarTestDislexia(@ModelAttribute("modeloTest") ModeloTest modeloTest, ModelMap model) {
+        String resultado = servicioTest.calcularResultadoDislexia(modeloTest);
+        model.put("resultado", resultado);
+        return new ModelAndView("resultadoTest", model);
+    }
+
     @GetMapping("/crearTest")
     public String mostrarFormularioCrearTest(Model model) {
         model.addAttribute("modeloTest", new ModeloTest());

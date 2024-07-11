@@ -105,7 +105,6 @@ public class VacunasRepositorioTest {
         vacunacion.setVacuna(vacunaMock);
         vacunacion.setFechaAdministracion(fechaAdministracionMock);
 
-        // Test getter methods
         assertEquals(hijoMock, vacunacion.getHijo());
         assertEquals(vacunaMock, vacunacion.getVacuna());
         assertEquals(fechaAdministracionMock, vacunacion.getFechaAdministracion());

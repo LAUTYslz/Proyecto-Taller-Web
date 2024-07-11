@@ -12,66 +12,40 @@
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
-<style>
-    .hijos{
 
-       margin-right: 30px;
-        margin-left: 30px;
-        background-color: #b9a0ea;
-    }
-    h1{
-        text-align: center;
-    }
-
-</style>
 
 <body>
+<div th:replace="home :: nav"></div>
+
+<main>
+
+    <h1>Agregar Nuevo Hijo</h1>
+    <form class="hijos" action="#" th:action="@{/guardar-hijo}" method="POST" th:object="${hijo}" th:class="form">
+        <label for="nombre">Nombre del Hijo:</label><br>
+        <input th:field="*{nombre}" class="form-control" type="text" id="nombre" name="nombre" required><br><br>
+        <label for="dni">Dni:</label><br>
+        <input  th:field="*{dni}"  class="form-control" type="number" id="dni" name="dni" required><br><br>
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
+        <input th:field="*{fecha_nacimiento}" class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+
+        <button type="submit" class="btn btn-primary">Agregar Hijo</button>
 
 
 
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-    <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" href="#">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
-    </div>
+        <!--
+        <a href="@{/bienvenido}" class="btn btn-secondary">Volver a Bienvenido</a>
+        -->
+    </form>
 
+</main>
+<div th:replace="home :: footer"></div>
 
-    <a class="navbar-brand" th:href="@{/home}">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-
-    <div class="navbar-nav ml-auto">
-        <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
-        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-        </div>
-    </div>
-</nav>
-<h1>Agregar Nuevo Hijo</h1>
-<form class="hijos" action="#" th:action="@{/guardar-hijo}" method="POST" th:object="${hijo}">
-    <label for="nombre">Nombre del Hijo:</label><br>
-    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" required><br><br>
-    <label for="dni">Dni:</label><br>
-    <input  th:field="*{dni}"type="number" id="dni" name="dni" required><br><br>
-    <label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
-    <input th:field="*{fecha_nacimiento}" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
-
-    <button type="submit">Agregar Hijo</button>
-
-
-
-    <a href="@{/bienvenido}">Volver a Bienvenido</a>
-</form>
 </body>
 </html>
