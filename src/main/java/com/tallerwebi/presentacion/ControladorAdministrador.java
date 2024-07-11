@@ -3,18 +3,31 @@ package com.tallerwebi.presentacion;
 import com.sun.xml.txw2.Document;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.EtapaInexistente;
+import com.tallerwebi.dominio.excepcion.ProductoInexistente;
 import com.tallerwebi.dominio.excepcion.juegoInexistente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
+
 @Controller
 public class ControladorAdministrador {
 
@@ -26,6 +39,8 @@ public class ControladorAdministrador {
     private ServicioTipoProfesional servicioTipoProfesional;
     private ServicioMembresiaActivada servicioMembresiaActivada;
     private ServicioPago servicioPago;
+    private ServicioProducto servicioProducto;
+    private ServicioTienda servicioTienda;
 
     @Autowired
     public ControladorAdministrador(ServicioLogin servicioLogin, ServicioAdmi servicioAdmi, ServicioProfesional servicioProfesional, ServicioMembresiaActivada servicioMembresiaActivada, ServicioPago servicioPago) {
@@ -440,9 +455,151 @@ public class ControladorAdministrador {
 
         return mav;
     }
+    //----------------------GESTIÓN DE PRODUCTOS ---------------------------------------
+    @RequestMapping("/admin/gestionarProductos")
+    public ModelAndView mostrarProductos() {
+        ModelAndView mav = new ModelAndView("gestionarProductos");
+
+        List<Producto> productos = servicioProducto.listarProductos();
+
+        mav.addObject("productos", productos);
+
+        return mav;
+
+    }
+
+    // CREACIÓN
+
+    @RequestMapping("/admin/crearProducto")
+    public ModelAndView crearProducto(){
+        ModelAndView mav = new ModelAndView("form_crearProducto");
+
+        List<Tienda> tiendas = servicioTienda.obtenerListadoDeTiendas();
+        List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+
+        mav.addObject("producto", new Producto());
+        mav.addObject("tiendas", tiendas);
+        mav.addObject("etapas", etapas);
+
+        return mav;
+
+    }
+
+    @RequestMapping("/admin/guardarProducto")
+    public ModelAndView guardarProducto(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("precio") Double precio,
+            @RequestParam("stock") Long stock,
+            @RequestParam("tienda") Long idTienda,
+            @RequestParam("etapa") Long idEtapa,
+            RedirectAttributes ra,
+            @RequestParam(value = "imagenUrl") MultipartFile multipartFile) throws EtapaInexistente {
+
+        ModelMap model = new ModelMap();
+
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio(precio);
+        producto.setStock(stock);
+        producto.setTienda(servicioTienda.obtenerTiendaPorId(idTienda));
+        producto.setEtapa(servicioAdmi.buscarEtapa(idEtapa));
+        producto.setImagenUrl(fileName);
+        servicioProducto.guardarProducto(producto);
+
+        String uploadDir = "src/main/webapp/resources/core/img";
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)){
+            try {
+                Files.createDirectory(uploadPath);
+                InputStream inputStream = multipartFile.getInputStream();
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                model.addAttribute("Hubo un error al cargar la imágen, intenta nuevamente más tarde");
+            }
+
+        }
+
+        ra.addFlashAttribute("mensaje", "El producto ha sido guardado correctamente");
+
+        return new ModelAndView("redirect:/admin/gestionarProductos", model);
+
+    }
+
+    // EDICIÓN
+    @RequestMapping("/admin/editarProducto/{id}")
+    public ModelAndView editarProducto(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("form_editarProducto");
+
+        try {
+            Producto producto = servicioProducto.buscarProductoPorId(id);
+            List<Tienda> tiendas = servicioTienda.obtenerListadoDeTiendas();
+            List<Etapa> etapas = servicioAdmi.listaDeEtapas();
+
+            mav.addObject("producto", producto);
+            mav.addObject("tiendas", tiendas);
+            mav.addObject("etapas", etapas);
+
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Hubo un error al cargar el producto. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+    }
+
+    @PostMapping("/admin/guardarCambiosProducto")
+    public ModelAndView guardarCambiosProducto(@RequestParam("idProducto") Long id,
+                                               @RequestParam("nombre") String nombre,
+                                               @RequestParam("descripcion") String descripcion,
+                                               @RequestParam("precio") Double precio,
+                                               @RequestParam("stock") Long stock,
+                                               @RequestParam("tienda") Long idTienda,
+                                               @RequestParam("etapa") Long idEtapa){
+
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+
+        try {
+            Producto p = servicioProducto.buscarProductoPorId(id);
+            p.setNombre(nombre);
+            p.setDescripcion(descripcion);
+            p.setPrecio(precio);
+            p.setStock(stock);
+            p.setTienda(servicioTienda.obtenerTiendaPorId(idTienda));
+            p.setEtapa(servicioAdmi.buscarEtapa(idEtapa));
+            servicioProducto.actualizarProducto(p);
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Lo sentimos. No hemos podido guardar los cambios del producto");
+        } catch (EtapaInexistente e) {
+            mav.addObject("error", "Lo sentimos. No hemos podido obtener los datos de la etapa");
+        }
+
+        return mav;
+    }
+
+    //    ELIMINACION
+    @RequestMapping("/admin/eliminarProducto/{id}")
+    public ModelAndView eliminarProducto(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("redirect:/admin/gestionarProductos");
+
+        try {
+            Producto producto = servicioProducto.buscarProductoPorId(id);
+            servicioProducto.eliminarProducto(id);
+        } catch (ProductoInexistente e){
+            mav.addObject("error", "Lo sentimos. Hubo un error al eliminar el producto. Intenta nuevamente más tarde");
+        }
+
+        return mav;
+    }
 
 
 }
+
+
 
 
 

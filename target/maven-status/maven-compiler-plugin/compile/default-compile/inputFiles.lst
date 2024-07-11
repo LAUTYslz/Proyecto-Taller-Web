@@ -2,6 +2,7 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presen
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaActivadaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TarjetaInvalida.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\EstadoTurno.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\CompraInexistente.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TarjetaVencida.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioCelndario.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Tienda.java
@@ -19,13 +20,17 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTurnoImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioTiendaImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioTarjetaImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioCompra.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioPago.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Compra.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTiendaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresiaActivada.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ProhibidoFechaAnteriorALaActual.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTarjetaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Etapa.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Mensaje.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioCorreo.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTipoProfesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\DatosLogin.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\ProductoInexistente.java
@@ -40,6 +45,7 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infrae
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorMembresiaActivada.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioAdmiImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\FechadeInicioNoIngresada.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioCorreoImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Consulta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMembresiaImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Hijo.java
@@ -73,6 +79,7 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioProfesionalImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTest.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioLoginImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioTarjeta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTienda.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\presentacion\ControladorTurno.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMembresia.java
@@ -80,7 +87,9 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\HibernateConfig.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\NoHayProductos.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioNoPoseeMembresiaActivada.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioTarjeta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioMetodo.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\config\MailConfig.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioPago.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\Producto.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\MetodoNoEncontradoPorID.java
@@ -92,10 +101,14 @@ C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\domini
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\EstadoConsulta.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioMetodoImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMembresiaActivadaImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioCompraImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\TipoNoEncontradoPorID.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\UsuarioInexistente.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioCompra.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\ServicioProfesional.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\RepositorioAdmi.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioCompraImpl.java
+C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\HistorialInexistente.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\ServicioTipoContactoImpl.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\dominio\excepcion\juegoInexistente.java
 C:\Users\PC\IdeaProjects\Proyecto-Taller-Web\src\main\java\com\tallerwebi\infraestructura\RepositorioMetodoImpl.java
