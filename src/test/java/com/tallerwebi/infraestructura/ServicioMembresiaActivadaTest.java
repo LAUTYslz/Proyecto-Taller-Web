@@ -1,4 +1,4 @@
-package com.tallerwebi.infraestructura;
+/*package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,4 +22,4 @@ public class ServicioMembresiaActivadaTest {
         servicioContacto = new ServicioProfesionalImpl(repositorioContacto, repositorioMetodo, repositorioTipoContacto);
     }
 
-}
+}*/

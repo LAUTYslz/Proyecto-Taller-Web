@@ -20,7 +20,7 @@ public class ControladorProfesional {
     private final ServicioMembresiaActivada servicioMembresiaActivada;
 
     @Autowired
-    public ControladorProfesional(ServicioProfesional servicioContacto, ServicioLogin servicioLogin, ServicioMembresiaActivada servicioMembresiaActivada){
+    public ControladorProfesional(ServicioProfesional servicioContacto, ServicioLogin servicioLogin, ServicioMembresiaActivada servicioMembresiaActivada) {
         this.servicioContacto = servicioContacto;
         this.servicioLogin = servicioLogin;
         this.servicioMembresiaActivada = servicioMembresiaActivada;
@@ -75,8 +75,7 @@ public class ControladorProfesional {
     @GetMapping("/profesional")
     public ModelAndView mostrarPaginaProfesionales(
             @RequestParam(value = "metodo", required = false) String nombreMetodo,
-            @RequestParam(value = "tipo", required = false) String nombreTipo)
-    {
+            @RequestParam(value = "tipo", required = false) String nombreTipo) {
         ModelAndView mav = new ModelAndView("profesional");
 
         try {
@@ -99,6 +98,7 @@ public class ControladorProfesional {
         mav.addObject("ContactosFiltradosPorTipoYMetodo", servicioContacto.traerProfesionalesPorTipoYMetodo(nombreTipo, nombreMetodo));
         return mav;
     }
+
     ////////////////////////////controlador consultas profesionales ////////////////////
     @GetMapping("/gestionarConsultas")
     public ModelAndView mostrarPaginaProfesionalesParaConsultas(HttpServletRequest request) {
@@ -109,7 +109,7 @@ public class ControladorProfesional {
         mav.addObject("usuario", usuario);
 
         // Obtener las consultas asociadas al profesional
-         String profesional = usuario.getEmail();
+        String profesional = usuario.getEmail();
         List<Consulta> consultas = servicioMembresiaActivada.buscarConsultasPorProfesionales(profesional);
         mav.addObject("consultas", consultas);
 
@@ -135,13 +135,13 @@ public class ControladorProfesional {
     public String responderConsulta(@RequestParam Long consultaId, @RequestParam String respuesta) {
         // Aquí deberías implementar la lógica para guardar la respuesta en la consulta correspondiente
         Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
-        servicioMembresiaActivada.respuestaDeProfesionalAConsulta(consultaId,respuesta);
+        servicioMembresiaActivada.respuestaDeProfesionalAConsulta(consultaId, respuesta);
 
         return "redirect:/gestionarConsultas";  // Redirigir a la página de gestión de consultas después de responder
     }
 
     @GetMapping("/verRespuesta/{id}")
-    public ModelAndView verRespuestaConsulta( @PathVariable Long id) {
+    public ModelAndView verRespuestaConsulta(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("verRespuesta");
 
         // Aquí obtienes la consulta por su ID
@@ -167,7 +167,6 @@ public class ControladorProfesional {
     }
 
 
-
     @GetMapping("/setearDiasAtencion")
     public ModelAndView setearDiasAtencion(HttpServletRequest request) {
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
@@ -190,9 +189,9 @@ public class ControladorProfesional {
         Long idProfesional = diasAtencionDTO.getIdProfesional();
         String diaSemanaStr = diasAtencionDTO.getDiaSemana();
         DiasSemana diaSemanaEnum;
-        try{
+        try {
             diaSemanaEnum = DiasSemana.valueOf(diaSemanaStr.toUpperCase());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             mav.addObject("error", e.getMessage());
             mav.setViewName("formulario_setear_dias_atencion");
             return mav;
@@ -208,4 +207,5 @@ public class ControladorProfesional {
         mav.setViewName("redirect:/gestionarTurnos");
         return mav;
 
+    }
 }

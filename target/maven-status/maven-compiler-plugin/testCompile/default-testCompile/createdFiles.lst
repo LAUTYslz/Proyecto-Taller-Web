@@ -7,7 +7,6 @@ com\tallerwebi\presentacion\ControladorProfesionalTest.class
 com\tallerwebi\infraestructura\ServicioProfesionalTest.class
 com\tallerwebi\integracion\config\HibernateTestConfig.class
 com\tallerwebi\punta_a_punta\vistas\VistaLogin.class
-com\tallerwebi\infraestructura\ServicioMembresiaActivadaTest.class
 com\tallerwebi\infraestructura\RepositoriaUsuarioTest.class
 com\tallerwebi\infraestructura\RepositorioProfesionalTest.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalTest.class

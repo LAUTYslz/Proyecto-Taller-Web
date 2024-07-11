@@ -52,15 +52,16 @@
         </div>
     </div>
 
-    <!-- Popup o Modal -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="cerrarPopup()">&times;</span>
-            <h2>Información del Hijo</h2>
-            <p>Nombre del hijo: Juan</p>
-            <p>Membresía: Premium</p>
+    <!-- Mostrar mensaje de error si existe -->
+    <div th:if="${param.error}">
+        <div class="alert alert-danger" role="alert">
+            ¡Has alcanzado el límite de consultas permitidas!
         </div>
     </div>
+    <div th:if="${mensaje}" class="alert alert-danger" role="alert">
+        <span th:text="${mensaje}"></span>
+    </div>
+
 
 
     <div class="contenido-container">
@@ -92,17 +93,18 @@
                             <img th:src="@{/img/virtual.jpg}" alt="virtual">
                             <div class="card-body">
                                 <h5 class="card-title">Consulta Virtuales</h5>
-                                <a href="#" class="btn btn-primary">Ir a Consultas</a>
+                                <form th:action="@{/realizarConsulta}" method="get">
                                 <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card">
-                            <img th:src="@{/img/profe.jpg}" alt="profesional">
+                            <img th:src="@{/img/tienda.jpg}" alt="profesional">
                             <div class="card-body">
                                 <h5 class="card-title">Profesionales</h5>
-                                <a href="#" class="btn btn-primary">Ver Profesionales</a>
+                                <form th:action="@{/tiendaVirtual}" method="get">
                                 <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
                             </div>
                         </div>
