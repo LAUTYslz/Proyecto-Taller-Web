@@ -28,6 +28,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
+
 @Controller
 public class ControladorAdministrador {
 
@@ -485,7 +486,7 @@ public class ControladorAdministrador {
 
     }
 
-    @RequestMapping("/admin/guardarProducto")
+   @RequestMapping("/admin/guardarProducto")
     public ModelAndView guardarProducto(
             @RequestParam("nombre") String nombre,
             @RequestParam("descripcion") String descripcion,

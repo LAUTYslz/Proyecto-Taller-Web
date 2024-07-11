@@ -1,13 +1,11 @@
 package com.tallerwebi.dominio;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Entity @Getter @Setter
+@Entity
 public class Compra {
 
     @Id
@@ -43,5 +41,61 @@ public class Compra {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public EstadoCompra getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoCompra estado) {
+        this.estado = estado;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }

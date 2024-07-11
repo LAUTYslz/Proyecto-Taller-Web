@@ -1,8 +1,4 @@
 package com.tallerwebi.dominio;
-
-
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -11,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
-@Entity @Getter @Setter
+@Entity
 public class Tarjeta {
 
     @Id
@@ -26,5 +22,35 @@ public class Tarjeta {
 
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getNumeroDeTarjeta() {
+        return numeroDeTarjeta;
+    }
+
+    public void setNumeroDeTarjeta(Long numeroDeTarjeta) {
+        this.numeroDeTarjeta = numeroDeTarjeta;
+    }
+
+    public Date getFechaDeVencimiento() {
+        return fechaDeVencimiento;
+    }
+
+    public void setFechaDeVencimiento(Date fechaDeVencimiento) {
+        this.fechaDeVencimiento = fechaDeVencimiento;
+    }
+
+    public Integer getCodigoDeSeguridad() {
+        return codigoDeSeguridad;
+    }
+
+    public void setCodigoDeSeguridad(Integer codigoDeSeguridad) {
+        this.codigoDeSeguridad = codigoDeSeguridad;
+    }
 }

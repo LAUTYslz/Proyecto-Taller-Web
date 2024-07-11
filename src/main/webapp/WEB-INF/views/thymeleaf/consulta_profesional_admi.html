@@ -25,7 +25,7 @@
 <main>
 
     <h2>Seleccione profesional a Liquidar </h2>
-
+    <br>
     <div class="table-container">
         <table class="table">
             <thead>
@@ -52,7 +52,7 @@
                 <td th:text="${profesional.tipo != null ? profesional.tipo.nombre : 'Sin tipo'}"></td>
                 <td th:text="${profesional.metodo != null ? profesional.metodo.nombre : 'Sin método'}"></td>
                 <td>
-                    <a class="editarButton" th:href="@{/admin/gestionarProfesionales/liquidar/{id}(id=${profesional.id})}">Liquidar </a>
+                    <a class="btn crearButton" th:href="@{/admin/gestionarProfesionales/liquidar/{id}(id=${profesional.id})}">Liquidar </a>
 
 
                 </td>
