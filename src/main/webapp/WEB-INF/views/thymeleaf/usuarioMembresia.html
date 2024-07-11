@@ -65,66 +65,66 @@
 
 
     <div class="contenido-container">
-            <!-- Columna para las cards -->
-            <div class="col-md-8">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/nene-jugando.jpg}" alt="juego">
-                            <div class="card-body">
-                                <h5 class="card-title">Juegos Didacticos</h5>
-                                <a href="#" class="btn btn-primary">Ver Juegos</a>
-                                <p class="card-text">Haz click para acceder a nuestros juegos caseros, según la etapa de tu hijo.</p>
-                            </div>
+        <!-- Columna para las cards -->
+        <div class="col-md-8">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img th:src="@{/img/nene-jugando.jpg}" alt="juego">
+                        <div class="card-body">
+                            <h5 class="card-title">Juegos Didacticos</h5>
+                            <a href="#" class="btn btn-primary">Ver Juegos</a>
+                            <p class="card-text">Haz click para acceder a nuestros juegos caseros, según la etapa de tu hijo.</p>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/bebe.jpg}" alt="medico">
-                            <div class="card-body">
-                                <h5 class="card-title">Turno Presenciales </h5>
-                                <a th:href="@{/gestionarTurnos}" class="btn btn-primary">Gestionar turnos </a>
-                                <p class="card-text">Haz click para agendar tu próximo turno.</p>
-                            </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img th:src="@{/img/bebe.jpg}" alt="medico">
+                        <div class="card-body">
+                            <h5 class="card-title">Turno Presenciales </h5>
+                            <a th:href="@{/gestionarTurnos}" class="btn btn-primary">Gestionar turnos </a>
+                            <p class="card-text">Haz click para agendar tu próximo turno.</p>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/virtual.jpg}" alt="virtual">
-                            <div class="card-body">
-                                <h5 class="card-title">Consulta Virtuales</h5>
-                                <a th:href="@{/realizarConsulta}" class="btn btn-primary">Gestionar turnos </a>
-                                <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img th:src="@{/img/virtual.jpg}" alt="virtual">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultas Virtuales</h5>
+                            <a th:href="@{/realizarConsulta}" class="btn btn-primary">Gestionar turnos </a>
+                            <p class="card-text">Haz click para acceder a Consultas Virtuales.</p>
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/metodo.png}" alt="metodo">
-                            <div class="card-body">
-                                <h5 class="card-title">Crianza consciente</h5>
-                                <a th:href="@{/verHijoEInfoMetodoAsociado}" class="btn btn-primary">Ver métodos</a>
-                                <p class="card-text">Haz click para información de métodos de enseñanza y crianza consciente</p>
-                            </div>
+                <div class="col">
+                    <div class="card">
+                        <img th:src="@{/img/metodo.png}" alt="metodo">
+                        <div class="card-body">
+                            <h5 class="card-title">Crianza consciente</h5>
+                            <a th:href="@{/verHijoEInfoMetodoAsociado}" class="btn btn-primary">Ver métodos</a>
+                            <p class="card-text">Haz click para información de métodos de enseñanza y crianza consciente</p>
                         </div>
                     </div>
+                </div>
 
 
 
-                    <div class="col">
-                        <div class="card">
-                            <img th:src="@{/img/vacunacion.png}" alt="vacunacion">
-                            <div class="card-body">
-                                <h5 class="card-title">Calendario de vacunacion </h5>
-                                <a th:href="@{/vacunacionSeleccionar}" class="btn btn-primary">Ver Calendario </a>
-                                <p class="card-text">Haz click para ver las proximas vacunas de tu hijo.</p>
-                            </div>
+                <div class="col">
+                    <div class="card">
+                        <img th:src="@{/img/vacunacion.png}" alt="vacunacion">
+                        <div class="card-body">
+                            <h5 class="card-title">Calendario de vacunacion </h5>
+                            <a th:href="@{/vacunacionSeleccionar}" class="btn btn-primary">Ver Calendario </a>
+                            <p class="card-text">Haz click para ver las proximas vacunas de tu hijo.</p>
                         </div>
                     </div>
-
+                </div>
+                <!--
                     <div class="col">
                         <div class="card">
                             <img th:src="@{/img/tienda.jpg}" alt="profesional">
@@ -132,45 +132,50 @@
                                 <h5 class="card-title">Profesionales</h5>
                                 <form th:action="@{/tiendaVirtual}" method="get">
                                 <p class="card-text">Haz click para ver el listado de nuestros Profesionales.</p>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-
-        <h2>Hijos</h2>
-        <div th:if="${hijos != null and #lists.size(hijos) > 0}">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Nombre del Hijo</th>
-                        <th>Edad del Hijo</th>
-                        <th>DNI del Hijo</th>
-                        <th>ETAPA de SU Hijo</th>
-                        <th>Metodo de SU Hijo</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="hijo : ${hijos}">
-                        <td th:text="${hijo.nombre}"></td>
-                        <td th:text="${hijo.edad}"></td>
-                        <td th:text="${hijo.dni}"></td>
-                        <td>
-                            <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
-                            <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
-                        </td>
-                        <td>
-                            <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
-                            <span th:if="${hijo.metodo == null}">No asignado</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    -->
             </div>
         </div>
-        <p th:if="${hijos == null or #lists.size(hijos) == 0}">No hay hijos registrados</p>
+
+
+        <div class="contenedor-hijos">
+            <h2>Hijos</h2>
+            <div th:if="${hijos != null and #lists.size(hijos) > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nombre del Hijo</th>
+                            <th>Edad del Hijo</th>
+                            <th>DNI del Hijo</th>
+                            <th>ETAPA de SU Hijo</th>
+                            <th>Metodo de SU Hijo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="hijo : ${hijos}">
+                            <td th:text="${hijo.nombre}"></td>
+                            <td th:text="${hijo.edad}"></td>
+                            <td th:text="${hijo.dni}"></td>
+                            <td>
+                                <span th:if="${hijo.etapa != null}" th:text="${hijo.etapa.nombre}">Nombre de la Etapa</span>
+                                <span th:if="${hijo.etapa == null}">No asignada, Contrate nuestra membresía para disfrutar de los Juegos Caseros por Etapa</span>
+                            </td>
+                            <td>
+                                <span th:if="${hijo.metodo != null}" th:text="${hijo.metodo.nombre}">Nombre del Metodo</span>
+                                <span th:if="${hijo.metodo == null}">No asignado</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <p th:if="${hijos == null or #lists.size(hijos) == 0}">No hay hijos registrados</p>
+        </div>
     </div>
 
 
@@ -226,20 +231,18 @@
             <!-- Mostrar mensaje cuando no hay consultas disponibles -->
             <p th:if="${#lists.isEmpty(consultas)}">No hay consultas disponibles</p>
         </div>
-
-
-
-
-
-        <script th:src="@{/usuarioMembre.js}"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-                integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
+    </div>
 </main>
+<div th:replace="home :: footer"></div>
 
+<script th:src="@{/usuarioMembre.js}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-+X/e/JFizE+E+7CFq5fHkBXGm+llQmzuZntQirGm4Qo2dpSgr4tv2cy2ADwqRUty6WSL2BkUDysbcq4vV3NrPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
+
+
+
+

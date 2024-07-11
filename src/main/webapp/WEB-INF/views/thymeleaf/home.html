@@ -18,6 +18,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  .carousel-caption .botonCarrouselTest {
+
+    position: absolute;
+    bottom: 250px;
+    right: 20%;
+    transform: translateX(50%);
+    width: auto;
+    max-width: 200px;
+
+    font-family: 'Schoolbell', cursive;
+    background-color: rgb(234, 134, 32);
+    border-color: rgba(227, 87, 2, 0.75);
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .carousel-caption .botonSegundoSlide {
+
+    position: absolute;
+    bottom: 250px;
+    right: 20%;
+    transform: translateX(50%);
+    width: auto;
+    max-width: 200px;
+
+    font-family: 'Schoolbell', cursive;
+    background-color: rgb(234, 134, 32);
+    border-color: rgba(227, 87, 2, 0.75);
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .containerProyecto .h3{
+    text-align: center;
+  }
+</style>
+
 </head>
 
 <body>
@@ -27,11 +63,12 @@
 <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
   <div class="navbar-nav">
     <a class="nav-link" th:href="@{/profesional}">Profesionales</a>
-    <a class="nav-link" href="#">Eventos/Cursos</a>
-
+    <a class="nav-link" th:href="@{/suscripcion}">Suscripcion</a>
     <a class="nav-link" th:href="@{/seleccionTests}">Tests</a>
 
+    <!--
     <a class="nav-link" href="#">Foro Comunidad</a>
+    -->
   </div>
 
 
@@ -43,10 +80,12 @@
   <div class="navbar-nav ml-auto">
     <a class="nav-link" th:href="@{/nuevo-usuario}">Registrarse</a>
     <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+    <!--
     <div class="search-container">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
     </div>
+    -->
   </div>
 </nav>
 
@@ -55,7 +94,10 @@
 <main role="main" class="container">
 
   <div class = "containerProyecto">
-    <h1>Bienvenidos a nuestro proyecto</h1>
+    <h1>Bienvenidos a Edu-care </h1>
+    <h3 class="h3">Somos un grupo de profesionales que busca compartir recursos
+    a la hora de acompañar a padres y tutores en el camino de la educación y la enseñanza.</h3>
+    <h3 class="h3">¡Conocenos!</h3>
   </div>
 
 
@@ -66,15 +108,19 @@
         <img class="d-block w-100" th:src="@{/img/bebeJugando.png}" alt="First slide">
         <div class="carousel-caption">
           <h3>¡Realiza tu test !</h3>
-          <p>Aquí encontrarás contenido emocionante.</p>
+          <p>Realiza uno de nuestros test de orientacion sobre neurodiversidad</p>
+          <a th:href="@{/seleccionTests}" id="botonCarrouselTest" class="btn btn-lg btn-block botonCarrouselTest">VER TEST</a>
         </div>
       </div>
       <!-- Segundo slide -->
       <div class="carousel-item">
         <img class="d-block w-100" th:src="@{/img/montessori.jpeg}" alt="Second slide">
         <div class="carousel-caption">
-          <h3>¡Bienvenido al Carrusel!</h3>
-          <p>Aquí encontrarás contenido emocionante.</p>
+          <p>¡Con tu membresia mensual tenes beneficios como acompañamiento profesional y consultas directas entre vos y el profesional
+            por nuestra plataforma, descuentos en articulos de mobiliario infantil adaptados
+            para distintos tipos de enseñanza, guias segun el método que elijas para educar a tu bebe y muchos beneficios mas!</p>
+
+          <a th:href="@{/suscripcion}" id="botonSegundoSlide" class="btn btn-lg btn-block botonSegundoSlide">QUIERO UNIRME!</a>
         </div>
       </div>
       <!-- Tercer slide -->
@@ -82,9 +128,9 @@
         <img class="d-block w-100" th:src="@{/img/suscripcionGift.jpeg}" alt="Third slide">
         <div class="carousel-caption">
           <h3>Suscríbete</h3>
-          <p>Suscribiéndote a nuestro servicio, recibirás regalos sorpresa
-            para tu bebé entregados directamente a tu puerta.
-            ¡Descubre la emoción de recibir productos especiales y útiles
+          <p>Suscribiéndote a nuestro servicio, recibirás beneficios
+            para tu bebé desde la comodidad de tu casa.
+            ¡Descubre la emoción de una guia educativa
             para acompañar el crecimiento y desarrollo de tu pequeño, sin tener que salir de casa!
             Únete ahora y comienza a disfrutar de esta fantástica experiencia para ti y tu bebé.</p>
           <a th:href="@{/suscripcion}" id="botonSuscribirse" class="btn btn-lg btn-block btn-suscribirme">SUSCRIBIRME</a>
@@ -102,12 +148,12 @@
     </a>
   </div>
 
-
-    <div class="contentImageHome">
-      <p>aca va algo ...</p>
-      <button class="ver-mas">Ver más</button>
-    </div>
-
+  <!--
+      <div class="contentImageHome">
+        <p>aca va algo ...</p>
+        <button class="ver-mas">Ver más</button>
+      </div>
+  -->
 
 
 

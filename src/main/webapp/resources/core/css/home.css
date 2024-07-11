@@ -1,6 +1,5 @@
 body {
     background-color: #dacdea;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -56,6 +55,7 @@ body {
 .containerProyecto h1 {
 font-family: Schoolbell, cursive;
     margin-bottom: 25px;
+    color: #cc6002;
 }
 
 
@@ -152,7 +152,7 @@ font-family: Schoolbell, cursive;
 #carouselExampleSlidesOnly {
     width: auto; /* Ancho del slider */
     margin: 0 auto; /* Centrar el slider */
-
+margin-bottom: 50px;
 }
 /* Estilo personalizado para las imágenes del slider */
 .carousel-item img {
@@ -216,9 +216,10 @@ font-family: Schoolbell, cursive;
 
     font-family: 'Schoolbell', cursive;
     background-color: rgb(234, 134, 32);
-    border-color: rgba(208, 80, 3, 0.75);
+    border-color: rgba(227, 87, 2, 0.75);
     color: rgba(255, 255, 255, 0.87);
 }
+
 
 
 h1{

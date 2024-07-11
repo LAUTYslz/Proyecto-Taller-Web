@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TestEspectoAutista</title>
+    <title>TestDislexia</title>
     <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/test.css}"/>
+    <link rel="stylesheet" th:href="@{/css/testtdha.css}"/>
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,78 +19,78 @@
 
 <div th:replace="home :: nav"></div>
 
-<main class="background-overlay3">
+<main class="background-overlay4">
 
 
     <div class="test-form">
-        <h1>Test de deteccion temprana de autismo</h1>
-        <form th:action="@{/testTdha/submit}" method="POST" th:object="${modeloTest}">
+        <h1>Test de deteccion temprana de dislexia</h1>
+        <form th:action="@{/testDislexia/submit}" method="POST" th:object="${modeloTest}">
             <!-- Preguntas -->
             <div class="question">
-                <label for="pregunta1">1. ¿Tu niño tiene dificultades para socializar?</label>
+                <label for="pregunta1">1. ¿Tiene dificultades para leer en voz alta?</label>
                 <select name="respuestas[0].texto" id="pregunta1">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta2">2. ¿Tu niño evita el contacto visual?</label>
+                <label for="pregunta2">2. ¿Le cuesta recordar secuencias, como el alfabeto o los meses del año?</label>
                 <select name="respuestas[1].texto" id="pregunta2">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta3">3. ¿Tu niño repite frases o acciones una y otra vez?</label>
+                <label for="pregunta3">3. ¿Confunde palabras que suenan similares?</label>
                 <select name="respuestas[2].texto" id="pregunta3">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta4">4. ¿Tu niño muestra sensibilidad extrema a ciertos sonidos, olores o texturas?</label>
+                <label for="pregunta4">4. ¿Evita leer por placer debido a las dificultades que experimenta?</label>
                 <select name="respuestas[3].texto" id="pregunta4">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta5">5. ¿Tu niño tiene dificultades para comprender las emociones de los demás?</label>
+                <label for="pregunta5">5. ¿Tiene problemas para seguir instrucciones escritas?</label>
                 <select name="respuestas[4].texto" id="pregunta5">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta6">6. ¿Tu niño prefiere jugar solo en lugar de interactuar con otros niños?</label>
+                <label for="pregunta6">6. ¿Confunde letras que tienen formas similares, como "b" y "d"?</label>
                 <select name="respuestas[5].texto" id="pregunta6">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta7">7. ¿Tu niño tiene dificultades para seguir instrucciones verbales?</label>
+                <label for="pregunta7">7. ¿Escribe las palabras al revés o invierte letras y números?</label>
                 <select name="respuestas[6].texto" id="pregunta7">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta8">8. ¿Tu niño tiene obsesiones o intereses intensos en temas específicos?</label>
+                <label for="pregunta8">8. ¿Le resulta difícil dividir palabras en sílabas o identificar rimas?</label>
                 <select name="respuestas[7].texto" id="pregunta8">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta9">9. ¿Tu niño muestra comportamientos repetitivos, como balancearse o dar vueltas?</label>
+                <label for="pregunta9">9. ¿Necesita más tiempo para leer y escribir que sus compañeros?</label>
                 <select name="respuestas[8].texto" id="pregunta9">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="question">
-                <label for="pregunta10">10. ¿Tu niño tiene dificultades para adaptarse a cambios en la rutina o en el entorno?</label>
+                <label for="pregunta10">10. ¿Tiene problemas para memorizar datos, como tablas de multiplicar?</label>
                 <select name="respuestas[9].texto" id="pregunta10">
                     <option value="si">Sí</option>
                     <option value="no">No</option>
