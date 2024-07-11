@@ -1,131 +1,186 @@
-/* Estilos para el cuerpo y el main */
-body {
-    font-family: Arial, sans-serif; /* Cambia la fuente según necesidades */
-    background-color: #f8f9fa; /* Color de fondo para todo el cuerpo */
-    color: #333; /* Color de texto principal */
-    margin: 0;
-    padding: 0;
-}
-header{
-    display:flex;
-}
-
-main {
-    display: flex; /* Utiliza flexbox para manejar el layout */
-    justify-content: space-between; /* Distribuye los elementos a lo largo del main */
-    max-width: 1200px; /* Ancho máximo para el contenido principal */
-    margin: 20px auto; /* Margen exterior */
-    padding: 20px;
-}
-.pasos .circulo{
-    width: 100px;
-    height: 108px;
-    border-radius: 50%;
-    background-color: chocolate;
-
-    color: #fff;
-    display: flex;
+    /* Estilos para el popup */
+.popup {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1000; /* Z-index alto para que esté por encima de todo */
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
-/* Estilos para el perfil */
-.perfil {
-    background-color: chocolate;
-    color: #4f3c6e;
-    border: 1px solid #ddd; /* Borde del perfil */
+.popup-content {
+    background-color: white;
     padding: 20px;
-    width: 100%; /* Ancho fijo para el perfil */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
     text-align: center;
 }
 
-.perfil h2 {
-    font-size: 1.5rem; /* Tamaño de fuente para títulos */
-    margin-bottom: 10px; /* Margen inferior */
+.popup-content h2 {
+    margin-top: 0;
 }
 
-.perfil p {
-    margin: 5px 0; /* Margen para los párrafos */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
 }
 
-.perfil .btn-primary {
-    margin-top: 10px; /* Margen superior para el botón */
+.close:hover {
+    color: red;
 }
 
-/* Estilos para las consultas */
-.consultas {
-    background-color: #fff; /* Color de fondo para las consultas */
-    border: 1px solid #ddd; /* Borde de las consultas */
+body {
+    font-family: emoji;
+}
+
+main {
+    display: flex;
+    flex-direction: column; /* Para alinear elementos verticalmente */
+    justify-content: center;
+    align-items: center;
+    background-color: #dacdea;
+    min-height: 100vh; /* Mínimo alto del viewport */
+}
+
+.contenido-container {
     padding: 20px;
-    width: 65%; /* Ancho fijo para las consultas */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
-    overflow-y: auto; /* Scroll vertical si hay muchas consultas */
-    max-height: 400px; /* Altura máxima */
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 1000px;
+    margin:auto;
+    margin-bottom: 20px; /* Espacio inferior */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+}
+.perfil-container{
+    width: 90vh;
+}
+.perfil {
+    background-color: #b9a0ea;
+    border: 2px solid black;
+    padding:  30px 47px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px; /* Espaciado inferior */
+    border-radius: 50px; /* Bordes redondeados */
+}
+.perfil a, .card-body a{
+    border:1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+    margin: auto;
+    color: white;
+    background-color: #4f3c6e;
+    border: 1px solid #4f3c6e;
+    text-decoration: none;
+    transition: all .3s;
+}
+.perfil a:hover, .card-body a:hover{
+    background-color: #9966ff;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #4f3c6e;
+}
+.card-body p{
+    text-align: start;
+    margin: 4px;
+}
+h2{
+    text-align: center;
+
+}
+h1 {
+    color: #4f3c6e; /* Violeta */
+    margin-bottom: 20px;
+    margin-top:20px;
 }
 
-.consultas h2 {
-    font-size: 1.5rem; /* Tamaño de fuente para títulos */
-    margin-bottom: 10px; /* Margen inferior */
+.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
 }
 
-.consultas .consulta {
-    margin-bottom: 15px; /* Margen inferior para cada consulta */
-    padding: 10px;
-    border: 1px solid #ccc; /* Borde de cada consulta */
-    background-color: #f0f0f0; /* Color de fondo para cada consulta */
+.button {
+    background-color: #8a5aa4; /* Lila */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.consultas .btn-primary {
-    margin-top: 10px; /* Margen superior para el botón */
+.button:hover {
+    background-color: #c6a1e3; /* Cambio de color en hover */
 }
 
-/* Estilos para las cards */
-.cards {
-    display: flex; /* Utiliza flexbox para las cards */
-    justify-content: flex-end; /* Alinea las cards a la derecha */
-    gap: 15px; /* Espacio entre las cards */
-    width: 100%; /* Ancho total */
+.btn-primary {
+    color: #dacdea;
+    background-color: #8a5aa4;
+    border-color: dimgray;
+}
+.pasos {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* Espacio uniforme entre los pasos */
+    margin: 20px auto;
 }
 
-.cards .card {
-    width: calc(50% - 15px); /* Calcula el ancho de cada card */
-    border: 1px solid #ddd; /* Borde de las cards */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+.paso {
+    text-align: center;
+    margin: 0 20px; /* Espacio horizontal entre los pasos */
+    width: 40vh;
 }
 
-.cards .card-body {
-    padding: 20px; /* Padding del cuerpo de la card */
+.circulo {
+    width: 100px; /* Tamaño del círculo */
+    height: 100px; /* Tamaño del círculo */
+    background-color: chocolate;
+    border-radius: 50%;
+    color: white;
+    font-size: 36px; /* Tamaño del ícono dentro del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.cards .card-title {
-    font-size: 1.25rem; /* Tamaño de fuente para títulos */
-    margin-bottom: 10px; /* Margen inferior */
+.paso i {
+    position: absolute;
+    bottom: -30px; /* Ajuste vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Centrado horizontal */
+    font-size: 24px;
+    color: chocolate;
 }
 
-.cards .card-text {
-    color: #666; /* Color de texto secundario */
+/* Estilos para los enlaces */
+.paso a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    margin-top: 15px; /* Espacio entre el círculo y el texto */
+    font-weight: bold; /* Texto en negrita */
+    transition: all 0.3s ease; /* Transición suave del color */
 }
 
-/* Media Query para pantallas pequeñas */
-@media (max-width: 768px) {
-    main {
-        flex-direction: column; /* Cambia a layout de columna en pantallas pequeñas */
-    }
-
-    .perfil, .consultas {
-        width: 100%; /* Ancho completo para el perfil y las consultas */
-        margin-bottom: 20px; /* Margen inferior */
-    }
-
-    .cards {
-        justify-content: flex-start; /* Alinea las cards a la izquierda */
-    }
-
-    .cards .card {
-        width: 100%; /* Ancho completo para las cards */
-    }
+.paso a:hover {
+    color: chocolate; /* Cambio de color al pasar el mouse */
+    text-decoration: none;
+    scale:1.1;
 }

@@ -4,34 +4,57 @@
     transition: .2s all;
     border: none;
 }
+
 .volver-btn:hover{
     background-color: #a384e1;
     border: none;
 
 }
+
 h1{
     margin-top: auto;
 }
+
 main{
     width: 90%;
     margin: auto;
 }
+
 .form-container{
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.form{
-    width: 40%;
+
+form{
+    width: 30%;
     margin: 5vh auto 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #fd9942;
+    padding: 3vh;
+    border-radius: 15px;
+    border: 2px solid #4f3c6e;
 }
-.form label{
+
+form label{
+    font-weight: bold;
     width: 100%;
 }
-.form .btn{
+
+form .btn{
     margin: auto;
+}
+button[type="submit"] {
+    background-color: #4f3c6e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button[type="submit"]:hover {
+    background-color: #b9a0ea;
 }

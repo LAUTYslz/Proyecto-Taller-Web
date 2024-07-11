@@ -1,6 +1,8 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -14,22 +16,30 @@ public class Turno {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "profesional_id")
+    @JoinColumn(name = "profesional_id", nullable = true)
     private Profesional profesional;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha_hora")  // Especifica el nombre de la columna en la base de datos
-    private Date fechaHora;
+    private LocalDate fecha;
+    private LocalTime hora;
 
-    @Enumerated(EnumType.STRING)
-    private EstadoTurno estado;
-
-    public EstadoTurno getEstado() {
-        return estado;
+    public Turno() {
+        this.usuario = null;
     }
 
-    public void setEstado(EstadoTurno estado) {
-        this.estado = estado;
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     public Long getId() {
@@ -56,13 +66,7 @@ public class Turno {
         this.profesional = profesional;
     }
 
-    public Date getFechaHora() {
-        return fechaHora;
-    }
 
-    public void setFechaHora(Date fechaHora) {
-        this.fechaHora = fechaHora;
-    }
 
 
 }

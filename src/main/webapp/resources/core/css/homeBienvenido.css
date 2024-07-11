@@ -1,0 +1,136 @@
+    /* Estilos para los botones circulares */
+
+.boton-desactivada a {
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #dacdea;
+    border-radius: 50px;
+    color: #FF0000;
+    border: none;
+    cursor: pointer;
+}
+
+.boton-activar a{
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #dacdea;
+    border-radius: 50px;
+    color: darkgreen;
+    border: none;
+    cursor: pointer;
+}
+.circle-button {
+    font-family: Schoolbell, cursive;
+    display: inline-block;
+    width: 150px; /* Ancho del círculo */
+    height: 150px; /* Altura del círculo */
+    border-radius: 50%;
+    background-color: #cc99ff;
+    color: #fff;
+    text-align: center;
+    line-height: 150px; /* Centrado vertical del texto */
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de la fuente */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    transition: all .3s;
+}
+.circle-button:hover{
+    scale: 1.1;
+}
+.circle-button a{
+    color: #4f3c6e;
+    text-decoration: none;
+}
+/* Estilos para el contenedor de los botones */
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar los botones */
+    font-family: Schoolbell, cursive;
+}
+
+/* Estilos para los botones */
+.button-container .button {
+    background-color: #e6e6ff; /* Lila claro */
+    color: white; /* Tono complementario */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px 0; /* Espacio entre los botones */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px; /* Ancho de los botones */
+    transition: all .2s;
+}
+
+/* Agregar efecto al pasar el cursor sobre los botones */
+.button-container .button:hover {
+    background-color: #cc99ff; /* Cambia a un lila más oscuro al pasar el cursor */
+    scale: 1.1;
+}
+
+/* Estilos para el segundo botón */
+.button-container .button:nth-child(2) {
+    background-color: #cc99ff; /* Lila medio */
+    color: #330066; /* Tono complementario */
+}
+
+/* Estilos para el tercer botón */
+.button-container .button:nth-child(3) {
+    background-color: #9966ff; /* Lila oscuro */
+    color: #ffccff; /* Tono complementario */
+}
+/* Estilos para el hover */
+.circle-button:hover {
+    background-color: #fafab0; /* Color más oscuro al pasar el ratón */
+    color:white;
+}
+    .container {
+        /* background-color: #ffffff; */
+        width: 40%;
+        border-radius: 10px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        padding: 20px;
+        margin-top: 20px;
+    }
+/* Estilos para los datos del titular */
+.titular {
+    padding: 5px 40px 40px; /* Espaciado interior */
+    margin-bottom: 20px; /* Espaciado inferior */
+    border-radius: 50px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(10, 0, 0, 0.1); /* Sombra */
+    font-family: Schoolbell, cursive;
+
+    /* Fondo degradado */
+    background-color: mediumpurple;
+}
+
+/* Estilos para los datos de los hijos */
+.hijos {
+    background-color: #f9f9f9; /* Color de fondo */
+    padding: 20px; /* Espaciado interior */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+h1{
+    margin: 20px auto;
+    background-color: #b9a0ea; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+h2{
+    background-color: #b9a0ea; /* Color de fondo */
+    text-align: center;
+    width: 50%;
+    margin: 3vh auto;
+    padding: 5px; /* Espaciado interior */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+/* Estilos para los títulos */
+h3 {
+    background-color: #666666;/* Color de fondo */
+    padding: 20px; /* Espaciado interior */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}

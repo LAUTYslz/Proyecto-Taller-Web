@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Profesional;
 import com.tallerwebi.dominio.RepositorioTipoProfesional;
 import com.tallerwebi.dominio.TipoProfesional;
 import org.hibernate.SessionFactory;
@@ -47,4 +48,13 @@ public class RepositorioTipoProfesionalImpl implements RepositorioTipoProfesiona
                 .add(Restrictions.eq("id", tipoId))
                 .uniqueResult();
     }
+
+    @Override
+    public List<TipoProfesional> buscarTiposSinTienda() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(TipoProfesional.class)
+                .add(Restrictions.ne("nombre", "Tienda"))
+                .list();
+    }
+
 }

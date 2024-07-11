@@ -168,7 +168,7 @@ public class ControladorProfesional {
 
 
 
- /*   @GetMapping("/setearDiasAtencion")
+    @GetMapping("/setearDiasAtencion")
     public ModelAndView setearDiasAtencion(HttpServletRequest request) {
         Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
         String profesionalMail = usuario.getEmail();
@@ -207,5 +207,5 @@ public class ControladorProfesional {
 
         mav.setViewName("redirect:/gestionarTurnos");
         return mav;
-    }*/
+
 }

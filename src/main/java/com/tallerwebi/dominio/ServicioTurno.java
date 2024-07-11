@@ -1,12 +1,17 @@
 package com.tallerwebi.dominio;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ServicioTurno {
-    public Turno agendarTurno(Long usuarioId, Long profesionalId, Date fechaHora);
+    public void agendarTurno(Long usuarioId, Long turnoId);
     public List<Turno> obtenerTurnosPorUsuario(Long usuarioId);
     public List<Turno> obtenerTurnosPorProfesional(String profesionalMail);
-    public void eliminarTurno(Long turnoId);
+    public void cancelarTurno(Long turnoId);
     public void actualizarEstadoTurno(Long turnoId, EstadoTurno estadoTurno);
+    public void generarTurnos(LocalDate fechaInicio, LocalDate fechaFin);
+
+    List<Turno> obtenerTurnosPorTipoProfesional(String nombreTipo);
+
+    List<Turno> obtenerTurnosReservadosPorProfesional(String profesionalMail);
 }

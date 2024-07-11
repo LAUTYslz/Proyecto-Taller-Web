@@ -12,150 +12,16 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/homeBienvenido.css}"/>
     <link rel="stylesheet" th:href="@{/js/main.js}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
-
-    <style>
-        /* Estilos para los botones circulares */
-
-        .boton-desactivada a {
-            font-size: 24px;
-            padding: 10px 20px;
-            background-color: #dacdea;
-            border-radius: 50px;
-            color: #FF0000;
-            border: none;
-            cursor: pointer;
-        }
-
-        .boton-activar a{
-            font-size: 24px;
-            padding: 10px 20px;
-            background-color: #dacdea;
-            border-radius: 50px;
-            color: darkgreen;
-            border: none;
-            cursor: pointer;
-        }
-        .circle-button {
-            font-family: Schoolbell, cursive;
-            display: inline-block;
-            width: 150px; /* Ancho del círculo */
-            height: 150px; /* Altura del círculo */
-            border-radius: 50%;
-            background-color: #cc99ff;
-            color: #fff;
-            text-align: center;
-            line-height: 150px; /* Centrado vertical del texto */
-            margin-right: 20px;
-            cursor: pointer;
-            font-size: 16px; /* Tamaño de la fuente */
-            text-decoration: none; /* Quitar subrayado del enlace */
-        }
-
-        /* Estilos para el contenedor de los botones */
-        .button-container {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: center; /* Centrar los botones */
-            font-family: Schoolbell, cursive;
-        }
-
-        /* Estilos para los botones */
-        .button-container .button {
-            background-color: #e6e6ff; /* Lila claro */
-            color: white; /* Tono complementario */
-            border: none;
-            padding: 10px 20px;
-            margin: 5px 0; /* Espacio entre los botones */
-            border-radius: 5px;
-            cursor: pointer;
-            width: 200px; /* Ancho de los botones */
-            transition: background-color 0.3s; /* Transición suave del color de fondo */
-        }
-
-        /* Agregar efecto al pasar el cursor sobre los botones */
-        .button-container .button:hover {
-            background-color: #cc99ff; /* Cambia a un lila más oscuro al pasar el cursor */
-        }
-
-        /* Estilos para el segundo botón */
-        .button-container .button:nth-child(2) {
-            background-color: #cc99ff; /* Lila medio */
-            color: #330066; /* Tono complementario */
-        }
-
-        /* Estilos para el tercer botón */
-        .button-container .button:nth-child(3) {
-            background-color: #9966ff; /* Lila oscuro */
-            color: #ffccff; /* Tono complementario */
-        }
-        /* Estilos para el hover */
-        .circle-button:hover {
-            background-color: #666666; /* Color más oscuro al pasar el ratón */
-            color:white;
-        }
-
-        /* Estilos para los datos del titular */
-        .titular {
-            padding: 20px; /* Espaciado interior */
-            margin-bottom: 20px; /* Espaciado inferior */
-            border-radius: 100px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(10, 0, 0, 0.1); /* Sombra */
-            font-family: Schoolbell, cursive;
-
-            /* Fondo degradado */
-            background: linear-gradient(to right, #b9a0ea, #9370db); /* De lila claro a lila oscuro */
-        }
-
-        /* Estilos para los datos de los hijos */
-        .hijos {
-            background-color: #f9f9f9; /* Color de fondo */
-            padding: 20px; /* Espaciado interior */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-        }
-        h2{
-            background-color: #b9a0ea; /* Color de fondo */
-            padding: 20px; /* Espaciado interior */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-        }
-        /* Estilos para los títulos */
-        h3 {
-            background-color: #666666;/* Color de fondo */
-            padding: 20px; /* Espaciado interior */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-        }
-    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
-    <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/contacto}">Contactos</a>
-        <a class="nav-link" href="#">Eventos/Cursos</a>
-        <a class="nav-link" th:href="@{/test}">Tests</a>
-        <a class="nav-link" href="#">Foro Comunidad</a>
-    </div>
-
-    <a class="navbar-brand" th:href="@{/home}">
-        <img th:src="@{/img/educareLogo.png}" alt="Logo">
-    </a>
-
-    <div class="navbar-nav ml-auto">
-
-        <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
-        <div class="search-container">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-        </div>
-    </div>
-</nav>
+<div th:replace="home :: nav"></div>
 
 <main>
     <!-- Sección de Datos de Usuario -->
@@ -253,5 +119,6 @@
         <div class="circle-button"><a th:href="@{/seleccionTests}">TEST</a></div>
     </div>
 </main>
+<div th:replace="home :: footer"></div>
 </body>
 </html>

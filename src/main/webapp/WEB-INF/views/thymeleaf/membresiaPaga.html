@@ -11,62 +11,61 @@
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formularios_profesional.css}"/>
     <link rel="stylesheet" th:href="@{/css/membresiaPaga.css}"/>
 
 
 </head>
 
-
 <body>
 
 <div th:replace=" home :: nav"></div>
+<main>
+        <h1>Activar Membresía</h1>
+    <div class="container-form">
+        <form action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${datosMembresia}">
 
-<div class="container-form">
-    <form action="#" th:action="@{/procesarMembresiaPaga}" method="post" th:object="${datosMembresia}">
+            <div th:if="${error != null}" class="alert alert-danger" role="alert">
+                <p th:text="${error}"></p>
+            </div>
 
-        <div th:if="${error != null}" class="alert alert-danger" role="alert">
-            <p th:text="${error}"></p>
-        </div>
+            <div class="mb3">
+                <label th:for="nombreCompleto" class="etiqueta"> Nombre completo: </label>
+                <input th:field="*{nombreCompleto}" type="text" name="nombreCompleto" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="nombreCompleto" class="etiqueta"> Nombre completo: </label>
-            <input th:field="*{nombreCompleto}" type="text" name="nombreCompleto" class="form-control">
-        </div>
+            <div class="mb3">
+                <label th:for="email" class="etiqueta"> Email: </label>
+                <input th:field="*{email}" type="email" name="email" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="email" class="etiqueta"> Email: </label>
-            <input th:field="*{email}" type="email" name="email" class="form-control">
-        </div>
+            <div class="mb3">
+                <label th:for="numeroTelefonico" class="etiqueta"> Número Telefónico : </label>
+                <input th:field="*{numeroTelefonico}" type="number" name="numeroTelefonico" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="numeroTelefonico" class="etiqueta"> Número Telefónico : </label>
-            <input th:field="*{numeroTelefonico}" type="number" name="numeroTelefonico" class="form-control">
-        </div>
+            <div class="mb3">
+                <label th:for="numeroDeTarjeta" class="etiqueta"> Número de tarjeta: </label>
+                <input th:field="*{tarjeta.numeroDeTarjeta}" type="number" name="numeroDeTarjeta" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="numeroDeTarjeta" class="etiqueta"> Número de tarjeta: </label>
-            <input th:field="*{tarjeta.numeroDeTarjeta}" type="number" name="numeroDeTarjeta" class="form-control">
-        </div>
+            <div class="mb3">
+                <label th:for="fechaDeVencimiento" class="etiqueta"> Fecha de Vencimiento: </label>
+                <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" name="fechaDeVencimiento" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="fechaDeVencimiento" class="etiqueta"> Fecha de Vencimiento: </label>
-            <input th:field="*{tarjeta.fechaDeVencimiento}" type="date" name="fechaDeVencimiento" class="form-control">
-        </div>
+            <div class="mb3">
+                <label th:for="codigoDeSeguridad" class="etiqueta"> Código de seguridad: </label>
+                <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad" class="form-control">
+            </div>
 
-        <div class="mb3">
-            <label th:for="codigoDeSeguridad" class="etiqueta"> Código de seguridad: </label>
-            <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad" class="form-control">
-        </div>
-        <div class="mb6 text-center">
-            <p class="perfil">Pago Membresía $ 5000</p>
-        </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary"> Activar Membresía </button>
+            </div>
 
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary"> Activar Membresía </button>
-        </div>
-
-    </form>
-</div>
+        </form>
+    </div>
+</main>
 
 <div th:replace=" home :: footer"></div>
 

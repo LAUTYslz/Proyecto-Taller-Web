@@ -1,0 +1,69 @@
+ /* Estilos para el formulario */
+form {
+    width: 40%;
+    margin: 7vh auto;
+    padding: 20px;
+    border: 2px solid #4f3c6e;
+    border-radius: 5px;
+    background-color: rgba(163, 132, 225, 0.58);
+}
+label {
+    font-weight: bold;
+}
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type="submit"] {
+    background-color: #b9a0ea;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button[type="submit"]:hover {
+    background-color: #b9a0ea;
+}
+
+table {
+    width: 100%; /* Hacer que la tabla ocupe el 100% del ancho disponible */
+    border-collapse: collapse; /* Colapsar bordes de celda */
+    margin-bottom: 20px; /* Espacio entre la tabla y el contenido siguiente */
+}
+
+th, td {
+    padding: 10px; /* Espaciado interno para celdas */
+    text-align: left; /* Alinear texto a la izquierda */
+    border: 1px solid #ddd; /* Borde de celda */
+}
+th{
+    text-align: center;
+}
+th {
+    background-color: #b9a0ea; /* Color de fondo para encabezados */
+}
+
+td.actions {
+    text-align: center; /* Alinear contenido de la columna de acciones al centro */
+}
+
+td.actions a {
+    margin-right: 25px; /* Espaciado entre los iconos de acciones */
+    color: dimgray; /* Color de enlace para iconos de acciones */
+}
+table a{
+    color: #4f3c6e;
+    transition: all .2s;
+}
+table a:hover{
+    text-decoration: none;
+    color: #ff7300;
+    scale: 1.1;
+}

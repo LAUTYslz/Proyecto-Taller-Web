@@ -13,7 +13,7 @@ main{
 
 .crearButton{
     margin: 3vh  0 1vh;
-    width: 17%;
+    width: 25%;
     display: flex;
     justify-content: center;
     background-color: #ff7300;
@@ -61,4 +61,25 @@ main{
 }
 .filtrar-contactos button:hover{
     scale: 1.1;
+}
+
+.a-conteiner{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 4vh
+}
+.a-conteiner a{
+    width: 240px;
+}
+
+.error p{
+    text-align: center;
+}
+.error{
+    display: flex;
+    margin: auto;
+    justify-content: center;
 }

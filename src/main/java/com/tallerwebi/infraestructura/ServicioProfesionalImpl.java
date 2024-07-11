@@ -1,14 +1,12 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.MetodoNoEncontrado;
-import com.tallerwebi.dominio.excepcion.NoPudoGuardarseElProfesional;
-import com.tallerwebi.dominio.excepcion.NoSeEncontraronProfesionalesEnLaBusqueda;
-import com.tallerwebi.dominio.excepcion.TipoProfesionalNoEncontrado;
+import com.tallerwebi.dominio.excepcion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -20,13 +18,16 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     private final RepositorioProfesional repositorioProfesional;
     private final RepositorioMetodo repositorioMetodo;
     private final RepositorioTipoProfesional repositorioTipoProfesional;
-
+    private final RepositorioTurno repositorioTurno;
+    private final RepositorioDiasAtencion repositorioDiasAtencion;
 
     @Autowired
-    public ServicioProfesionalImpl(RepositorioProfesional repositorioProfesional, RepositorioMetodo repositorioMetodo, RepositorioTipoProfesional repositorioTipoProfesional) {
+    public ServicioProfesionalImpl(RepositorioProfesional repositorioProfesional, RepositorioMetodo repositorioMetodo, RepositorioTipoProfesional repositorioTipoProfesional, RepositorioTurno repositorioTurno, RepositorioDiasAtencion repositorioDiasAtencion) {
         this.repositorioProfesional = repositorioProfesional;
         this.repositorioMetodo = repositorioMetodo;
         this.repositorioTipoProfesional = repositorioTipoProfesional;
+        this.repositorioTurno = repositorioTurno;
+        this.repositorioDiasAtencion = repositorioDiasAtencion;
     }
 
     @Override
@@ -201,6 +202,38 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
     @Override
     public List<Profesional> traerProfesionalesSinTienda() {
         return repositorioProfesional.traerPrefesionalesSinTienda();
+    }
+
+    @Override
+    public Integer calcularMontoACobrar(String mailProfesional) {
+        Profesional profesional = repositorioProfesional.buscarProfesionalPorEmail(mailProfesional);
+        List<Turno> turnos = repositorioTurno.obtenerTurnosRealizadosPorProfesional(profesional.getId());
+        Integer total = 0;
+        total = turnos.size() * profesional.getValorConsulta();
+
+        return total;
+    }
+
+    @Override
+    public List<TipoProfesional> traerTodosLosTiposSinTienda() {
+        return repositorioTipoProfesional.buscarTiposSinTienda();
+    }
+
+    @Override
+    public Profesional traerPorEmail(String profesionalMail) {
+        return repositorioProfesional.buscarProfesionalPorMail(profesionalMail);
+    }
+
+    @Override
+    @Transactional
+    public void guardarDiasAtencion(Profesional profesional, DiasSemana diaSemana, LocalTime horaDesde, LocalTime horaHasta, int duracionSesiones) {
+
+        profesional.setDiaAtencion(diaSemana);
+        profesional.setHoraDesde(horaDesde);
+        profesional.setHoraHasta(horaHasta);
+        profesional.setDuracionSesiones(duracionSesiones);
+
+        repositorioProfesional.modificar(profesional);
     }
 
     @Override

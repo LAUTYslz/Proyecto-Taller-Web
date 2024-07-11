@@ -11,39 +11,35 @@
 
     <!-- custom style -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
 
 </head>
 
 <body>
-
-
 <div th:replace="home :: nav"></div>
 
 <main role="main" class="container">
 
 
     <div class="container">
-        <div id="loginbox" style="margin-top: 50px; margin-bottom: 50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-
-
+        <div id="loginbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 form-container">
             <form action="#" th:action="@{/validar-login}" th:object="${datosLogin}" method="POST" >
-                <h3 class="form-signin-heading">Iniciar Sesión</h3>
+                <h2 class="form-signin-heading">Iniciar Sesión</h2>
                 <hr class="colorgraph"><br>
-
-                <!-- Titular -->
-                <h2>LOGIN</h2>
-                <label for="email">
-                    <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Email" />
-                </label>
-                <label for="password">
-                    <input th:field="*{password}" id="password" type="password" class="form-control" placeholder="Contraseña" />
-                </label>
-
-
-                <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
-
-                <!-- Mostrar mensaje de error -->
-                <p th:if="${error != null}" class="alert alert-danger" th:text="'Error: ' + ${error}"></p>
+                <div class="inputs-container">
+                    <!-- Titular -->
+                    <label for="email">
+                        <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Email" />
+                    </label>
+                    <label for="password">
+                        <input th:field="*{password}" id="password" type="password" class="form-control" placeholder="Contraseña" />
+                    </label>
+                    <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+                    <!-- Mostrar mensaje de error -->
+                    <p th:if="${error != null}" class="alert alert-danger" th:text="'Error: ' + ${error}"></p>
+                </div>
             </form>
             <a id="ir-a-registrarme" th:href="@{/nuevo-usuario}">Registrarme</a>
         </div>
