@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -113,7 +115,12 @@ public class ServicioProfesionalImpl implements ServicioProfesional {
             throw new MetodoNoEncontrado(nombreMetodo);
         }
         List<Profesional> profesionales = repositorioProfesional.traerProfesionalesPorMetodo(nombreMetodo);
-        return profesionales != null ? profesionales : new ArrayList<>();
+
+
+        // Eliminar duplicados utilizando un HashSet para mantener la unicidad
+        Set<Profesional> profesionalesUnicos = new LinkedHashSet<>(profesionales);
+
+        return new ArrayList<>(profesionalesUnicos); // Devuelve la lista de profesionales únicos
     }
 
     @Override

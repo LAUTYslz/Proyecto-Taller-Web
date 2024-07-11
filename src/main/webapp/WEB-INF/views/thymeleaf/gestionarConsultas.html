@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Consultas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gestionar_turnos.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="home :: nav"></div>
+<main>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1 class="mt-4 mb-4">Bienvenido:<span th:text="${usuario.nombre}"> </span></h1>
+
+            <h1 class="mt-4 mb-4">Consultas Realizadas por el Profesional</h1>
+
+            <!-- Tabla para mostrar las consultas -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Hijo</th>
+                    <th>Fecha</th>
+                    <th>Consulta</th>
+                    <th>Usuario</th>
+                    <th>Estado</th>
+                    <th>Especialidad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Iterar sobre las consultas y mostrar cada una -->
+                <tr th:each="consulta : ${consultas}">
+                    <td th:text="${consulta.id}"></td>
+                    <td th:text="${consulta.hijo.nombre}"></td>
+                    <td th:text="${consulta.fecha}"></td>
+                    <td th:text="${consulta.mensaje}"></td>
+                    <td th:text="${consulta.usuario.nombre}"></td>
+                    <td th:text="${consulta.estado}"></td>
+                    <td th:text="${consulta.profesional.tipo.nombre}"></td>
+                    <td>
+                        <div th:if="${consulta.estado == T(com.tallerwebi.dominio.Mensaje).SIN_LEER}">
+                        <a th:href="@{/responderConsulta/{id}(id=${consulta.hijo.id}, consultaId=${consulta.id})}" class="btn btn-primary">Responder Consulta</a>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Si no hay consultas -->
+            <div th:if="${consultas.isEmpty()}">
+                <p>No hay consultas disponibles.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<div th:replace="home :: footer"></div>
+<!-- Bootstrap core JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

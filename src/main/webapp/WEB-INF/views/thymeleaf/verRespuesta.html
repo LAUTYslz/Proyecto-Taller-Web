@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/css/bienvenido.css}">
+
+    <link rel="stylesheet" th:href="@{/css/usuarioMembresia.css}">
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/js/main.js}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-ZR8YToDj+7P/hRCjjmIv/l+1k7k29HhC1mGq7izqTjHbLyLMQf2aRdhe1KrInPrOsv/5oNm6Dc0iLk61YOTf9Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <nav class="navbar navbar-expand-md navbar-dark custom-color-navbar">
+        <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/contacto}">Contactos</a>
+            <a class="nav-link" href="#">Eventos/Cursos</a>
+            <a class="nav-link" th:href="@{/test}">Tests</a>
+            <a class="nav-link" href="#">Foro Comunidad</a>
+        </div>
+
+        <a class="navbar-brand" th:href="@{/home}">
+            <img th:src="@{/img/educareLogo.png}" alt="Logo">
+        </a>
+
+        <div class="navbar-nav ml-auto">
+
+            <a class="nav-link" th:href="@{/cerrar-sesion}">Cerrar Sesión</a>
+            <div class="search-container">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+            </div>
+        </div>
+    </nav>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1 class="mt-4 mb-4">Respuesta a la Consulta</h1>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Respuesta:</h5>
+                    <p class="card-text" th:text="${consulta.respuesta}"></p>
+                </div>
+            </div>
+
+            <a href="#" onclick="history.go(-1);" class="btn btn-primary mt-3">Volver</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

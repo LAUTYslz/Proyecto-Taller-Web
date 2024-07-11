@@ -1,0 +1,131 @@
+/* Estilos para el cuerpo y el main */
+body {
+    font-family: Arial, sans-serif; /* Cambia la fuente según necesidades */
+    background-color: #f8f9fa; /* Color de fondo para todo el cuerpo */
+    color: #333; /* Color de texto principal */
+    margin: 0;
+    padding: 0;
+}
+header{
+    display:flex;
+}
+
+main {
+    display: flex; /* Utiliza flexbox para manejar el layout */
+    justify-content: space-between; /* Distribuye los elementos a lo largo del main */
+    max-width: 1200px; /* Ancho máximo para el contenido principal */
+    margin: 20px auto; /* Margen exterior */
+    padding: 20px;
+}
+.pasos .circulo{
+    width: 100px;
+    height: 108px;
+    border-radius: 50%;
+    background-color: chocolate;
+
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el perfil */
+.perfil {
+    background-color: chocolate;
+    color: #4f3c6e;
+    border: 1px solid #ddd; /* Borde del perfil */
+    padding: 20px;
+    width: 100%; /* Ancho fijo para el perfil */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+    text-align: center;
+}
+
+.perfil h2 {
+    font-size: 1.5rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.perfil p {
+    margin: 5px 0; /* Margen para los párrafos */
+}
+
+.perfil .btn-primary {
+    margin-top: 10px; /* Margen superior para el botón */
+}
+
+/* Estilos para las consultas */
+.consultas {
+    background-color: #fff; /* Color de fondo para las consultas */
+    border: 1px solid #ddd; /* Borde de las consultas */
+    padding: 20px;
+    width: 65%; /* Ancho fijo para las consultas */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+    overflow-y: auto; /* Scroll vertical si hay muchas consultas */
+    max-height: 400px; /* Altura máxima */
+}
+
+.consultas h2 {
+    font-size: 1.5rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.consultas .consulta {
+    margin-bottom: 15px; /* Margen inferior para cada consulta */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde de cada consulta */
+    background-color: #f0f0f0; /* Color de fondo para cada consulta */
+}
+
+.consultas .btn-primary {
+    margin-top: 10px; /* Margen superior para el botón */
+}
+
+/* Estilos para las cards */
+.cards {
+    display: flex; /* Utiliza flexbox para las cards */
+    justify-content: flex-end; /* Alinea las cards a la derecha */
+    gap: 15px; /* Espacio entre las cards */
+    width: 100%; /* Ancho total */
+}
+
+.cards .card {
+    width: calc(50% - 15px); /* Calcula el ancho de cada card */
+    border: 1px solid #ddd; /* Borde de las cards */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra ligera */
+}
+
+.cards .card-body {
+    padding: 20px; /* Padding del cuerpo de la card */
+}
+
+.cards .card-title {
+    font-size: 1.25rem; /* Tamaño de fuente para títulos */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.cards .card-text {
+    color: #666; /* Color de texto secundario */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Cambia a layout de columna en pantallas pequeñas */
+    }
+
+    .perfil, .consultas {
+        width: 100%; /* Ancho completo para el perfil y las consultas */
+        margin-bottom: 20px; /* Margen inferior */
+    }
+
+    .cards {
+        justify-content: flex-start; /* Alinea las cards a la izquierda */
+    }
+
+    .cards .card {
+        width: 100%; /* Ancho completo para las cards */
+    }
+}

@@ -1,0 +1,64 @@
+main{
+    width: 90%;
+    margin: auto;
+}
+.table-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto 10vh;
+    background-color: rgba(163, 132, 225, 0.58);
+    border-radius: 20px;
+}
+
+.crearButton{
+    margin: 3vh  0 1vh;
+    width: 17%;
+    display: flex;
+    justify-content: center;
+    background-color: #ff7300;
+    transition: all .2s
+}
+
+.crearButton:hover{
+    background-color: rgb(255, 115, 0);
+    scale: 1.1;
+}
+
+.editarButton{
+    text-decoration: none;
+    color: #0034fc;
+    transition: all .2s;
+    border: none;
+}
+
+.elimiinarButton{
+    text-decoration: none;
+    color: #ee3646;
+    transition: all .2s;
+}
+
+.editarButton:hover, .elimiinarButton:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.filtrar-contactos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin:  4vh auto;
+    right: 0;
+    width: 70%;
+}
+
+.filtrar-contactos select, .filtrar-contactos button{
+    border-radius: 10px;
+    width: 30vh;
+    height: 6vh;
+    border: 2px solid #ff7300;
+    transition: all .3s;
+}
+.filtrar-contactos button:hover{
+    scale: 1.1;
+}

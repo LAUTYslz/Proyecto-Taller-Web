@@ -4,10 +4,10 @@ com\tallerwebi\punta_a_punta\VistaLoginE2E.class
 com\tallerwebi\punta_a_punta\vistas\VistaWeb.class
 com\tallerwebi\infraestructura\RepositorioMetodoTest.class
 com\tallerwebi\presentacion\ControladorProfesionalTest.class
-com\tallerwebi\presentacion\ControladorAdminTest.class
 com\tallerwebi\infraestructura\ServicioProfesionalTest.class
 com\tallerwebi\integracion\config\HibernateTestConfig.class
 com\tallerwebi\punta_a_punta\vistas\VistaLogin.class
+com\tallerwebi\infraestructura\ServicioMembresiaActivadaTest.class
 com\tallerwebi\infraestructura\RepositoriaUsuarioTest.class
 com\tallerwebi\infraestructura\RepositorioProfesionalTest.class
 com\tallerwebi\infraestructura\RepositorioTipoProfesionalTest.class

@@ -16,6 +16,7 @@
 
 </head>
 
+
 <body>
 
 <div th:replace=" home :: nav"></div>
@@ -55,6 +56,9 @@
         <div class="mb3">
             <label th:for="codigoDeSeguridad" class="etiqueta"> Código de seguridad: </label>
             <input th:field="*{tarjeta.codigoDeSeguridad}" type="number" name="codigoDeSeguridad" class="form-control">
+        </div>
+        <div class="mb6 text-center">
+            <p class="perfil">Pago Membresía $ 5000</p>
         </div>
 
         <div class="text-center">

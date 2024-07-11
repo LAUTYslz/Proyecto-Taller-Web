@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta Enviada con Éxito</title>
+    <!-- Incluir Bootstrap si es necesario -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">¡Consulta Enviada con Éxito!</h2>
+                    <p class="card-text text-center">Tu consulta ha sido recibida y será procesada pronto.</p>
+
+
+                    <div class="text-center">
+                        <a  th:href="@{/usuarioMembresia}" type="button"><i class="fas fa-book"></i> Volver </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

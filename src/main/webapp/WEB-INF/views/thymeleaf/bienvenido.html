@@ -170,6 +170,21 @@
                 <p>Nombre del Usuario: <span th:text="${usuario.nombre}"></span></p>
                 <p>Email: <span th:text="${usuario.email}"></span></p>
 
+                <div class="containerSuscripcion">
+                    <div class="membership paid">
+                        <h2>Membresía Paga</h2>
+                        <ul>
+                            <li>Acceso ilimitado a contenido exclusivo</li>
+                            <li>Descuentos en productos y servicios</li>
+                            <li>Servicio de atención al cliente prioritario</li>
+                            <li>Actualizaciones periódicas de contenido</li>
+                        </ul>
+                        <button class="joinButton"> <a th:href="@{/membresiaPaga}"> Unirme  </a> </button>
+                    </div>
+
+                </div>
+
+
 
                 <!-- Verificar si la membresía está presente -->
                 <div th:if="${membresia != null}">

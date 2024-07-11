@@ -35,4 +35,6 @@ public interface ServicioAdmi {
     void actualizarJuego(Juego juego) throws juegoInexistente;
 
     void eliminarJuego(Juego juego);
+
+    Caja obtenerCaja();
 }

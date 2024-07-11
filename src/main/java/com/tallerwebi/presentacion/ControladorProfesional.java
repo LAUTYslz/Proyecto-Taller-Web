@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.infraestructura.ServicioMembresiaActivadaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,13 @@ public class ControladorProfesional {
 
     private final ServicioProfesional servicioContacto;
     private final ServicioLogin servicioLogin;
+    private final ServicioMembresiaActivada servicioMembresiaActivada;
 
     @Autowired
-    public ControladorProfesional(ServicioProfesional servicioContacto, ServicioLogin servicioLogin){
+    public ControladorProfesional(ServicioProfesional servicioContacto, ServicioLogin servicioLogin, ServicioMembresiaActivada servicioMembresiaActivada){
         this.servicioContacto = servicioContacto;
         this.servicioLogin = servicioLogin;
+        this.servicioMembresiaActivada = servicioMembresiaActivada;
     }
 
     @GetMapping("/homeProfesional")
@@ -95,4 +98,71 @@ public class ControladorProfesional {
         mav.addObject("ContactosFiltradosPorTipoYMetodo", servicioContacto.traerProfesionalesPorTipoYMetodo(nombreTipo, nombreMetodo));
         return mav;
     }
+    ////////////////////////////controlador consultas profesionales ////////////////////
+    @GetMapping("/gestionarConsultas")
+    public ModelAndView mostrarPaginaProfesionalesParaConsultas(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("gestionarConsultas");
+
+        // Obtener el usuario actual (que es un Profesional)
+        Usuario usuario = servicioLogin.obtenerUsuarioActual(request);
+        mav.addObject("usuario", usuario);
+
+        // Obtener las consultas asociadas al profesional
+         String profesional = usuario.getEmail();
+        List<Consulta> consultas = servicioMembresiaActivada.buscarConsultasPorProfesionales(profesional);
+        mav.addObject("consultas", consultas);
+
+        return mav;
+    }
+
+
+    @GetMapping("/responderConsulta/{id}")
+    public ModelAndView verDetallesHijoYRespuesta(@PathVariable Long id, @RequestParam Long consultaId) {
+        ModelAndView mav = new ModelAndView("responderConsulta");
+
+
+        Hijo hijo = servicioLogin.busquedahijo(id);
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
+
+        mav.addObject("hijo", hijo);
+        mav.addObject("consulta", consulta);
+
+        return mav;
+    }
+
+    @PostMapping("/respuesta")
+    public String responderConsulta(@RequestParam Long consultaId, @RequestParam String respuesta) {
+        // Aquí deberías implementar la lógica para guardar la respuesta en la consulta correspondiente
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
+        servicioMembresiaActivada.respuestaDeProfesionalAConsulta(consultaId,respuesta);
+
+        return "redirect:/gestionarConsultas";  // Redirigir a la página de gestión de consultas después de responder
+    }
+
+    @GetMapping("/verRespuesta/{id}")
+    public ModelAndView verRespuestaConsulta( @PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("verRespuesta");
+
+        // Aquí obtienes la consulta por su ID
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(id);
+
+        mav.addObject("consulta", consulta);
+
+        return mav;
+
+    }
+
+
+    @GetMapping("/verRespuesta")
+    public ModelAndView ver(@PathVariable Long id, @RequestParam Long consultaId) {
+        ModelAndView mav = new ModelAndView("verRespuesta");
+
+        // Aquí obtienes la consulta por su ID
+        Consulta consulta = servicioMembresiaActivada.obtenerConsultaPorId(consultaId);
+
+        mav.addObject("consulta", consulta);
+
+        return mav;
+    }
+
 }

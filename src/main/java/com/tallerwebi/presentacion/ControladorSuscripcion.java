@@ -1,10 +1,8 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.DatosMembresia;
-import com.tallerwebi.dominio.ServicioLogin;
-import com.tallerwebi.dominio.ServicioMembresia;
-import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.*;
+import com.tallerwebi.infraestructura.ServicioAdmiImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,13 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorSuscripcion {
 
+    private final RequestMappingHandlerAdapter requestMappingHandlerAdapter;
+
     private ServicioMembresia servicioMembresia;
     private final ServicioLogin servicioLogin;
+    private final ServicioAdmi servicioAdmi;
 
 
-    public ControladorSuscripcion(ServicioMembresia servicioMembresia, ServicioLogin servicioLogin) {
+    public ControladorSuscripcion(ServicioMembresia servicioMembresia, ServicioLogin servicioLogin, RequestMappingHandlerAdapter requestMappingHandlerAdapter, ServicioAdmi servicioAdmi) {
         this.servicioMembresia = servicioMembresia;
         this.servicioLogin = servicioLogin;
+        this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
+        this.servicioAdmi = servicioAdmi;
     }
 
     @RequestMapping("/suscripcion")
@@ -42,8 +45,9 @@ public class ControladorSuscripcion {
     public ModelAndView procesarDatosDeMembresiaPaga(@ModelAttribute("datosMembresia") DatosMembresia datosMembresia , HttpServletRequest request){
         ModelMap model = new ModelMap();
        Usuario usuario= servicioLogin.obtenerUsuarioActual(request);
+       Caja obtenercaja= servicioAdmi.obtenerCaja();
         try {
-            servicioMembresia.darDeAltaMembresia(datosMembresia,usuario);
+            servicioMembresia.darDeAltaMembresia(datosMembresia,usuario,obtenercaja);
             usuario = servicioLogin.buscarUsuarioPorId(usuario.getId());
             model.put("datosMembresia", datosMembresia);
             model.put("usuario", usuario);
